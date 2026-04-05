@@ -1,0 +1,20 @@
+
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+Error: Transform failed with 1 error:
+C:\Code Projects\Clients\Healing Technology\node_modules\.bin\payload.js:2:18: ERROR: Expected ")" but found "\"$(echo \""
+    at failureErrorWithLog (C:\Code Projects\Clients\Healing Technology\node_modules\tsx\node_modules\esbuild\lib\main.js:1748:15)
+    at C:\Code Projects\Clients\Healing Technology\node_modules\tsx\node_modules\esbuild\lib\main.js:1017:50
+    at responseCallbacks.<computed> (C:\Code Projects\Clients\Healing Technology\node_modules\tsx\node_modules\esbuild\lib\main.js:884:9)
+    at handleIncomingPacket (C:\Code Projects\Clients\Healing Technology\node_modules\tsx\node_modules\esbuild\lib\main.js:939:12)
+    at Socket.readFromStdout (C:\Code Projects\Clients\Healing Technology\node_modules\tsx\node_modules\esbuild\lib\main.js:862:7)
+    at Socket.emit (node:events:508:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at Pipe.onStreamRead (node:internal/stream_base_commons:189:23) {
+  name: 'TransformError'
+}
+
+Node.js v24.8.0

@@ -1,0 +1,122 @@
+import { getPayload } from 'payload'
+import configPromise from '@/payload.config'
+import Link from 'next/link'
+import { ArrowLeft, CheckCircle2, FileText, Download } from 'lucide-react'
+import { notFound } from 'next/navigation'
+
+export default async function ProductDetailPage({ params }: { params: { slug: string } }) {
+  await params; // Await params in next 16
+  const payload = await getPayload({ config: configPromise })
+  
+  const { docs } = await payload.find({
+    collection: 'products',
+    where: {
+      slug: { equals: params.slug }
+    },
+    depth: 2
+  })
+
+  if (docs.length === 0) {
+    return notFound()
+  }
+
+  const product = docs[0]
+  const brand = product.brand && typeof product.brand !== 'string' ? product.brand : null;
+  const category = product.category && typeof product.category !== 'string' ? product.category : null;
+
+  return (
+    <div className="min-h-screen bg-[#F8F9FA] pb-24 font-['Inter'] tracking-tight">
+      <div className="bg-[#00355D] text-white pt-16 pb-24 lg:pt-24 lg:pb-32">
+        <div className="container mx-auto px-4 lg:px-8 max-w-[1440px]">
+          <Link href="/products" className="inline-flex items-center gap-2 text-white/70 hover:text-white mb-8 transition-colors">
+            <ArrowLeft className="w-4 h-4" /> Back to Catalog
+          </Link>
+          <div className="flex flex-col lg:flex-row gap-12">
+            <div className="flex-1">
+              <div className="flex items-center gap-3 mb-6">
+                <span className="bg-[#12B5CB]/20 text-[#12B5CB] px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">{category?.title || 'System'}</span>
+                {product.originCountry && <span className="bg-white/10 text-white px-3 py-1 rounded-full text-xs font-bold tracking-wider">{product.originCountry}</span>}
+              </div>
+              <h1 className="font-['Inter'] text-4xl lg:text-5xl font-bold mb-4 tracking-tighter leading-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">{product.name}</h1>
+              <p className="text-xl text-white/80 max-w-2xl font-normal leading-relaxed mb-8">{product.shortSummary}</p>
+              
+              <div className="flex flex-wrap items-center gap-4">
+                <Link href="/contact" className="bg-[#12B5CB] hover:bg-[#009EE2] text-white px-8 py-3 rounded-md text-base font-bold transition-colors">Request a Quote</Link>
+                <div className="text-white/60 text-sm flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4" /> Manufactured by <span className="text-white font-medium">{brand?.name || 'Partner Brand'}</span>
+                </div>
+              </div>
+            </div>
+            
+            <div className="lg:w-1/3">
+              <div className="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-md">
+                <h3 className="font-['Inter'] text-xl font-bold text-white mb-4 tracking-tighter border-b border-white/10 pb-3">Key Highlights</h3>
+                <ul className="space-y-4">
+                  {product.keyHighlights?.map((hl, i) => (
+                    <li key={i} className="flex gap-3 text-white/90">
+                      <CheckCircle2 className="w-5 h-5 text-[#12B5CB] flex-shrink-0 mt-0.5" />
+                      <span className="font-normal">{hl.item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="container mx-auto px-4 lg:px-8 max-w-[1440px] -mt-12 relative z-10">
+        <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 lg:p-12">
+          {/* Specs */}
+          {product.specGroups && product.specGroups.length > 0 && (
+            <div className="mb-16">
+              <h2 className="font-['Inter'] text-3xl font-bold text-[#00355D] mb-8 tracking-tighter flex items-center gap-3">
+                <FileText className="w-8 h-8 text-[#12B5CB]" /> Technical Specifications
+              </h2>
+              <div className="space-y-8">
+                {product.specGroups.map((group, i) => (
+                  <div key={i}>
+                    <h3 className="text-xl font-bold text-[#111111] mb-6 uppercase tracking-wider text-sm border-b border-gray-100 pb-2">{group.groupTitle}</h3>
+                    <div className="bg-gray-50 rounded-xl overflow-hidden border border-gray-200">
+                      <table className="w-full text-left divide-y divide-gray-200">
+                        <tbody className="divide-y divide-gray-200 bg-white">
+                          {group.rows?.map((row, j) => (
+                            <tr key={j} className={j % 2 === 0 ? 'bg-white' : 'bg-gray-50/50'}>
+                              <td className="px-6 py-4 text-sm font-medium text-[#575B5F] w-1/2 md:w-1/3">{row.label}</td>
+                              <td className="px-6 py-4 text-sm text-[#111111] font-semibold">{row.value}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Downloads Placeholder UI */}
+          {product.downloadItems && product.downloadItems.length > 0 && (
+            <div>
+               <h2 className="font-['Inter'] text-2xl font-bold text-[#00355D] mb-6 tracking-tighter border-b border-gray-100 pb-3">Brochures & Manuals</h2>
+               <div className="flex flex-wrap gap-4">
+                  {product.downloadItems.map((doc, i) => (
+                    <div key={i} className="flex items-center justify-between border border-gray-200 rounded-lg p-4 bg-gray-50 hover:bg-white hover:shadow-md transition-all cursor-pointer w-full md:w-auto md:min-w-[300px]">
+                      <div className="flex items-center gap-3">
+                        <div className="bg-[#00355D]/10 text-[#00355D] p-2 rounded-md"><FileText className="w-5 h-5"/></div>
+                        <div>
+                          <div className="font-medium text-[#111111]">{doc.title}</div>
+                          <div className="text-xs text-[#575B5F] uppercase tracking-wider">{doc.type}</div>
+                        </div>
+                      </div>
+                      <Download className="w-4 h-4 text-[#12B5CB]" />
+                    </div>
+                  ))}
+               </div>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  )
+}
