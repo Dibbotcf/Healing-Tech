@@ -8,9 +8,9 @@ This workflow will initialize the local development environment for Healing Tech
 // turbo-all
 1. Start the PostgreSQL Docker container on port 12001. Ensure any old instance is removed first.
 ```powershell
-docker stop payload-postgres
-docker rm payload-postgres
-docker start payload-postgres || docker run -d --name payload-postgres -p 12001:5432 -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=healing-technology postgres
+docker stop healing-technology-postgres
+docker rm healing-technology-postgres
+docker start healing-technology-postgres || docker run -d --name healing-technology-postgres -p 12001:5432 -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=healing-technology postgres
 ```
 
 2. Start the main Next.js + Payload CMS application in the background.

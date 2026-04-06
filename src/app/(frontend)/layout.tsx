@@ -17,7 +17,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className="antialiased">
         <div className="min-h-screen bg-[#F8F9FA] text-[#111111] tracking-tight flex flex-col font-['Inter']">
           <Navbar />

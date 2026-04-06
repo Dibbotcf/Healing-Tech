@@ -3,7 +3,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { Phone, Menu, X, ChevronDown } from "lucide-react";
-import { getMegaMenuData } from "@/app/actions/getMegaMenu";
 
 interface Category {
   id: string;
@@ -32,18 +31,21 @@ export function Navbar({ initialCategories = [], initialProducts = [] }: { initi
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Fetch payload data via Server Action safely out of HTTP request loop
+  // Fetch payload data gracefully via Dedicated Next.js API Route
   useEffect(() => {
     async function fetchPayloadData() {
       try {
         if (categories.length === 0) {
-          const { categories: fetchedCats, products: fetchedProds } = await getMegaMenuData();
-          if (fetchedCats.length > 0) {
-            setCategories(fetchedCats);
-            if (!activeCategory) setActiveCategory(fetchedCats[0].id);
-          }
-          if (fetchedProds.length > 0) {
-            setProducts(fetchedProds);
+          const res = await fetch("/api/menus");
+          if (res.ok) {
+            const data = await res.json();
+            if (data.categories.length > 0) {
+              setCategories(data.categories);
+              if (!activeCategory) setActiveCategory(data.categories[0].id);
+            }
+            if (data.products.length > 0) {
+              setProducts(data.products);
+            }
           }
         }
       } catch (err) {

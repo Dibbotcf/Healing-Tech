@@ -33,7 +33,7 @@ export default async function ProductsPage() {
               <h3 className="font-['Inter'] text-lg font-medium text-[#00355D] mb-4 flex items-center gap-2 tracking-tighter"><Filter className="w-5 h-5" /> Categories</h3>
               <div className="space-y-3">
                 <div className="flex items-center gap-3">
-                  <input type="checkbox" className="w-4 h-4 text-[#12B5CB] rounded border-gray-300 pointer-events-none" checked />
+                  <input type="checkbox" className="w-4 h-4 text-[#12B5CB] rounded border-gray-300 pointer-events-none" checked readOnly />
                   <span className="text-[#575B5F] font-normal">All Categories</span>
                 </div>
                 {categories.map((c) => (
