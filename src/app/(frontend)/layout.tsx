@@ -17,11 +17,20 @@ export const metadata: Metadata = {
     title: "Healing Technology - Leading Medical Equipment supplier in Bangladesh",
     description: "Importing world-class medical equipment from globally certified manufacturers to Dhaka, Bangladesh. CE, FDA, and DGDA compliant.",
     siteName: "Healing Technology",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Healing Technology - Leading Medical Equipment Supplier in Bangladesh",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Healing Technology - Leading Medical Equipment supplier in Bangladesh",
     description: "Importing world-class medical equipment from globally certified manufacturers to Dhaka, Bangladesh. CE, FDA, and DGDA compliant.",
+    images: ["/og-image.png"],
   },
 };
 

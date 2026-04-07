@@ -1,8 +1,10 @@
 "use client";
-import { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight, ChevronLeft, ChevronRight, Sparkles } from "lucide-react";
+import useEmblaCarousel from 'embla-carousel-react';
+import Autoplay from 'embla-carousel-autoplay';
 
 interface Product {
   id: string;
@@ -18,23 +20,35 @@ interface Product {
 export function ProductCarousel() {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
-  const scrollRef = useRef<HTMLDivElement>(null);
+
+  // Initialize Embla with looping and autoplay
+  const [emblaRef, emblaApi] = useEmblaCarousel(
+    { loop: true, align: "start", skipSnaps: false, dragFree: false },
+    [Autoplay({ delay: 4000, stopOnInteraction: true })]
+  );
 
   useEffect(() => {
     fetch("/api/products?limit=10&sort=-createdAt")
       .then((r) => r.json())
       .then((data) => {
-        setProducts(data.docs || []);
+        let fetchedProducts = data.docs || [];
+        // Duplicate products if there are too few to enforce an infinite scroll loop safely
+        if (fetchedProducts.length > 0 && fetchedProducts.length < 8) {
+          fetchedProducts = [...fetchedProducts, ...fetchedProducts, ...fetchedProducts].slice(0, 8);
+        }
+        setProducts(fetchedProducts);
         setLoading(false);
       })
       .catch(() => setLoading(false));
   }, []);
 
-  const scroll = (dir: "left" | "right") => {
-    if (!scrollRef.current) return;
-    const amount = 380;
-    scrollRef.current.scrollBy({ left: dir === "left" ? -amount : amount, behavior: "smooth" });
-  };
+  const scrollPrev = useCallback(() => {
+    if (emblaApi) emblaApi.scrollPrev();
+  }, [emblaApi]);
+
+  const scrollNext = useCallback(() => {
+    if (emblaApi) emblaApi.scrollNext();
+  }, [emblaApi]);
 
   if (loading) {
     return (
@@ -55,68 +69,79 @@ export function ProductCarousel() {
   return (
     <section className="py-20 bg-white overflow-hidden">
       <div className="container mx-auto px-4 lg:px-8 max-w-[1440px]">
-        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="flex items-end justify-between mb-12">
+        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="flex flex-col md:flex-row items-start md:items-end justify-between gap-6 mb-12">
           <div>
-            <p className="text-[#12B5CB] text-sm font-bold uppercase tracking-[0.1em] mb-2">From Our Catalog</p>
-            <h2 className="font-['Inter'] text-[2.5rem] font-bold text-[#00355D] tracking-tighter">Featured Equipment</h2>
+            <h2 className="font-['Inter'] text-[2.5rem] font-bold text-[#00355D] tracking-tighter">Latest Products</h2>
           </div>
-          <div className="flex items-center gap-2">
-            <button onClick={() => scroll("left")} className="w-10 h-10 rounded-xl border border-gray-200 flex items-center justify-center text-[#575B5F] hover:bg-[#00355D] hover:text-white hover:border-[#00355D] transition-all">
-              <ChevronLeft className="w-5 h-5" />
-            </button>
-            <button onClick={() => scroll("right")} className="w-10 h-10 rounded-xl border border-gray-200 flex items-center justify-center text-[#575B5F] hover:bg-[#00355D] hover:text-white hover:border-[#00355D] transition-all">
-              <ChevronRight className="w-5 h-5" />
-            </button>
+          <div className="flex items-center gap-6">
+            <Link 
+              href="/products" 
+              className="hidden md:flex group items-center gap-2 text-sm font-bold text-[#00355D] hover:text-[#12B5CB] transition-colors"
+            >
+              EXPLORE ALL PRODUCTS <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </Link>
+            <div className="flex items-center gap-2">
+              <button 
+                type="button"
+                onClick={scrollPrev} 
+                className="w-10 h-10 rounded-xl border border-gray-200 flex items-center justify-center text-[#575B5F] hover:bg-[#00355D] hover:text-white hover:border-[#00355D] transition-all cursor-pointer"
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </button>
+              <button 
+                type="button"
+                onClick={scrollNext} 
+                className="w-10 h-10 rounded-xl border border-gray-200 flex items-center justify-center text-[#575B5F] hover:bg-[#00355D] hover:text-white hover:border-[#00355D] transition-all cursor-pointer"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </button>
+            </div>
           </div>
         </motion.div>
 
-        <div ref={scrollRef} className="flex gap-6 overflow-x-auto pb-4 scrollbar-hide scroll-smooth" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
-          {products.map((product, i) => {
-            const catTitle = product.category && typeof product.category !== "string" ? product.category.title : "";
-            const brandName = product.brand && typeof product.brand !== "string" ? product.brand.name : "";
-            const heroUrl = product.heroImage?.url;
+        {/* Embla Carousel Viewport */}
+        <div className="overflow-hidden cursor-grab active:cursor-grabbing" ref={emblaRef}>
+          <div className="flex gap-6 backface-hidden touch-pan-y">
+            {products.map((product, i) => {
+              const catTitle = product.category && typeof product.category !== "string" ? product.category.title : "";
+              const brandName = product.brand && typeof product.brand !== "string" ? product.brand.name : "";
+              const heroUrl = product.heroImage?.url;
 
-            return (
-              <motion.div
-                key={product.id}
-                initial={{ opacity: 0, x: 40 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.08 }}
-                className="min-w-[320px] max-w-[320px] flex-shrink-0 group"
-              >
-                <Link href={`/products/${product.slug}`}>
-                  <div className="bg-white rounded-xl border border-gray-100  hover: transition-all duration-300 overflow-hidden h-full flex flex-col">
-                    <div className="relative h-[200px] bg-[#F8F9FA] overflow-hidden">
-                      {heroUrl ? (
-                        <img src={heroUrl} alt={product.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                      ) : (
-                        <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-[#00355D]/5 to-[#12B5CB]/10">
-                          <span className="text-[#00355D]/20 text-6xl font-bold">{product.name.charAt(0)}</span>
+              return (
+                <div key={i} className="flex-[0_0_auto] min-w-[320px] max-w-[320px] group pb-8">
+                  <Link href={`/products/${product.slug}`} className="block h-full">
+                    <div className="bg-white rounded-xl border border-gray-100 hover:border-[#12B5CB]/30 hover:shadow-xl transition-all duration-300 overflow-hidden h-full flex flex-col">
+                      <div className="relative h-[200px] bg-[#F8F9FA] overflow-hidden pointer-events-none">
+                        {heroUrl ? (
+                          <img src={heroUrl} alt={product.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                        ) : (
+                          <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-[#00355D]/5 to-[#12B5CB]/10">
+                            <span className="text-[#00355D]/20 text-6xl font-bold">{product.name.charAt(0)}</span>
+                          </div>
+                        )}
+                        {product.markAsNew && (
+                          <div className="absolute top-3 left-3 bg-[#12B5CB] text-white text-[10px] font-bold px-2.5 py-1 rounded-xl flex items-center gap-1 uppercase tracking-wider shadow-sm">
+                            <Sparkles className="w-3 h-3" /> New
+                          </div>
+                        )}
+                      </div>
+                      <div className="p-6 flex flex-col flex-1 pointer-events-none">
+                        {catTitle && <p className="text-[10px] font-bold text-[#12B5CB] uppercase tracking-[0.1em] mb-2">{catTitle}</p>}
+                        <h3 className="font-bold text-[#00355D] text-xl tracking-tight mb-3 group-hover:text-[#12B5CB] transition-colors leading-snug">{product.name}</h3>
+                        <p className="text-sm text-[#575B5F] leading-relaxed line-clamp-2 mb-4 flex-1">{product.listingSummary}</p>
+                        <div className="flex items-center justify-between mt-auto pt-4 border-t border-gray-50">
+                          {brandName && <span className="text-xs text-[#575B5F] font-bold uppercase tracking-wider">{brandName}</span>}
+                          <span className="text-[#12B5CB] text-sm font-bold inline-flex items-center gap-1 group-hover:gap-2 transition-all">
+                            View Details <ArrowRight className="w-3.5 h-3.5" />
+                          </span>
                         </div>
-                      )}
-                      {product.markAsNew && (
-                        <div className="absolute top-3 left-3 bg-[#12B5CB] text-white text-[10px] font-bold px-2.5 py-1 rounded-xl flex items-center gap-1 uppercase tracking-wider">
-                          <Sparkles className="w-3 h-3" /> New
-                        </div>
-                      )}
-                    </div>
-                    <div className="p-5 flex flex-col flex-1">
-                      {catTitle && <p className="text-[10px] font-bold text-[#12B5CB] uppercase tracking-[0.1em] mb-1">{catTitle}</p>}
-                      <h3 className="font-bold text-[#00355D] text-lg tracking-tight mb-2 group-hover:text-[#12B5CB] transition-colors leading-snug">{product.name}</h3>
-                      <p className="text-sm text-[#575B5F] leading-relaxed line-clamp-2 mb-3 flex-1">{product.listingSummary}</p>
-                      <div className="flex items-center justify-between mt-auto">
-                        {brandName && <span className="text-xs text-[#575B5F] font-medium">{brandName}</span>}
-                        <span className="text-[#12B5CB] text-sm font-bold inline-flex items-center gap-1 group-hover:gap-2 transition-all">
-                          View <ArrowRight className="w-3.5 h-3.5" />
-                        </span>
                       </div>
                     </div>
-                  </div>
-                </Link>
-              </motion.div>
-            );
-          })}
+                  </Link>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>

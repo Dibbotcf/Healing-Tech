@@ -190,15 +190,15 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
                         {group.groupTitle}
                       </p>
                     )}
-                    {/* Dark table — matches HeroUI dark table from screenshot exactly */}
-                    <div className="rounded-2xl overflow-hidden border border-[#27272a] bg-[#18181b]">
+                    {/* Light table */}
+                    <div className="rounded-2xl overflow-hidden border border-gray-200 bg-white">
                       <table className="w-full text-left">
                         <thead>
-                          <tr className="border-b border-[#27272a]">
-                            <th className="px-6 py-4 text-xs font-semibold uppercase tracking-[0.08em] text-zinc-500 w-2/5">
+                          <tr className="border-b border-gray-200 bg-[#F8F9FA]">
+                            <th className="px-6 py-4 text-xs font-semibold uppercase tracking-[0.08em] text-[#575B5F] w-2/5">
                               Feature
                             </th>
-                            <th className="px-6 py-4 text-xs font-semibold uppercase tracking-[0.08em] text-zinc-500">
+                            <th className="px-6 py-4 text-xs font-semibold uppercase tracking-[0.08em] text-[#575B5F]">
                               Specification
                             </th>
                           </tr>
@@ -207,12 +207,12 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
                           {group.rows?.map((row: any, j: number) => (
                             <tr
                               key={j}
-                              className={`border-b border-[#27272a] last:border-0 hover:bg-white/5 transition-colors ${j % 2 === 0 ? '' : ''}`}
+                              className={`border-b border-gray-100 last:border-0 hover:bg-[#F8F9FA] transition-colors ${j % 2 === 0 ? 'bg-white' : 'bg-gray-50/50'}`}
                             >
-                              <td className="px-6 py-4 text-sm text-zinc-400 font-medium">
+                              <td className="px-6 py-4 text-sm text-[#575B5F] font-medium">
                                 {row.label}
                               </td>
-                              <td className="px-6 py-4 text-sm text-zinc-100 font-semibold">
+                              <td className="px-6 py-4 text-sm text-[#111111] font-semibold">
                                 {row.value}
                               </td>
                             </tr>

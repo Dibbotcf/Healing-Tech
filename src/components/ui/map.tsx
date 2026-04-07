@@ -1,209 +1,211 @@
 "use client";
 
-import { useRef, useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import DottedMap from "dotted-map";
-import Image from "next/image";
+import { useEffect, useRef, useState, useCallback } from "react";
+import dynamic from "next/dynamic";
+
+const Globe = dynamic(() => import("react-globe.gl"), { ssr: false });
+
+interface RouteData {
+  start: { lat: number; lng: number; label?: string };
+  end: { lat: number; lng: number; label?: string };
+}
 
 interface MapProps {
-  dots?: Array<{
-    start: { lat: number; lng: number; label?: string };
-    end: { lat: number; lng: number; label?: string };
-  }>;
+  dots?: RouteData[];
   lineColor?: string;
-  showLabels?: boolean;
-  animationDuration?: number;
-  loop?: boolean;
+}
+
+interface ArcData {
+  startLat: number;
+  startLng: number;
+  endLat: number;
+  endLng: number;
+}
+
+interface LabelData {
+  lat: number;
+  lng: number;
+  label: string;
+  size: number;
+  isDestination: boolean;
+}
+
+interface RingData {
+  lat: number;
+  lng: number;
+  maxR: number;
+  propagationSpeed: number;
+  repeatPeriod: number;
 }
 
 export function WorldMap({
   dots = [],
   lineColor = "#12B5CB",
-  showLabels = true,
-  animationDuration = 2,
-  loop = true,
 }: MapProps) {
-  const svgRef = useRef<SVGSVGElement>(null);
-  const [hoveredLocation, setHoveredLocation] = useState<string | null>(null);
+  const globeRef = useRef<any>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [dimensions, setDimensions] = useState({ width: 600, height: 600 });
+  const [isClient, setIsClient] = useState(false);
 
-  const map = useMemo(
-    () => new DottedMap({ height: 100, grid: "diagonal" }),
-    []
-  );
+  useEffect(() => {
+    setIsClient(true);
+    const updateDimensions = () => {
+      if (containerRef.current) {
+        const rect = containerRef.current.getBoundingClientRect();
+        // Square-ish aspect for the globe
+        const size = Math.min(rect.width, 700);
+        setDimensions({ width: rect.width, height: Math.max(size, 500) });
+      }
+    };
+    updateDimensions();
+    window.addEventListener("resize", updateDimensions);
+    return () => window.removeEventListener("resize", updateDimensions);
+  }, []);
 
-  const svgMap = useMemo(
-    () =>
-      map.getSVG({
-        radius: 0.22,
-        color: "#00000040",
-        shape: "circle",
-        backgroundColor: "white",
-      }),
-    [map]
-  );
+  useEffect(() => {
+    if (globeRef.current) {
+      // Focus on South/Central Asia — zoomed in
+      globeRef.current.pointOfView({ lat: 26, lng: 70, altitude: 1.5 }, 1000);
 
-  const projectPoint = (lat: number, lng: number) => {
-    const x = (lng + 180) * (800 / 360);
-    const y = (90 - lat) * (400 / 180);
-    return { x, y };
-  };
+      const controls = globeRef.current.controls();
+      if (controls) {
+        controls.autoRotate = true;
+        controls.autoRotateSpeed = 0.4;
+        controls.enableZoom = false;
+        controls.enablePan = false;
+        controls.minPolarAngle = Math.PI * 0.2;
+        controls.maxPolarAngle = Math.PI * 0.8;
+      }
+    }
+  }, [isClient]);
 
-  const createCurvedPath = (
-    start: { x: number; y: number },
-    end: { x: number; y: number }
-  ) => {
-    const midX = (start.x + end.x) / 2;
-    const midY = Math.min(start.y, end.y) - 50;
-    return `M ${start.x} ${start.y} Q ${midX} ${midY} ${end.x} ${end.y}`;
-  };
+  const arcsData: ArcData[] = dots.map((route) => ({
+    startLat: route.start.lat,
+    startLng: route.start.lng,
+    endLat: route.end.lat,
+    endLng: route.end.lng,
+  }));
 
-  const staggerDelay = 0.3;
-  const totalAnimationTime = dots.length * staggerDelay + animationDuration;
-  const pauseTime = 2;
-  const fullCycleDuration = totalAnimationTime + pauseTime;
+  const labelsData: LabelData[] = [];
+  const seenLabels = new Set<string>();
+  dots.forEach((route) => {
+    if (route.start.label && !seenLabels.has(route.start.label)) {
+      seenLabels.add(route.start.label);
+      labelsData.push({ lat: route.start.lat, lng: route.start.lng, label: route.start.label, size: 0.8, isDestination: false });
+    }
+    if (route.end.label && !seenLabels.has(route.end.label)) {
+      seenLabels.add(route.end.label);
+      labelsData.push({ lat: route.end.lat, lng: route.end.lng, label: route.end.label, size: 1.2, isDestination: true });
+    }
+  });
+
+  const ringsData: RingData[] = dots.length > 0
+    ? [{ lat: dots[0].end.lat, lng: dots[0].end.lng, maxR: 4, propagationSpeed: 2, repeatPeriod: 1200 }]
+    : [];
+
+  const pointsData = labelsData.map((l) => ({
+    lat: l.lat, lng: l.lng,
+    size: l.isDestination ? 0.12 : 0.06,
+    color: l.isDestination ? "#00355D" : lineColor,
+  }));
+
+  const labelRenderer = useCallback((d: object) => {
+    const data = d as LabelData;
+    const el = document.createElement("div");
+    el.style.pointerEvents = "none";
+    el.innerHTML = `
+      <div style="
+        font-family: 'Inter', system-ui, sans-serif;
+        font-size: ${data.isDestination ? "13px" : "11px"};
+        font-weight: ${data.isDestination ? "700" : "600"};
+        color: ${data.isDestination ? "#fff" : "#00355D"};
+        background: ${data.isDestination ? "#00355D" : "rgba(255,255,255,0.92)"};
+        backdrop-filter: blur(8px);
+        padding: ${data.isDestination ? "6px 14px" : "4px 10px"};
+        border-radius: 8px;
+        border: 1px solid ${data.isDestination ? "rgba(18,181,203,0.5)" : "rgba(0,53,93,0.12)"};
+        white-space: nowrap;
+        pointer-events: none;
+        box-shadow: ${data.isDestination ? "0 2px 16px rgba(18,181,203,0.25)" : "0 2px 8px rgba(0,0,0,0.08)"};
+      ">${data.label}</div>
+    `;
+    return el;
+  }, []);
+
+  // Block all globe clicks — prevent navigation
+  const handleGlobeClick = useCallback(() => {
+    // intentionally empty — no navigation
+  }, []);
+
+  if (!isClient) {
+    return (
+      <div ref={containerRef} className="w-full flex items-center justify-center bg-white" style={{ height: "600px" }}>
+        <div className="text-[#575B5F] text-sm font-['Inter'] animate-pulse">Loading globe…</div>
+      </div>
+    );
+  }
 
   return (
-    <div className="w-full h-full relative font-sans overflow-hidden bg-transparent">
-      <Image
-        src={`data:image/svg+xml;utf8,${encodeURIComponent(svgMap)}`}
-        className="h-full w-full [mask-image:linear-gradient(to_bottom,transparent,white_10%,white_90%,transparent)] pointer-events-none select-none object-cover"
-        alt="world map"
-        height={495}
-        width={1056}
-        draggable={false}
-        priority
+    <div
+      ref={containerRef}
+      className="w-full relative overflow-visible bg-transparent cursor-grab active:cursor-grabbing z-10"
+      style={{ height: `${dimensions.height}px` }}
+    >
+      <Globe
+        ref={globeRef}
+        width={dimensions.width}
+        height={dimensions.height}
+        backgroundColor="rgba(0,0,0,0)"
+        globeImageUrl="//unpkg.com/three-globe/example/img/earth-blue-marble.jpg"
+        atmosphereColor="#87CEEB"
+        atmosphereAltitude={0.18}
+
+        // Block navigation on click
+        onGlobeClick={handleGlobeClick}
+
+        // Arcs
+        arcsData={arcsData}
+        arcStartLat={(d: object) => (d as ArcData).startLat}
+        arcStartLng={(d: object) => (d as ArcData).startLng}
+        arcEndLat={(d: object) => (d as ArcData).endLat}
+        arcEndLng={(d: object) => (d as ArcData).endLng}
+        arcColor={() => lineColor}
+        arcAltitude={0.12}
+        arcStroke={0.6}
+        arcDashLength={0.5}
+        arcDashGap={0.25}
+        arcDashAnimateTime={2000}
+
+        // Points
+        pointsData={pointsData}
+        pointAltitude={(d: object) => (d as { size: number }).size}
+        pointRadius={(d: object) => (d as { size: number }).size * 6}
+        pointColor={(d: object) => (d as { color: string }).color}
+
+        // Labels (hidden text, using HTML instead)
+        labelsData={labelsData}
+        labelLat={(d: object) => (d as LabelData).lat}
+        labelLng={(d: object) => (d as LabelData).lng}
+        labelText={(d: object) => (d as LabelData).label}
+        labelSize={(d: object) => (d as LabelData).size}
+        labelColor={() => "rgba(0,0,0,0)"}
+        labelDotRadius={0}
+        labelAltitude={0.01}
+        htmlElementsData={labelsData}
+        htmlElement={labelRenderer}
+        htmlAltitude={0.02}
+
+        // Rings
+        ringsData={ringsData}
+        ringLat={(d: object) => (d as RingData).lat}
+        ringLng={(d: object) => (d as RingData).lng}
+        ringMaxRadius={(d: object) => (d as RingData).maxR}
+        ringPropagationSpeed={(d: object) => (d as RingData).propagationSpeed}
+        ringRepeatPeriod={(d: object) => (d as RingData).repeatPeriod}
+        ringColor={() => (t: number) => `rgba(18, 181, 203, ${1 - t})`}
+
+        animateIn={true}
       />
-      <svg
-        ref={svgRef}
-        viewBox="0 0 800 400"
-        className="w-full h-full absolute inset-0 pointer-events-auto select-none"
-        preserveAspectRatio="xMidYMid meet"
-      >
-        <defs>
-          <linearGradient id="path-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="white" stopOpacity="0" />
-            <stop offset="5%" stopColor={lineColor} stopOpacity="1" />
-            <stop offset="95%" stopColor={lineColor} stopOpacity="1" />
-            <stop offset="100%" stopColor="white" stopOpacity="0" />
-          </linearGradient>
-          <filter id="glow">
-            <feMorphology operator="dilate" radius="0.5" />
-            <feGaussianBlur stdDeviation="1" result="coloredBlur" />
-            <feMerge>
-              <feMergeNode in="coloredBlur" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
-          </filter>
-        </defs>
-
-        {dots.map((dot, i) => {
-          const startPoint = projectPoint(dot.start.lat, dot.start.lng);
-          const endPoint = projectPoint(dot.end.lat, dot.end.lng);
-          const startTime = (i * staggerDelay) / fullCycleDuration;
-          const endTime = (i * staggerDelay + animationDuration) / fullCycleDuration;
-          const resetTime = totalAnimationTime / fullCycleDuration;
-
-          return (
-            <g key={`path-group-${i}`}>
-              <motion.path
-                d={createCurvedPath(startPoint, endPoint)}
-                fill="none"
-                stroke="url(#path-gradient)"
-                strokeWidth="1"
-                initial={{ pathLength: 0 }}
-                animate={loop ? { pathLength: [0, 0, 1, 1, 0] } : { pathLength: 1 }}
-                transition={
-                  loop
-                    ? { duration: fullCycleDuration, times: [0, startTime, endTime, resetTime, 1], ease: "easeInOut", repeat: Infinity, repeatDelay: 0 }
-                    : { duration: animationDuration, delay: i * staggerDelay, ease: "easeInOut" }
-                }
-              />
-              {loop && (
-                <motion.circle
-                  r="4"
-                  fill={lineColor}
-                  initial={{ offsetDistance: "0%", opacity: 0 }}
-                  animate={{
-                    offsetDistance: [null, "0%", "100%", "100%", "100%"] as any,
-                    opacity: [0, 0, 1, 0, 0],
-                  }}
-                  transition={{ duration: fullCycleDuration, times: [0, startTime, endTime, resetTime, 1], ease: "easeInOut", repeat: Infinity, repeatDelay: 0 }}
-                  style={{ offsetPath: `path('${createCurvedPath(startPoint, endPoint)}')` }}
-                />
-              )}
-            </g>
-          );
-        })}
-
-        {dots.map((dot, i) => {
-          const startPoint = projectPoint(dot.start.lat, dot.start.lng);
-          const endPoint = projectPoint(dot.end.lat, dot.end.lng);
-          return (
-            <g key={`points-group-${i}`}>
-              <g key={`start-${i}`}>
-                <motion.g
-                  onHoverStart={() => setHoveredLocation(dot.start.label || `Location ${i}`)}
-                  onHoverEnd={() => setHoveredLocation(null)}
-                  className="cursor-pointer"
-                  whileHover={{ scale: 1.2 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                >
-                  <circle cx={startPoint.x} cy={startPoint.y} r="3" fill={lineColor} filter="url(#glow)" className="drop-" />
-                  <circle cx={startPoint.x} cy={startPoint.y} r="3" fill={lineColor} opacity="0.5">
-                    <animate attributeName="r" from="3" to="12" dur="2s" begin="0s" repeatCount="indefinite" />
-                    <animate attributeName="opacity" from="0.6" to="0" dur="2s" begin="0s" repeatCount="indefinite" />
-                  </circle>
-                </motion.g>
-                {showLabels && dot.start.label && (
-                  <motion.g initial={{ opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 * i + 0.3, duration: 0.5 }} className="pointer-events-none">
-                    <foreignObject x={startPoint.x - 50} y={startPoint.y - 35} width="100" height="30" className="block">
-                      <div className="flex items-center justify-center h-full">
-                        <span className="text-[10px] font-medium px-2 py-0.5 rounded-xl bg-white/95 text-[#00355D] border border-gray-200 ">{dot.start.label}</span>
-                      </div>
-                    </foreignObject>
-                  </motion.g>
-                )}
-              </g>
-              <g key={`end-${i}`}>
-                <motion.g
-                  onHoverStart={() => setHoveredLocation(dot.end.label || `Destination ${i}`)}
-                  onHoverEnd={() => setHoveredLocation(null)}
-                  className="cursor-pointer"
-                  whileHover={{ scale: 1.2 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                >
-                  <circle cx={endPoint.x} cy={endPoint.y} r="3" fill={lineColor} filter="url(#glow)" className="drop-" />
-                  <circle cx={endPoint.x} cy={endPoint.y} r="3" fill={lineColor} opacity="0.5">
-                    <animate attributeName="r" from="3" to="12" dur="2s" begin="0.5s" repeatCount="indefinite" />
-                    <animate attributeName="opacity" from="0.6" to="0" dur="2s" begin="0.5s" repeatCount="indefinite" />
-                  </circle>
-                </motion.g>
-                {showLabels && dot.end.label && (
-                  <motion.g initial={{ opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 * i + 0.5, duration: 0.5 }} className="pointer-events-none">
-                    <foreignObject x={endPoint.x - 50} y={endPoint.y - 35} width="100" height="30" className="block">
-                      <div className="flex items-center justify-center h-full">
-                        <span className="text-[10px] font-medium px-2 py-0.5 rounded-xl bg-white/95 text-[#00355D] border border-gray-200 ">{dot.end.label}</span>
-                      </div>
-                    </foreignObject>
-                  </motion.g>
-                )}
-              </g>
-            </g>
-          );
-        })}
-      </svg>
-      <AnimatePresence>
-        {hoveredLocation && (
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 10 }}
-            className="absolute bottom-4 left-4 bg-white/90 text-[#00355D] px-3 py-2 rounded-xl text-sm font-medium backdrop-blur-sm sm:hidden border border-gray-200"
-          >
-            {hoveredLocation}
-          </motion.div>
-        )}
-      </AnimatePresence>
     </div>
   );
 }

@@ -12,12 +12,11 @@ const supplyRoutes = [
   { start: { lat: 38.9637, lng: 35.2433, label: "Turkey" }, end: { lat: 23.685, lng: 90.3563, label: "Dhaka" } },
 ];
 
-const partners = [
-  { name: "Heyer Medical", country: "Germany", specialty: "Anesthesia & Ventilation" },
-  { name: "Aeomed", country: "China", specialty: "Respiratory Care & BiPAP" },
-  { name: "Perlong Medical", country: "China", specialty: "Patient Monitors & ECG" },
-  { name: "Zerone", country: "South Korea", specialty: "Electrosurgical Units" },
-  { name: "Luminex-Lumen", country: "International", specialty: "Surgical Lights & OT Lamps" },
+const brandLogos = [
+  { name: "Heyer Medical", country: "GERMANY", logo: "/brands/heyer.svg" },
+  { name: "Aeomed", country: "CHINA", logo: "/brands/Aeomed.svg" },
+  { name: "Perlong Medical", country: "CHINA", logo: "/brands/perlong.svg" },
+  { name: "Zerone", country: "SOUTH KOREA", logo: "/brands/zerone.svg" },
 ];
 
 export default function WhatWeDoPage() {
@@ -38,18 +37,42 @@ export default function WhatWeDoPage() {
 
       {/* ── SECTION 01: GLOBAL SOURCING ── */}
       <section id="global-sourcing" className="scroll-mt-40 pt-24 border-t border-gray-200">
-        <div className="px-6 lg:px-8 max-w-[1440px] mx-auto mb-16">
-           <h2 className="text-[#12B5CB] text-sm font-bold uppercase tracking-[0.15em] mb-4">01. Procurement</h2>
-           <h3 className="text-4xl md:text-5xl font-bold text-[#00355D] tracking-[-0.03em] leading-none mb-6">Global Device Sourcing</h3>
-           <p className="text-xl text-[#575B5F] max-w-3xl">Direct import routes from world-class manufacturers in Germany, South Korea, China, Japan, and Turkey to Dhaka.</p>
-        </div>
         
-        {/* MAP */}
-        <div className="w-full mb-20 overflow-hidden bg-[#F8F9FA] border-y border-gray-200">
-          <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>
-            <div className="w-full h-[500px] md:h-[600px] lg:h-[650px] overflow-hidden relative max-w-[1440px] mx-auto">
-              <div className="absolute w-[200%] md:w-[150%] lg:w-[120%] h-full left-[-30%] lg:left-[-10%] top-0">
-                 <WorldMap dots={supplyRoutes} lineColor="#12B5CB" />
+        {/* Split Layout */}
+        <div className="px-6 lg:px-8 max-w-[1440px] mx-auto mb-20 overflow-visible">
+          <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.8 }}>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 items-center bg-white">
+              {/* Left — Text + Brand Logos */}
+              <div className="pr-0 lg:pr-16 py-8 lg:py-16">
+                <h2 className="text-[#12B5CB] text-sm font-bold uppercase tracking-[0.15em] mb-4">01. Procurement</h2>
+                <h3 className="text-3xl md:text-[2.6rem] font-bold text-[#00355D] tracking-[-0.03em] leading-[1.1] mb-6">
+                  We Bring the World&apos;s<br className="hidden md:block" /> Best Medical Equipment<br className="hidden md:block" /> Directly to Bangladesh
+                </h3>
+                <p className="text-lg text-[#575B5F] leading-relaxed mb-12 max-w-lg font-normal">
+                  No middlemen. No grey markets. We source, import, and deliver internationally certified medical devices from the brands that hospitals worldwide rely on — straight to your facility.
+                </p>
+
+                {/* Big Brand Logos */}
+                <div className="grid grid-cols-2 gap-x-10 gap-y-8">
+                  {brandLogos.map((brand, i) => (
+                    <div key={i} className="flex items-center">
+                      <div className="relative h-10 w-full max-w-[160px]">
+                        <Image
+                          src={brand.logo}
+                          alt={brand.name}
+                          fill
+                          className="object-contain object-left"
+                          style={{ filter: "brightness(0) saturate(100%) invert(14%) sepia(47%) saturate(2894%) hue-rotate(192deg) brightness(97%) contrast(101%)" }}
+                        />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Right — 3D Globe (glow overflows) */}
+              <div className="relative lg:-mr-8 overflow-visible">
+                <WorldMap dots={supplyRoutes} lineColor="#12B5CB" />
               </div>
             </div>
           </motion.div>
@@ -57,7 +80,7 @@ export default function WhatWeDoPage() {
 
         {/* FEATURES */}
         <div className="px-6 lg:px-8 max-w-[1440px] mx-auto mb-32">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-x-12 gap-y-16 mb-24">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-x-12 gap-y-16">
             {[
               { icon: Ship, title: "Direct Import", desc: "We import directly from authorized manufacturers, eliminating middlemen and ensuring absolute authenticity." },
               { icon: ShieldCheck, title: "Certified Equipment", desc: "Every product carries CE marking, ISO 13485, and FDA/DGDA compliance. No grey market imports." },
@@ -72,25 +95,6 @@ export default function WhatWeDoPage() {
               </motion.div>
             ))}
           </div>
-
-          {/* PARTNERS */}
-          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="bg-[#F8F9FA] rounded-3xl p-10 lg:p-16 border border-gray-200">
-            <div className="mb-12">
-              <Globe className="w-10 h-10 text-[#12B5CB] mb-6" strokeWidth={1} />
-              <h2 className="text-3xl md:text-5xl font-bold text-[#00355D] tracking-[-0.03em] leading-none mb-4">Our Manufacturing Partners</h2>
-              <p className="text-xl text-[#575B5F] font-normal max-w-2xl">Collaborating with the industry's most reliable names to ensure continuous quality care.</p>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-              {partners.map((p, i) => (
-                <div key={i} className="border-l-2 border-gray-200 pl-6 py-2 hover:border-[#12B5CB] transition-colors duration-300">
-                  <h3 className="text-2xl font-bold text-[#00355D] mb-2 leading-none">{p.name}</h3>
-                  <p className="text-sm text-[#12B5CB] font-bold uppercase tracking-wider mb-2">{p.country}</p>
-                  <p className="text-base text-[#575B5F] m-0">{p.specialty}</p>
-                </div>
-              ))}
-            </div>
-          </motion.div>
         </div>
       </section>
 
