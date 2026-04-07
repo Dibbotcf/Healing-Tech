@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Phone, Globe, MessageCircle, Camera, Briefcase } from "lucide-react";
+import { Phone } from "lucide-react";
 
 export function Footer() {
   return (
@@ -28,11 +28,15 @@ export function Footer() {
               </li>
             </ul>
             <div className="flex items-center gap-4">
-              {[Globe, MessageCircle, Camera, Briefcase].map((Icon, i) => (
-                <a key={i} href="#" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:bg-[#12B5CB] hover:text-white hover:border-[#12B5CB] transition-all">
-                  <Icon className="w-4 h-4" />
-                </a>
-              ))}
+              <a
+                href="https://www.facebook.com/healingtechnologybd"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-[2px] bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:bg-[#1877F2] hover:text-white hover:border-[#1877F2] transition-all"
+                aria-label="Facebook"
+              >
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+              </a>
             </div>
           </div>
           
@@ -48,10 +52,10 @@ export function Footer() {
             <div>
               <h3 className="text-white font-bold mb-6 text-sm uppercase tracking-wider">What We Do</h3>
               <ul className="space-y-4 text-sm text-gray-400 font-normal">
-                <li><span className="hover:text-white transition-colors cursor-pointer">Global Device Sourcing</span></li>
-                <li><span className="hover:text-white transition-colors cursor-pointer">After-Sales Support</span></li>
-                <li><span className="hover:text-white transition-colors cursor-pointer">Preventive Maintenance</span></li>
-                <li><span className="hover:text-white transition-colors cursor-pointer">Clinical Training & Onboarding</span></li>
+                <li><Link href="/global-sourcing" className="hover:text-white transition-colors">Global Device Sourcing</Link></li>
+                <li><Link href="/after-sales" className="hover:text-white transition-colors">After-Sales Support</Link></li>
+                <li><Link href="/preventive-maintenance" className="hover:text-white transition-colors">Preventive Maintenance</Link></li>
+                <li><Link href="/clinical-training" className="hover:text-white transition-colors">Clinical Training & Onboarding</Link></li>
               </ul>
             </div>
             <div>

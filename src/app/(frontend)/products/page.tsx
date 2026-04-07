@@ -1,7 +1,9 @@
 import { getPayload } from 'payload'
 import configPromise from '@/payload.config'
 import Link from 'next/link'
-import { ArrowRight, Search, Filter } from 'lucide-react'
+import { ArrowRight, Search, Filter, Sparkles } from 'lucide-react'
+
+export const dynamic = 'force-dynamic';
 
 export default async function ProductsPage() {
   const payload = await getPayload({ config: configPromise })
@@ -19,7 +21,7 @@ export default async function ProductsPage() {
 
   return (
     <div className="min-h-screen bg-[#F8F9FA] pb-24 font-['Inter'] tracking-tight">
-      <div className="bg-[#00355D] text-white py-16 md:py-24">
+      <div className="bg-[#00355D] text-white pt-[88px] pb-16 md:pt-[96px] md:pb-24">
         <div className="container mx-auto px-4 lg:px-8 max-w-[1440px]">
           <h1 className="font-['Inter'] text-4xl md:text-5xl font-medium mb-4 tracking-tighter">Product Catalog</h1>
           <p className="text-xl text-white/80 max-w-2xl font-normal">Advanced clinical solutions for modern healthcare infrastructure.</p>
@@ -29,7 +31,7 @@ export default async function ProductsPage() {
       <div className="container mx-auto px-4 lg:px-8 max-w-[1440px] mt-12">
         <div className="flex flex-col lg:flex-row gap-8">
           <div className="w-full lg:w-64 flex-shrink-0">
-            <div className="bg-white rounded-xl shadow-sm p-6 mb-6 border border-gray-100">
+            <div className="bg-white rounded-xl  p-6 mb-6 border border-gray-100">
               <h3 className="font-['Inter'] text-lg font-medium text-[#00355D] mb-4 flex items-center gap-2 tracking-tighter"><Filter className="w-5 h-5" /> Categories</h3>
               <div className="space-y-3">
                 <div className="flex items-center gap-3">
@@ -52,7 +54,12 @@ export default async function ProductsPage() {
                 const categoryDef = product.category && typeof product.category !== 'string' ? product.category : null;
                 const brandDef = product.brand && typeof product.brand !== 'string' ? product.brand : null;
                 return (
-                  <div key={product.id} className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col">
+                  <div key={product.id} className="bg-white rounded-xl overflow-hidden  hover: transition-all duration-300 border border-gray-100 flex flex-col relative">
+                    {product.markAsNew && (
+                      <div className="absolute top-4 right-4 z-10 bg-[#12B5CB] text-white text-xs font-bold px-3 py-1 rounded-md flex items-center gap-1.5 uppercase tracking-wider ">
+                        <Sparkles className="w-3.5 h-3.5" /> New
+                      </div>
+                    )}
                     <div className="relative h-48 bg-gray-50 p-6 flex flex-col justify-end">
                       <div className="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-[#00355D]">
                         {categoryDef?.title || 'System'}

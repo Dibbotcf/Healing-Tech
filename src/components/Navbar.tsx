@@ -1,223 +1,387 @@
 "use client";
-import Link from "next/link";
+
 import Image from "next/image";
-import { useEffect, useState } from "react";
-import { Phone, Menu, X, ChevronDown } from "lucide-react";
+import Link from "next/link";
+import { useEffect, useState, useRef, useCallback } from "react";
+import { usePathname, useRouter } from "next/navigation";
+import { X, Plus, ChevronRight, ArrowRight, Sparkles, Menu } from "lucide-react";
 
-interface Category {
-  id: string;
-  title: string;
-  slug: string;
-}
+interface Category { id: string; title: string; slug: string; }
+interface Product  { id: string; name: string; slug: string; category: string; markAsNew?: boolean; image?: string; }
 
-interface Product {
-  id: string;
-  name: string;
-  slug: string;
-  category: string;
-}
+export default function Navbar() {
+  const [megaOpen, setMegaOpen]             = useState(false);
+  const [mobileOpen, setMobileOpen]         = useState(false);
+  const [activeCategory, setActiveCategory] = useState<string | null>(null);
+  const [categories, setCategories]         = useState<Category[]>([]);
+  const [products, setProducts]             = useState<Product[]>([]);
+  const [loading, setLoading]               = useState(true);
+  const [scrolled, setScrolled]             = useState(false);
 
-export function Navbar({ initialCategories = [], initialProducts = [] }: { initialCategories?: Category[], initialProducts?: Product[] }) {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  
-  const [categories, setCategories] = useState<Category[]>(initialCategories);
-  const [products, setProducts] = useState<Product[]>(initialProducts);
-  const [activeCategory, setActiveCategory] = useState<string>('');
+  const pathname = usePathname();
+  const router   = useRouter();
 
+  /* ── close on route change ── */
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    setMegaOpen(false);
+    setMobileOpen(false);
+  }, [pathname]);
+
+  /* ── scroll state for subtle shadow ── */
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Fetch payload data gracefully via Dedicated Next.js API Route
+  /* ── load menu data ── */
   useEffect(() => {
-    async function fetchPayloadData() {
-      try {
-        if (categories.length === 0) {
-          const res = await fetch("/api/menus");
-          if (res.ok) {
-            const data = await res.json();
-            if (data.categories.length > 0) {
-              setCategories(data.categories);
-              if (!activeCategory) setActiveCategory(data.categories[0].id);
-            }
-            if (data.products.length > 0) {
-              setProducts(data.products);
-            }
-          }
-        }
-      } catch (err) {
-        console.error("Failed to load mega menu", err);
-      }
-    }
-    fetchPayloadData();
-  }, [categories.length, activeCategory]);
+    fetch("/api/menus")
+      .then((r) => r.json())
+      .then(({ categories: cats, products: prods }) => {
+        setCategories(cats ?? []);
+        setProducts(prods ?? []);
+        if (cats?.length) setActiveCategory(cats[0].id);
+      })
+      .catch(console.error)
+      .finally(() => setLoading(false));
+  }, []);
 
-  const activeCategoryData = categories.find((c: Category) => c.id === activeCategory);
-  const activeProducts = products.filter((p: Product) => p.category === activeCategory).slice(0, 8); // Limits to 8
+  /* ── body scroll lock ── */
+  useEffect(() => {
+    document.body.style.overflow = megaOpen || mobileOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [megaOpen, mobileOpen]);
+
+  const handleProductClick = useCallback((slug: string) => {
+    setMegaOpen(false);
+    router.push(`/products/${slug}`);
+  }, [router]);
+
+  const handleCategoryViewAll = useCallback((catSlug: string) => {
+    setMegaOpen(false);
+    router.push(`/products?category=${catSlug}`);
+  }, [router]);
+
+  const activeProds = products.filter((p) => p.category === activeCategory);
+  const activeCat   = categories.find((c) => c.id === activeCategory);
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isScrolled
-          ? "bg-white/70 backdrop-blur-xl border-b border-gray-200/50 shadow-sm py-3 text-[#00355D]"
-          : "bg-transparent py-6 text-white"
-      }`}
-    >
-      <div className="container mx-auto px-4 lg:px-8 max-w-[1440px] flex items-center justify-between">
-        <Link href="/" className="flex items-center z-50 hover:opacity-80 transition-opacity">
-          <Image 
-            src={isScrolled ? "/healing technology logo SVG-03.svg" : "/healing technology logo SVG-04.svg"} 
-            alt="Healing Technology" 
-            width={180} height={48} 
-            className="h-10 md:h-12 w-auto object-contain transition-all duration-300" 
-            priority 
-          />
-        </Link>
+    <div>
+      {/* ═══════════════════════════════════════
+          FLOATING PILL HEADER
+      ═══════════════════════════════════════ */}
+      <header className="fixed top-0 left-0 right-0 z-50 px-4 lg:px-8 pt-4">
+        <div className="max-w-[1440px] mx-auto flex items-center justify-between gap-4">
 
-        {/* Desktop Nav */}
-        <nav className="hidden lg:flex items-center gap-8">
-          <Link href="/" className="text-sm font-bold hover:text-[#12B5CB] transition-colors">Home</Link>
-          <div className="relative group">
-            <Link href="/products" className="flex items-center gap-1 text-sm font-bold hover:text-[#12B5CB] transition-colors py-8">
-              Products <ChevronDown className="w-4 h-4 group-hover:rotate-180 transition-transform duration-300" />
+          {/* ── LEFT PILL: Logo + Nav ── */}
+          <div
+            className={`hidden lg:flex items-center gap-0 bg-white rounded-full  transition-shadow duration-300 ${
+              scrolled ? "" : ""
+            } overflow-hidden`}
+            style={{ height: "52px" }}
+          >
+            {/* Logo */}
+            <Link href="/" className="flex items-center pl-5 pr-4 flex-shrink-0 border-r border-gray-100" style={{ height: "52px" }}>
+              <Image
+                src="/healing technology logo SVG-04.svg"
+                alt="Healing Technology"
+                width={175}
+                height={46}
+                className="object-contain w-auto"
+                style={{ height: "38px", width: "auto", filter: "brightness(0) saturate(100%) invert(12%) sepia(84%) saturate(500%) hue-rotate(180deg)" }}
+              />
             </Link>
-            
-            {/* Awwwards Full-Viewport Mega Menu */}
-            <div className="fixed top-[88px] left-0 w-screen h-[calc(100vh-88px)] bg-black/60 backdrop-blur-sm opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-500 z-40 ease-in-out">
-              <div className="bg-white text-[#111111] shadow-2xl w-full h-full min-h-[500px] border-t border-gray-100 flex transform translate-y-[-20px] group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]">
-                
-                {/* Categories Left Panel */}
-                <div className="w-[30%] bg-gray-50/80 p-8 xl:p-12 border-r border-gray-100 overflow-y-auto custom-scrollbar relative">
-                  <h3 className="text-sm uppercase tracking-widest font-bold text-gray-400 mb-8 font-['Inter']">Select Category</h3>
-                  
-                  {categories.length === 0 ? (
-                    <div className="space-y-4 animate-pulse">
-                      {[1, 2, 3, 4, 5].map((i) => (
-                        <div key={i} className="h-12 bg-gray-200 rounded-md w-full"></div>
-                      ))}
-                    </div>
-                  ) : (
-                    <ul className="space-y-2">
-                      {categories.map((cat, i) => (
-                        <li key={cat.id} className="transform opacity-0 group-hover:opacity-100 transition-all duration-500" style={{ transitionDelay: `${100 + (i * 30)}ms` }}>
-                          <button
-                            onMouseEnter={() => setActiveCategory(cat.id)}
-                            className={`w-full text-left px-5 py-4 rounded-lg text-base font-bold transition-all duration-300 flex items-center justify-between ${activeCategory === cat.id ? 'bg-white text-[#12B5CB] shadow-sm transform translate-x-2' : 'text-[#00355D] hover:bg-gray-200/50 hover:translate-x-1'}`}
-                          >
-                            {cat.title}
-                            {activeCategory === cat.id && <span className="text-[#12B5CB] text-lg">→</span>}
-                          </button>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </div>
 
-                {/* Products Right Panel */}
-                <div className="w-[70%] p-10 xl:p-16 bg-white flex flex-col h-full overflow-y-auto relative">
-                  {categories.length === 0 ? (
-                    <div className="animate-pulse flex flex-col h-full">
-                       <div className="h-8 bg-gray-200 w-1/4 rounded mb-10"></div>
-                       <div className="grid grid-cols-2 lg:grid-cols-3 gap-8">
-                         {[1,2,3,4,5,6].map(i => (
-                           <div key={i} className="h-24 bg-gray-100 rounded-lg"></div>
-                         ))}
-                       </div>
-                    </div>
-                  ) : (
-                    <>
-                      <div className="flex justify-between items-end border-b border-gray-100 pb-6 mb-8">
-                        <h4 className="font-['Inter'] font-bold text-[#00355D] text-3xl tracking-tight">
-                          {activeCategoryData?.title || 'Products'}
-                        </h4>
-                        {activeCategoryData && (
-                          <Link href={`/products?category=${activeCategoryData.slug}`} className="text-sm uppercase tracking-wide text-[#12B5CB] hover:text-[#00355D] font-bold transition-colors">
-                            View All {activeCategoryData.title} Directory
-                          </Link>
-                        )}
-                      </div>
-                      
-                      <ul className="grid grid-cols-2 xl:grid-cols-3 gap-x-8 gap-y-6 flex-grow">
-                        {activeProducts.length > 0 ? (
-                          activeProducts.map((product, i) => (
-                            <li key={product.id} className="opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500" style={{ transitionDelay: `${200 + (i * 40)}ms` }}>
-                              <Link href={`/products/${product.slug}`} className="block p-4 rounded-xl hover:bg-gray-50 border border-transparent hover:border-gray-100 transition-all group/item">
-                                <h5 className="font-bold text-[#00355D] mb-1 group-hover/item:text-[#12B5CB] transition-colors line-clamp-2">{product.name}</h5>
-                                <p className="text-xs text-gray-400 capitalize">{product.category}</p>
-                              </Link>
-                            </li>
-                          ))
-                        ) : (
-                          <li className="col-span-full h-full flex items-center justify-center">
-                            <p className="text-base text-gray-400 italic">Data synchronization in progress... No products mapped to this category yet.</p>
-                          </li>
-                        )}
-                      </ul>
+            {/* Products expand trigger */}
+            <button
+              onClick={() => setMegaOpen((o) => !o)}
+              className={`group flex items-center gap-2 px-4 text-sm font-semibold tracking-tight transition-all duration-200 h-full`}
+            >
+              <span className={`flex items-center gap-2 px-3 py-1.5 rounded-full transition-all duration-200 ${
+                megaOpen
+                  ? "bg-[#00355D] text-white"
+                  : "text-[#111] hover:bg-gray-100"
+              }`}>
+                Products
+                <span
+                  className={`w-5 h-5 rounded-full border flex items-center justify-center transition-all duration-300 flex-shrink-0 ${
+                    megaOpen
+                      ? "bg-white border-white rotate-45"
+                      : "border-gray-400 group-hover:border-[#00355D]"
+                  }`}
+                >
+                  <Plus className={`w-3 h-3 ${megaOpen ? "text-[#00355D]" : "text-gray-500 group-hover:text-[#00355D]"}`} />
+                </span>
+              </span>
+            </button>
 
-                      <div className="mt-10 pt-8 border-t border-gray-100 text-center">
-                        <Link href="/products" className="inline-flex items-center gap-2 bg-[#00355D] hover:bg-[#12B5CB] text-white px-8 py-4 rounded-full text-sm font-bold transition-colors duration-300">
-                          Explore Master Catalog <span>→</span>
-                        </Link>
-                      </div>
-                    </>
-                  )}
-                </div>
+            {/* Static nav links */}
+            {[
+              { label: "About Us", href: "/about" },
+              { label: "Services",  href: "/global-sourcing" },
+            ].map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="flex items-center px-2 text-sm font-semibold tracking-tight text-[#111] h-full"
+              >
+                <span className="px-3 py-1.5 rounded-full hover:bg-gray-100 transition-all duration-200">
+                  {item.label}
+                </span>
+              </Link>
+            ))}
+          </div>
+
+          {/* ── MOBILE: compact logo ── */}
+          <Link href="/" className="flex items-center lg:hidden bg-white rounded-full px-5 py-2" style={{ height: "52px" }}>
+            <Image
+              src="/healing technology logo SVG-04.svg"
+              alt="Healing Technology"
+              width={175}
+              height={46}
+              className="object-contain w-auto"
+              style={{ height: "36px", width: "auto", filter: "brightness(0) saturate(100%) invert(12%) sepia(84%) saturate(500%) hue-rotate(180deg)" }}
+            />
+          </Link>
+
+          {/* ── RIGHT PILL: Contact ── */}
+          <div className="hidden lg:flex items-center bg-white rounded-full  overflow-hidden" style={{ height: "52px" }}>
+            <Link
+              href="/contact"
+              className="pl-6 pr-4 text-sm font-semibold tracking-tight text-[#111] hover:text-[#00355D] transition-colors h-full flex items-center"
+            >
+              Contact Us
+            </Link>
+            {/* The dark circle "+"-button */}
+            <div className="pr-2 flex items-center h-full">
+              <Link
+                href="/contact"
+                className="w-10 h-10 rounded-full bg-[#00355D] flex items-center justify-center hover:bg-[#12B5CB] transition-colors group"
+                aria-label="Contact Us"
+              >
+                <Plus className="w-4 h-4 text-white group-hover:rotate-90 transition-transform duration-300" />
+              </Link>
+            </div>
+          </div>
+
+          {/* ── MOBILE hamburger ── */}
+          <button
+            onClick={() => setMobileOpen((o) => !o)}
+            className="lg:hidden w-12 h-12 rounded-full bg-white  flex items-center justify-center text-[#00355D] hover:bg-gray-50 transition-colors"
+          >
+            {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
+        </div>
+      </header>
+
+      {/* ═══════════════════════════════════════
+          MEGA MENU (full-viewport panel)
+      ═══════════════════════════════════════ */}
+      <div
+        className={`fixed inset-0 z-40 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+          megaOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        }`}
+        style={{ paddingTop: "80px" }}
+      >
+        {/* Backdrop — click to close */}
+        <div
+          className="absolute inset-0 bg-black/30 backdrop-blur-sm"
+          onClick={() => setMegaOpen(false)}
+        />
+
+        {/* Panel */}
+        <div
+          className={`relative bg-white flex flex-col  transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+            megaOpen ? "translate-y-0" : "-translate-y-6"
+          }`}
+          style={{ maxHeight: "calc(100vh - 80px)" }}
+        >
+          {/* Close bar */}
+          <div className="flex items-center justify-between px-10 py-4 border-b border-gray-100 bg-[#F8F9FA] flex-shrink-0">
+            <p className="text-xs font-bold text-[#575B5F] uppercase tracking-widest">Product Catalog</p>
+            <button
+              onClick={() => setMegaOpen(false)}
+              className="flex items-center gap-2 text-sm font-semibold text-[#575B5F] hover:text-[#00355D] transition-colors group"
+            >
+              <span>Close Menu</span>
+              <div className="w-6 h-6 rounded-full bg-gray-200 group-hover:bg-[#00355D] flex items-center justify-center transition-colors">
+                <X className="w-3 h-3 text-gray-600 group-hover:text-white transition-colors" />
+              </div>
+            </button>
+          </div>
+
+          {/* Content */}
+          <div className="flex flex-1 overflow-hidden">
+            {/* Left — Categories */}
+            <div className="w-72 xl:w-80 flex-shrink-0 bg-[#F8F9FA] border-r border-gray-100 overflow-y-auto py-8 px-6">
+              <p className="text-[10px] font-black text-[#575B5F] uppercase tracking-[0.15em] mb-5 ml-2">Categories</p>
+              <div className="space-y-1">
+                {loading
+                  ? Array.from({ length: 5 }).map((_, i) => (
+                      <div key={i} className="h-11 bg-gray-200 animate-pulse rounded-[2px]" />
+                    ))
+                  : categories.map((cat, i) => (
+                      <button
+                        key={cat.id}
+                        onClick={() => setActiveCategory(cat.id)}
+                        style={{ animationDelay: `${i * 40}ms` }}
+                        className={`w-full text-left px-4 py-3 rounded-[2px] flex items-center justify-between group transition-all duration-200 ${
+                          activeCategory === cat.id
+                            ? "bg-[#00355D] text-white "
+                            : "text-[#111111] hover:bg-white hover:"
+                        }`}
+                      >
+                        <span className="text-sm font-semibold tracking-[-0.02em]">{cat.title}</span>
+                        <ChevronRight
+                          className={`w-3.5 h-3.5 transition-transform ${
+                            activeCategory === cat.id
+                              ? "translate-x-1 text-[#12B5CB]"
+                              : "opacity-0 group-hover:opacity-100"
+                          }`}
+                        />
+                      </button>
+                    ))}
               </div>
             </div>
-          </div>
-          <Link href="/about" className="text-sm font-bold hover:text-[#12B5CB] transition-colors py-8">About Us</Link>
-          <Link href="/contact" className="text-sm font-bold hover:text-[#12B5CB] transition-colors py-8">Contact</Link>
-        </nav>
 
-        <div className="hidden lg:flex items-center gap-6">
-          <div className="flex items-center gap-2 text-sm font-bold">
-            <Phone className="w-4 h-4 text-[#12B5CB]" />
-            <span>+88 01675 292991</span>
+            {/* Right — Products */}
+            <div className="flex-1 overflow-y-auto p-8 xl:p-12">
+              {loading ? (
+                <div className="grid grid-cols-2 xl:grid-cols-3 gap-5">
+                  {Array.from({ length: 6 }).map((_, i) => (
+                    <div key={i} className="h-32 bg-gray-100 animate-pulse rounded-[2px]" />
+                  ))}
+                </div>
+              ) : (
+                <>
+                  <div className="flex items-center justify-between mb-8">
+                    <div>
+                      <h2 className="text-2xl font-bold text-[#00355D] tracking-[-0.04em]">
+                        {activeCat?.title ?? "Products"}
+                      </h2>
+                      <p className="text-sm text-[#575B5F] mt-1">
+                        {activeProds.length} product{activeProds.length !== 1 ? "s" : ""} available
+                      </p>
+                    </div>
+                    <button
+                      onClick={() => handleCategoryViewAll(activeCat?.slug ?? "")}
+                      className="flex items-center gap-2 text-sm font-bold text-[#12B5CB] hover:text-[#009EE2] transition-colors"
+                    >
+                      View all <ArrowRight className="w-4 h-4" />
+                    </button>
+                  </div>
+
+                  {activeProds.length === 0 ? (
+                    <div className="flex flex-col items-center justify-center py-16 text-center">
+                      <div className="w-12 h-12 bg-gray-100 rounded-[2px] flex items-center justify-center mb-4">
+                        <ChevronRight className="w-5 h-5 text-gray-400" />
+                      </div>
+                      <p className="text-sm font-semibold text-gray-400">No products in this category yet</p>
+                    </div>
+                  ) : (
+                    <div className="grid grid-cols-2 xl:grid-cols-3 gap-4">
+                      {activeProds.slice(0, 9).map((prod, i) => (
+                        <button
+                          key={prod.id}
+                          onClick={() => handleProductClick(prod.slug)}
+                          style={{ animationDelay: `${i * 40}ms` }}
+                          className="group relative bg-white border border-gray-100 rounded-[2px] p-5 hover:border-[#12B5CB]/40 hover: transition-all duration-200 text-left cursor-pointer"
+                        >
+                          {prod.markAsNew && (
+                            <div className="absolute top-3 right-3 bg-[#12B5CB] text-white text-[10px] font-bold px-2 py-0.5 rounded-[2px] flex items-center gap-1 uppercase tracking-wider">
+                              <Sparkles className="w-3 h-3" /> New
+                            </div>
+                          )}
+                          {prod.image ? (
+                            <div className="relative w-full h-20 mb-3 bg-gray-50 rounded-[2px] overflow-hidden">
+                              <Image src={prod.image} alt={prod.name} fill className="object-contain p-2" />
+                            </div>
+                          ) : (
+                            <div className="h-2 w-8 bg-[#12B5CB]/20 rounded-full mb-3 group-hover:bg-[#12B5CB]/50 transition-colors" />
+                          )}
+                          <p className={`text-sm font-bold text-[#00355D] tracking-[-0.02em] leading-snug group-hover:text-[#12B5CB] transition-colors line-clamp-2 ${prod.markAsNew ? "pr-12" : ""}`}>
+                            {prod.name}
+                          </p>
+                          <p className="mt-2 text-[11px] font-semibold text-[#12B5CB] flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                            View details <ArrowRight className="w-3 h-3" />
+                          </p>
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </>
+              )}
+            </div>
           </div>
-          <Link
-            href="/contact"
-            className="bg-[#12B5CB] hover:bg-[#009EE2] text-[#00355D] px-6 py-2.5 rounded-md text-sm font-bold transition-all shadow-sm hover:shadow-md font-['Inter']"
-          >
-            Request Quote
-          </Link>
+
+          {/* Footer strip */}
+          <div className="flex-shrink-0 border-t border-gray-100 bg-[#F8F9FA] px-10 py-4 flex items-center justify-between">
+            <p className="text-xs text-[#575B5F]">Precision clinical solutions for modern healthcare infrastructure</p>
+            <button
+              onClick={() => { setMegaOpen(false); router.push("/products"); }}
+              className="text-xs font-bold text-[#12B5CB] hover:text-[#009EE2] flex items-center gap-1 transition-colors"
+            >
+              Full Catalog <ArrowRight className="w-3.5 h-3.5" />
+            </button>
+          </div>
         </div>
-
-        {/* Mobile Menu Toggle */}
-        <button className="lg:hidden z-50" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-          {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-        </button>
       </div>
 
-      {/* Mobile Nav */}
-      {mobileMenuOpen && (
-        <div className="lg:hidden fixed inset-0 bg-white/95 backdrop-blur-xl pt-24 px-6 flex flex-col gap-6 h-screen font-['Inter'] text-[#00355D] overflow-y-auto">
-          <Link href="/" className="text-xl font-bold border-b border-gray-200 pb-4" onClick={() => setMobileMenuOpen(false)}>Home</Link>
-          <Link href="/products" className="text-xl font-bold border-b border-gray-200 pb-4" onClick={() => setMobileMenuOpen(false)}>Products</Link>
-          
-          <div className="pl-4 border-l-2 border-[#12B5CB]/30 flex flex-col gap-3">
-             {categories.map(cat => (
-               <Link key={cat.id} href={`/products?category=${cat.slug}`} className="text-base text-gray-600 hover:text-[#12B5CB]" onClick={() => setMobileMenuOpen(false)}>
-                 {cat.title}
-               </Link>
-             ))}
+      {/* ═══════════════════════════════════════
+          MOBILE MENU
+      ═══════════════════════════════════════ */}
+      <div
+        className={`fixed inset-0 z-40 lg:hidden transition-all duration-400 ${
+          mobileOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        }`}
+        style={{ paddingTop: "72px" }}
+      >
+        <div className="h-full bg-[#00355D] overflow-y-auto px-6 py-8">
+          <div className="space-y-1 mb-8">
+            {/* Products */}
+            <button
+              onClick={() => { setMobileOpen(false); router.push("/products"); }}
+              className="w-full flex items-center justify-between py-3.5 px-4 rounded-[2px] text-white/80 hover:text-white hover:bg-white/10 transition-all text-sm font-semibold"
+            >
+              Products <ChevronRight className="w-4 h-4 text-[#12B5CB]" />
+            </button>
+            {categories.map((cat) => (
+              <Link
+                key={cat.id}
+                href={`/products?category=${cat.slug}`}
+                onClick={() => setMobileOpen(false)}
+                className="flex items-center justify-between py-3 px-6 rounded-[2px] text-white/60 hover:text-white hover:bg-white/10 transition-all text-xs font-semibold"
+              >
+                {cat.title} <ChevronRight className="w-3 h-3 text-[#12B5CB]" />
+              </Link>
+            ))}
           </div>
 
-          <Link href="/about" className="text-xl font-bold border-b border-gray-200 pb-4" onClick={() => setMobileMenuOpen(false)}>About Us</Link>
-          <Link href="/contact" className="text-xl font-bold border-b border-gray-200 pb-4" onClick={() => setMobileMenuOpen(false)}>Contact</Link>
-          <div className="mt-8 flex flex-col gap-4 pb-12">
-            <div className="flex items-center gap-2 text-lg font-bold">
-              <Phone className="w-5 h-5 text-[#12B5CB]" />
-              <span>+88 01675 292991</span>
-            </div>
-            <Link href="/contact" className="bg-[#12B5CB] text-[#111111] text-center px-5 py-3 rounded-md text-lg font-bold">
-              Request Quote
+          <div className="border-t border-white/10 pt-6 space-y-3">
+            {[
+              { label: "About Us", href: "/about" },
+              { label: "Services", href: "/global-sourcing" },
+            ].map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={() => setMobileOpen(false)}
+                className="block py-3 px-4 rounded-[2px] text-white/80 hover:text-white hover:bg-white/10 transition-all text-sm font-semibold"
+              >
+                {item.label}
+              </Link>
+            ))}
+            <Link
+              href="/contact"
+              onClick={() => setMobileOpen(false)}
+              className="block mt-4 w-full bg-[#12B5CB] text-white text-center font-bold py-3.5 rounded-[2px] text-sm tracking-[-0.02em]"
+            >
+              Contact Us
             </Link>
           </div>
         </div>
-      )}
-    </header>
+      </div>
+    </div>
   );
 }

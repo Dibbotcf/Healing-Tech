@@ -5,6 +5,16 @@ import Link from "next/link";
 import { ArrowRight, Globe2, ShieldCheck, Wrench, CheckCircle2 } from "lucide-react";
 import { TestimonialsSection } from "@/components/TestimonialsSection";
 import { FAQSection } from "@/components/FAQSection";
+import { ProductCarousel } from "@/components/ProductCarousel";
+import { WorldMap } from "@/components/ui/map";
+
+const supplyRoutes = [
+  { start: { lat: 51.1657, lng: 10.4515, label: "Germany" },     end: { lat: 23.685, lng: 90.3563, label: "Dhaka" } },
+  { start: { lat: 37.5665, lng: 126.978, label: "South Korea" }, end: { lat: 23.685, lng: 90.3563, label: "Dhaka" } },
+  { start: { lat: 35.8617, lng: 104.1954, label: "China" },      end: { lat: 23.685, lng: 90.3563, label: "Dhaka" } },
+  { start: { lat: 36.2048, lng: 138.2529, label: "Japan" },      end: { lat: 23.685, lng: 90.3563, label: "Dhaka" } },
+  { start: { lat: 38.9637, lng: 35.2433, label: "Turkey" },      end: { lat: 23.685, lng: 90.3563, label: "Dhaka" } },
+];
 
 const partners = [
   { id: 1, name: "Aeonmed" }, { id: 2, name: "Heyer Medical AG" },
@@ -12,11 +22,7 @@ const partners = [
   { id: 5, name: "Bng Medical" }, { id: 6, name: "Suxin" }
 ];
 
-const categories = [
-  { id: "c1", name: "Operation Theater", image: "https://images.unsplash.com/photo-1675172872009-6cc93e127a47?auto=format&fit=crop&q=80&w=600", description: "Shadowless lighting and ergonomic surgical tables engineered for complex procedures." },
-  { id: "c2", name: "Anesthesia & Ventilation", image: "https://images.unsplash.com/photo-1630128295920-627fb9aff5a4?auto=format&fit=crop&q=80&w=600", description: "Intelligent closed-loop anesthesia workstations and critical life-support systems." },
-  { id: "c3", name: "Critical Care & Monitoring", image: "https://images.unsplash.com/photo-1770836037412-0dbb782e11e8?auto=format&fit=crop&q=80&w=600", description: "Advanced respiratory care and continuous vital sign monitoring." },
-];
+
 
 
 
@@ -53,14 +59,14 @@ export default function Home() {
             <div className="flex flex-wrap gap-4">
               <Link
                 href="/products"
-                className="bg-[#12B5CB] hover:bg-[#009EE2] text-[#00355D] px-8 py-4 rounded-full text-base font-bold transition-all hover:scale-105 inline-flex items-center gap-2"
+                className="bg-[#12B5CB] hover:bg-[#009EE2] text-white px-8 py-4 rounded-[2px] text-base font-bold transition-all hover:scale-105 inline-flex items-center gap-2"
               >
                 Explore Product Catalog
                 <ArrowRight className="w-5 h-5" />
               </Link>
               <Link
                 href="/contact"
-                className="bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/30 text-white px-8 py-4 rounded-full text-base font-bold transition-all"
+                className="bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/30 text-white px-8 py-4 rounded-[2px] text-base font-bold transition-all"
               >
                 Speak to an Expert
               </Link>
@@ -85,32 +91,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Core Clinical Categories */}
-      <section className="py-24 bg-[#F8F9FA] overflow-hidden">
-        <div className="container mx-auto px-4 lg:px-8 max-w-[1440px]">
-          <motion.div initial={{ opacity: 0, scale: 0.95, y: 30 }} whileInView={{ opacity: 1, scale: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.8 }} className="text-center mb-16">
-            <h2 className="font-['Inter'] text-[2.5rem] font-bold text-[#00355D] mb-4 tracking-tighter">Core Clinical Categories</h2>
-            <p className="text-lg text-[#575B5F] max-w-2xl mx-auto font-normal leading-tight">Specialized infrastructure tailored for high-acuity environments.</p>
-          </motion.div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {categories.map((category, index) => (
-              <motion.div initial={{ opacity: 0, scale: 0.85, y: 40 }} whileInView={{ opacity: 1, scale: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.6, delay: index * 0.15 }} key={category.id} className="group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100">
-                <div className="relative h-64 overflow-hidden">
-                  <img src={category.image} alt={category.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#00355D]/80 to-transparent opacity-60" />
-                </div>
-                <div className="p-8">
-                  <h3 className="font-['Inter'] text-2xl font-bold text-[#00355D] mb-3 group-hover:text-[#12B5CB] transition-colors tracking-tighter">{category.name}</h3>
-                  <p className="text-[#575B5F] leading-tight mb-6 font-normal">{category.description}</p>
-                  <Link href={`/products?category=${category.name.toLowerCase().replace(/ & /g, '-').replace(/ /g, '-')}`} className="inline-flex items-center gap-2 text-[#12B5CB] font-bold hover:gap-3 transition-all">
-                    View Solutions <ArrowRight className="w-4 h-4" />
-                  </Link>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+
+      {/* Featured Equipment Carousel (CMS-driven) */}
+      <ProductCarousel />
 
       {/* Value Proposition */}
       <section className="py-24 bg-white overflow-hidden">
@@ -121,28 +104,17 @@ export default function Home() {
           </motion.div>
 
           <div className="space-y-24">
-            {/* Global Import Network */}
-            <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.8 }} className="flex flex-col md:flex-row items-center gap-12 lg:gap-24">
-              <div className="flex-1">
-                <div className="w-16 h-16 bg-[#12B5CB]/10 rounded-2xl flex items-center justify-center mb-6 text-[#12B5CB]"><Globe2 className="w-8 h-8" /></div>
-                <h3 className="font-['Inter'] text-2xl font-bold text-[#00355D] mb-4 tracking-tighter">Global Import Network</h3>
-                <p className="text-[#575B5F] text-lg leading-tight mb-6 font-normal">We strategically source life-saving technologies from premier manufacturers across the USA, Europe, and Asia.</p>
-                <ul className="space-y-3 font-normal">
-                  <li className="flex items-center gap-3 text-[#111111] font-bold"><CheckCircle2 className="w-5 h-5 text-[#00AB4E]" /> Direct manufacturer partnerships</li>
-                  <li className="flex items-center gap-3 text-[#111111] font-bold"><CheckCircle2 className="w-5 h-5 text-[#00AB4E]" /> Transparent supply chain</li>
-                </ul>
-              </div>
-              <div className="flex-1 w-full">
-                <div className="bg-[#F8F9FA] rounded-2xl p-12 flex items-center justify-center h-full min-h-[300px] border border-gray-100">
-                  <div className="grid grid-cols-3 gap-6 opacity-30">{[1,2,3,4,5,6,7,8,9].map(i => <Globe2 key={i} className="w-12 h-12 text-[#00355D]" />)}</div>
-                </div>
+            {/* Global Import Network Map */}
+            <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.8 }} className="w-full">
+              <div className="bg-[#F8F9FA] rounded-[2px] p-6 lg:p-12 border border-gray-100 overflow-hidden w-full h-[300px] md:h-[400px] lg:h-[500px]">
+                <WorldMap dots={supplyRoutes} lineColor="#12B5CB" />
               </div>
             </motion.div>
 
             {/* Quality Assurance */}
             <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.8 }} className="flex flex-col md:flex-row-reverse items-center gap-12 lg:gap-24">
               <div className="flex-1">
-                <div className="w-16 h-16 bg-[#00AB4E]/10 rounded-2xl flex items-center justify-center mb-6 text-[#00AB4E]"><ShieldCheck className="w-8 h-8" /></div>
+                <div className="w-16 h-16 bg-[#00AB4E]/10 rounded-[2px] flex items-center justify-center mb-6 text-[#00AB4E]"><ShieldCheck className="w-8 h-8" /></div>
                 <h3 className="font-['Inter'] text-2xl font-bold text-[#00355D] mb-4 tracking-tighter">Uncompromising Quality Assurance</h3>
                 <p className="text-[#575B5F] text-lg leading-tight mb-6 font-normal">Every device undergoes strict inspection protocols ensuring absolute compliance with DGDA and international health standards.</p>
                 <ul className="space-y-3 font-normal">
@@ -151,14 +123,14 @@ export default function Home() {
                 </ul>
               </div>
               <div className="flex-1 w-full">
-                <div className="bg-[#F8F9FA] rounded-2xl p-12 flex items-center justify-center h-full min-h-[300px] border border-gray-100"><ShieldCheck className="w-48 h-48 text-[#00AB4E]/20" /></div>
+                <div className="bg-[#F8F9FA] rounded-[2px] p-12 flex items-center justify-center h-full min-h-[300px] border border-gray-100"><ShieldCheck className="w-48 h-48 text-[#00AB4E]/20" /></div>
               </div>
             </motion.div>
 
             {/* 24/7 Support */}
             <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.8 }} className="flex flex-col md:flex-row items-center gap-12 lg:gap-24">
               <div className="flex-1">
-                <div className="w-16 h-16 bg-[#12B5CB]/10 rounded-2xl flex items-center justify-center mb-6 text-[#12B5CB]"><Wrench className="w-8 h-8" /></div>
+                <div className="w-16 h-16 bg-[#12B5CB]/10 rounded-[2px] flex items-center justify-center mb-6 text-[#12B5CB]"><Wrench className="w-8 h-8" /></div>
                 <h3 className="font-['Inter'] text-2xl font-bold text-[#00355D] mb-4 tracking-tighter">24/7 Technical Support</h3>
                 <p className="text-[#575B5F] text-lg leading-tight mb-6 font-normal">Equipment downtime costs lives. We deploy dedicated, manufacturer-trained biomedical engineers for rapid-response maintenance.</p>
                 <ul className="space-y-3 font-normal">
@@ -167,7 +139,7 @@ export default function Home() {
                 </ul>
               </div>
               <div className="flex-1 w-full">
-                <div className="bg-[#00355D] rounded-2xl p-12 flex flex-col items-center justify-center h-full min-h-[300px] text-white">
+                <div className="bg-[#00355D] rounded-[2px] p-12 flex flex-col items-center justify-center h-full min-h-[300px] text-white">
                   <Wrench className="w-16 h-16 text-[#12B5CB] mb-4" />
                   <div className="text-3xl font-bold font-['Inter'] tracking-tighter">+88 01898 876703</div>
                   <div className="text-[#12B5CB] mt-2 font-normal">Direct Service Hotline</div>

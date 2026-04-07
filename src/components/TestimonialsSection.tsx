@@ -104,7 +104,7 @@ const TestimonialsColumn = (props: {
                     boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.12), 0 10px 10px -5px rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(0, 0, 0, 0.05)",
                     transition: { type: "spring", stiffness: 400, damping: 17 }
                   }}
-                  className="p-10 rounded-3xl border border-gray-200 shadow-lg shadow-black/5 max-w-xs w-full bg-white transition-all duration-300 cursor-default select-none group focus:outline-none focus:ring-2 focus:ring-[#12B5CB]/30"
+                  className="p-10 rounded-[2px] border border-gray-200  shadow-black/5 max-w-xs w-full bg-white transition-all duration-300 cursor-default select-none group focus:outline-none focus:ring-2 focus:ring-[#12B5CB]/30"
                 >
                   <blockquote className="m-0 p-0">
                     <p className="text-[#575B5F] leading-relaxed font-normal m-0">
@@ -157,7 +157,7 @@ export const TestimonialsSection = () => {
       >
         <div className="flex flex-col items-center justify-center max-w-[540px] mx-auto mb-16">
           <div className="flex justify-center">
-            <div className="border border-gray-300 py-1 px-4 rounded-full text-xs font-semibold tracking-wide uppercase text-[#575B5F] bg-gray-50">
+            <div className="border border-gray-300 py-1 px-4 rounded-[2px] text-xs font-semibold tracking-wide uppercase text-[#575B5F] bg-gray-50">
               Testimonials
             </div>
           </div>
