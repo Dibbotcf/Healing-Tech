@@ -74,7 +74,7 @@ export default function Contact() {
                   { icon: BookOpen,       title: "FAQs",             desc: "Explore our FAQ section for answers to common questions." },
                   { icon: Building2,      title: "Sales Engineering", desc: "Request a consultative quote or technical briefing from our team." },
                 ].map((card, i) => (
-                  <div key={i} className="bg-white border border-gray-200 rounded-[2px] p-5">
+                  <div key={i} className="bg-white border border-gray-200 rounded-xl p-5">
                     <card.icon className="w-5 h-5 text-[#12B5CB] mb-3" />
                     <h3 className="text-sm font-bold text-[#00355D] mb-1">{card.title}</h3>
                     <p className="text-xs text-[#575B5F] leading-relaxed font-normal">{card.desc}</p>
@@ -85,7 +85,7 @@ export default function Contact() {
 
             {/* Right — form card */}
             <motion.div id="form" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }}>
-              <div className="bg-white border border-gray-200 rounded-[2px] p-8">
+              <div className="bg-white border border-gray-200 rounded-xl p-8">
                 <h2 className="text-2xl font-bold text-[#00355D] mb-1 tracking-tight">Get in Touch</h2>
                 <p className="text-sm text-[#575B5F] mb-6 font-normal">You can reach us anytime</p>
 
@@ -94,33 +94,33 @@ export default function Contact() {
                     <div className="space-y-1">
                       <Label className="text-xs font-semibold text-[#575B5F]">Full Name *</Label>
                       <Input placeholder="Dr. John Doe" required value={formData.fullName}
-                        onChange={(e) => setFormData({ ...formData, fullName: e.target.value })} className="text-sm rounded-[2px]" />
+                        onChange={(e) => setFormData({ ...formData, fullName: e.target.value })} className="text-sm rounded-xl" />
                     </div>
                     <div className="space-y-1">
                       <Label className="text-xs font-semibold text-[#575B5F]">Clinical Role *</Label>
                       <Input placeholder="Chief Surgeon" required value={formData.role}
-                        onChange={(e) => setFormData({ ...formData, role: e.target.value })} className="text-sm rounded-[2px]" />
+                        onChange={(e) => setFormData({ ...formData, role: e.target.value })} className="text-sm rounded-xl" />
                     </div>
                   </div>
                   <div className="space-y-1">
                     <Label className="text-xs font-semibold text-[#575B5F]">Hospital / Facility *</Label>
                     <Input placeholder="General Hospital Dhaka" required value={formData.hospital}
-                      onChange={(e) => setFormData({ ...formData, hospital: e.target.value })} className="text-sm rounded-[2px]" />
+                      onChange={(e) => setFormData({ ...formData, hospital: e.target.value })} className="text-sm rounded-xl" />
                   </div>
                   <div className="space-y-1">
                     <Label className="text-xs font-semibold text-[#575B5F]">Email *</Label>
                     <Input type="email" placeholder="john@hospital.com" required value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })} className="text-sm rounded-[2px]" />
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })} className="text-sm rounded-xl" />
                   </div>
                   <div className="space-y-1">
                     <Label className="text-xs font-semibold text-[#575B5F]">Phone *</Label>
                     <Input type="tel" placeholder="+880 ..." required value={formData.phone}
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })} className="text-sm rounded-[2px]" />
+                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })} className="text-sm rounded-xl" />
                   </div>
                   <div className="space-y-1">
                     <Label className="text-xs font-semibold text-[#575B5F]">How can we help? <span className="text-gray-400 font-normal">(optional)</span></Label>
                     <Textarea placeholder="Please specify the machines, quantities, and your facility type..." rows={4}
-                      className="resize-none text-sm rounded-[2px]" value={formData.requirements}
+                      className="resize-none text-sm rounded-xl" value={formData.requirements}
                       onChange={(e) => setFormData({ ...formData, requirements: e.target.value })} />
                   </div>
 
@@ -157,7 +157,7 @@ export default function Contact() {
 
             {/* Map */}
             <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
-              <div className="w-full h-[380px] rounded-[2px] overflow-hidden border border-gray-200">
+              <div className="w-full h-[380px] rounded-xl overflow-hidden border border-gray-200">
                 <Map height={380} defaultCenter={[23.7276, 90.4080]} defaultZoom={16}>
                   <Marker width={50} anchor={[23.7276, 90.4080]} />
                 </Map>
@@ -182,12 +182,12 @@ export default function Contact() {
                   </div>
                 </div>
                 <div className="grid grid-cols-2 gap-4">
-                  <div className="border border-gray-200 rounded-[2px] p-4">
+                  <div className="border border-gray-200 rounded-xl p-4">
                     <Phone className="w-4 h-4 text-[#12B5CB] mb-2" />
                     <p className="text-xs text-[#575B5F] font-normal mb-1">Sales & General</p>
                     <a href="tel:+8801675292991" className="text-sm font-bold text-[#00355D] hover:text-[#12B5CB] transition-colors">+88 01675 292991</a>
                   </div>
-                  <div className="border border-gray-200 rounded-[2px] p-4">
+                  <div className="border border-gray-200 rounded-xl p-4">
                     <Mail className="w-4 h-4 text-[#12B5CB] mb-2" />
                     <p className="text-xs text-[#575B5F] font-normal mb-1">Email</p>
                     <a href="mailto:info@healingtech.com.bd" className="text-sm font-bold text-[#00355D] hover:text-[#12B5CB] transition-colors break-all">info@healingtech.com.bd</a>

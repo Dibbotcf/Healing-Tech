@@ -42,7 +42,7 @@ export function ProductCarousel() {
         <div className="container mx-auto px-4 lg:px-8 max-w-[1440px]">
           <div className="flex gap-6 overflow-hidden">
             {[1, 2, 3, 4].map((i) => (
-              <div key={i} className="min-w-[320px] h-[400px] bg-gray-100 rounded-[2px] animate-pulse" />
+              <div key={i} className="min-w-[320px] h-[400px] bg-gray-100 rounded-xl animate-pulse" />
             ))}
           </div>
         </div>
@@ -61,10 +61,10 @@ export function ProductCarousel() {
             <h2 className="font-['Inter'] text-[2.5rem] font-bold text-[#00355D] tracking-tighter">Featured Equipment</h2>
           </div>
           <div className="flex items-center gap-2">
-            <button onClick={() => scroll("left")} className="w-10 h-10 rounded-[2px] border border-gray-200 flex items-center justify-center text-[#575B5F] hover:bg-[#00355D] hover:text-white hover:border-[#00355D] transition-all">
+            <button onClick={() => scroll("left")} className="w-10 h-10 rounded-xl border border-gray-200 flex items-center justify-center text-[#575B5F] hover:bg-[#00355D] hover:text-white hover:border-[#00355D] transition-all">
               <ChevronLeft className="w-5 h-5" />
             </button>
-            <button onClick={() => scroll("right")} className="w-10 h-10 rounded-[2px] border border-gray-200 flex items-center justify-center text-[#575B5F] hover:bg-[#00355D] hover:text-white hover:border-[#00355D] transition-all">
+            <button onClick={() => scroll("right")} className="w-10 h-10 rounded-xl border border-gray-200 flex items-center justify-center text-[#575B5F] hover:bg-[#00355D] hover:text-white hover:border-[#00355D] transition-all">
               <ChevronRight className="w-5 h-5" />
             </button>
           </div>
@@ -86,7 +86,7 @@ export function ProductCarousel() {
                 className="min-w-[320px] max-w-[320px] flex-shrink-0 group"
               >
                 <Link href={`/products/${product.slug}`}>
-                  <div className="bg-white rounded-[2px] border border-gray-100  hover: transition-all duration-300 overflow-hidden h-full flex flex-col">
+                  <div className="bg-white rounded-xl border border-gray-100  hover: transition-all duration-300 overflow-hidden h-full flex flex-col">
                     <div className="relative h-[200px] bg-[#F8F9FA] overflow-hidden">
                       {heroUrl ? (
                         <img src={heroUrl} alt={product.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
@@ -96,7 +96,7 @@ export function ProductCarousel() {
                         </div>
                       )}
                       {product.markAsNew && (
-                        <div className="absolute top-3 left-3 bg-[#12B5CB] text-white text-[10px] font-bold px-2.5 py-1 rounded-[2px] flex items-center gap-1 uppercase tracking-wider">
+                        <div className="absolute top-3 left-3 bg-[#12B5CB] text-white text-[10px] font-bold px-2.5 py-1 rounded-xl flex items-center gap-1 uppercase tracking-wider">
                           <Sparkles className="w-3 h-3" /> New
                         </div>
                       )}

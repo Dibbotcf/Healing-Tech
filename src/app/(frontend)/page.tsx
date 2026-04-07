@@ -59,14 +59,14 @@ export default function Home() {
             <div className="flex flex-wrap gap-4">
               <Link
                 href="/products"
-                className="bg-[#12B5CB] hover:bg-[#009EE2] text-white px-8 py-4 rounded-[2px] text-base font-bold transition-all hover:scale-105 inline-flex items-center gap-2"
+                className="bg-[#12B5CB] hover:bg-[#009EE2] text-white px-8 py-4 rounded-xl text-base font-bold transition-all hover:scale-105 inline-flex items-center gap-2"
               >
                 Explore Product Catalog
                 <ArrowRight className="w-5 h-5" />
               </Link>
               <Link
                 href="/contact"
-                className="bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/30 text-white px-8 py-4 rounded-[2px] text-base font-bold transition-all"
+                className="bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/30 text-white px-8 py-4 rounded-xl text-base font-bold transition-all"
               >
                 Speak to an Expert
               </Link>
@@ -106,7 +106,7 @@ export default function Home() {
           <div className="space-y-24">
             {/* Global Import Network Map */}
             <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.8 }} className="w-full">
-              <div className="bg-[#F8F9FA] rounded-[2px] p-6 lg:p-12 border border-gray-100 overflow-hidden w-full h-[300px] md:h-[400px] lg:h-[500px]">
+              <div className="bg-[#F8F9FA] rounded-xl p-6 lg:p-12 border border-gray-100 overflow-hidden w-full h-[300px] md:h-[400px] lg:h-[500px]">
                 <WorldMap dots={supplyRoutes} lineColor="#12B5CB" />
               </div>
             </motion.div>
@@ -114,7 +114,7 @@ export default function Home() {
             {/* Quality Assurance */}
             <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.8 }} className="flex flex-col md:flex-row-reverse items-center gap-12 lg:gap-24">
               <div className="flex-1">
-                <div className="w-16 h-16 bg-[#00AB4E]/10 rounded-[2px] flex items-center justify-center mb-6 text-[#00AB4E]"><ShieldCheck className="w-8 h-8" /></div>
+                <div className="w-16 h-16 bg-[#00AB4E]/10 rounded-xl flex items-center justify-center mb-6 text-[#00AB4E]"><ShieldCheck className="w-8 h-8" /></div>
                 <h3 className="font-['Inter'] text-2xl font-bold text-[#00355D] mb-4 tracking-tighter">Uncompromising Quality Assurance</h3>
                 <p className="text-[#575B5F] text-lg leading-tight mb-6 font-normal">Every device undergoes strict inspection protocols ensuring absolute compliance with DGDA and international health standards.</p>
                 <ul className="space-y-3 font-normal">
@@ -123,14 +123,14 @@ export default function Home() {
                 </ul>
               </div>
               <div className="flex-1 w-full">
-                <div className="bg-[#F8F9FA] rounded-[2px] p-12 flex items-center justify-center h-full min-h-[300px] border border-gray-100"><ShieldCheck className="w-48 h-48 text-[#00AB4E]/20" /></div>
+                <div className="bg-[#F8F9FA] rounded-xl p-12 flex items-center justify-center h-full min-h-[300px] border border-gray-100"><ShieldCheck className="w-48 h-48 text-[#00AB4E]/20" /></div>
               </div>
             </motion.div>
 
             {/* 24/7 Support */}
             <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.8 }} className="flex flex-col md:flex-row items-center gap-12 lg:gap-24">
               <div className="flex-1">
-                <div className="w-16 h-16 bg-[#12B5CB]/10 rounded-[2px] flex items-center justify-center mb-6 text-[#12B5CB]"><Wrench className="w-8 h-8" /></div>
+                <div className="w-16 h-16 bg-[#12B5CB]/10 rounded-xl flex items-center justify-center mb-6 text-[#12B5CB]"><Wrench className="w-8 h-8" /></div>
                 <h3 className="font-['Inter'] text-2xl font-bold text-[#00355D] mb-4 tracking-tighter">24/7 Technical Support</h3>
                 <p className="text-[#575B5F] text-lg leading-tight mb-6 font-normal">Equipment downtime costs lives. We deploy dedicated, manufacturer-trained biomedical engineers for rapid-response maintenance.</p>
                 <ul className="space-y-3 font-normal">
@@ -139,7 +139,7 @@ export default function Home() {
                 </ul>
               </div>
               <div className="flex-1 w-full">
-                <div className="bg-[#00355D] rounded-[2px] p-12 flex flex-col items-center justify-center h-full min-h-[300px] text-white">
+                <div className="bg-[#00355D] rounded-xl p-12 flex flex-col items-center justify-center h-full min-h-[300px] text-white">
                   <Wrench className="w-16 h-16 text-[#12B5CB] mb-4" />
                   <div className="text-3xl font-bold font-['Inter'] tracking-tighter">+88 01898 876703</div>
                   <div className="text-[#12B5CB] mt-2 font-normal">Direct Service Hotline</div>

@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState, useRef, useCallback } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import { X, Plus, ChevronRight, ArrowRight, Sparkles, Menu } from "lucide-react";
+import { X, Plus, ChevronRight, ArrowRight, Sparkles, Menu, ArrowUpRight } from "lucide-react";
 
 interface Category { id: string; title: string; slug: string; }
 interface Product  { id: string; name: string; slug: string; category: string; markAsNew?: boolean; image?: string; }
@@ -160,7 +160,7 @@ export default function Navbar() {
                 className="w-10 h-10 rounded-full bg-[#00355D] flex items-center justify-center hover:bg-[#12B5CB] transition-colors group"
                 aria-label="Contact Us"
               >
-                <Plus className="w-4 h-4 text-white group-hover:rotate-90 transition-transform duration-300" />
+                <ArrowUpRight className="w-4 h-4 text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
               </Link>
             </div>
           </div>
@@ -219,14 +219,14 @@ export default function Navbar() {
               <div className="space-y-1">
                 {loading
                   ? Array.from({ length: 5 }).map((_, i) => (
-                      <div key={i} className="h-11 bg-gray-200 animate-pulse rounded-[2px]" />
+                      <div key={i} className="h-11 bg-gray-200 animate-pulse rounded-xl" />
                     ))
                   : categories.map((cat, i) => (
                       <button
                         key={cat.id}
                         onClick={() => setActiveCategory(cat.id)}
                         style={{ animationDelay: `${i * 40}ms` }}
-                        className={`w-full text-left px-4 py-3 rounded-[2px] flex items-center justify-between group transition-all duration-200 ${
+                        className={`w-full text-left px-4 py-3 rounded-xl flex items-center justify-between group transition-all duration-200 ${
                           activeCategory === cat.id
                             ? "bg-[#00355D] text-white "
                             : "text-[#111111] hover:bg-white hover:"
@@ -250,7 +250,7 @@ export default function Navbar() {
               {loading ? (
                 <div className="grid grid-cols-2 xl:grid-cols-3 gap-5">
                   {Array.from({ length: 6 }).map((_, i) => (
-                    <div key={i} className="h-32 bg-gray-100 animate-pulse rounded-[2px]" />
+                    <div key={i} className="h-32 bg-gray-100 animate-pulse rounded-xl" />
                   ))}
                 </div>
               ) : (
@@ -274,7 +274,7 @@ export default function Navbar() {
 
                   {activeProds.length === 0 ? (
                     <div className="flex flex-col items-center justify-center py-16 text-center">
-                      <div className="w-12 h-12 bg-gray-100 rounded-[2px] flex items-center justify-center mb-4">
+                      <div className="w-12 h-12 bg-gray-100 rounded-xl flex items-center justify-center mb-4">
                         <ChevronRight className="w-5 h-5 text-gray-400" />
                       </div>
                       <p className="text-sm font-semibold text-gray-400">No products in this category yet</p>
@@ -286,15 +286,15 @@ export default function Navbar() {
                           key={prod.id}
                           onClick={() => handleProductClick(prod.slug)}
                           style={{ animationDelay: `${i * 40}ms` }}
-                          className="group relative bg-white border border-gray-100 rounded-[2px] p-5 hover:border-[#12B5CB]/40 hover: transition-all duration-200 text-left cursor-pointer"
+                          className="group relative bg-white border border-gray-100 rounded-xl p-5 hover:border-[#12B5CB]/40 hover: transition-all duration-200 text-left cursor-pointer"
                         >
                           {prod.markAsNew && (
-                            <div className="absolute top-3 right-3 bg-[#12B5CB] text-white text-[10px] font-bold px-2 py-0.5 rounded-[2px] flex items-center gap-1 uppercase tracking-wider">
+                            <div className="absolute top-3 right-3 bg-[#12B5CB] text-white text-[10px] font-bold px-2 py-0.5 rounded-xl flex items-center gap-1 uppercase tracking-wider">
                               <Sparkles className="w-3 h-3" /> New
                             </div>
                           )}
                           {prod.image ? (
-                            <div className="relative w-full h-20 mb-3 bg-gray-50 rounded-[2px] overflow-hidden">
+                            <div className="relative w-full h-20 mb-3 bg-gray-50 rounded-xl overflow-hidden">
                               <Image src={prod.image} alt={prod.name} fill className="object-contain p-2" />
                             </div>
                           ) : (
@@ -342,7 +342,7 @@ export default function Navbar() {
             {/* Products */}
             <button
               onClick={() => { setMobileOpen(false); router.push("/products"); }}
-              className="w-full flex items-center justify-between py-3.5 px-4 rounded-[2px] text-white/80 hover:text-white hover:bg-white/10 transition-all text-sm font-semibold"
+              className="w-full flex items-center justify-between py-3.5 px-4 rounded-xl text-white/80 hover:text-white hover:bg-white/10 transition-all text-sm font-semibold"
             >
               Products <ChevronRight className="w-4 h-4 text-[#12B5CB]" />
             </button>
@@ -351,7 +351,7 @@ export default function Navbar() {
                 key={cat.id}
                 href={`/products?category=${cat.slug}`}
                 onClick={() => setMobileOpen(false)}
-                className="flex items-center justify-between py-3 px-6 rounded-[2px] text-white/60 hover:text-white hover:bg-white/10 transition-all text-xs font-semibold"
+                className="flex items-center justify-between py-3 px-6 rounded-xl text-white/60 hover:text-white hover:bg-white/10 transition-all text-xs font-semibold"
               >
                 {cat.title} <ChevronRight className="w-3 h-3 text-[#12B5CB]" />
               </Link>
@@ -367,7 +367,7 @@ export default function Navbar() {
                 key={item.href}
                 href={item.href}
                 onClick={() => setMobileOpen(false)}
-                className="block py-3 px-4 rounded-[2px] text-white/80 hover:text-white hover:bg-white/10 transition-all text-sm font-semibold"
+                className="block py-3 px-4 rounded-xl text-white/80 hover:text-white hover:bg-white/10 transition-all text-sm font-semibold"
               >
                 {item.label}
               </Link>
@@ -375,7 +375,7 @@ export default function Navbar() {
             <Link
               href="/contact"
               onClick={() => setMobileOpen(false)}
-              className="block mt-4 w-full bg-[#12B5CB] text-white text-center font-bold py-3.5 rounded-[2px] text-sm tracking-[-0.02em]"
+              className="block mt-4 w-full bg-[#12B5CB] text-white text-center font-bold py-3.5 rounded-xl text-sm tracking-[-0.02em]"
             >
               Contact Us
             </Link>

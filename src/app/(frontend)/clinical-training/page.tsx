@@ -27,7 +27,7 @@ export default function ClinicalTrainingPage() {
             { icon: Video, title: "Video Training Library", desc: "Access to our growing library of video tutorials covering operation, maintenance tips, and safety checks for all our equipment categories.", highlight: true },
           ].map((item, i) => (
             <motion.div key={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} transition={{ duration: 0.5, delay: i * 0.1 }}
-              className={`rounded-[2px]  border border-gray-100 p-8 hover: transition-all ${item.highlight ? "bg-[#00355D] text-white" : "bg-white"}`}
+              className={`rounded-xl  border border-gray-100 p-8 hover: transition-all ${item.highlight ? "bg-[#00355D] text-white" : "bg-white"}`}
             >
               <item.icon className={`w-10 h-10 ${item.highlight ? "text-[#12B5CB]" : "text-[#12B5CB]"} mb-5`} />
               <h3 className={`text-xl font-bold tracking-tight mb-3 ${item.highlight ? "text-white" : "text-[#00355D]"}`}>{item.title}</h3>
@@ -38,7 +38,7 @@ export default function ClinicalTrainingPage() {
 
         {/* Certification Section */}
         <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} transition={{ duration: 0.6 }}
-          className="bg-white rounded-[2px]  border border-gray-100 p-8 lg:p-12"
+          className="bg-white rounded-xl  border border-gray-100 p-8 lg:p-12"
         >
           <div className="flex items-center gap-3 mb-6">
             <Award className="w-7 h-7 text-[#12B5CB]" />
@@ -51,7 +51,7 @@ export default function ClinicalTrainingPage() {
               { num: "24hr", label: "Response Time", sub: "For re-training requests" },
             ].map((stat, i) => (
               <motion.div key={i} initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: i * 0.15 }}
-                className="text-center p-6 bg-[#F8F9FA] rounded-[2px]"
+                className="text-center p-6 bg-[#F8F9FA] rounded-xl"
               >
                 <p className="text-4xl font-bold text-[#12B5CB] mb-1">{stat.num}</p>
                 <p className="font-bold text-[#00355D]">{stat.label}</p>
@@ -63,12 +63,12 @@ export default function ClinicalTrainingPage() {
 
         {/* CTA */}
         <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} transition={{ duration: 0.6 }}
-          className="bg-gradient-to-r from-[#00355D] to-[#004A7F] rounded-[2px] p-8 lg:p-12 text-white text-center"
+          className="bg-gradient-to-r from-[#00355D] to-[#004A7F] rounded-xl p-8 lg:p-12 text-white text-center"
         >
           <ClipboardList className="w-10 h-10 text-[#12B5CB] mx-auto mb-4" />
           <h2 className="text-3xl font-bold mb-4 tracking-tight">Schedule a Training Session</h2>
           <p className="text-white/70 mb-6 max-w-xl mx-auto">Contact us to arrange a personalized training program for your clinical team.</p>
-          <a href="/contact" className="inline-flex items-center gap-2 bg-[#12B5CB] hover:bg-[#009EE2] text-white font-bold px-8 py-4 rounded-[2px] transition-colors">
+          <a href="/contact" className="inline-flex items-center gap-2 bg-[#12B5CB] hover:bg-[#009EE2] text-white font-bold px-8 py-4 rounded-xl transition-colors">
             Request Training
           </a>
         </motion.div>

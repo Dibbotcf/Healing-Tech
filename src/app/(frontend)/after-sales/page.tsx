@@ -28,9 +28,9 @@ export default function AfterSalesSupportPage() {
             { icon: Phone, title: "Dedicated Account Manager", desc: "Every hospital gets a dedicated account manager who understands your equipment portfolio.", color: "bg-rose-50 text-rose-600" },
           ].map((item, i) => (
             <motion.div key={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="bg-white rounded-[2px]  border border-gray-100 p-8 hover: transition-all group"
+              className="bg-white rounded-xl  border border-gray-100 p-8 hover: transition-all group"
             >
-              <div className={`w-14 h-14 rounded-[2px] ${item.color} flex items-center justify-center mb-5 group-hover:scale-110 transition-transform`}>
+              <div className={`w-14 h-14 rounded-xl ${item.color} flex items-center justify-center mb-5 group-hover:scale-110 transition-transform`}>
                 <item.icon className="w-7 h-7" />
               </div>
               <h3 className="text-xl font-bold text-[#00355D] tracking-tight mb-3">{item.title}</h3>
@@ -40,11 +40,11 @@ export default function AfterSalesSupportPage() {
         </div>
 
         <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} transition={{ duration: 0.6 }}
-          className="bg-[#00355D] rounded-[2px] p-8 lg:p-12 text-white text-center"
+          className="bg-[#00355D] rounded-xl p-8 lg:p-12 text-white text-center"
         >
           <h2 className="text-3xl font-bold mb-4 tracking-tight">Need Emergency Support?</h2>
           <p className="text-white/70 mb-6 max-w-xl mx-auto">Call our 24/7 engineering hotline for immediate assistance.</p>
-          <a href="tel:+8801898876703" className="inline-flex items-center gap-2 bg-[#12B5CB] hover:bg-[#009EE2] text-white font-bold px-8 py-4 rounded-[2px] transition-colors text-lg">
+          <a href="tel:+8801898876703" className="inline-flex items-center gap-2 bg-[#12B5CB] hover:bg-[#009EE2] text-white font-bold px-8 py-4 rounded-xl transition-colors text-lg">
             <Phone className="w-5 h-5" /> 01898 876703
           </a>
         </motion.div>

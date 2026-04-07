@@ -1,9 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
-import { Globe, Ship, CheckCircle2, ShieldCheck, Award } from "lucide-react";
+import { Globe, Ship, ShieldCheck, Award } from "lucide-react";
 import { WorldMap } from "@/components/ui/map";
-
-const fadeUp = { hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0 } };
 
 const supplyRoutes = [
   { start: { lat: 51.1657, lng: 10.4515, label: "Germany" }, end: { lat: 23.685, lng: 90.3563, label: "Dhaka" } },
@@ -23,68 +21,74 @@ const partners = [
 
 export default function GlobalSourcingPage() {
   return (
-    <div className="min-h-screen bg-[#F8F9FA] pb-24 font-['Inter'] tracking-tight">
-      <div className="bg-[#00355D] text-white pt-[88px] pb-16 md:pt-[96px] md:pb-24">
-        <div className="container mx-auto px-4 lg:px-8 max-w-[1440px]">
-          <motion.div initial="hidden" animate="visible" variants={fadeUp} transition={{ duration: 0.6 }}>
-            <p className="text-[#12B5CB] text-sm font-bold uppercase tracking-[0.1em] mb-3">What We Do</p>
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 tracking-[-0.04em]">Global Device Sourcing</h1>
-            <p className="text-lg text-white/70 max-w-2xl">Importing world-class medical equipment from certified manufacturers across Germany, South Korea, China, Japan, and Turkey — directly to Bangladesh.</p>
-          </motion.div>
-        </div>
-      </div>
+    <div className="w-full bg-white font-['Inter'] tracking-tight pb-32">
+      {/* ── HERO ── */}
+      <section className="pt-[160px] pb-16 px-6 lg:px-8 max-w-[1440px] mx-auto border-b border-gray-200 mb-20">
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="max-w-4xl">
+          <p className="text-[#12B5CB] text-xs font-bold uppercase tracking-[0.15em] mb-6">What We Do</p>
+          <h1 className="font-['Inter'] text-5xl md:text-7xl font-bold mb-8 tracking-[-0.04em] leading-[1.05] text-[#00355D]">
+            Global Device <br className="hidden md:block" /> Sourcing.
+          </h1>
+          <p className="text-xl md:text-2xl text-[#575B5F] leading-[1.4] font-normal max-w-3xl">
+            Importing world-class medical equipment from certified manufacturers across Germany, South Korea, China, Japan, and Turkey — directly to Bangladesh.
+          </p>
+        </motion.div>
+      </section>
 
-      <div className="container mx-auto px-4 lg:px-8 max-w-[1440px] -mt-8 relative z-10 space-y-16">
-        {/* Map Section */}
-        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} transition={{ duration: 0.8 }}>
-          <div className="bg-white rounded-[2px]  border border-gray-100 p-4 lg:p-8">
-            <div className="text-center mb-8">
-              <h2 className="text-2xl font-bold text-[#00355D] tracking-tight mb-2">Our Supply Chain Network</h2>
-              <p className="text-[#575B5F]">Direct import routes from world-class manufacturers to Dhaka, Bangladesh</p>
+      {/* ── MAP SECTION (FULL WIDTH) ── */}
+      <section className="w-full mb-32 overflow-hidden bg-[#F8F9FA] border-y border-gray-200">
+        <div className="px-6 lg:px-8 max-w-[1440px] mx-auto pt-16 pb-8">
+          <h2 className="text-4xl font-bold text-[#00355D] tracking-[-0.03em] leading-none mb-4">Our Supply Chain Network</h2>
+          <p className="text-lg text-[#575B5F] font-normal leading-[1.5]">Direct import routes from world-class manufacturers to Dhaka, Bangladesh.</p>
+        </div>
+        <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>
+          <div className="w-full h-[500px] md:h-[600px] lg:h-[650px] overflow-hidden relative">
+            <div className="absolute w-[200%] md:w-[150%] lg:w-[120%] h-full left-[-30%] lg:left-[-10%] top-0">
+               <WorldMap dots={supplyRoutes} lineColor="#12B5CB" />
             </div>
-            <WorldMap dots={supplyRoutes} lineColor="#12B5CB" />
           </div>
         </motion.div>
+      </section>
 
-        {/* Features */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {/* ── FEATURES ── */}
+      <section className="px-6 lg:px-8 max-w-[1440px] mx-auto border-t border-gray-200 pt-32 mb-32">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-x-12 gap-y-16">
           {[
             { icon: Ship, title: "Direct Import", desc: "We import directly from authorized manufacturers, eliminating middlemen and ensuring authenticity of every device." },
             { icon: ShieldCheck, title: "Certified Equipment", desc: "Every product carries CE marking, ISO 13485, and DGDA compliance. No grey market imports—ever." },
             { icon: Award, title: "Exclusive Partnerships", desc: "We maintain exclusive distribution agreements with leading global medical equipment brands." },
           ].map((feat, i) => (
-            <motion.div key={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} transition={{ duration: 0.5, delay: i * 0.15 }}
-              className="bg-white rounded-[2px]  border border-gray-100 p-8 hover: transition-shadow"
+            <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
+              className="flex flex-col"
             >
-              <feat.icon className="w-10 h-10 text-[#12B5CB] mb-4" />
-              <h3 className="text-xl font-bold text-[#00355D] tracking-tight mb-3">{feat.title}</h3>
-              <p className="text-[#575B5F] leading-relaxed">{feat.desc}</p>
+              <feat.icon className="w-10 h-10 text-[#00355D] mb-6" strokeWidth={1} />
+              <h3 className="text-2xl font-bold text-[#00355D] tracking-[-0.02em] mb-4 leading-none">{feat.title}</h3>
+              <p className="text-lg text-[#575B5F] leading-[1.5] font-normal">{feat.desc}</p>
             </motion.div>
           ))}
         </div>
+      </section>
 
-        {/* Partners */}
-        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} transition={{ duration: 0.6 }}>
-          <div className="bg-white rounded-[2px]  border border-gray-100 p-8 lg:p-12">
-            <div className="flex items-center gap-3 mb-8">
-              <Globe className="w-7 h-7 text-[#12B5CB]" />
-              <h2 className="text-2xl font-bold text-[#00355D] tracking-tight">Our Manufacturing Partners</h2>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {partners.map((p, i) => (
-                <motion.div key={i} initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
-                  className="border border-gray-100 rounded-[2px] p-5 hover:border-[#12B5CB]/40 transition-all"
-                >
-                  <h3 className="font-bold text-[#00355D] mb-1">{p.name}</h3>
-                  <p className="text-xs text-[#12B5CB] font-semibold uppercase tracking-wider mb-2">{p.country}</p>
-                  <p className="text-sm text-[#575B5F]">{p.specialty}</p>
-                  <CheckCircle2 className="w-4 h-4 text-green-500 mt-3" />
-                </motion.div>
-              ))}
-            </div>
+      {/* ── PARTNERS ── */}
+      <section className="px-6 lg:px-8 max-w-[1440px] mx-auto">
+        <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="bg-[#F8F9FA] rounded-xl p-12 lg:p-20 border border-gray-200">
+          <div className="mb-16">
+            <Globe className="w-10 h-10 text-[#12B5CB] mb-6" strokeWidth={1} />
+            <h2 className="text-4xl md:text-5xl font-bold text-[#00355D] tracking-[-0.03em] leading-none mb-4">Our Manufacturing Partners</h2>
+            <p className="text-xl text-[#575B5F] font-normal max-w-2xl">Collaborating with the industry's most reliable names to ensure continuous quality care.</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {partners.map((p, i) => (
+              <div key={i} className="border-l-2 border-gray-200 pl-6 py-2 hover:border-[#12B5CB] transition-colors duration-300">
+                <h3 className="text-2xl font-bold text-[#00355D] mb-2 leading-none">{p.name}</h3>
+                <p className="text-sm text-[#12B5CB] font-bold uppercase tracking-wider mb-2">{p.country}</p>
+                <p className="text-base text-[#575B5F] m-0">{p.specialty}</p>
+              </div>
+            ))}
           </div>
         </motion.div>
-      </div>
+      </section>
     </div>
   );
 }

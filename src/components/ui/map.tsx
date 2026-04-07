@@ -63,7 +63,7 @@ export function WorldMap({
   const fullCycleDuration = totalAnimationTime + pauseTime;
 
   return (
-    <div className="w-full aspect-[2/1] md:aspect-[2.5/1] lg:aspect-[2/1] bg-white rounded-[2px] relative font-sans overflow-hidden">
+    <div className="w-full h-full relative font-sans overflow-hidden bg-transparent">
       <Image
         src={`data:image/svg+xml;utf8,${encodeURIComponent(svgMap)}`}
         className="h-full w-full [mask-image:linear-gradient(to_bottom,transparent,white_10%,white_90%,transparent)] pointer-events-none select-none object-cover"
@@ -158,7 +158,7 @@ export function WorldMap({
                   <motion.g initial={{ opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 * i + 0.3, duration: 0.5 }} className="pointer-events-none">
                     <foreignObject x={startPoint.x - 50} y={startPoint.y - 35} width="100" height="30" className="block">
                       <div className="flex items-center justify-center h-full">
-                        <span className="text-[10px] font-medium px-2 py-0.5 rounded-[2px] bg-white/95 text-[#00355D] border border-gray-200 ">{dot.start.label}</span>
+                        <span className="text-[10px] font-medium px-2 py-0.5 rounded-xl bg-white/95 text-[#00355D] border border-gray-200 ">{dot.start.label}</span>
                       </div>
                     </foreignObject>
                   </motion.g>
@@ -182,7 +182,7 @@ export function WorldMap({
                   <motion.g initial={{ opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 * i + 0.5, duration: 0.5 }} className="pointer-events-none">
                     <foreignObject x={endPoint.x - 50} y={endPoint.y - 35} width="100" height="30" className="block">
                       <div className="flex items-center justify-center h-full">
-                        <span className="text-[10px] font-medium px-2 py-0.5 rounded-[2px] bg-white/95 text-[#00355D] border border-gray-200 ">{dot.end.label}</span>
+                        <span className="text-[10px] font-medium px-2 py-0.5 rounded-xl bg-white/95 text-[#00355D] border border-gray-200 ">{dot.end.label}</span>
                       </div>
                     </foreignObject>
                   </motion.g>
@@ -198,7 +198,7 @@ export function WorldMap({
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 10 }}
-            className="absolute bottom-4 left-4 bg-white/90 text-[#00355D] px-3 py-2 rounded-[2px] text-sm font-medium backdrop-blur-sm sm:hidden border border-gray-200"
+            className="absolute bottom-4 left-4 bg-white/90 text-[#00355D] px-3 py-2 rounded-xl text-sm font-medium backdrop-blur-sm sm:hidden border border-gray-200"
           >
             {hoveredLocation}
           </motion.div>
