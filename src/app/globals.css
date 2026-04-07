@@ -201,11 +201,26 @@
   animation: slideDown 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-/* ===== SCROLLBAR ===== */
-.custom-scrollbar {
+/* ===== GLOBAL SCROLLBAR ===== */
+* {
   scrollbar-width: thin;
-  scrollbar-color: var(--brand-accent) transparent;
+  scrollbar-color: #12B5CB transparent;
 }
-.custom-scrollbar::-webkit-scrollbar { width: 4px; }
-.custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
-.custom-scrollbar::-webkit-scrollbar-thumb { background: var(--brand-accent); border-radius: 2px; }
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #12B5CB;
+  border-radius: 100px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #009EE2;
+}

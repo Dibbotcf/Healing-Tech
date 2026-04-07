@@ -71,14 +71,12 @@ export default function Navbar() {
       {/* ═══════════════════════════════════════
           FLOATING PILL HEADER
       ═══════════════════════════════════════ */}
-      <header className="fixed top-0 left-0 right-0 z-50 px-4 lg:px-8 pt-4">
+      <header className="fixed top-0 left-0 right-0 z-50 px-4 lg:px-8 pt-4 pointer-events-none">
         <div className="max-w-[1440px] mx-auto flex items-center justify-between gap-4">
 
           {/* ── LEFT PILL: Logo + Nav ── */}
           <div
-            className={`hidden lg:flex items-center gap-0 bg-white rounded-full  transition-shadow duration-300 ${
-              scrolled ? "" : ""
-            } overflow-hidden`}
+            className={`hidden lg:flex items-center gap-0 bg-white rounded-full transition-shadow duration-300 pointer-events-auto overflow-hidden`}
             style={{ height: "52px" }}
           >
             {/* Logo */}
@@ -134,7 +132,7 @@ export default function Navbar() {
           </div>
 
           {/* ── MOBILE: compact logo ── */}
-          <Link href="/" className="flex items-center lg:hidden bg-white rounded-full px-5 py-2" style={{ height: "52px" }}>
+          <Link href="/" className="flex items-center lg:hidden bg-white rounded-full px-5 py-2 pointer-events-auto" style={{ height: "52px" }}>
             <Image
               src="/healing technology logo SVG-04.svg"
               alt="Healing Technology"
@@ -146,7 +144,7 @@ export default function Navbar() {
           </Link>
 
           {/* ── RIGHT PILL: Contact ── */}
-          <div className="hidden lg:flex items-center bg-white rounded-full  overflow-hidden" style={{ height: "52px" }}>
+          <div className="hidden lg:flex items-center bg-white rounded-full overflow-hidden pointer-events-auto" style={{ height: "52px" }}>
             <Link
               href="/contact"
               className="pl-6 pr-4 text-sm font-semibold tracking-tight text-[#111] hover:text-[#00355D] transition-colors h-full flex items-center"
@@ -168,7 +166,7 @@ export default function Navbar() {
           {/* ── MOBILE hamburger ── */}
           <button
             onClick={() => setMobileOpen((o) => !o)}
-            className="lg:hidden w-12 h-12 rounded-full bg-white  flex items-center justify-center text-[#00355D] hover:bg-gray-50 transition-colors"
+            className="lg:hidden w-12 h-12 rounded-full bg-white flex items-center justify-center text-[#00355D] hover:bg-gray-50 transition-colors pointer-events-auto"
           >
             {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
@@ -186,15 +184,17 @@ export default function Navbar() {
       >
         {/* Backdrop — click to close */}
         <div
-          className="absolute inset-0 bg-black/30 backdrop-blur-sm"
+          className={`absolute inset-0 bg-black/30 backdrop-blur-md transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+            megaOpen ? "opacity-100" : "opacity-0"
+          }`}
           onClick={() => setMegaOpen(false)}
         />
 
         {/* Panel Wrapper for floating look */}
         <div className="container mx-auto px-4 lg:px-8 max-w-[1440px] pt-4 pb-8 h-full relative pointer-events-none">
           <div
-            className={`relative bg-white flex flex-col rounded-2xl overflow-hidden shadow-2xl transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] pointer-events-auto h-full max-h-[600px] ${
-              megaOpen ? "translate-y-0" : "-translate-y-6"
+            className={`relative bg-white flex flex-col rounded-2xl overflow-hidden shadow-2xl transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] h-full max-h-[600px] ${
+              megaOpen ? "translate-y-0 pointer-events-auto" : "-translate-y-6 pointer-events-none"
             }`}
           >
             {/* Close bar */}
@@ -205,7 +205,7 @@ export default function Navbar() {
                 <button
                   onClick={() => {
                     setMegaOpen(false);
-                    router.push("/catalog");
+                    router.push("/products");
                   }}
                   className="flex items-center gap-2 text-sm font-bold text-[#12B5CB] hover:text-[#009EE2] transition-colors"
                 >
@@ -344,7 +344,7 @@ export default function Navbar() {
           <p className="text-[10px] font-black text-[#575B5F] uppercase tracking-[0.15em] mb-4 ml-1">Menu</p>
           <div className="space-y-2 mb-8">
             <Link
-              href="/catalog"
+              href="/products"
               onClick={() => setMobileOpen(false)}
               className="w-full flex items-center justify-between py-4 px-5 rounded-2xl text-[#111111] hover:bg-gray-50 border border-gray-100 transition-all text-sm font-bold shadow-sm"
             >

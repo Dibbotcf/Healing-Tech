@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Source_Serif_4 } from "next/font/google";
+import { Inter } from "next/font/google";
 import "../globals.css";
 
 import Navbar from "@/components/Navbar";
@@ -10,13 +10,6 @@ const inter = Inter({
   subsets: ["latin"],
   variable: "--font-sans",
   display: "swap",
-});
-
-const sourceSerif = Source_Serif_4({
-  subsets: ["latin"],
-  variable: "--font-serif",
-  display: "swap",
-  style: ["normal", "italic"],
 });
 
 export const metadata: Metadata = {
@@ -54,7 +47,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${inter.variable} ${sourceSerif.variable}`}>
+    <html lang="en" suppressHydrationWarning className={`${inter.variable}`}>
       <body className="antialiased">
         <div className="min-h-screen bg-[#F8F9FA] text-[#111111] tracking-tight flex flex-col" style={{ fontFamily: "var(--font-sans, 'Inter', sans-serif)" }}>
           <Navbar />

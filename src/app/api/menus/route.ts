@@ -14,12 +14,10 @@ export async function GET() {
       limit: 100,
     });
 
-    // depth: 2 so product.category and product.heroImage are populated
     const productDocs = await payload.find({
       collection: "products",
       depth: 2,
       limit: 1000,
-      where: { status: { equals: "published" } },
     });
 
     const categories = categoryDocs.docs.map((c) => ({

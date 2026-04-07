@@ -76,14 +76,36 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
       {/* ─── Hero Section ─── */}
       <div className="bg-[#EEF4FB] pt-[88px] pb-24 lg:pt-[96px] lg:pb-32">
         <div className="container mx-auto px-4 lg:px-8 max-w-[1440px]">
-          {/* Back link */}
-          <Link
-            href="/products"
-            className="inline-flex items-center gap-2 text-[#00355D]/60 hover:text-[#00355D] mb-10 transition-colors text-sm font-medium tracking-[-0.02em]"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            Back to Catalog
-          </Link>
+          {/* Breadcrumb Navigation & Back Button */}
+          <div className="flex items-center gap-4 mb-10 text-sm font-medium tracking-[-0.01em]">
+            <Link
+              href="/products"
+              className="flex items-center gap-2 text-[#00355D]/60 hover:text-[#12B5CB] transition-colors pr-4 border-r border-gray-200"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              Back
+            </Link>
+
+            <nav className="flex items-center text-[#00355D]/60 w-full overflow-hidden">
+              <Link href="/" className="hover:text-[#12B5CB] transition-colors flex items-center gap-1 flex-shrink-0">
+              Home
+            </Link>
+            <span className="mx-2 text-gray-300">/</span>
+            <Link href="/products" className="hover:text-[#12B5CB] transition-colors flex items-center gap-1">
+              Products
+            </Link>
+            {category && (
+              <>
+                <span className="mx-2 text-gray-300">/</span>
+                <Link href={`/products?category=${category.slug}`} className="hover:text-[#12B5CB] transition-colors flex items-center gap-1">
+                  {category.title}
+                </Link>
+              </>
+            )}
+            <span className="mx-2 text-gray-300">/</span>
+            <span className="text-[#00355D] font-bold line-clamp-1">{product.name}</span>
+          </nav>
+          </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
             {/* Left: Image Gallery */}
