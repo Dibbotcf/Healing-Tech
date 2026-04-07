@@ -1,26 +1,39 @@
 "use client";
 import { motion } from "framer-motion";
-import { ShieldCheck, Network, Wrench, Clock, CheckCircle2 } from "lucide-react";
+import { ShieldCheck, Network, Wrench, Clock, CheckCircle2, TrendingUp, HeartPulse, Building2, Activity } from "lucide-react";
 import Image from "next/image";
 
 export default function About() {
   return (
     <div className="w-full bg-white font-['Inter'] tracking-tight pb-32">
       {/* ── HERO ── */}
-      <section className="pt-[120px] pb-24 md:pt-[160px] md:pb-32 px-6 lg:px-8 max-w-[1440px] mx-auto">
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="max-w-5xl">
-          <p className="text-[#12B5CB] text-xs font-bold uppercase tracking-[0.15em] mb-6">About Us</p>
-          <h1 className="font-['Inter'] text-5xl md:text-7xl font-bold mb-8 tracking-[-0.04em] leading-[1.05] text-[#00355D]">
-            Engineering Trust <br className="hidden md:block" /> in Healthcare.
-          </h1>
-          <p className="text-xl md:text-2xl text-[#575B5F] leading-[1.4] font-normal max-w-3xl">
-            Healing Technology is a premier medical equipment importer and supplier. We bridge the gap between global medical innovation and local healthcare providers by sourcing high-standard hospital products and clinical equipment from world-class manufacturers.
-          </p>
-        </motion.div>
+      <section className="relative w-full pt-[120px] pb-24 md:pt-[160px] md:pb-32 overflow-hidden border-b border-gray-100">
+        <div className="absolute inset-0 z-0">
+          <Image 
+            src="/about-hero-bg.jpg" 
+            alt="Medical Facility Background" 
+            fill 
+            className="object-cover object-center md:object-right" 
+            priority 
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/80 md:via-white/50 to-white/10 md:to-transparent" />
+        </div>
+        
+        <div className="px-6 lg:px-8 max-w-[1440px] mx-auto relative z-10">
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="max-w-3xl lg:max-w-4xl">
+            <p className="text-[#12B5CB] text-xs font-bold uppercase tracking-[0.15em] mb-6">About Us</p>
+            <h1 className="font-['Inter'] text-5xl md:text-7xl font-bold mb-8 tracking-[-0.04em] leading-[1.05] text-[#00355D]">
+              Engineering Trust <br className="hidden md:block" /> in Healthcare.
+            </h1>
+            <p className="text-xl md:text-2xl text-[#575B5F] leading-[1.4] font-normal max-w-2xl">
+              Healing Technology is a premier medical equipment importer and supplier. We bridge the gap between global medical innovation and local healthcare providers by sourcing high-standard hospital products and clinical equipment from world-class manufacturers.
+            </p>
+          </motion.div>
+        </div>
       </section>
 
       {/* ── MD MESSAGE & MISSION/VISION ── */}
-      <section className="px-6 lg:px-8 max-w-[1440px] mx-auto mb-32">
+      <section className="px-6 lg:px-8 max-w-[1440px] mx-auto pt-16 md:pt-24 mb-32">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
           
           {/* MD Message (Left, larger) */}
@@ -67,6 +80,54 @@ export default function About() {
             </div>
           </motion.div>
 
+        </div>
+      </section>
+
+      {/* ── THE HEALTHCARE LANDSCAPE ── */}
+      <section className="px-6 lg:px-8 max-w-[1440px] mx-auto border-t border-gray-200 pt-32 mb-32">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
+            <p className="text-[#12B5CB] text-xs font-bold uppercase tracking-[0.15em] mb-4">Macroeconomic Context</p>
+            <h2 className="text-4xl md:text-5xl font-bold text-[#00355D] tracking-[-0.03em] leading-[1.1] mb-6">Equipping a Rapidly Growing Ecosystem.</h2>
+            <p className="text-xl text-[#575B5F] font-normal leading-[1.5] mb-6">
+              The medical equipment sector in Bangladesh is undergoing a profound transformation. With over 5,000 public and private hospitals, the ecosystem faces rising demand for advanced diagnostic and critical care tools due to epidemiological shifts.
+            </p>
+            <p className="text-lg text-[#575B5F] font-normal leading-[1.5]">
+              Healing Technology operates precisely at this intersection. We are scaling our import capacity to meet the demands of a modernized infrastructure, preventing technological bottlenecks in regional and tertiary healthcare centers.
+            </p>
+          </motion.div>
+          <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+             <div className="bg-[#F8F9FA] rounded-xl p-8 border border-gray-100 flex flex-col justify-center">
+               <Building2 className="w-8 h-8 text-[#12B5CB] mb-4" />
+               <h4 className="text-3xl font-bold text-[#00355D] mb-2 tracking-tight">5,000+</h4>
+               <p className="text-sm text-[#575B5F] font-medium uppercase tracking-wider">Hospitals Nationwide</p>
+             </div>
+             <div className="bg-[#F8F9FA] rounded-xl p-8 border border-gray-100 flex flex-col justify-center">
+               <Activity className="w-8 h-8 text-[#12B5CB] mb-4" />
+               <h4 className="text-3xl font-bold text-[#00355D] mb-2 tracking-tight">14 Billion</h4>
+               <p className="text-sm text-[#575B5F] font-medium uppercase tracking-wider">Expected Healthcare Spend (USD)</p>
+             </div>
+             <div className="bg-[#00355D] rounded-xl p-8 flex flex-col justify-center sm:col-span-2">
+               <TrendingUp className="w-8 h-8 text-[#00AB4E] mb-4" />
+               <h4 className="text-xl font-bold text-white mb-2 tracking-tight">Systematic Modernization</h4>
+               <p className="text-white/80 font-normal leading-snug">Aligning with the Eighth Five-Year Plan of Bangladesh for hospital infrastructure and precision surgical enablement.</p>
+             </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ── OUR SOCIETAL CONTRIBUTION ── */}
+      <section className="bg-[#F8F9FA] py-32 border-y border-gray-200 mb-32">
+        <div className="px-6 lg:px-8 max-w-4xl mx-auto text-center">
+          <HeartPulse className="w-12 h-12 text-[#00AB4E] mx-auto mb-8" strokeWidth={1.5} />
+          <h2 className="text-4xl md:text-5xl font-bold text-[#00355D] tracking-[-0.03em] leading-[1.1] mb-8">Our Societal Contribution</h2>
+          <p className="text-xl md:text-2xl text-[#575B5F] font-normal leading-[1.6]">
+            In a country where out-of-pocket expenses account for a staggering 74% of all health expenditures, equipment downtime or misdiagnosis forces vulnerable families into severe financial distress.
+          </p>
+          <div className="w-24 h-px bg-gray-300 mx-auto my-10" />
+          <p className="text-lg md:text-xl text-[#111111] font-medium leading-[1.6]">
+            By importing hyper-reliable OT solutions and backing them with relentless 24/7 engineering support, we empower surgeons to operate with uncompromised precision. We ensure that provincial clinics and major urban trauma centers can provide uninterrupted, life-saving care.
+          </p>
         </div>
       </section>
 

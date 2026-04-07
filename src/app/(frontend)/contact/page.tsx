@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { MapPin, Phone, Mail, MessageSquare, HeadphonesIcon, BookOpen, Building2, ChevronDown } from "lucide-react";
+import Image from "next/image";
 import { Map, Marker } from "pigeon-maps";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -63,21 +64,16 @@ export default function Contact() {
                   <Phone className="w-4 h-4 text-[#12B5CB]" /> +88 01675 292991
                 </a>
               </div>
-              <Link href="#form" className="text-sm font-semibold text-[#00355D] underline underline-offset-4 hover:text-[#12B5CB] transition-colors">
-                Sales Engineering Team →
-              </Link>
-
-              {/* 3 category cards */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-10">
+              {/* Text Columns */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-12">
                 {[
-                  { icon: HeadphonesIcon, title: "Customer Support", desc: "Our team is available around the clock to address concerns and queries." },
-                  { icon: BookOpen,       title: "FAQs",             desc: "Explore our FAQ section for answers to common questions." },
-                  { icon: Building2,      title: "Sales Engineering", desc: "Request a consultative quote or technical briefing from our team." },
-                ].map((card, i) => (
-                  <div key={i} className="bg-white border border-gray-200 rounded-xl p-5">
-                    <card.icon className="w-5 h-5 text-[#12B5CB] mb-3" />
-                    <h3 className="text-sm font-bold text-[#00355D] mb-1">{card.title}</h3>
-                    <p className="text-xs text-[#575B5F] leading-relaxed font-normal">{card.desc}</p>
+                  { title: "Technical Support", desc: "Our biomedical engineers are on standby 24/7 to resolve equipment breakdowns and handle urgent servicing." },
+                  { title: "Clinical Onboarding", desc: "We provide comprehensive operational training to ensure your medical staff masters the equipment on day one." },
+                  { title: "Sales & Procurement", desc: "Request tailored equipment quotations, or arrange live product demonstrations for your medical facility." },
+                ].map((col, i) => (
+                  <div key={i} className="flex flex-col">
+                    <h3 className="text-[15px] font-bold text-[#00355D] mb-2 leading-tight">{col.title}</h3>
+                    <p className="text-[13px] text-[#575B5F] leading-[1.6] font-normal">{col.desc}</p>
                   </div>
                 ))}
               </div>
@@ -93,28 +89,28 @@ export default function Contact() {
                   <div className="grid grid-cols-2 gap-3">
                     <div className="space-y-1">
                       <Label className="text-xs font-semibold text-[#575B5F]">Full Name *</Label>
-                      <Input placeholder="Dr. John Doe" required value={formData.fullName}
+                      <Input placeholder="Dr. Tariqur Rahman" required value={formData.fullName}
                         onChange={(e) => setFormData({ ...formData, fullName: e.target.value })} className="text-sm rounded-xl" />
                     </div>
                     <div className="space-y-1">
                       <Label className="text-xs font-semibold text-[#575B5F]">Clinical Role *</Label>
-                      <Input placeholder="Chief Surgeon" required value={formData.role}
+                      <Input placeholder="Director / Head of Department" required value={formData.role}
                         onChange={(e) => setFormData({ ...formData, role: e.target.value })} className="text-sm rounded-xl" />
                     </div>
                   </div>
                   <div className="space-y-1">
                     <Label className="text-xs font-semibold text-[#575B5F]">Hospital / Facility *</Label>
-                    <Input placeholder="General Hospital Dhaka" required value={formData.hospital}
+                    <Input placeholder="Square Hospitals Ltd." required value={formData.hospital}
                       onChange={(e) => setFormData({ ...formData, hospital: e.target.value })} className="text-sm rounded-xl" />
                   </div>
                   <div className="space-y-1">
                     <Label className="text-xs font-semibold text-[#575B5F]">Email *</Label>
-                    <Input type="email" placeholder="john@hospital.com" required value={formData.email}
+                    <Input type="email" placeholder="tariqur@squarehospital.com" required value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })} className="text-sm rounded-xl" />
                   </div>
                   <div className="space-y-1">
                     <Label className="text-xs font-semibold text-[#575B5F]">Phone *</Label>
-                    <Input type="tel" placeholder="+880 ..." required value={formData.phone}
+                    <Input type="tel" placeholder="+880 1711 ..." required value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })} className="text-sm rounded-xl" />
                   </div>
                   <div className="space-y-1">
@@ -156,17 +152,46 @@ export default function Contact() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
             {/* Map */}
-            <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
-              <div className="w-full h-[380px] rounded-xl overflow-hidden border border-gray-200">
-                <Map height={380} defaultCenter={[23.7276, 90.4080]} defaultZoom={16}>
-                  <Marker width={50} anchor={[23.7276, 90.4080]} />
+            <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="relative">
+              <div className="w-full h-[400px] rounded-[32px] overflow-hidden border border-gray-200 relative bg-[#f8f9fa]">
+                <Map 
+                  height={400} 
+                  defaultCenter={[23.7276, 90.4080]} 
+                  defaultZoom={14} 
+                  attributionPrefix={false}
+                  attribution={false}
+                  mouseEvents={false}
+                  touchEvents={false}
+                  metaWheelZoom={false}
+                  provider={(x, y, z) => `https://cartodb-basemaps-a.global.ssl.fastly.net/light_all/${z}/${x}/${y}@2x.png`}
+                >
+                   {/* Custom styled marker */}
+                   <Marker anchor={[23.7276, 90.4080]}>
+                     <div className="w-4 h-4 bg-[#12B5CB] rounded-full ring-4 ring-white shadow-xl" />
+                   </Marker>
                 </Map>
+                
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -mt-16 z-10 bg-white p-5 rounded-2xl shadow-xl w-[260px] pointer-events-auto">
+                    <div className="flex items-center gap-3 mb-3">
+                       <div className="bg-[#00355D] w-12 h-12 rounded-full flex items-center justify-center shrink-0 overflow-hidden relative">
+                          <Image src="/location.png" alt="logo" fill className="object-cover" />
+                       </div>
+                       <div>
+                         <p className="font-bold text-sm text-[#00355D] leading-tight">Healing Technology</p>
+                         <p className="text-[10px] text-[#575B5F]">Your Trusted Partner</p>
+                       </div>
+                    </div>
+                    <p className="text-xs font-bold text-[#00355D] mt-4">Dhaka, Bangladesh</p>
+                    <p className="text-[11px] text-[#575B5F] mt-1 mb-4">14/2 Topkhana Road</p>
+                    <a href="https://maps.app.goo.gl/NfU877HUg3ktpMaX7" target="_blank" className="text-[11px] font-bold text-[#00355D] flex items-center gap-1 hover:text-[#12B5CB] transition-colors">
+                      Open Google Maps <span className="text-[14px]">›</span>
+                    </a>
+                </div>
               </div>
             </motion.div>
 
             {/* Location info */}
             <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
-              <p className="text-[#12B5CB] text-xs font-bold uppercase tracking-[0.1em] mb-3">Our Location</p>
               <h2 className="text-3xl md:text-4xl font-bold text-[#00355D] tracking-tighter mb-8 leading-tight">
                 Connecting Near<br />and Far
               </h2>
@@ -182,25 +207,16 @@ export default function Contact() {
                   </div>
                 </div>
                 <div className="grid grid-cols-2 gap-4">
-                  <div className="border border-gray-200 rounded-xl p-4">
-                    <Phone className="w-4 h-4 text-[#12B5CB] mb-2" />
+                  <div className="flex flex-col">
                     <p className="text-xs text-[#575B5F] font-normal mb-1">Sales & General</p>
                     <a href="tel:+8801675292991" className="text-sm font-bold text-[#00355D] hover:text-[#12B5CB] transition-colors">+88 01675 292991</a>
                   </div>
-                  <div className="border border-gray-200 rounded-xl p-4">
-                    <Mail className="w-4 h-4 text-[#12B5CB] mb-2" />
+                  <div className="flex flex-col">
                     <p className="text-xs text-[#575B5F] font-normal mb-1">Email</p>
                     <a href="mailto:info@healingtech.com.bd" className="text-sm font-bold text-[#00355D] hover:text-[#12B5CB] transition-colors break-all">info@healingtech.com.bd</a>
                   </div>
                 </div>
-                <a
-                  href="https://maps.google.com/?q=23.7276,90.4080"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-sm font-bold text-[#00355D] hover:text-[#12B5CB] transition-colors"
-                >
-                  <MapPin className="w-4 h-4" /> Open Google Maps →
-                </a>
+
               </div>
             </motion.div>
           </div>

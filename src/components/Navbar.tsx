@@ -119,7 +119,7 @@ export default function Navbar() {
             {/* Static nav links */}
             {[
               { label: "About Us", href: "/about" },
-              { label: "Services",  href: "/global-sourcing" },
+              { label: "What We Do",  href: "/what-we-do" },
             ].map((item) => (
               <Link
                 key={item.href}
@@ -190,26 +190,38 @@ export default function Navbar() {
           onClick={() => setMegaOpen(false)}
         />
 
-        {/* Panel */}
-        <div
-          className={`relative bg-white flex flex-col  transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-            megaOpen ? "translate-y-0" : "-translate-y-6"
-          }`}
-          style={{ maxHeight: "calc(100vh - 80px)" }}
-        >
-          {/* Close bar */}
-          <div className="flex items-center justify-between px-10 py-4 border-b border-gray-100 bg-[#F8F9FA] flex-shrink-0">
-            <p className="text-xs font-bold text-[#575B5F] uppercase tracking-widest">Product Catalog</p>
-            <button
-              onClick={() => setMegaOpen(false)}
-              className="flex items-center gap-2 text-sm font-semibold text-[#575B5F] hover:text-[#00355D] transition-colors group"
-            >
-              <span>Close Menu</span>
-              <div className="w-6 h-6 rounded-full bg-gray-200 group-hover:bg-[#00355D] flex items-center justify-center transition-colors">
-                <X className="w-3 h-3 text-gray-600 group-hover:text-white transition-colors" />
+        {/* Panel Wrapper for floating look */}
+        <div className="container mx-auto px-4 lg:px-8 max-w-[1440px] pt-4 pb-8 h-full relative pointer-events-none">
+          <div
+            className={`relative bg-white flex flex-col rounded-2xl overflow-hidden shadow-2xl transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] pointer-events-auto h-full max-h-[600px] ${
+              megaOpen ? "translate-y-0" : "-translate-y-6"
+            }`}
+          >
+            {/* Close bar */}
+            <div className="flex items-center justify-between px-10 py-4 border-b border-gray-100 bg-[#F8F9FA] flex-shrink-0">
+              <p className="text-xs font-bold text-[#575B5F] uppercase tracking-widest">Product Catalog</p>
+              
+              <div className="flex items-center gap-8">
+                <button
+                  onClick={() => {
+                    setMegaOpen(false);
+                    router.push("/catalog");
+                  }}
+                  className="flex items-center gap-2 text-sm font-bold text-[#12B5CB] hover:text-[#009EE2] transition-colors"
+                >
+                  Full Catalog <ArrowRight className="w-4 h-4" />
+                </button>
+                <button
+                  onClick={() => setMegaOpen(false)}
+                  className="flex items-center gap-2 text-sm font-semibold text-[#575B5F] hover:text-[#00355D] transition-colors group"
+                >
+                  <span>Close Menu</span>
+                  <div className="w-6 h-6 rounded-full bg-gray-200 group-hover:bg-[#00355D] flex items-center justify-center transition-colors">
+                    <X className="w-3 h-3 text-gray-600 group-hover:text-white transition-colors" />
+                  </div>
+                </button>
               </div>
-            </button>
-          </div>
+            </div>
 
           {/* Content */}
           <div className="flex flex-1 overflow-hidden">
@@ -315,15 +327,6 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* Footer strip */}
-          <div className="flex-shrink-0 border-t border-gray-100 bg-[#F8F9FA] px-10 py-4 flex items-center justify-between">
-            <p className="text-xs text-[#575B5F]">Precision clinical solutions for modern healthcare infrastructure</p>
-            <button
-              onClick={() => { setMegaOpen(false); router.push("/products"); }}
-              className="text-xs font-bold text-[#12B5CB] hover:text-[#009EE2] flex items-center gap-1 transition-colors"
-            >
-              Full Catalog <ArrowRight className="w-3.5 h-3.5" />
-            </button>
           </div>
         </div>
       </div>

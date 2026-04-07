@@ -105,9 +105,11 @@ export default function Home() {
 
           <div className="space-y-24">
             {/* Global Import Network Map */}
-            <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.8 }} className="w-full">
-              <div className="bg-[#F8F9FA] rounded-xl p-6 lg:p-12 border border-gray-100 overflow-hidden w-full h-[300px] md:h-[400px] lg:h-[500px]">
-                <WorldMap dots={supplyRoutes} lineColor="#12B5CB" />
+            <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="w-screen relative left-1/2 -translate-x-1/2 bg-[#F8F9FA] border-y border-gray-200">
+              <div className="w-full h-[400px] md:h-[550px] lg:h-[650px] overflow-hidden relative">
+                <div className="absolute w-[200%] md:w-[150%] lg:w-[120%] h-full left-[-30%] lg:left-[-10%] top-0">
+                  <WorldMap dots={supplyRoutes} lineColor="#12B5CB" />
+                </div>
               </div>
             </motion.div>
 
