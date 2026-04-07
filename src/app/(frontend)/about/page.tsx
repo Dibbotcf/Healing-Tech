@@ -7,7 +7,7 @@ export default function About() {
   return (
     <div className="w-full bg-white font-['Inter'] tracking-tight pb-32">
       {/* ── HERO ── */}
-      <section className="relative w-full pt-[120px] pb-24 md:pt-[160px] md:pb-32 overflow-hidden border-b border-gray-100">
+      <section className="relative w-full pt-32 pb-16 md:pt-[160px] md:pb-32 overflow-hidden border-b border-gray-100">
         <div className="absolute inset-0 z-0">
           <Image 
             src="/about-hero-bg.jpg" 
@@ -16,16 +16,16 @@ export default function About() {
             className="object-cover object-center md:object-right" 
             priority 
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/80 md:via-white/50 to-white/10 md:to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/90 md:via-white/50 to-white/30 md:to-transparent" />
         </div>
         
         <div className="px-6 lg:px-8 max-w-[1440px] mx-auto relative z-10">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="max-w-3xl lg:max-w-4xl">
             <p className="text-[#12B5CB] text-xs font-bold uppercase tracking-[0.15em] mb-6">About Us</p>
-            <h1 className="font-['Inter'] text-5xl md:text-7xl font-bold mb-8 tracking-[-0.04em] leading-[1.05] text-[#00355D]">
+            <h1 className="font-['Inter'] text-4xl md:text-[80px] font-bold mb-6 md:mb-8 tracking-[-0.04em] leading-tight md:leading-[1.05] text-[#00355D]">
               Engineering Trust <br className="hidden md:block" /> in Healthcare.
             </h1>
-            <p className="text-xl md:text-2xl text-[#575B5F] leading-[1.4] font-normal max-w-2xl">
+            <p className="text-lg md:text-2xl text-[#575B5F] leading-relaxed md:leading-[1.4] font-normal max-w-2xl">
               Healing Technology is a premier medical equipment importer and supplier. We bridge the gap between global medical innovation and local healthcare providers by sourcing high-standard hospital products and clinical equipment from world-class manufacturers.
             </p>
           </motion.div>

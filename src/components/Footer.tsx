@@ -3,8 +3,19 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { Phone, MapPin } from "lucide-react";
+import { useEffect, useState } from "react";
 
 export function Footer() {
+  const [categories, setCategories] = useState<{ id: string; title: string; slug: string }[]>([]);
+
+  useEffect(() => {
+    fetch("/api/categories?limit=6&depth=0")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.docs) setCategories(data.docs);
+      })
+      .catch((err) => console.error("Error fetching categories:", err));
+  }, []);
   return (
     <footer className="bg-[#001729] text-white pt-24 pb-0 font-['Inter'] relative overflow-hidden">
       <div className="container mx-auto px-4 lg:px-8 max-w-[1440px] relative z-10">
@@ -44,13 +55,29 @@ export function Footer() {
             </div>
           </div>
           
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:col-span-7 lg:col-start-6 gap-x-8 lg:gap-x-6 gap-y-8 mt-4 lg:mt-0">
+          <div className="grid grid-cols-2 lg:grid-cols-4 lg:col-span-8 gap-x-8 lg:gap-x-6 gap-y-8 mt-4 lg:mt-0">
             <div>
               <h3 className="text-white font-bold mb-6 text-sm uppercase tracking-wider">Company</h3>
               <ul className="space-y-4 text-sm text-gray-400 font-normal">
-                <li><Link href="/products" className="hover:text-white transition-colors">Products</Link></li>
+                <li><Link href="/products" className="hover:text-white transition-colors">All Products</Link></li>
                 <li><Link href="/contact" className="hover:text-white transition-colors">Contact</Link></li>
                 <li><Link href="/about" className="hover:text-white transition-colors">Company Info</Link></li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-white font-bold mb-6 text-sm uppercase tracking-wider">Products</h3>
+              <ul className="space-y-4 text-sm text-gray-400 font-normal">
+                {categories.length > 0 ? (
+                  categories.map((cat) => (
+                    <li key={cat.id}>
+                      <Link href={`/products?category=${cat.slug}`} className="hover:text-white transition-colors">
+                        {cat.title}
+                      </Link>
+                    </li>
+                  ))
+                ) : (
+                  <li><span className="opacity-50">Loading...</span></li>
+                )}
               </ul>
             </div>
             <div>

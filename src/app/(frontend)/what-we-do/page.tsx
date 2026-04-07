@@ -24,13 +24,13 @@ export default function WhatWeDoPage() {
   return (
     <div className="w-full bg-white font-['Inter'] tracking-tight">
       {/* ── HERO ── */}
-      <section className="pt-[160px] pb-16 px-6 lg:px-8 max-w-[1440px] mx-auto mb-10">
+      <section className="pt-32 md:pt-[160px] pb-16 px-6 lg:px-8 max-w-[1440px] mx-auto mb-10">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="max-w-5xl">
           <p className="text-[#12B5CB] text-xs font-bold uppercase tracking-[0.15em] mb-6">Our Services</p>
-          <h1 className="font-['Inter'] text-5xl md:text-[80px] font-bold mb-8 tracking-[-0.04em] leading-[1] text-[#00355D]">
+          <h1 className="font-['Inter'] text-4xl md:text-[80px] font-bold mb-6 md:mb-8 tracking-[-0.04em] leading-tight md:leading-[1] text-[#00355D]">
             Comprehensive <br className="hidden md:block" /> Healthcare Solutions.
           </h1>
-          <p className="text-xl md:text-2xl text-[#575B5F] leading-[1.4] font-normal max-w-3xl">
+          <p className="text-lg md:text-2xl text-[#575B5F] leading-relaxed md:leading-[1.4] font-normal max-w-3xl">
             From direct global sourcing to 24/7 technical support—we provide an end-to-end ecosystem ensuring your clinical ops never stop.
           </p>
         </motion.div>

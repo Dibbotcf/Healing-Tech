@@ -10,7 +10,7 @@ export function WhatsAppFAB() {
       href="https://wa.me/8801898876700"
       target="_blank"
       rel="noopener noreferrer"
-      className="fixed bottom-6 right-6 h-12 md:h-14 bg-[#031B2E] hover:bg-[#00355D] text-white rounded-full flex items-center justify-center gap-2.5 px-6 group z-50 transition-all duration-300 shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:shadow-[0_8px_30px_rgb(3,27,46,0.3)] hover:-translate-y-1"
+      className="fixed bottom-24 right-4 md:bottom-8 md:right-8 h-12 md:h-14 bg-[#031B2E] hover:bg-[#00355D] text-white rounded-full flex items-center justify-center gap-2.5 px-6 group z-50 transition-all duration-300 shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:shadow-[0_8px_30px_rgb(3,27,46,0.3)] hover:-translate-y-1"
       aria-label="Chat on WhatsApp"
     >
       <WhatsAppIcon />

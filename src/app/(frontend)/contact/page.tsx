@@ -44,16 +44,16 @@ export default function Contact() {
     <div className="min-h-screen bg-white font-['Inter'] tracking-tight">
 
       {/* ── HERO SECTION ── */}
-      <section className="bg-[#EEF4FB] pt-[88px] pb-20 md:pt-[100px]">
+      <section className="bg-[#EEF4FB] pt-32 md:pt-[120px] pb-20">
         <div className="container mx-auto px-6 lg:px-8 max-w-[1440px]">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start mt-4 md:mt-0">
 
             {/* Left */}
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-              <h1 className="font-['Inter'] text-5xl md:text-6xl font-bold text-[#00355D] tracking-tighter mb-4 leading-tight">
+              <h1 className="font-['Inter'] text-4xl md:text-6xl font-bold text-[#00355D] tracking-tighter mb-4 leading-tight">
                 Contact Us
               </h1>
-              <p className="text-lg text-[#575B5F] mb-6 font-normal leading-relaxed max-w-sm">
+              <p className="text-base md:text-lg text-[#575B5F] mb-6 font-normal leading-relaxed max-w-sm">
                 Email, call, or complete the form to learn how Healing Technology can serve your facility.
               </p>
               <div className="space-y-2 mb-6">

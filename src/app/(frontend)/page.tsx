@@ -30,7 +30,7 @@ export default function Home() {
   return (
     <div className="w-full font-['Inter'] tracking-tight">
       {/* Hero Section */}
-      <section className="relative h-screen min-h-[600px] flex items-end pb-16 lg:pb-20 overflow-hidden">
+      <section className="relative min-h-[100dvh] lg:h-screen lg:min-h-[700px] flex items-end pb-24 pt-32 lg:pt-0 lg:pb-20 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <motion.img
             initial={{ scale: 1.05 }}
@@ -40,7 +40,7 @@ export default function Home() {
             alt="Modern Operation Theater"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#00355D]/90 via-[#00355D]/20 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#00355D]/95 via-[#00355D]/30 to-[#00355D]/20 md:to-transparent" />
         </div>
 
         <div className="container mx-auto px-4 lg:px-8 max-w-[1440px] relative z-10">
@@ -48,12 +48,12 @@ export default function Home() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="max-w-4xl text-white"
+            className="max-w-4xl text-white mt-auto"
           >
-            <h1 className="font-['Inter'] text-4xl md:text-5xl lg:text-[4.5rem] font-normal leading-[1.1] tracking-tight mb-6 text-white">
-              Empowering Bangladesh<br/>Healthcare with Precision<br/>Clinical Solutions.
+            <h1 className="font-['Inter'] text-4xl md:text-5xl lg:text-[4.5rem] font-normal leading-tight tracking-tight mb-4 md:mb-6 text-white text-balance">
+              Empowering Bangladesh<br className="hidden md:block"/> Healthcare with Precision<br className="hidden md:block"/> Clinical Solutions.
             </h1>
-            <p className="text-lg md:text-xl text-white/90 mb-10 leading-snug font-normal max-w-2xl">
+            <p className="text-base md:text-xl text-white/90 mb-8 md:mb-10 leading-relaxed font-normal max-w-2xl">
               We bridge the gap between global medical innovation and local healthcare providers. Importing world-class OT, ICU, and surgical equipment—backed by unwavering 24/7 engineering support.
             </p>
             <div className="flex flex-wrap gap-4">

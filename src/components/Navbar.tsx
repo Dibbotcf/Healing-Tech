@@ -340,45 +340,42 @@ export default function Navbar() {
         }`}
         style={{ paddingTop: "72px" }}
       >
-        <div className="h-full bg-[#00355D] overflow-y-auto px-6 py-8">
-          <div className="space-y-1 mb-8">
-            {/* Products */}
-            <button
-              onClick={() => { setMobileOpen(false); router.push("/products"); }}
-              className="w-full flex items-center justify-between py-3.5 px-4 rounded-xl text-white/80 hover:text-white hover:bg-white/10 transition-all text-sm font-semibold"
+        <div className="h-full bg-white overflow-y-auto px-6 py-8 flex flex-col pt-24">
+          <p className="text-[10px] font-black text-[#575B5F] uppercase tracking-[0.15em] mb-4 ml-1">Menu</p>
+          <div className="space-y-2 mb-8">
+            <Link
+              href="/catalog"
+              onClick={() => setMobileOpen(false)}
+              className="w-full flex items-center justify-between py-4 px-5 rounded-2xl text-[#111111] hover:bg-gray-50 border border-gray-100 transition-all text-sm font-bold shadow-sm"
             >
-              Products <ChevronRight className="w-4 h-4 text-[#12B5CB]" />
-            </button>
-            {categories.map((cat) => (
-              <Link
-                key={cat.id}
-                href={`/products?category=${cat.slug}`}
-                onClick={() => setMobileOpen(false)}
-                className="flex items-center justify-between py-3 px-6 rounded-xl text-white/60 hover:text-white hover:bg-white/10 transition-all text-xs font-semibold"
-              >
-                {cat.title} <ChevronRight className="w-3 h-3 text-[#12B5CB]" />
-              </Link>
-            ))}
-          </div>
-
-          <div className="border-t border-white/10 pt-6 space-y-3">
+              Product Catalog <ChevronRight className="w-4 h-4 text-[#12B5CB]" />
+            </Link>
+            
             {[
               { label: "About Us", href: "/about" },
-              { label: "Services", href: "/global-sourcing" },
+              { label: "What We Do", href: "/what-we-do" },
             ].map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
                 onClick={() => setMobileOpen(false)}
-                className="block py-3 px-4 rounded-xl text-white/80 hover:text-white hover:bg-white/10 transition-all text-sm font-semibold"
+                className="block py-4 px-5 rounded-2xl text-[#111111] hover:bg-gray-50 border border-transparent transition-all text-sm font-bold"
               >
                 {item.label}
               </Link>
             ))}
+          </div>
+
+          <div className="mt-auto">
+            <div className="bg-[#f8f9fa] rounded-2xl p-5 mb-6">
+                <p className="text-xs text-[#575B5F] mb-3 leading-relaxed">Need technical support or have an inquiry?</p>
+                <a href="mailto:info@healingtech.com.bd" className="text-sm font-bold text-[#00355D] block">info@healingtech.com.bd</a>
+                <a href="tel:+8801675292991" className="text-sm font-bold text-[#00355D] block mt-1">+88 01675 292991</a>
+            </div>
             <Link
               href="/contact"
               onClick={() => setMobileOpen(false)}
-              className="block mt-4 w-full bg-[#12B5CB] text-white text-center font-bold py-3.5 rounded-xl text-sm tracking-[-0.02em]"
+              className="block w-full bg-[#00355D] hover:bg-[#12B5CB] text-white text-center font-bold py-4 rounded-full text-sm tracking-[-0.02em] transition-colors"
             >
               Contact Us
             </Link>
