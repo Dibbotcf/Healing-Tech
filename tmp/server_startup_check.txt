@@ -1,0 +1,22 @@
+        at QueryPromise.executeRaw (.next/server/chunks/_0yr_p74._.js:314:18095)
+        at QueryPromise.execute (.next/server/chunks/_0yr_p74._.js:314:18129) {
+      code: 'SQLITE_ERROR',
+      rawCode: 1
+    }
+  }
+}
+Γ¿» Failed to start server
+Error: listen EADDRINUSE: address already in use 0.0.0.0:12000
+    at <unknown> (Error: listen EADDRINUSE: address already in use 0.0.0.0:12000) {
+  code: 'EADDRINUSE',
+  errno: -98,
+  syscall: 'listen',
+  address: '0.0.0.0',
+  port: 12000
+}
+Γû▓ Next.js 16.2.2
+- Local:         http://localhost:12000
+- Network:       http://0.0.0.0:12000
+Γ£ô Ready in 0ms
+---PORT---
+LISTEN 0      511                                        0.0.0.0:12000      0.0.0.0:*    users:(("next-server (v1",pid=3252881,fd=21))

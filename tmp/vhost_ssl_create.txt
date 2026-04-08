@@ -1,0 +1,4 @@
+VHOST_CONF_CREATED
+ProxyPreserveHost On
+ProxyPass / http://127.0.0.1:12000/
+ProxyPassReverse / http://127.0.0.1:12000/

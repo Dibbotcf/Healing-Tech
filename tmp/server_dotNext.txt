@@ -1,0 +1,21 @@
+BUILD_ID
+app-path-routes-manifest.json
+build
+build-manifest.json
+cache
+dev
+diagnostics
+export-marker.json
+fallback-build-manifest.json
+images-manifest.json
+---
+AGENTS.md
+ATTRIBUTIONS.md
+CLAUDE.md
+Figma Design Site
+README-PRODUCTS.md
+README.md
+admin_error.txt
+app.log
+asset-drop
+build.log

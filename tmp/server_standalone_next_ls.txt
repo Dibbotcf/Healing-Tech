@@ -1,0 +1,10 @@
+total 56
+-rw-r--r-- 1 healingtechnology psacln   21 Apr  8 22:54 BUILD_ID
+-rw-r--r-- 1 healingtechnology psacln 1008 Apr  8 22:54 app-path-routes-manifest.json
+-rw-r--r-- 1 healingtechnology psacln  579 Apr  8 22:54 build-manifest.json
+drwxr-xr-x 2 healingtechnology psacln 4096 Apr  8 22:54 node_modules
+-rw-r--r-- 1 healingtechnology psacln   20 Apr  8 22:54 package.json
+-rw-r--r-- 1 healingtechnology psacln 8573 Apr  8 22:54 prerender-manifest.json
+-rw-r--r-- 1 healingtechnology psacln 9768 Apr  8 22:54 required-server-files.json
+-rw-r--r-- 1 healingtechnology psacln 5133 Apr  8 22:54 routes-manifest.json
+drwxr-xr-x 6 healingtechnology psacln 4096 Apr  8 22:54 server

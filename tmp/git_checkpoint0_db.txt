@@ -1,0 +1,4 @@
+
++import { postgresAdapter } from '@payloadcms/db-postgres'
++  db: postgresAdapter({
+

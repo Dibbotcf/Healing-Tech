@@ -1,0 +1,5 @@
+total 20
+drwxr-xr-x 5 healingtechnology psacln 4096 Apr  8 23:44 .
+drwxr-xr-x 5 healingtechnology psacln 4096 Apr  8 23:44 ..
+drwxr-xr-x 2 healingtechnology psacln 4096 Apr  8 23:44 chunks
+drwxr-xr-x 2 healingtechnology psacln 4096 Apr  8 23:44 media

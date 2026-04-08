@@ -1,0 +1,10 @@
+/opt/plesk/node/22/lib/node_modules/corepack/shims/nodewin/npm
+/opt/plesk/node/22/lib/node_modules/corepack/shims/npm
+/opt/plesk/node/22/lib/node_modules/npm/bin/npm
+/opt/plesk/node/23/lib/node_modules/corepack/shims/nodewin/npm
+/opt/plesk/node/23/lib/node_modules/corepack/shims/npm
+/opt/plesk/node/23/lib/node_modules/npm/bin/npm
+/opt/plesk/node/22/bin/node
+/opt/plesk/node/23/bin/node
+22
+23

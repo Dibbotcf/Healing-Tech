@@ -1,0 +1,7 @@
+could not change directory to "/home/tcfthailand": Permission denied
+CREATE ROLE
+could not change directory to "/home/tcfthailand": Permission denied
+CREATE DATABASE
+could not change directory to "/home/tcfthailand": Permission denied
+GRANT
+DONE

@@ -1,0 +1,17 @@
+commit b851f10559d5902810f89bcff2b718123e49b01a
+Author: Quazi Ehsan Hossain <3hsanhossain@gmail.com>
+Date:   Wed Apr 8 17:08:44 2026 +0700
+
+    fix: force sqlite db generation
+
+diff --git a/src/payload.config.ts b/src/payload.config.ts
+index f59fa17..85febe4 100644
+--- a/src/payload.config.ts
++++ b/src/payload.config.ts
+@@ -331,5 +331,6 @@ export default buildConfig({
+     client: {
+       url: process.env.DATABASE_URI || 'file:./payload.db',
+     },
++    push: true,
+   }),
+ })

@@ -1,0 +1,96 @@
+commit daab66095a370195b26cf63fcda95e4c1d408f5a
+Author: Quazi Ehsan Hossain <3hsanhossain@gmail.com>
+Date:   Tue Apr 7 11:13:11 2026 +0700
+
+    Dibbo Checkpoint
+
+diff --git a/src/payload.config.ts b/src/payload.config.ts
+index 078fbab..abedf8a 100644
+--- a/src/payload.config.ts
++++ b/src/payload.config.ts
+@@ -90,6 +90,7 @@ export default buildConfig({
+       fields: [
+         { name: 'name', type: 'text', required: true },
+         { name: 'slug', type: 'text', required: true, unique: true },
++        { name: 'markAsNew', type: 'checkbox', label: 'Mark as NEW (displays badge)', defaultValue: false },
+         { name: 'sku', type: 'text' },
+         { name: 'category', type: 'relationship', relationTo: 'categories', required: true },
+         { name: 'brand', type: 'relationship', relationTo: 'brands', required: true },
+@@ -208,6 +209,77 @@ export default buildConfig({
+         { name: 'content', type: 'richText', required: true },
+       ],
+     },
++    // Testimonials
++    {
++      slug: 'testimonials',
++      admin: {
++        useAsTitle: 'clientName',
++        defaultColumns: ['clientName', 'designation', 'hospital', 'isActive'],
++      },
++      access: { read: () => true },
++      fields: [
++        { name: 'clientName', type: 'text', required: true, label: 'Client Name' },
++        { name: 'designation', type: 'text', label: 'Designation / Role' },
++        { name: 'hospital', type: 'text', label: 'Hospital / Institution' },
++        { name: 'quote', type: 'textarea', required: true, label: 'Testimonial Quote' },
++        { name: 'avatar', type: 'upload', relationTo: 'media', label: 'Client Photo (optional)' },
++        { name: 'rating', type: 'number', min: 1, max: 5, defaultValue: 5, label: 'Rating (1-5)' },
++        { name: 'sortOrder', type: 'number', defaultValue: 0 },
++        { name: 'isActive', type: 'checkbox', defaultValue: true, label: 'Show on Website' },
++      ],
++    },
++    // FAQs
++    {
++      slug: 'faqs',
++      admin: {
++        useAsTitle: 'question',
++        defaultColumns: ['question', 'category', 'sortOrder', 'isActive'],
++      },
++      access: { read: () => true },
++      fields: [
++        { name: 'question', type: 'text', required: true },
++        { name: 'answer', type: 'textarea', required: true },
++        { name: 'category', type: 'select', options: [
++          { label: 'General', value: 'general' },
++          { label: 'Products', value: 'products' },
++          { label: 'Order & Delivery', value: 'order-delivery' },
++          { label: 'Support & Warranty', value: 'support-warranty' },
++          { label: 'Technical', value: 'technical' },
++        ], defaultValue: 'general' },
++        { name: 'sortOrder', type: 'number', defaultValue: 0 },
++        { name: 'isActive', type: 'checkbox', defaultValue: true, label: 'Show on Website' },
++      ],
++    },
++    // Form Inquiries
++    {
++      slug: 'inquiries',
++      admin: {
++        useAsTitle: 'fullName',
++        defaultColumns: ['fullName', 'email', 'hospital', 'createdAt', 'status'],
++      },
++      access: { 
++        read: ({ req: { user } }) => Boolean(user), // only admin can read
++        create: () => true, // anyone can submit
++      },
++      fields: [
++        { name: 'fullName', type: 'text', required: true },
++        { name: 'role', type: 'text', required: true },
++        { name: 'hospital', type: 'text', required: true },
++        { name: 'email', type: 'email', required: true },
++        { name: 'phone', type: 'text', required: true },
++        { name: 'requirements', type: 'textarea' },
++        { 
++          name: 'status', 
++          type: 'select', 
++          options: [
++            { label: 'New', value: 'new' },
++            { label: 'In Progress', value: 'in-progress' },
++            { label: 'Resolved', value: 'resolved' }
++          ], 
++          defaultValue: 'new' 
++        },
++      ],
++    },
+     // Media
+     {
+       slug: 'media',

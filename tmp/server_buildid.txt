@@ -1,0 +1,9 @@
+wK0Xi0bGUgKkLDl3a_4h4---
+import { withPayload } from '@payloadcms/next/withPayload'
+import type { NextConfig } from 'next'
+
+const nextConfig: NextConfig = {
+  output: "standalone",
+}
+
+export default withPayload(nextConfig)

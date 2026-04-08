@@ -1,0 +1,5 @@
+HTTP/2 200 
+server: nginx
+date: Wed, 08 Apr 2026 16:45:16 GMT
+content-type: image/png
+accept-ch: Sec-CH-Prefers-Color-Scheme

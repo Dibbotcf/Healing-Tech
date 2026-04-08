@@ -1,0 +1,2822 @@
+
+.env                      | 0 kB |   0.3 kB/s | ETA: 00:00:00 | 100%
+
+app-path-routes-manifest. | 0 kB |   1.0 kB/s | ETA: 00:00:00 | 100%
+
+build-manifest.json       | 0 kB |   0.6 kB/s | ETA: 00:00:00 | 100%
+
+BUILD_ID                  | 0 kB |   0.0 kB/s | ETA: 00:00:00 | 100%
+
+index.mjs                 | 0 kB |   0.6 kB/s | ETA: 00:00:00 | 100%
+
+client.js                 | 4 kB |   4.0 kB/s | ETA: 00:00:03 |  21%
+client.js                 | 18 kB |  18.3 kB/s | ETA: 00:00:00 | 100%
+
+connection-parameters.js  | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  78%
+connection-parameters.js  | 5 kB |   5.1 kB/s | ETA: 00:00:00 | 100%
+
+connection.js             | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  79%
+connection.js             | 5 kB |   5.1 kB/s | ETA: 00:00:00 | 100%
+
+cert-signatures.js        | 4 kB |   4.0 kB/s | ETA: 00:00:00 | 100%
+
+sasl.js                   | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  55%
+sasl.js                   | 7 kB |   7.2 kB/s | ETA: 00:00:00 | 100%
+
+utils-legacy.js           | 1 kB |   1.2 kB/s | ETA: 00:00:00 | 100%
+
+utils-webcrypto.js        | 2 kB |   2.6 kB/s | ETA: 00:00:00 | 100%
+
+utils.js                  | 0 kB |   0.3 kB/s | ETA: 00:00:00 | 100%
+
+defaults.js               | 2 kB |   2.4 kB/s | ETA: 00:00:00 | 100%
+
+index.js                  | 1 kB |   1.7 kB/s | ETA: 00:00:00 | 100%
+
+client.js                 | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  50%
+client.js                 | 7 kB |   7.9 kB/s | ETA: 00:00:00 | 100%
+
+index.js                  | 0 kB |   0.0 kB/s | ETA: 00:00:00 | 100%
+
+query.js                  | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  86%
+query.js                  | 4 kB |   4.6 kB/s | ETA: 00:00:00 | 100%
+
+query.js                  | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  56%
+query.js                  | 7 kB |   7.1 kB/s | ETA: 00:00:00 | 100%
+
+result.js                 | 2 kB |   2.7 kB/s | ETA: 00:00:00 | 100%
+
+stream.js                 | 2 kB |   2.1 kB/s | ETA: 00:00:00 | 100%
+
+type-overrides.js         | 0 kB |   0.8 kB/s | ETA: 00:00:00 | 100%
+
+utils.js                  | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  72%
+utils.js                  | 5 kB |   5.5 kB/s | ETA: 00:00:00 | 100%
+
+LICENSE                   | 1 kB |   1.1 kB/s | ETA: 00:00:00 | 100%
+
+.travis.yml               | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+index.d.ts                | 2 kB |   2.6 kB/s | ETA: 00:00:00 | 100%
+
+index.js                  | 1 kB |   1.2 kB/s | ETA: 00:00:00 | 100%
+
+index.test-d.ts           | 0 kB |   0.7 kB/s | ETA: 00:00:00 | 100%
+
+arrayParser.js            | 0 kB |   0.2 kB/s | ETA: 00:00:00 | 100%
+
+binaryParsers.js          | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  67%
+binaryParsers.js          | 5 kB |   5.9 kB/s | ETA: 00:00:00 | 100%
+
+builtins.js               | 1 kB |   1.5 kB/s | ETA: 00:00:00 | 100%
+
+textParsers.js            | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  76%
+textParsers.js            | 5 kB |   5.2 kB/s | ETA: 00:00:00 | 100%
+
+Makefile                  | 0 kB |   0.2 kB/s | ETA: 00:00:00 | 100%
+
+package.json              | 0 kB |   1.0 kB/s | ETA: 00:00:00 | 100%
+
+README.md                 | 3 kB |   3.7 kB/s | ETA: 00:00:00 | 100%
+
+index.js                  | 0 kB |   0.6 kB/s | ETA: 00:00:00 | 100%
+
+types.js                  | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  34%
+types.js                  | 11 kB |  11.5 kB/s | ETA: 00:00:00 | 100%
+
+index.d.ts                | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+index.js                  | 2 kB |   2.3 kB/s | ETA: 00:00:00 | 100%
+
+license                   | 1 kB |   1.1 kB/s | ETA: 00:00:00 | 100%
+
+package.json              | 0 kB |   0.6 kB/s | ETA: 00:00:00 | 100%
+
+readme.md                 | 0 kB |   0.7 kB/s | ETA: 00:00:00 | 100%
+
+index.js                  | 0 kB |   0.8 kB/s | ETA: 00:00:00 | 100%
+
+license                   | 1 kB |   1.1 kB/s | ETA: 00:00:00 | 100%
+
+package.json              | 0 kB |   0.6 kB/s | ETA: 00:00:00 | 100%
+
+readme.md                 | 0 kB |   0.5 kB/s | ETA: 00:00:00 | 100%
+
+index.js                  | 2 kB |   2.6 kB/s | ETA: 00:00:00 | 100%
+
+license                   | 1 kB |   1.1 kB/s | ETA: 00:00:00 | 100%
+
+package.json              | 0 kB |   0.6 kB/s | ETA: 00:00:00 | 100%
+
+readme.md                 | 1 kB |   1.5 kB/s | ETA: 00:00:00 | 100%
+
+index.d.ts                | 0 kB |   0.4 kB/s | ETA: 00:00:00 | 100%
+
+index.js                  | 3 kB |   3.3 kB/s | ETA: 00:00:00 | 100%
+
+license                   | 1 kB |   1.1 kB/s | ETA: 00:00:00 | 100%
+
+package.json              | 0 kB |   0.7 kB/s | ETA: 00:00:00 | 100%
+
+readme.md                 | 1 kB |   1.1 kB/s | ETA: 00:00:00 | 100%
+
+package.json              | 1 kB |   1.6 kB/s | ETA: 00:00:00 | 100%
+
+README.md                 | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  94%
+README.md                 | 4 kB |   4.2 kB/s | ETA: 00:00:00 | 100%
+
+.eslintignore             | 0 kB |   0.0 kB/s | ETA: 00:00:00 | 100%
+
+.eslintrc                 | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+dependabot.yml            | 0 kB |   0.3 kB/s | ETA: 00:00:00 | 100%
+
+bench.yml                 | 1 kB |   1.4 kB/s | ETA: 00:00:00 | 100%
+
+ci.yml                    | 2 kB |   2.2 kB/s | ETA: 00:00:00 | 100%
+
+lock-threads.yml          | 0 kB |   0.8 kB/s | ETA: 00:00:00 | 100%
+
+publish-release.yml       | 1 kB |   1.5 kB/s | ETA: 00:00:00 | 100%
+
+target-main.yml           | 0 kB |   0.5 kB/s | ETA: 00:00:00 | 100%
+
+.prettierignore           | 0 kB |   0.0 kB/s | ETA: 00:00:00 | 100%
+
+.taprc.yaml               | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+basic.bench.js            | 2 kB |   2.1 kB/s | ETA: 00:00:00 | 100%
+
+child-child.bench.js      | 1 kB |   1.4 kB/s | ETA: 00:00:00 | 100%
+
+child-creation.bench.js   | 1 kB |   1.9 kB/s | ETA: 00:00:00 | 100%
+
+child.bench.js            | 1 kB |   1.5 kB/s | ETA: 00:00:00 | 100%
+
+deep-object.bench.js      | 2 kB |   2.0 kB/s | ETA: 00:00:00 | 100%
+
+formatters.bench.js       | 0 kB |   1.0 kB/s | ETA: 00:00:00 | 100%
+
+custom-levels.js          | 1 kB |   1.5 kB/s | ETA: 00:00:00 | 100%
+
+just-pino-heavy.bench.js  | 1 kB |   1.9 kB/s | ETA: 00:00:00 | 100%
+
+just-pino.bench.js        | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  81%
+just-pino.bench.js        | 4 kB |   4.9 kB/s | ETA: 00:00:00 | 100%
+
+parent-vs-child.bench.js  | 1 kB |   1.9 kB/s | ETA: 00:00:00 | 100%
+
+redact.bench.js           | 2 kB |   2.7 kB/s | ETA: 00:00:00 | 100%
+
+long-string.bench.js      | 1 kB |   1.8 kB/s | ETA: 00:00:00 | 100%
+
+multi-arg.bench.js        | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  76%
+multi-arg.bench.js        | 5 kB |   5.3 kB/s | ETA: 00:00:00 | 100%
+
+multistream.js            | 2 kB |   2.3 kB/s | ETA: 00:00:00 | 100%
+
+object.bench.js           | 1 kB |   2.0 kB/s | ETA: 00:00:00 | 100%
+
+generate-benchmark-doc.js | 0 kB |   0.7 kB/s | ETA: 00:00:00 | 100%
+
+runbench.js               | 3 kB |   3.7 kB/s | ETA: 00:00:00 | 100%
+
+wrap-log-level.js         | 1 kB |   1.4 kB/s | ETA: 00:00:00 | 100%
+
+bin.js                    | 0 kB |   0.2 kB/s | ETA: 00:00:00 | 100%
+
+browser.js                | 4 kB |   4.0 kB/s | ETA: 00:00:02 |  28%
+browser.js                | 14 kB |  14.1 kB/s | ETA: 00:00:00 | 100%
+
+sync-version.js           | 0 kB |   0.7 kB/s | ETA: 00:00:00 | 100%
+
+CNAME                     | 0 kB |   0.0 kB/s | ETA: 00:00:00 | 100%
+
+CONTRIBUTING.md           | 1 kB |   1.5 kB/s | ETA: 00:00:00 | 100%
+
+api.md                    | 4 kB |   4.0 kB/s | ETA: 00:00:11 |   7%
+api.md                    | 51 kB |  51.1 kB/s | ETA: 00:00:00 | 100%
+
+asynchronous.md           | 1 kB |   1.5 kB/s | ETA: 00:00:00 | 100%
+
+benchmarks.md             | 1 kB |   1.1 kB/s | ETA: 00:00:00 | 100%
+
+browser.md                | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  53%
+browser.md                | 7 kB |   7.5 kB/s | ETA: 00:00:00 | 100%
+
+bundling.md               | 1 kB |   1.8 kB/s | ETA: 00:00:00 | 100%
+
+child-loggers.md          | 2 kB |   2.8 kB/s | ETA: 00:00:00 | 100%
+
+diagnostics.md            | 0 kB |   0.8 kB/s | ETA: 00:00:00 | 100%
+
+ecosystem.md              | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  72%
+ecosystem.md              | 5 kB |   5.5 kB/s | ETA: 00:00:00 | 100%
+
+help.md                   | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  34%
+help.md                   | 11 kB |  11.6 kB/s | ETA: 00:00:00 | 100%
+
+lts.md                    | 2 kB |   2.9 kB/s | ETA: 00:00:00 | 100%
+
+pretty.md                 | 0 kB |   0.9 kB/s | ETA: 00:00:00 | 100%
+
+redaction.md              | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  95%
+redaction.md              | 4 kB |   4.2 kB/s | ETA: 00:00:00 | 100%
+
+transports.md             | 4 kB |   4.0 kB/s | ETA: 00:00:08 |  10%
+transports.md             | 37 kB |  38.0 kB/s | ETA: 00:00:00 | 100%
+
+web.md                    | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  66%
+web.md                    | 6 kB |   6.0 kB/s | ETA: 00:00:00 | 100%
+
+sidebar.md                | 1 kB |   1.2 kB/s | ETA: 00:00:00 | 100%
+
+basic.js                  | 1 kB |   1.2 kB/s | ETA: 00:00:00 | 100%
+
+transport.js              | 1 kB |   1.5 kB/s | ETA: 00:00:00 | 100%
+
+favicon-16x16.png         | 0 kB |   0.9 kB/s | ETA: 00:00:00 | 100%
+
+favicon-32x32.png         | 1 kB |   1.5 kB/s | ETA: 00:00:00 | 100%
+
+favicon.ico               | 4 kB |   4.0 kB/s | ETA: 00:00:02 |  27%
+favicon.ico               | 14 kB |  14.7 kB/s | ETA: 00:00:00 | 100%
+
+file.js                   | 0 kB |   0.3 kB/s | ETA: 00:00:00 | 100%
+
+inc-version.sh            | 0 kB |   0.8 kB/s | ETA: 00:00:00 | 100%
+
+index.html                | 1 kB |   1.8 kB/s | ETA: 00:00:00 | 100%
+
+caller.js                 | 0 kB |   0.5 kB/s | ETA: 00:00:00 | 100%
+
+constants.js              | 0 kB |   0.4 kB/s | ETA: 00:00:00 | 100%
+
+deprecations.js           | 0 kB |   0.2 kB/s | ETA: 00:00:00 | 100%
+
+levels.js                 | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  61%
+levels.js                 | 6 kB |   6.5 kB/s | ETA: 00:00:00 | 100%
+
+meta.js                   | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+multistream.js            | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  86%
+multistream.js            | 4 kB |   4.6 kB/s | ETA: 00:00:00 | 100%
+
+proto.js                  | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  54%
+proto.js                  | 7 kB |   7.3 kB/s | ETA: 00:00:00 | 100%
+
+redaction.js              | 3 kB |   3.1 kB/s | ETA: 00:00:00 | 100%
+
+symbols.js                | 2 kB |   2.0 kB/s | ETA: 00:00:00 | 100%
+
+time.js                   | 1 kB |   1.4 kB/s | ETA: 00:00:00 | 100%
+
+tools.js                  | 4 kB |   4.0 kB/s | ETA: 00:00:02 |  31%
+tools.js                  | 12 kB |  12.8 kB/s | ETA: 00:00:00 | 100%
+
+transport-stream.js       | 2 kB |   2.2 kB/s | ETA: 00:00:00 | 100%
+
+transport.js              | 3 kB |   3.9 kB/s | ETA: 00:00:00 | 100%
+
+worker.js                 | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  45%
+worker.js                 | 8 kB |   8.8 kB/s | ETA: 00:00:00 | 100%
+
+LICENSE                   | 1 kB |   1.2 kB/s | ETA: 00:00:00 | 100%
+
+package.json              | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  95%
+package.json              | 4 kB |   4.2 kB/s | ETA: 00:00:00 | 100%
+
+pino-banner.png           | 4 kB |   4.0 kB/s | ETA: 00:00:09 |   9%
+pino-banner.png           | 41 kB |  41.0 kB/s | ETA: 00:00:00 | 100%
+
+pino-logo-hire.png        | 4 kB |   4.0 kB/s | ETA: 00:00:11 |   7%
+pino-logo-hire.png        | 50 kB |  50.4 kB/s | ETA: 00:00:00 | 100%
+
+pino-tree.png             | 4 kB |   4.0 kB/s | ETA: 00:00:02 |  30%
+pino-tree.png             | 13 kB |  13.1 kB/s | ETA: 00:00:00 | 100%
+
+pino.d.ts                 | 4 kB |   4.0 kB/s | ETA: 00:00:09 |   9%
+pino.d.ts                 | 40 kB |  40.2 kB/s | ETA: 00:00:00 | 100%
+
+pino.js                   | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  64%
+pino.js                   | 6 kB |   6.2 kB/s | ETA: 00:00:00 | 100%
+
+pretty-demo.png           | 4 kB |   4.0 kB/s | ETA: 00:00:02 |  28%
+pretty-demo.png           | 14 kB |  14.2 kB/s | ETA: 00:00:00 | 100%
+
+README.md                 | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  83%
+README.md                 | 4 kB |   4.8 kB/s | ETA: 00:00:00 | 100%
+
+SECURITY.md               | 2 kB |   2.5 kB/s | ETA: 00:00:00 | 100%
+
+basic.test.js             | 4 kB |   4.0 kB/s | ETA: 00:00:04 |  17%
+basic.test.js             | 22 kB |  22.7 kB/s | ETA: 00:00:00 | 100%
+
+broken-pipe.test.js       | 1 kB |   1.6 kB/s | ETA: 00:00:00 | 100%
+
+browser-child.test.js     | 2 kB |   2.7 kB/s | ETA: 00:00:00 | 100%
+
+browser-disabled.test.js  | 1 kB |   1.7 kB/s | ETA: 00:00:00 | 100%
+
+browser-early-console-fre | 0 kB |   0.2 kB/s | ETA: 00:00:00 | 100%
+
+browser-is-level-enabled. | 3 kB |   3.1 kB/s | ETA: 00:00:00 | 100%
+
+browser-levels.test.js    | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  92%
+browser-levels.test.js    | 4 kB |   4.3 kB/s | ETA: 00:00:00 | 100%
+
+browser-serializers.test. | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  48%
+browser-serializers.test. | 8 kB |   8.3 kB/s | ETA: 00:00:00 | 100%
+
+browser-timestamp.test.js | 1 kB |   1.7 kB/s | ETA: 00:00:00 | 100%
+
+browser-transmit.test.js  | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  44%
+browser-transmit.test.js  | 9 kB |   9.0 kB/s | ETA: 00:00:00 | 100%
+
+browser.test.js           | 4 kB |   4.0 kB/s | ETA: 00:00:02 |  25%
+browser.test.js           | 15 kB |  15.7 kB/s | ETA: 00:00:00 | 100%
+
+complex-objects.test.js   | 0 kB |   1.0 kB/s | ETA: 00:00:00 | 100%
+
+crlf.test.js              | 0 kB |   0.7 kB/s | ETA: 00:00:00 | 100%
+
+custom-levels.test.js     | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  68%
+custom-levels.test.js     | 5 kB |   5.8 kB/s | ETA: 00:00:00 | 100%
+
+diagnostics.test.js       | 2 kB |   2.9 kB/s | ETA: 00:00:00 | 100%
+
+error.test.js             | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  46%
+error.test.js             | 8 kB |   8.6 kB/s | ETA: 00:00:00 | 100%
+
+errorKey.test.js          | 1 kB |   1.1 kB/s | ETA: 00:00:00 | 100%
+
+escaping.test.js          | 2 kB |   2.4 kB/s | ETA: 00:00:00 | 100%
+
+esm.mjs                   | 0 kB |   0.3 kB/s | ETA: 00:00:00 | 100%
+
+index.test.js             | 1 kB |   1.1 kB/s | ETA: 00:00:00 | 100%
+
+named-exports.mjs         | 0 kB |   0.7 kB/s | ETA: 00:00:00 | 100%
+
+exit.test.js              | 1 kB |   2.0 kB/s | ETA: 00:00:00 | 100%
+
+basic.js                  | 0 kB |   0.2 kB/s | ETA: 00:00:00 | 100%
+
+destination.js            | 0 kB |   0.3 kB/s | ETA: 00:00:00 | 100%
+
+syncfalse.js              | 0 kB |   0.3 kB/s | ETA: 00:00:00 | 100%
+
+console-transport.js      | 0 kB |   0.3 kB/s | ETA: 00:00:00 | 100%
+
+crashing-transport.js     | 0 kB |   0.3 kB/s | ETA: 00:00:00 | 100%
+
+default-exit.js           | 0 kB |   0.3 kB/s | ETA: 00:00:00 | 100%
+
+destination-exit.js       | 0 kB |   0.3 kB/s | ETA: 00:00:00 | 100%
+
+index.js                  | 0 kB |   0.2 kB/s | ETA: 00:00:00 | 100%
+
+14-files.js               | 0 kB |   0.0 kB/s | ETA: 00:00:00 | 100%
+
+2-files.js                | 0 kB |   0.0 kB/s | ETA: 00:00:00 | 100%
+
+file1.js                  | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+file10.js                 | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+file11.js                 | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+file12.js                 | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+file13.js                 | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+file14.js                 | 0 kB |   0.2 kB/s | ETA: 00:00:00 | 100%
+
+file2.js                  | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+file3.js                  | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+file4.js                  | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+file5.js                  | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+file6.js                  | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+file7.js                  | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+file8.js                  | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+file9.js                  | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+noop-transport.js         | 0 kB |   0.2 kB/s | ETA: 00:00:00 | 100%
+
+null-prototype.js         | 0 kB |   0.3 kB/s | ETA: 00:00:00 | 100%
+
+stdout-hack-protection.js | 0 kB |   0.4 kB/s | ETA: 00:00:00 | 100%
+
+syncfalse-child.js        | 0 kB |   0.3 kB/s | ETA: 00:00:00 | 100%
+
+syncfalse-exit.js         | 0 kB |   0.4 kB/s | ETA: 00:00:00 | 100%
+
+syncfalse-flush-exit.js   | 0 kB |   0.4 kB/s | ETA: 00:00:00 | 100%
+
+syncfalse.js              | 0 kB |   0.3 kB/s | ETA: 00:00:00 | 100%
+
+syntax-error-esm.mjs      | 0 kB |   0.0 kB/s | ETA: 00:00:00 | 100%
+
+to-file-transport-with-tr | 0 kB |   0.5 kB/s | ETA: 00:00:00 | 100%
+
+to-file-transport.js      | 0 kB |   0.3 kB/s | ETA: 00:00:00 | 100%
+
+to-file-transport.mjs     | 0 kB |   0.2 kB/s | ETA: 00:00:00 | 100%
+
+index.js                  | 0 kB |   0.2 kB/s | ETA: 00:00:00 | 100%
+
+package.json              | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+transport-exit-immediatel | 0 kB |   0.3 kB/s | ETA: 00:00:00 | 100%
+
+transport-exit-immediatel | 0 kB |   0.2 kB/s | ETA: 00:00:00 | 100%
+
+transport-exit-on-ready.j | 0 kB |   0.2 kB/s | ETA: 00:00:00 | 100%
+
+transport-main.js         | 0 kB |   0.2 kB/s | ETA: 00:00:00 | 100%
+
+transport-many-lines.js   | 0 kB |   0.5 kB/s | ETA: 00:00:00 | 100%
+
+transport-string-stdout.j | 0 kB |   0.2 kB/s | ETA: 00:00:00 | 100%
+
+transport-transform.js    | 0 kB |   0.5 kB/s | ETA: 00:00:00 | 100%
+
+transport-uses-pino-confi | 0 kB |   0.8 kB/s | ETA: 00:00:00 | 100%
+
+transport-with-on-exit.js | 0 kB |   0.2 kB/s | ETA: 00:00:00 | 100%
+
+transport-worker-data.js  | 0 kB |   0.4 kB/s | ETA: 00:00:00 | 100%
+
+transport-worker.js       | 0 kB |   0.3 kB/s | ETA: 00:00:00 | 100%
+
+transport-wrong-export-ty | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+to-file-transport-with-tr | 0 kB |   0.5 kB/s | ETA: 00:00:00 | 100%
+
+to-file-transport.ts      | 0 kB |   0.3 kB/s | ETA: 00:00:00 | 100%
+
+transpile.cjs             | 1 kB |   1.0 kB/s | ETA: 00:00:00 | 100%
+
+transport-exit-immediatel | 0 kB |   0.3 kB/s | ETA: 00:00:00 | 100%
+
+transport-exit-immediatel | 0 kB |   0.2 kB/s | ETA: 00:00:00 | 100%
+
+transport-exit-on-ready.t | 0 kB |   0.2 kB/s | ETA: 00:00:00 | 100%
+
+transport-main.ts         | 0 kB |   0.2 kB/s | ETA: 00:00:00 | 100%
+
+transport-string-stdout.t | 0 kB |   0.2 kB/s | ETA: 00:00:00 | 100%
+
+transport-worker.ts       | 0 kB |   0.3 kB/s | ETA: 00:00:00 | 100%
+
+formatters.test.js        | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  57%
+formatters.test.js        | 6 kB |   7.0 kB/s | ETA: 00:00:00 | 100%
+
+helper.d.ts               | 0 kB |   0.2 kB/s | ETA: 00:00:00 | 100%
+
+helper.js                 | 3 kB |   3.3 kB/s | ETA: 00:00:00 | 100%
+
+hooks.test.js             | 2 kB |   2.5 kB/s | ETA: 00:00:00 | 100%
+
+http.test.js              | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  64%
+http.test.js              | 6 kB |   6.2 kB/s | ETA: 00:00:00 | 100%
+
+version.test.js           | 0 kB |   0.4 kB/s | ETA: 00:00:00 | 100%
+
+is-level-enabled.test.js  | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  67%
+is-level-enabled.test.js  | 5 kB |   5.9 kB/s | ETA: 00:00:00 | 100%
+
+basic.spec.js             | 0 kB |   0.2 kB/s | ETA: 00:00:00 | 100%
+
+levels.test.js            | 4 kB |   4.0 kB/s | ETA: 00:00:03 |  21%
+levels.test.js            | 18 kB |  18.7 kB/s | ETA: 00:00:00 | 100%
+
+metadata.test.js          | 2 kB |   2.7 kB/s | ETA: 00:00:00 | 100%
+
+mixin-merge-strategy.test | 1 kB |   1.2 kB/s | ETA: 00:00:00 | 100%
+
+mixin.test.js             | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  79%
+mixin.test.js             | 5 kB |   5.0 kB/s | ETA: 00:00:00 | 100%
+
+multistream.test.js       | 4 kB |   4.0 kB/s | ETA: 00:00:02 |  25%
+multistream.test.js       | 15 kB |  15.6 kB/s | ETA: 00:00:00 | 100%
+
+index.js                  | 1 kB |   1.2 kB/s | ETA: 00:00:00 | 100%
+
+pkg.config.json           | 0 kB |   0.4 kB/s | ETA: 00:00:00 | 100%
+
+pkg.test.js               | 2 kB |   2.3 kB/s | ETA: 00:00:00 | 100%
+
+redact.test.js            | 4 kB |   4.0 kB/s | ETA: 00:00:04 |  16%
+redact.test.js            | 23 kB |  23.6 kB/s | ETA: 00:00:00 | 100%
+
+serializers.test.js       | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  57%
+serializers.test.js       | 6 kB |   6.9 kB/s | ETA: 00:00:00 | 100%
+
+sinon-child-logger.test.j | 2 kB |   2.7 kB/s | ETA: 00:00:00 | 100%
+
+stdout-protection.test.js | 1 kB |   1.2 kB/s | ETA: 00:00:00 | 100%
+
+syncfalse.test.js         | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  92%
+syncfalse.test.js         | 4 kB |   4.3 kB/s | ETA: 00:00:00 | 100%
+
+timestamp-nano.test.js    | 1 kB |   1.0 kB/s | ETA: 00:00:00 | 100%
+
+timestamp.test.js         | 3 kB |   3.8 kB/s | ETA: 00:00:00 | 100%
+
+big.test.js               | 1 kB |   1.2 kB/s | ETA: 00:00:00 | 100%
+
+bundlers-support.test.js  | 2 kB |   2.5 kB/s | ETA: 00:00:00 | 100%
+
+caller.test.js            | 1 kB |   1.1 kB/s | ETA: 00:00:00 | 100%
+
+core.test.js              | 4 kB |   4.0 kB/s | ETA: 00:00:03 |  23%
+core.test.js              | 17 kB |  17.4 kB/s | ETA: 00:00:00 | 100%
+
+core.test.ts              | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  61%
+core.test.ts              | 6 kB |   6.5 kB/s | ETA: 00:00:00 | 100%
+
+core.transpiled.test.ts   | 3 kB |   3.2 kB/s | ETA: 00:00:00 | 100%
+
+crash.test.js             | 0 kB |   0.9 kB/s | ETA: 00:00:00 | 100%
+
+module-link.test.js       | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  75%
+module-link.test.js       | 5 kB |   5.3 kB/s | ETA: 00:00:00 | 100%
+
+pipeline.test.js          | 3 kB |   3.7 kB/s | ETA: 00:00:00 | 100%
+
+repl.test.js              | 0 kB |   0.4 kB/s | ETA: 00:00:00 | 100%
+
+syncfalse.test.js         | 1 kB |   1.9 kB/s | ETA: 00:00:00 | 100%
+
+syncTrue.test.js          | 1 kB |   1.3 kB/s | ETA: 00:00:00 | 100%
+
+targets.test.js           | 0 kB |   1.0 kB/s | ETA: 00:00:00 | 100%
+
+uses-pino-config.test.js  | 3 kB |   3.7 kB/s | ETA: 00:00:00 | 100%
+
+transport-stream.test.js  | 0 kB |   0.7 kB/s | ETA: 00:00:00 | 100%
+
+pino-import.test-d.cts    | 0 kB |   0.9 kB/s | ETA: 00:00:00 | 100%
+
+pino-multistream.test-d.t | 1 kB |   1.3 kB/s | ETA: 00:00:00 | 100%
+
+pino-top-export.test-d.ts | 0 kB |   1.0 kB/s | ETA: 00:00:00 | 100%
+
+pino-transport.test-d.ts  | 3 kB |   3.1 kB/s | ETA: 00:00:00 | 100%
+
+pino-type-only.test-d.ts  | 2 kB |   2.2 kB/s | ETA: 00:00:00 | 100%
+
+pino.test-d.ts            | 4 kB |   4.0 kB/s | ETA: 00:00:02 |  26%
+pino.test-d.ts            | 14 kB |  14.9 kB/s | ETA: 00:00:00 | 100%
+
+pino.ts                   | 2 kB |   2.4 kB/s | ETA: 00:00:00 | 100%
+
+tsconfig.json             | 0 kB |   0.2 kB/s | ETA: 00:00:00 | 100%
+
+.borp.yaml                | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+.editorconfig             | 0 kB |   0.2 kB/s | ETA: 00:00:00 | 100%
+
+.eslintrc                 | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+dependabot.yml            | 0 kB |   0.3 kB/s | ETA: 00:00:00 | 100%
+
+ci.yml                    | 2 kB |   2.0 kB/s | ETA: 00:00:00 | 100%
+
+.taprc.yaml               | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+benchmark.js              | 2 kB |   2.9 kB/s | ETA: 00:00:00 | 100%
+
+bin.js                    | 2 kB |   2.9 kB/s | ETA: 00:00:00 | 100%
+
+coverage-map.js           | 0 kB |   0.3 kB/s | ETA: 00:00:00 | 100%
+
+demo.png                  | 4 kB |   4.0 kB/s | ETA: 00:00:02 |  28%
+demo.png                  | 14 kB |  14.2 kB/s | ETA: 00:00:00 | 100%
+
+help.md                   | 1 kB |   1.2 kB/s | ETA: 00:00:00 | 100%
+
+eslint.config.js          | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+help.txt                  | 3 kB |   3.4 kB/s | ETA: 00:00:00 | 100%
+
+index.d.ts                | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  53%
+index.d.ts                | 7 kB |   7.4 kB/s | ETA: 00:00:00 | 100%
+
+index.js                  | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  59%
+index.js                  | 6 kB |   6.7 kB/s | ETA: 00:00:00 | 100%
+
+colors.js                 | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  80%
+colors.js                 | 4 kB |   5.0 kB/s | ETA: 00:00:00 | 100%
+
+colors.test.js            | 3 kB |   3.8 kB/s | ETA: 00:00:00 | 100%
+
+constants.js              | 0 kB |   0.8 kB/s | ETA: 00:00:00 | 100%
+
+pretty.js                 | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  86%
+pretty.js                 | 4 kB |   4.6 kB/s | ETA: 00:00:00 | 100%
+
+build-safe-sonic-boom.js  | 1 kB |   1.6 kB/s | ETA: 00:00:00 | 100%
+
+build-safe-sonic-boom.tes | 2 kB |   2.2 kB/s | ETA: 00:00:00 | 100%
+
+create-date.js            | 0 kB |   0.6 kB/s | ETA: 00:00:00 | 100%
+
+create-date.test.js       | 0 kB |   0.6 kB/s | ETA: 00:00:00 | 100%
+
+delete-log-property.js    | 0 kB |   0.9 kB/s | ETA: 00:00:00 | 100%
+
+delete-log-property.test. | 0 kB |   0.8 kB/s | ETA: 00:00:00 | 100%
+
+filter-log.js             | 1 kB |   1.1 kB/s | ETA: 00:00:00 | 100%
+
+filter-log.test.js        | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  92%
+filter-log.test.js        | 4 kB |   4.3 kB/s | ETA: 00:00:00 | 100%
+
+format-time.js            | 2 kB |   2.0 kB/s | ETA: 00:00:00 | 100%
+
+format-time.test.js       | 2 kB |   2.4 kB/s | ETA: 00:00:00 | 100%
+
+get-level-label-data.js   | 1 kB |   1.1 kB/s | ETA: 00:00:00 | 100%
+
+get-property-value.js     | 0 kB |   0.8 kB/s | ETA: 00:00:00 | 100%
+
+get-property-value.test.j | 1 kB |   1.2 kB/s | ETA: 00:00:00 | 100%
+
+handle-custom-levels-name | 1 kB |   1.0 kB/s | ETA: 00:00:00 | 100%
+
+handle-custom-levels-name | 1 kB |   1.2 kB/s | ETA: 00:00:00 | 100%
+
+handle-custom-levels-opts | 1 kB |   1.1 kB/s | ETA: 00:00:00 | 100%
+
+handle-custom-levels-opts | 1 kB |   1.2 kB/s | ETA: 00:00:00 | 100%
+
+index.js                  | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  96%
+index.js                  | 4 kB |   4.2 kB/s | ETA: 00:00:00 | 100%
+
+index.test.js             | 1 kB |   1.2 kB/s | ETA: 00:00:00 | 100%
+
+interpret-conditionals.js | 1 kB |   1.2 kB/s | ETA: 00:00:00 | 100%
+
+interpret-conditionals.te | 2 kB |   3.0 kB/s | ETA: 00:00:00 | 100%
+
+is-object.js              | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+is-object.test.js         | 0 kB |   0.3 kB/s | ETA: 00:00:00 | 100%
+
+is-valid-date.js          | 0 kB |   0.3 kB/s | ETA: 00:00:00 | 100%
+
+is-valid-date.test.js     | 0 kB |   0.4 kB/s | ETA: 00:00:00 | 100%
+
+join-lines-with-indentati | 0 kB |   0.9 kB/s | ETA: 00:00:00 | 100%
+
+join-lines-with-indentati | 0 kB |   0.6 kB/s | ETA: 00:00:00 | 100%
+
+noop.js                   | 0 kB |   0.0 kB/s | ETA: 00:00:00 | 100%
+
+noop.test.js              | 0 kB |   0.2 kB/s | ETA: 00:00:00 | 100%
+
+parse-factory-options.js  | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  66%
+parse-factory-options.js  | 6 kB |   6.0 kB/s | ETA: 00:00:00 | 100%
+
+prettify-error-log.js     | 2 kB |   2.3 kB/s | ETA: 00:00:00 | 100%
+
+prettify-error-log.test.j | 2 kB |   2.7 kB/s | ETA: 00:00:00 | 100%
+
+prettify-error.js         | 1 kB |   1.5 kB/s | ETA: 00:00:00 | 100%
+
+prettify-error.test.js    | 0 kB |   0.5 kB/s | ETA: 00:00:00 | 100%
+
+prettify-level.js         | 1 kB |   1.2 kB/s | ETA: 00:00:00 | 100%
+
+prettify-level.test.js    | 1 kB |   1.5 kB/s | ETA: 00:00:00 | 100%
+
+prettify-message.js       | 2 kB |   2.1 kB/s | ETA: 00:00:00 | 100%
+
+prettify-message.test.js  | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  53%
+prettify-message.test.js  | 7 kB |   7.4 kB/s | ETA: 00:00:00 | 100%
+
+prettify-metadata.js      | 1 kB |   1.9 kB/s | ETA: 00:00:00 | 100%
+
+prettify-metadata.test.js | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  84%
+prettify-metadata.test.js | 4 kB |   4.7 kB/s | ETA: 00:00:00 | 100%
+
+prettify-object.js        | 3 kB |   3.5 kB/s | ETA: 00:00:00 | 100%
+
+prettify-object.test.js   | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  84%
+prettify-object.test.js   | 4 kB |   4.7 kB/s | ETA: 00:00:00 | 100%
+
+prettify-time.js          | 1 kB |   1.1 kB/s | ETA: 00:00:00 | 100%
+
+prettify-time.test.js     | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  87%
+prettify-time.test.js     | 4 kB |   4.5 kB/s | ETA: 00:00:00 | 100%
+
+split-property-key.js     | 0 kB |   0.9 kB/s | ETA: 00:00:00 | 100%
+
+split-property-key.test.j | 1 kB |   1.1 kB/s | ETA: 00:00:00 | 100%
+
+LICENSE                   | 1 kB |   1.1 kB/s | ETA: 00:00:00 | 100%
+
+index.d.ts                | 0 kB |   0.9 kB/s | ETA: 00:00:00 | 100%
+
+index.js                  | 3 kB |   3.6 kB/s | ETA: 00:00:00 | 100%
+
+license                   | 1 kB |   1.1 kB/s | ETA: 00:00:00 | 100%
+
+package.json              | 0 kB |   1.0 kB/s | ETA: 00:00:00 | 100%
+
+readme.md                 | 1 kB |   1.5 kB/s | ETA: 00:00:00 | 100%
+
+package.json              | 1 kB |   1.7 kB/s | ETA: 00:00:00 | 100%
+
+Readme.md                 | 4 kB |   4.0 kB/s | ETA: 00:00:02 |  28%
+Readme.md                 | 13 kB |  13.8 kB/s | ETA: 00:00:00 | 100%
+
+basic.test.js             | 4 kB |   4.0 kB/s | ETA: 00:00:08 |  10%
+basic.test.js             | 36 kB |  37.0 kB/s | ETA: 00:00:00 | 100%
+
+cli-rc.test.js            | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  36%
+cli-rc.test.js            | 10 kB |  10.9 kB/s | ETA: 00:00:00 | 100%
+
+cli.test.js               | 4 kB |   4.0 kB/s | ETA: 00:00:02 |  28%
+cli.test.js               | 13 kB |  13.9 kB/s | ETA: 00:00:00 | 100%
+
+crlf.test.js              | 0 kB |   0.8 kB/s | ETA: 00:00:00 | 100%
+
+error-objects.test.js     | 4 kB |   4.0 kB/s | ETA: 00:00:02 |  25%
+error-objects.test.js     | 15 kB |  15.6 kB/s | ETA: 00:00:00 | 100%
+
+example.js                | 0 kB |   0.6 kB/s | ETA: 00:00:00 | 100%
+
+helper.js                 | 0 kB |   0.5 kB/s | ETA: 00:00:00 | 100%
+
+pino-pretty.test-d.ts     | 1 kB |   1.6 kB/s | ETA: 00:00:00 | 100%
+
+tsconfig.json             | 0 kB |   0.2 kB/s | ETA: 00:00:00 | 100%
+
+package.json              | 0 kB |   0.0 kB/s | ETA: 00:00:00 | 100%
+
+prerender-manifest.json   | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  47%
+prerender-manifest.json   | 8 kB |   8.4 kB/s | ETA: 00:00:00 | 100%
+
+required-server-files.jso | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  41%
+required-server-files.jso | 9 kB |   9.6 kB/s | ETA: 00:00:00 | 100%
+
+routes-manifest.json      | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  79%
+routes-manifest.json      | 5 kB |   5.0 kB/s | ETA: 00:00:00 | 100%
+
+app-paths-manifest.json   | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+build-manifest.json       | 0 kB |   0.4 kB/s | ETA: 00:00:00 | 100%
+
+next-font-manifest.json   | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+react-loadable-manifest.j | 0 kB |   0.0 kB/s | ETA: 00:00:00 | 100%
+
+server-reference-manifest | 0 kB |   0.0 kB/s | ETA: 00:00:00 | 100%
+
+page.js                   | 1 kB |   1.0 kB/s | ETA: 00:00:00 | 100%
+
+page.js.map               | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+page.js.nft.json          | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  47%
+page.js.nft.json          | 8 kB |   8.4 kB/s | ETA: 00:00:00 | 100%
+
+page_client-reference-man | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  45%
+page_client-reference-man | 8 kB |   8.8 kB/s | ETA: 00:00:00 | 100%
+
+app-paths-manifest.json   | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+build-manifest.json       | 0 kB |   0.4 kB/s | ETA: 00:00:00 | 100%
+
+next-font-manifest.json   | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+react-loadable-manifest.j | 0 kB |   0.0 kB/s | ETA: 00:00:00 | 100%
+
+server-reference-manifest | 0 kB |   0.0 kB/s | ETA: 00:00:00 | 100%
+
+page.js                   | 1 kB |   1.0 kB/s | ETA: 00:00:00 | 100%
+
+page.js.map               | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+page.js.nft.json          | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  47%
+page.js.nft.json          | 8 kB |   8.4 kB/s | ETA: 00:00:00 | 100%
+
+page_client-reference-man | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  45%
+page_client-reference-man | 8 kB |   8.8 kB/s | ETA: 00:00:00 | 100%
+
+app-paths-manifest.json   | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+build-manifest.json       | 0 kB |   0.4 kB/s | ETA: 00:00:00 | 100%
+
+next-font-manifest.json   | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+react-loadable-manifest.j | 0 kB |   0.0 kB/s | ETA: 00:00:00 | 100%
+
+server-reference-manifest | 0 kB |   0.0 kB/s | ETA: 00:00:00 | 100%
+
+page.js                   | 1 kB |   1.0 kB/s | ETA: 00:00:00 | 100%
+
+page.js.map               | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+page.js.nft.json          | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  47%
+page.js.nft.json          | 8 kB |   8.4 kB/s | ETA: 00:00:00 | 100%
+
+page_client-reference-man | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  45%
+page_client-reference-man | 8 kB |   8.9 kB/s | ETA: 00:00:00 | 100%
+
+app-paths-manifest.json   | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+build-manifest.json       | 0 kB |   0.4 kB/s | ETA: 00:00:00 | 100%
+
+next-font-manifest.json   | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+react-loadable-manifest.j | 0 kB |   0.0 kB/s | ETA: 00:00:00 | 100%
+
+server-reference-manifest | 0 kB |   0.0 kB/s | ETA: 00:00:00 | 100%
+
+page.js                   | 1 kB |   1.0 kB/s | ETA: 00:00:00 | 100%
+
+page.js.map               | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+page.js.nft.json          | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  46%
+page.js.nft.json          | 8 kB |   8.5 kB/s | ETA: 00:00:00 | 100%
+
+page_client-reference-man | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  43%
+page_client-reference-man | 9 kB |   9.2 kB/s | ETA: 00:00:00 | 100%
+
+app-paths-manifest.json   | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+build-manifest.json       | 0 kB |   0.4 kB/s | ETA: 00:00:00 | 100%
+
+next-font-manifest.json   | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+react-loadable-manifest.j | 0 kB |   0.0 kB/s | ETA: 00:00:00 | 100%
+
+server-reference-manifest | 0 kB |   0.0 kB/s | ETA: 00:00:00 | 100%
+
+page.js                   | 1 kB |   1.0 kB/s | ETA: 00:00:00 | 100%
+
+page.js.map               | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+page.js.nft.json          | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  47%
+page.js.nft.json          | 8 kB |   8.4 kB/s | ETA: 00:00:00 | 100%
+
+page_client-reference-man | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  45%
+page_client-reference-man | 8 kB |   8.9 kB/s | ETA: 00:00:00 | 100%
+
+app-paths-manifest.json   | 0 kB |   0.0 kB/s | ETA: 00:00:00 | 100%
+
+build-manifest.json       | 0 kB |   0.4 kB/s | ETA: 00:00:00 | 100%
+
+next-font-manifest.json   | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+react-loadable-manifest.j | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+server-reference-manifest | 0 kB |   0.0 kB/s | ETA: 00:00:00 | 100%
+
+page.js                   | 1 kB |   1.0 kB/s | ETA: 00:00:00 | 100%
+
+page.js.map               | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+page.js.nft.json          | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  49%
+page.js.nft.json          | 8 kB |   8.1 kB/s | ETA: 00:00:00 | 100%
+
+page_client-reference-man | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  44%
+page_client-reference-man | 8 kB |   9.0 kB/s | ETA: 00:00:00 | 100%
+
+app-paths-manifest.json   | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+build-manifest.json       | 0 kB |   0.4 kB/s | ETA: 00:00:00 | 100%
+
+next-font-manifest.json   | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+react-loadable-manifest.j | 0 kB |   0.0 kB/s | ETA: 00:00:00 | 100%
+
+server-reference-manifest | 0 kB |   0.0 kB/s | ETA: 00:00:00 | 100%
+
+page.js                   | 1 kB |   1.0 kB/s | ETA: 00:00:00 | 100%
+
+page.js.map               | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+page.js.nft.json          | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  47%
+page.js.nft.json          | 8 kB |   8.4 kB/s | ETA: 00:00:00 | 100%
+
+page_client-reference-man | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  44%
+page_client-reference-man | 8 kB |   8.9 kB/s | ETA: 00:00:00 | 100%
+
+app-paths-manifest.json   | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+build-manifest.json       | 0 kB |   0.4 kB/s | ETA: 00:00:00 | 100%
+
+next-font-manifest.json   | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+react-loadable-manifest.j | 0 kB |   0.0 kB/s | ETA: 00:00:00 | 100%
+
+server-reference-manifest | 0 kB |   0.0 kB/s | ETA: 00:00:00 | 100%
+
+page.js                   | 1 kB |   1.0 kB/s | ETA: 00:00:00 | 100%
+
+page.js.map               | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+page.js.nft.json          | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  47%
+page.js.nft.json          | 8 kB |   8.4 kB/s | ETA: 00:00:00 | 100%
+
+page_client-reference-man | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  45%
+page_client-reference-man | 8 kB |   8.9 kB/s | ETA: 00:00:00 | 100%
+
+app-paths-manifest.json   | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+build-manifest.json       | 0 kB |   0.4 kB/s | ETA: 00:00:00 | 100%
+
+next-font-manifest.json   | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+react-loadable-manifest.j | 0 kB |   0.0 kB/s | ETA: 00:00:00 | 100%
+
+server-reference-manifest | 0 kB |   0.0 kB/s | ETA: 00:00:00 | 100%
+
+page.js                   | 1 kB |   1.0 kB/s | ETA: 00:00:00 | 100%
+
+page.js.map               | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+page.js.nft.json          | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  45%
+page.js.nft.json          | 8 kB |   8.8 kB/s | ETA: 00:00:00 | 100%
+
+page_client-reference-man | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  44%
+page_client-reference-man | 8 kB |   8.9 kB/s | ETA: 00:00:00 | 100%
+
+app-paths-manifest.json   | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+build-manifest.json       | 0 kB |   0.4 kB/s | ETA: 00:00:00 | 100%
+
+next-font-manifest.json   | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+react-loadable-manifest.j | 0 kB |   0.0 kB/s | ETA: 00:00:00 | 100%
+
+server-reference-manifest | 0 kB |   0.0 kB/s | ETA: 00:00:00 | 100%
+
+page.js                   | 1 kB |   1.1 kB/s | ETA: 00:00:00 | 100%
+
+page.js.map               | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+page.js.nft.json          | 4 kB |   4.0 kB/s | ETA: 00:00:05 |  15%
+page.js.nft.json          | 26 kB |  26.2 kB/s | ETA: 00:00:00 | 100%
+
+page_client-reference-man | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  43%
+page_client-reference-man | 9 kB |   9.3 kB/s | ETA: 00:00:00 | 100%
+
+app-paths-manifest.json   | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+build-manifest.json       | 0 kB |   0.4 kB/s | ETA: 00:00:00 | 100%
+
+next-font-manifest.json   | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+react-loadable-manifest.j | 0 kB |   0.0 kB/s | ETA: 00:00:00 | 100%
+
+server-reference-manifest | 0 kB |   0.0 kB/s | ETA: 00:00:00 | 100%
+
+page.js                   | 1 kB |   1.2 kB/s | ETA: 00:00:00 | 100%
+
+page.js.map               | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+page.js.nft.json          | 4 kB |   4.0 kB/s | ETA: 00:00:05 |  14%
+page.js.nft.json          | 27 kB |  27.2 kB/s | ETA: 00:00:00 | 100%
+
+page_client-reference-man | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  33%
+page_client-reference-man | 11 kB |  11.8 kB/s | ETA: 00:00:00 | 100%
+
+app-paths-manifest.json   | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+build-manifest.json       | 0 kB |   0.4 kB/s | ETA: 00:00:00 | 100%
+
+next-font-manifest.json   | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+react-loadable-manifest.j | 0 kB |   0.0 kB/s | ETA: 00:00:00 | 100%
+
+server-reference-manifest | 0 kB |   0.0 kB/s | ETA: 00:00:00 | 100%
+
+page.js                   | 1 kB |   1.0 kB/s | ETA: 00:00:00 | 100%
+
+page.js.map               | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+page.js.nft.json          | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  47%
+page.js.nft.json          | 8 kB |   8.4 kB/s | ETA: 00:00:00 | 100%
+
+page_client-reference-man | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  45%
+page_client-reference-man | 8 kB |   8.9 kB/s | ETA: 00:00:00 | 100%
+
+app-paths-manifest.json   | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+build-manifest.json       | 0 kB |   0.4 kB/s | ETA: 00:00:00 | 100%
+
+next-font-manifest.json   | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+react-loadable-manifest.j | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+server-reference-manifest | 0 kB |   0.0 kB/s | ETA: 00:00:00 | 100%
+
+page.js                   | 1 kB |   1.0 kB/s | ETA: 00:00:00 | 100%
+
+page.js.map               | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+page.js.nft.json          | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  47%
+page.js.nft.json          | 8 kB |   8.4 kB/s | ETA: 00:00:00 | 100%
+
+page_client-reference-man | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  45%
+page_client-reference-man | 8 kB |   8.8 kB/s | ETA: 00:00:00 | 100%
+
+app-paths-manifest.json   | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+build-manifest.json       | 0 kB |   0.4 kB/s | ETA: 00:00:00 | 100%
+
+next-font-manifest.json   | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+react-loadable-manifest.j | 0 kB |   0.0 kB/s | ETA: 00:00:00 | 100%
+
+server-reference-manifest | 0 kB |   0.9 kB/s | ETA: 00:00:00 | 100%
+
+page.js                   | 1 kB |   1.5 kB/s | ETA: 00:00:00 | 100%
+
+page.js.map               | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+page.js.nft.json          | 4 kB |   4.0 kB/s | ETA: 00:00:06 |  12%
+page.js.nft.json          | 31 kB |  31.4 kB/s | ETA: 00:00:00 | 100%
+
+page_client-reference-man | 4 kB |   4.0 kB/s | ETA: 00:00:25 |   3%
+page_client-reference-man | 104 kB | 104.0 kB/s | ETA: 00:00:00 |  98%
+page_client-reference-man | 105 kB | 105.8 kB/s | ETA: 00:00:00 | 100%
+
+app-paths-manifest.json   | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+build-manifest.json       | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+server-reference-manifest | 0 kB |   0.0 kB/s | ETA: 00:00:00 | 100%
+
+route.js                  | 0 kB |   0.4 kB/s | ETA: 00:00:00 | 100%
+
+route.js.map              | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+route.js.nft.json         | 4 kB |   4.0 kB/s | ETA: 00:00:06 |  13%
+route.js.nft.json         | 29 kB |  29.5 kB/s | ETA: 00:00:00 | 100%
+
+route_client-reference-ma | 0 kB |   0.3 kB/s | ETA: 00:00:00 | 100%
+
+about.html                | 4 kB |   4.0 kB/s | ETA: 00:00:10 |   8%
+about.html                | 46 kB |  46.9 kB/s | ETA: 00:00:00 | 100%
+
+about.meta                | 0 kB |   0.4 kB/s | ETA: 00:00:00 | 100%
+
+about.rsc                 | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  39%
+about.rsc                 | 10 kB |  10.1 kB/s | ETA: 00:00:00 | 100%
+
+__PAGE__.segment.rsc      | 0 kB |   0.9 kB/s | ETA: 00:00:00 | 100%
+
+about.segment.rsc         | 0 kB |   0.4 kB/s | ETA: 00:00:00 | 100%
+
+!KGZyb250ZW5kKQ.segment.r | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  94%
+!KGZyb250ZW5kKQ.segment.r | 4 kB |   4.2 kB/s | ETA: 00:00:00 | 100%
+
+_full.segment.rsc         | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  39%
+_full.segment.rsc         | 10 kB |  10.1 kB/s | ETA: 00:00:00 | 100%
+
+_head.segment.rsc         | 2 kB |   3.0 kB/s | ETA: 00:00:00 | 100%
+
+_index.segment.rsc        | 1 kB |   1.5 kB/s | ETA: 00:00:00 | 100%
+
+_tree.segment.rsc         | 0 kB |   0.4 kB/s | ETA: 00:00:00 | 100%
+
+after-sales.html          | 4 kB |   4.0 kB/s | ETA: 00:00:08 |  10%
+after-sales.html          | 39 kB |  39.6 kB/s | ETA: 00:00:00 | 100%
+
+after-sales.meta          | 0 kB |   0.4 kB/s | ETA: 00:00:00 | 100%
+
+after-sales.rsc           | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  39%
+after-sales.rsc           | 10 kB |  10.1 kB/s | ETA: 00:00:00 | 100%
+
+__PAGE__.segment.rsc      | 0 kB |   0.9 kB/s | ETA: 00:00:00 | 100%
+
+after-sales.segment.rsc   | 0 kB |   0.4 kB/s | ETA: 00:00:00 | 100%
+
+!KGZyb250ZW5kKQ.segment.r | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  94%
+!KGZyb250ZW5kKQ.segment.r | 4 kB |   4.2 kB/s | ETA: 00:00:00 | 100%
+
+_full.segment.rsc         | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  39%
+_full.segment.rsc         | 10 kB |  10.1 kB/s | ETA: 00:00:00 | 100%
+
+_head.segment.rsc         | 2 kB |   3.0 kB/s | ETA: 00:00:00 | 100%
+
+_index.segment.rsc        | 1 kB |   1.5 kB/s | ETA: 00:00:00 | 100%
+
+_tree.segment.rsc         | 0 kB |   0.4 kB/s | ETA: 00:00:00 | 100%
+
+app-paths-manifest.json   | 0 kB |   0.0 kB/s | ETA: 00:00:00 | 100%
+
+build-manifest.json       | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+server-reference-manifest | 0 kB |   0.0 kB/s | ETA: 00:00:00 | 100%
+
+route.js                  | 0 kB |   0.4 kB/s | ETA: 00:00:00 | 100%
+
+route.js.map              | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+route.js.nft.json         | 4 kB |   4.0 kB/s | ETA: 00:00:05 |  16%
+route.js.nft.json         | 24 kB |  24.6 kB/s | ETA: 00:00:00 | 100%
+
+route_client-reference-ma | 0 kB |   0.3 kB/s | ETA: 00:00:00 | 100%
+
+app-paths-manifest.json   | 0 kB |   0.0 kB/s | ETA: 00:00:00 | 100%
+
+build-manifest.json       | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+server-reference-manifest | 0 kB |   0.0 kB/s | ETA: 00:00:00 | 100%
+
+route.js                  | 0 kB |   0.4 kB/s | ETA: 00:00:00 | 100%
+
+route.js.map              | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+route.js.nft.json         | 4 kB |   4.0 kB/s | ETA: 00:00:05 |  16%
+route.js.nft.json         | 12 kB |  12.0 kB/s | ETA: 00:00:01 |  48%
+route.js.nft.json         | 24 kB |  24.7 kB/s | ETA: 00:00:00 | 100%
+
+route_client-reference-ma | 0 kB |   0.3 kB/s | ETA: 00:00:00 | 100%
+
+app-paths-manifest.json   | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+build-manifest.json       | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+server-reference-manifest | 0 kB |   0.0 kB/s | ETA: 00:00:00 | 100%
+
+route.js                  | 0 kB |   0.4 kB/s | ETA: 00:00:00 | 100%
+
+route.js.map              | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+route.js.nft.json         | 4 kB |   4.0 kB/s | ETA: 00:00:08 |  10%
+route.js.nft.json         | 37 kB |  37.8 kB/s | ETA: 00:00:00 | 100%
+
+route_client-reference-ma | 0 kB |   0.3 kB/s | ETA: 00:00:00 | 100%
+
+clinical-training.html    | 4 kB |   4.0 kB/s | ETA: 00:00:08 |  10%
+clinical-training.html    | 39 kB |  39.4 kB/s | ETA: 00:00:00 | 100%
+
+clinical-training.meta    | 0 kB |   0.4 kB/s | ETA: 00:00:00 | 100%
+
+clinical-training.rsc     | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  39%
+clinical-training.rsc     | 10 kB |  10.1 kB/s | ETA: 00:00:00 | 100%
+
+__PAGE__.segment.rsc      | 0 kB |   0.9 kB/s | ETA: 00:00:00 | 100%
+
+clinical-training.segment | 0 kB |   0.4 kB/s | ETA: 00:00:00 | 100%
+
+!KGZyb250ZW5kKQ.segment.r | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  94%
+!KGZyb250ZW5kKQ.segment.r | 4 kB |   4.2 kB/s | ETA: 00:00:00 | 100%
+
+_full.segment.rsc         | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  39%
+_full.segment.rsc         | 10 kB |  10.1 kB/s | ETA: 00:00:00 | 100%
+
+_head.segment.rsc         | 2 kB |   3.0 kB/s | ETA: 00:00:00 | 100%
+
+_index.segment.rsc        | 1 kB |   1.5 kB/s | ETA: 00:00:00 | 100%
+
+_tree.segment.rsc         | 0 kB |   0.4 kB/s | ETA: 00:00:00 | 100%
+
+contact.html              | 4 kB |   4.0 kB/s | ETA: 00:00:11 |   7%
+contact.html              | 51 kB |  51.7 kB/s | ETA: 00:00:00 | 100%
+
+contact.meta              | 0 kB |   0.4 kB/s | ETA: 00:00:00 | 100%
+
+contact.rsc               | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  38%
+contact.rsc               | 10 kB |  10.4 kB/s | ETA: 00:00:00 | 100%
+
+__PAGE__.segment.rsc      | 1 kB |   1.1 kB/s | ETA: 00:00:00 | 100%
+
+contact.segment.rsc       | 0 kB |   0.4 kB/s | ETA: 00:00:00 | 100%
+
+!KGZyb250ZW5kKQ.segment.r | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  94%
+!KGZyb250ZW5kKQ.segment.r | 4 kB |   4.2 kB/s | ETA: 00:00:00 | 100%
+
+_full.segment.rsc         | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  38%
+_full.segment.rsc         | 10 kB |  10.4 kB/s | ETA: 00:00:00 | 100%
+
+_head.segment.rsc         | 2 kB |   3.0 kB/s | ETA: 00:00:00 | 100%
+
+_index.segment.rsc        | 1 kB |   1.5 kB/s | ETA: 00:00:00 | 100%
+
+_tree.segment.rsc         | 0 kB |   0.4 kB/s | ETA: 00:00:00 | 100%
+
+cookies.html              | 4 kB |   4.0 kB/s | ETA: 00:00:07 |  11%
+cookies.html              | 35 kB |  35.9 kB/s | ETA: 00:00:00 | 100%
+
+cookies.meta              | 0 kB |   0.4 kB/s | ETA: 00:00:00 | 100%
+
+cookies.rsc               | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  39%
+cookies.rsc               | 10 kB |  10.1 kB/s | ETA: 00:00:00 | 100%
+
+__PAGE__.segment.rsc      | 0 kB |   0.9 kB/s | ETA: 00:00:00 | 100%
+
+cookies.segment.rsc       | 0 kB |   0.4 kB/s | ETA: 00:00:00 | 100%
+
+!KGZyb250ZW5kKQ.segment.r | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  94%
+!KGZyb250ZW5kKQ.segment.r | 4 kB |   4.2 kB/s | ETA: 00:00:00 | 100%
+
+_full.segment.rsc         | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  39%
+_full.segment.rsc         | 10 kB |  10.1 kB/s | ETA: 00:00:00 | 100%
+
+_head.segment.rsc         | 2 kB |   3.0 kB/s | ETA: 00:00:00 | 100%
+
+_index.segment.rsc        | 1 kB |   1.5 kB/s | ETA: 00:00:00 | 100%
+
+_tree.segment.rsc         | 0 kB |   0.4 kB/s | ETA: 00:00:00 | 100%
+
+app-paths-manifest.json   | 0 kB |   0.0 kB/s | ETA: 00:00:00 | 100%
+
+build-manifest.json       | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+route.js                  | 0 kB |   0.5 kB/s | ETA: 00:00:00 | 100%
+
+route.js.map              | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+route.js.nft.json         | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  56%
+route.js.nft.json         | 7 kB |   7.0 kB/s | ETA: 00:00:00 | 100%
+
+icon.png.body             | 4 kB |   4.0 kB/s | ETA: 00:00:03 |  23%
+icon.png.body             | 17 kB |  17.3 kB/s | ETA: 00:00:00 | 100%
+
+icon.png.meta             | 0 kB |   0.2 kB/s | ETA: 00:00:00 | 100%
+
+index.html                | 4 kB |   4.0 kB/s | ETA: 00:00:17 |   5%
+index.html                | 75 kB |  75.2 kB/s | ETA: 00:00:00 | 100%
+
+index.meta                | 0 kB |   0.3 kB/s | ETA: 00:00:00 | 100%
+
+index.rsc                 | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  40%
+index.rsc                 | 9 kB |   9.9 kB/s | ETA: 00:00:00 | 100%
+
+__PAGE__.segment.rsc      | 1 kB |   1.0 kB/s | ETA: 00:00:00 | 100%
+
+!KGZyb250ZW5kKQ.segment.r | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  94%
+!KGZyb250ZW5kKQ.segment.r | 4 kB |   4.2 kB/s | ETA: 00:00:00 | 100%
+
+_full.segment.rsc         | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  40%
+_full.segment.rsc         | 9 kB |   9.9 kB/s | ETA: 00:00:00 | 100%
+
+_head.segment.rsc         | 2 kB |   3.0 kB/s | ETA: 00:00:00 | 100%
+
+_index.segment.rsc        | 1 kB |   1.5 kB/s | ETA: 00:00:00 | 100%
+
+_tree.segment.rsc         | 0 kB |   0.3 kB/s | ETA: 00:00:00 | 100%
+
+preventive-maintenance.ht | 4 kB |   4.0 kB/s | ETA: 00:00:09 |   9%
+preventive-maintenance.ht | 40 kB |  40.1 kB/s | ETA: 00:00:00 | 100%
+
+preventive-maintenance.me | 0 kB |   0.5 kB/s | ETA: 00:00:00 | 100%
+
+preventive-maintenance.rs | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  39%
+preventive-maintenance.rs | 10 kB |  10.2 kB/s | ETA: 00:00:00 | 100%
+
+__PAGE__.segment.rsc      | 0 kB |   0.9 kB/s | ETA: 00:00:00 | 100%
+
+preventive-maintenance.se | 0 kB |   0.4 kB/s | ETA: 00:00:00 | 100%
+
+!KGZyb250ZW5kKQ.segment.r | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  94%
+!KGZyb250ZW5kKQ.segment.r | 4 kB |   4.2 kB/s | ETA: 00:00:00 | 100%
+
+_full.segment.rsc         | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  39%
+_full.segment.rsc         | 10 kB |  10.2 kB/s | ETA: 00:00:00 | 100%
+
+_head.segment.rsc         | 2 kB |   3.0 kB/s | ETA: 00:00:00 | 100%
+
+_index.segment.rsc        | 1 kB |   1.5 kB/s | ETA: 00:00:00 | 100%
+
+_tree.segment.rsc         | 0 kB |   0.4 kB/s | ETA: 00:00:00 | 100%
+
+privacy.html              | 4 kB |   4.0 kB/s | ETA: 00:00:07 |  11%
+privacy.html              | 35 kB |  35.8 kB/s | ETA: 00:00:00 | 100%
+
+privacy.meta              | 0 kB |   0.4 kB/s | ETA: 00:00:00 | 100%
+
+privacy.rsc               | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  39%
+privacy.rsc               | 10 kB |  10.1 kB/s | ETA: 00:00:00 | 100%
+
+__PAGE__.segment.rsc      | 0 kB |   0.9 kB/s | ETA: 00:00:00 | 100%
+
+privacy.segment.rsc       | 0 kB |   0.4 kB/s | ETA: 00:00:00 | 100%
+
+!KGZyb250ZW5kKQ.segment.r | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  94%
+!KGZyb250ZW5kKQ.segment.r | 4 kB |   4.2 kB/s | ETA: 00:00:00 | 100%
+
+_full.segment.rsc         | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  39%
+_full.segment.rsc         | 10 kB |  10.1 kB/s | ETA: 00:00:00 | 100%
+
+_head.segment.rsc         | 2 kB |   3.0 kB/s | ETA: 00:00:00 | 100%
+
+_index.segment.rsc        | 1 kB |   1.5 kB/s | ETA: 00:00:00 | 100%
+
+_tree.segment.rsc         | 0 kB |   0.4 kB/s | ETA: 00:00:00 | 100%
+
+app-paths-manifest.json   | 0 kB |   0.0 kB/s | ETA: 00:00:00 | 100%
+
+build-manifest.json       | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+server-reference-manifest | 0 kB |   0.0 kB/s | ETA: 00:00:00 | 100%
+
+route.js                  | 0 kB |   0.4 kB/s | ETA: 00:00:00 | 100%
+
+route.js.map              | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+route.js.nft.json         | 4 kB |   4.0 kB/s | ETA: 00:00:04 |  17%
+route.js.nft.json         | 23 kB |  23.5 kB/s | ETA: 00:00:00 | 100%
+
+route_client-reference-ma | 0 kB |   0.3 kB/s | ETA: 00:00:00 | 100%
+
+terms.html                | 4 kB |   4.0 kB/s | ETA: 00:00:08 |  10%
+terms.html                | 36 kB |  36.9 kB/s | ETA: 00:00:00 | 100%
+
+terms.meta                | 0 kB |   0.4 kB/s | ETA: 00:00:00 | 100%
+
+terms.rsc                 | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  39%
+terms.rsc                 | 10 kB |  10.1 kB/s | ETA: 00:00:00 | 100%
+
+__PAGE__.segment.rsc      | 0 kB |   0.9 kB/s | ETA: 00:00:00 | 100%
+
+terms.segment.rsc         | 0 kB |   0.4 kB/s | ETA: 00:00:00 | 100%
+
+!KGZyb250ZW5kKQ.segment.r | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  94%
+!KGZyb250ZW5kKQ.segment.r | 4 kB |   4.2 kB/s | ETA: 00:00:00 | 100%
+
+_full.segment.rsc         | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  39%
+_full.segment.rsc         | 10 kB |  10.1 kB/s | ETA: 00:00:00 | 100%
+
+_head.segment.rsc         | 2 kB |   3.0 kB/s | ETA: 00:00:00 | 100%
+
+_index.segment.rsc        | 1 kB |   1.5 kB/s | ETA: 00:00:00 | 100%
+
+_tree.segment.rsc         | 0 kB |   0.4 kB/s | ETA: 00:00:00 | 100%
+
+what-we-do.html           | 4 kB |   4.0 kB/s | ETA: 00:00:11 |   7%
+what-we-do.html           | 50 kB |  50.7 kB/s | ETA: 00:00:00 | 100%
+
+what-we-do.meta           | 0 kB |   0.4 kB/s | ETA: 00:00:00 | 100%
+
+what-we-do.rsc            | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  39%
+what-we-do.rsc            | 10 kB |  10.1 kB/s | ETA: 00:00:00 | 100%
+
+__PAGE__.segment.rsc      | 0 kB |   0.9 kB/s | ETA: 00:00:00 | 100%
+
+what-we-do.segment.rsc    | 0 kB |   0.4 kB/s | ETA: 00:00:00 | 100%
+
+!KGZyb250ZW5kKQ.segment.r | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  94%
+!KGZyb250ZW5kKQ.segment.r | 4 kB |   4.2 kB/s | ETA: 00:00:00 | 100%
+
+_full.segment.rsc         | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  39%
+_full.segment.rsc         | 10 kB |  10.1 kB/s | ETA: 00:00:00 | 100%
+
+_head.segment.rsc         | 2 kB |   3.0 kB/s | ETA: 00:00:00 | 100%
+
+_index.segment.rsc        | 1 kB |   1.5 kB/s | ETA: 00:00:00 | 100%
+
+_tree.segment.rsc         | 0 kB |   0.4 kB/s | ETA: 00:00:00 | 100%
+
+app-paths-manifest.json   | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+build-manifest.json       | 0 kB |   0.4 kB/s | ETA: 00:00:00 | 100%
+
+next-font-manifest.json   | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+react-loadable-manifest.j | 0 kB |   0.0 kB/s | ETA: 00:00:00 | 100%
+
+server-reference-manifest | 0 kB |   0.0 kB/s | ETA: 00:00:00 | 100%
+
+page.js                   | 0 kB |   0.6 kB/s | ETA: 00:00:00 | 100%
+
+page.js.map               | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+page.js.nft.json          | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  54%
+page.js.nft.json          | 7 kB |   7.3 kB/s | ETA: 00:00:00 | 100%
+
+page_client-reference-man | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  68%
+page_client-reference-man | 5 kB |   5.8 kB/s | ETA: 00:00:00 | 100%
+
+_global-error.html        | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  44%
+_global-error.html        | 8 kB |   9.0 kB/s | ETA: 00:00:00 | 100%
+
+_global-error.meta        | 0 kB |   0.3 kB/s | ETA: 00:00:00 | 100%
+
+_global-error.rsc         | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  84%
+_global-error.rsc         | 4 kB |   4.7 kB/s | ETA: 00:00:00 | 100%
+
+_full.segment.rsc         | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  84%
+_full.segment.rsc         | 4 kB |   4.7 kB/s | ETA: 00:00:00 | 100%
+
+_head.segment.rsc         | 0 kB |   0.7 kB/s | ETA: 00:00:00 | 100%
+
+_index.segment.rsc        | 0 kB |   0.4 kB/s | ETA: 00:00:00 | 100%
+
+_tree.segment.rsc         | 0 kB |   0.2 kB/s | ETA: 00:00:00 | 100%
+
+__PAGE__.segment.rsc      | 3 kB |   3.3 kB/s | ETA: 00:00:00 | 100%
+
+app-paths-manifest.json   | 0 kB |   0.0 kB/s | ETA: 00:00:00 | 100%
+
+build-manifest.json       | 0 kB |   0.4 kB/s | ETA: 00:00:00 | 100%
+
+next-font-manifest.json   | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+react-loadable-manifest.j | 0 kB |   0.0 kB/s | ETA: 00:00:00 | 100%
+
+server-reference-manifest | 0 kB |   0.0 kB/s | ETA: 00:00:00 | 100%
+
+page.js                   | 0 kB |   0.9 kB/s | ETA: 00:00:00 | 100%
+
+page.js.map               | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+page.js.nft.json          | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  52%
+page.js.nft.json          | 7 kB |   7.6 kB/s | ETA: 00:00:00 | 100%
+
+page_client-reference-man | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  65%
+page_client-reference-man | 6 kB |   6.1 kB/s | ETA: 00:00:00 | 100%
+
+_not-found.html           | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  52%
+_not-found.html           | 7 kB |   7.6 kB/s | ETA: 00:00:00 | 100%
+
+_not-found.meta           | 0 kB |   0.3 kB/s | ETA: 00:00:00 | 100%
+
+_not-found.rsc            | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  83%
+_not-found.rsc            | 4 kB |   4.8 kB/s | ETA: 00:00:00 | 100%
+
+_full.segment.rsc         | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  83%
+_full.segment.rsc         | 4 kB |   4.8 kB/s | ETA: 00:00:00 | 100%
+
+_head.segment.rsc         | 0 kB |   0.9 kB/s | ETA: 00:00:00 | 100%
+
+_index.segment.rsc        | 1 kB |   1.7 kB/s | ETA: 00:00:00 | 100%
+
+__PAGE__.segment.rsc      | 1 kB |   1.4 kB/s | ETA: 00:00:00 | 100%
+
+_not-found.segment.rsc    | 0 kB |   0.4 kB/s | ETA: 00:00:00 | 100%
+
+_tree.segment.rsc         | 0 kB |   0.3 kB/s | ETA: 00:00:00 | 100%
+
+app-paths-manifest.json   | 1 kB |   1.4 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_0.u | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  48%
+node_modules_date-fns_0.u | 8 kB |   8.3 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_04u | 4 kB |   4.0 kB/s | ETA: 00:00:02 |  26%
+node_modules_date-fns_04u | 15 kB |  15.3 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_05t | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  44%
+node_modules_date-fns_05t | 8 kB |   8.9 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_07c | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  45%
+node_modules_date-fns_07c | 8 kB |   8.8 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_0di | 4 kB |   4.0 kB/s | ETA: 00:00:02 |  31%
+node_modules_date-fns_0di | 12 kB |  12.8 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_0gh | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  46%
+node_modules_date-fns_0gh | 8 kB |   8.6 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_0g_ | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  62%
+node_modules_date-fns_0g_ | 6 kB |   6.4 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_0iu | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  55%
+node_modules_date-fns_0iu | 7 kB |   7.2 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_0l~ | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  41%
+node_modules_date-fns_0l~ | 9 kB |   9.6 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_0mk | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  44%
+node_modules_date-fns_0mk | 8 kB |   9.0 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_0nf | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  63%
+node_modules_date-fns_0nf | 6 kB |   6.3 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_0un | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  37%
+node_modules_date-fns_0un | 10 kB |  10.8 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_0vn | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  34%
+node_modules_date-fns_0vn | 11 kB |  11.5 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_0ym | 4 kB |   4.0 kB/s | ETA: 00:00:02 |  31%
+node_modules_date-fns_0ym | 12 kB |  12.8 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_0z7 | 4 kB |   4.0 kB/s | ETA: 00:00:02 |  26%
+node_modules_date-fns_0z7 | 15 kB |  15.3 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_0~- | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  36%
+node_modules_date-fns_0~- | 11 kB |  11.1 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:02 |  32%
+node_modules_date-fns_loc | 12 kB |  12.2 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  55%
+node_modules_date-fns_loc | 7 kB |   7.2 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  40%
+node_modules_date-fns_loc | 9 kB |   9.9 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  45%
+node_modules_date-fns_loc | 8 kB |   8.7 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  41%
+node_modules_date-fns_loc | 9 kB |   9.6 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  35%
+node_modules_date-fns_loc | 11 kB |  11.2 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  53%
+node_modules_date-fns_loc | 7 kB |   7.4 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  34%
+node_modules_date-fns_loc | 11 kB |  11.5 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  59%
+node_modules_date-fns_loc | 6 kB |   6.7 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  52%
+node_modules_date-fns_loc | 7 kB |   7.6 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  58%
+node_modules_date-fns_loc | 6 kB |   6.9 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:02 |  33%
+node_modules_date-fns_loc | 12 kB |  12.1 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  54%
+node_modules_date-fns_loc | 7 kB |   7.3 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  58%
+node_modules_date-fns_loc | 6 kB |   6.8 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  42%
+node_modules_date-fns_loc | 9 kB |   9.4 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:02 |  27%
+node_modules_date-fns_loc | 14 kB |  14.5 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  40%
+node_modules_date-fns_loc | 9 kB |   9.9 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  55%
+node_modules_date-fns_loc | 7 kB |   7.2 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  37%
+node_modules_date-fns_loc | 10 kB |  10.6 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  54%
+node_modules_date-fns_loc | 7 kB |   7.4 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  54%
+node_modules_date-fns_loc | 7 kB |   7.4 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  53%
+node_modules_date-fns_loc | 7 kB |   7.5 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  48%
+node_modules_date-fns_loc | 8 kB |   8.3 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  48%
+node_modules_date-fns_loc | 8 kB |   8.3 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  55%
+node_modules_date-fns_loc | 7 kB |   7.2 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  52%
+node_modules_date-fns_loc | 7 kB |   7.6 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  53%
+node_modules_date-fns_loc | 7 kB |   7.5 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  46%
+node_modules_date-fns_loc | 8 kB |   8.7 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  43%
+node_modules_date-fns_loc | 9 kB |   9.1 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  43%
+node_modules_date-fns_loc | 9 kB |   9.2 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  54%
+node_modules_date-fns_loc | 7 kB |   7.4 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  54%
+node_modules_date-fns_loc | 7 kB |   7.3 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  45%
+node_modules_date-fns_loc | 8 kB |   8.7 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  47%
+node_modules_date-fns_loc | 8 kB |   8.4 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  58%
+node_modules_date-fns_loc | 6 kB |   6.8 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  39%
+node_modules_date-fns_loc | 10 kB |  10.0 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  58%
+node_modules_date-fns_loc | 6 kB |   6.8 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  37%
+node_modules_date-fns_loc | 10 kB |  10.6 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  68%
+node_modules_date-fns_loc | 5 kB |   5.8 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  55%
+node_modules_date-fns_loc | 7 kB |   7.2 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  64%
+node_modules_date-fns_loc | 6 kB |   6.2 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  55%
+node_modules_date-fns_loc | 7 kB |   7.2 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  55%
+node_modules_date-fns_loc | 7 kB |   7.2 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  70%
+node_modules_date-fns_loc | 5 kB |   5.7 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  51%
+node_modules_date-fns_loc | 7 kB |   7.7 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  47%
+node_modules_date-fns_loc | 8 kB |   8.4 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  69%
+node_modules_date-fns_loc | 5 kB |   5.7 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  70%
+node_modules_date-fns_loc | 5 kB |   5.7 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  66%
+node_modules_date-fns_loc | 6 kB |   6.1 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  67%
+node_modules_date-fns_loc | 5 kB |   5.9 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  73%
+node_modules_date-fns_loc | 5 kB |   5.4 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  50%
+node_modules_date-fns_loc | 7 kB |   7.9 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  74%
+node_modules_date-fns_loc | 5 kB |   5.4 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  76%
+node_modules_date-fns_loc | 5 kB |   5.3 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  64%
+node_modules_date-fns_loc | 6 kB |   6.2 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  67%
+node_modules_date-fns_loc | 5 kB |   5.9 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  37%
+node_modules_date-fns_loc | 10 kB |  10.7 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  49%
+node_modules_date-fns_loc | 8 kB |   8.1 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  41%
+node_modules_date-fns_loc | 9 kB |   9.8 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  67%
+node_modules_date-fns_loc | 5 kB |   5.9 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:02 |  30%
+node_modules_date-fns_loc | 13 kB |  13.0 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  44%
+node_modules_date-fns_loc | 9 kB |   9.1 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  66%
+node_modules_date-fns_loc | 6 kB |   6.1 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  52%
+node_modules_date-fns_loc | 7 kB |   7.6 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  67%
+node_modules_date-fns_loc | 5 kB |   5.9 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_next_04~_e52 | 4 kB |   4.0 kB/s | ETA: 00:00:18 |   5%
+node_modules_next_04~_e52 | 76 kB |  76.6 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_next_dist_es | 4 kB |   4.0 kB/s | ETA: 00:00:06 |  13%
+node_modules_next_dist_es | 29 kB |  29.5 kB/s | ETA: 00:00:00 | 100%
+
+04bq_richtext-lexical_dis | 0 kB |   0.3 kB/s | ETA: 00:00:00 | 100%
+
+04bq_richtext-lexical_dis | 2 kB |   2.2 kB/s | ETA: 00:00:00 | 100%
+
+0t6k_@payloadcms_richtext | 0 kB |   0.3 kB/s | ETA: 00:00:00 | 100%
+
+0t6k_@payloadcms_richtext | 0 kB |   0.4 kB/s | ETA: 00:00:00 | 100%
+
+0t6k_@payloadcms_richtext | 3 kB |   3.5 kB/s | ETA: 00:00:00 | 100%
+
+0_lp_modules_@payloadcms_ | 4 kB |   4.0 kB/s | ETA: 00:00:22 |   4%
+0_lp_modules_@payloadcms_ | 93 kB |  93.6 kB/s | ETA: 00:00:00 | 100%
+
+0_lp_modules_@payloadcms_ | 4 kB |   4.0 kB/s | ETA: 00:00:09 |   9%
+0_lp_modules_@payloadcms_ | 41 kB |  41.0 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_0.--b.s._.js | 0 kB |   0.7 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_02g.caz._.js | 4 kB |   4.0 kB/s | ETA: 00:00:05 |  14%
+node_modules_02g.caz._.js | 26 kB |  26.8 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_07vfkmd._.js | 2 kB |   2.5 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_09w7yel._.js | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  69%
+node_modules_09w7yel._.js | 5 kB |   5.8 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_0cfahel._.js | 4 kB |   4.0 kB/s | ETA: 00:00:02 |  30%
+node_modules_0cfahel._.js | 13 kB |  13.3 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_0dmdlg7._.js | 4 kB |   4.0 kB/s | ETA: 00:01:45 |   0%
+node_modules_0dmdlg7._.js | 184 kB | 184.0 kB/s | ETA: 00:00:01 |  43%
+node_modules_0dmdlg7._.js | 368 kB | 184.0 kB/s | ETA: 00:00:00 |  86%
+node_modules_0dmdlg7._.js | 425 kB | 212.7 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_0efmwgg._.js | 4 kB |   4.0 kB/s | ETA: 00:00:29 |   3%
+node_modules_0efmwgg._.js | 120 kB | 120.1 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_0egpy6p._.js | 4 kB |   4.0 kB/s | ETA: 00:00:05 |  14%
+node_modules_0egpy6p._.js | 26 kB |  26.8 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_0eidzfh._.js | 4 kB |   4.0 kB/s | ETA: 00:01:19 |   1%
+node_modules_0eidzfh._.js | 240 kB | 240.0 kB/s | ETA: 00:00:00 |  74%
+node_modules_0eidzfh._.js | 320 kB | 320.2 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_0eot4w6._.js | 4 kB |   4.0 kB/s | ETA: 00:04:47 |   0%
+node_modules_0eot4w6._.js | 168 kB | 168.0 kB/s | ETA: 00:00:05 |  14%
+node_modules_0eot4w6._.js | 912 kB | 456.0 kB/s | ETA: 00:00:00 |  78%
+node_modules_0eot4w6._.js | 1154 kB | 577.4 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_0gjfqjd._.js | 4 kB |   4.0 kB/s | ETA: 00:02:20 |   0%
+node_modules_0gjfqjd._.js | 566 kB | 566.2 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_0izfsoy._.js | 4 kB |   4.0 kB/s | ETA: 00:03:48 |   0%
+node_modules_0izfsoy._.js | 292 kB | 292.0 kB/s | ETA: 00:00:02 |  31%
+node_modules_0izfsoy._.js | 918 kB | 918.0 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_0pn~w4t._.js | 4 kB |   4.0 kB/s | ETA: 00:00:02 |  27%
+node_modules_0pn~w4t._.js | 14 kB |  14.7 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_0vbsbn~._.js | 4 kB |   4.0 kB/s | ETA: 00:00:13 |   6%
+node_modules_0vbsbn~._.js | 59 kB |  59.1 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_0yywjb.._.js | 4 kB |   4.0 kB/s | ETA: 00:04:47 |   0%
+node_modules_0yywjb.._.js | 1112 kB | 1112.0 kB/s | ETA: 00:00:00 |  96%
+node_modules_0yywjb.._.js | 1154 kB | 1154.8 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_@payloadcms_ | 4 kB |   4.0 kB/s | ETA: 00:00:13 |   6%
+node_modules_@payloadcms_ | 57 kB |  57.3 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_@payloadcms_ | 4 kB |   4.0 kB/s | ETA: 00:00:06 |  12%
+node_modules_@payloadcms_ | 31 kB |  31.6 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_@payloadcms_ | 4 kB |   4.0 kB/s | ETA: 00:00:03 |  23%
+node_modules_@payloadcms_ | 17 kB |  17.1 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_@payloadcms_ | 0 kB |   0.2 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_@payloadcms_ | 0 kB |   0.2 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_@payloadcms_ | 4 kB |   4.0 kB/s | ETA: 00:00:03 |  24%
+node_modules_@payloadcms_ | 16 kB |  16.2 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_00s | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  63%
+node_modules_date-fns_00s | 6 kB |   6.3 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_045 | 4 kB |   4.0 kB/s | ETA: 00:00:02 |  31%
+node_modules_date-fns_045 | 12 kB |  12.8 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_048 | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  46%
+node_modules_date-fns_048 | 8 kB |   8.6 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_04g | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  48%
+node_modules_date-fns_04g | 8 kB |   8.3 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_05_ | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  34%
+node_modules_date-fns_05_ | 11 kB |  11.5 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_05~ | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  46%
+node_modules_date-fns_05~ | 8 kB |   8.6 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_0a8 | 4 kB |   4.0 kB/s | ETA: 00:00:02 |  31%
+node_modules_date-fns_0a8 | 12 kB |  12.8 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_0b~ | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  62%
+node_modules_date-fns_0b~ | 6 kB |   6.4 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_0ev | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  44%
+node_modules_date-fns_0ev | 8 kB |   9.0 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_0fm | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  37%
+node_modules_date-fns_0fm | 10 kB |  10.7 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_0gc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  55%
+node_modules_date-fns_0gc | 7 kB |   7.2 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_0h3 | 4 kB |   4.0 kB/s | ETA: 00:00:02 |  26%
+node_modules_date-fns_0h3 | 15 kB |  15.3 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_0j4 | 4 kB |   4.0 kB/s | ETA: 00:00:02 |  26%
+node_modules_date-fns_0j4 | 15 kB |  15.3 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_0l~ | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  45%
+node_modules_date-fns_0l~ | 8 kB |   8.8 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_0mp | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  62%
+node_modules_date-fns_0mp | 6 kB |   6.4 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_0nn | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  44%
+node_modules_date-fns_0nn | 8 kB |   8.9 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_0qy | 4 kB |   4.0 kB/s | ETA: 00:00:02 |  31%
+node_modules_date-fns_0qy | 12 kB |  12.8 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_0vq | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  55%
+node_modules_date-fns_0vq | 7 kB |   7.2 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_0z6 | 4 kB |   4.0 kB/s | ETA: 00:00:02 |  31%
+node_modules_date-fns_0z6 | 12 kB |  12.8 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_0_3 | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  41%
+node_modules_date-fns_0_3 | 9 kB |   9.6 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_12g | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  44%
+node_modules_date-fns_12g | 8 kB |   9.0 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_12n | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  63%
+node_modules_date-fns_12n | 6 kB |   6.3 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_134 | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  36%
+node_modules_date-fns_134 | 11 kB |  11.1 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_13y | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  48%
+node_modules_date-fns_13y | 8 kB |   8.3 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  46%
+node_modules_date-fns_loc | 8 kB |   8.7 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  42%
+node_modules_date-fns_loc | 9 kB |   9.4 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  52%
+node_modules_date-fns_loc | 7 kB |   7.6 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  34%
+node_modules_date-fns_loc | 11 kB |  11.5 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  45%
+node_modules_date-fns_loc | 8 kB |   8.7 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  55%
+node_modules_date-fns_loc | 7 kB |   7.2 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  52%
+node_modules_date-fns_loc | 7 kB |   7.6 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  58%
+node_modules_date-fns_loc | 6 kB |   6.9 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  41%
+node_modules_date-fns_loc | 9 kB |   9.6 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  48%
+node_modules_date-fns_loc | 8 kB |   8.3 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  48%
+node_modules_date-fns_loc | 8 kB |   8.3 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  43%
+node_modules_date-fns_loc | 9 kB |   9.1 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:02 |  27%
+node_modules_date-fns_loc | 14 kB |  14.5 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  35%
+node_modules_date-fns_loc | 11 kB |  11.2 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  58%
+node_modules_date-fns_loc | 6 kB |   6.8 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  55%
+node_modules_date-fns_loc | 7 kB |   7.2 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  40%
+node_modules_date-fns_loc | 9 kB |   9.9 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  54%
+node_modules_date-fns_loc | 7 kB |   7.4 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:02 |  32%
+node_modules_date-fns_loc | 12 kB |  12.2 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  43%
+node_modules_date-fns_loc | 9 kB |   9.2 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  54%
+node_modules_date-fns_loc | 7 kB |   7.3 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  54%
+node_modules_date-fns_loc | 7 kB |   7.4 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:02 |  33%
+node_modules_date-fns_loc | 12 kB |  12.1 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  54%
+node_modules_date-fns_loc | 7 kB |   7.3 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  37%
+node_modules_date-fns_loc | 10 kB |  10.6 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  59%
+node_modules_date-fns_loc | 6 kB |   6.7 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  55%
+node_modules_date-fns_loc | 7 kB |   7.1 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  53%
+node_modules_date-fns_loc | 7 kB |   7.5 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  54%
+node_modules_date-fns_loc | 7 kB |   7.4 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  53%
+node_modules_date-fns_loc | 7 kB |   7.4 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  40%
+node_modules_date-fns_loc | 9 kB |   9.9 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  53%
+node_modules_date-fns_loc | 7 kB |   7.5 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  45%
+node_modules_date-fns_loc | 8 kB |   8.7 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  47%
+node_modules_date-fns_loc | 8 kB |   8.4 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  47%
+node_modules_date-fns_loc | 8 kB |   8.4 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  58%
+node_modules_date-fns_loc | 6 kB |   6.8 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  58%
+node_modules_date-fns_loc | 6 kB |   6.8 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  39%
+node_modules_date-fns_loc | 10 kB |  10.0 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  39%
+node_modules_date-fns_loc | 10 kB |  10.0 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  58%
+node_modules_date-fns_loc | 6 kB |   6.8 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  58%
+node_modules_date-fns_loc | 6 kB |   6.8 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  37%
+node_modules_date-fns_loc | 10 kB |  10.6 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  37%
+node_modules_date-fns_loc | 10 kB |  10.6 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  68%
+node_modules_date-fns_loc | 5 kB |   5.8 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  68%
+node_modules_date-fns_loc | 5 kB |   5.8 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  55%
+node_modules_date-fns_loc | 7 kB |   7.2 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  55%
+node_modules_date-fns_loc | 7 kB |   7.2 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  64%
+node_modules_date-fns_loc | 6 kB |   6.2 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  64%
+node_modules_date-fns_loc | 6 kB |   6.2 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  55%
+node_modules_date-fns_loc | 7 kB |   7.2 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  55%
+node_modules_date-fns_loc | 7 kB |   7.2 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  55%
+node_modules_date-fns_loc | 7 kB |   7.2 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  55%
+node_modules_date-fns_loc | 7 kB |   7.2 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  70%
+node_modules_date-fns_loc | 5 kB |   5.7 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  70%
+node_modules_date-fns_loc | 5 kB |   5.7 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  51%
+node_modules_date-fns_loc | 7 kB |   7.7 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  51%
+node_modules_date-fns_loc | 7 kB |   7.7 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  47%
+node_modules_date-fns_loc | 8 kB |   8.4 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  47%
+node_modules_date-fns_loc | 8 kB |   8.4 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  69%
+node_modules_date-fns_loc | 5 kB |   5.7 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  69%
+node_modules_date-fns_loc | 5 kB |   5.7 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  70%
+node_modules_date-fns_loc | 5 kB |   5.7 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  70%
+node_modules_date-fns_loc | 5 kB |   5.7 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  66%
+node_modules_date-fns_loc | 6 kB |   6.1 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  66%
+node_modules_date-fns_loc | 6 kB |   6.1 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  67%
+node_modules_date-fns_loc | 5 kB |   5.9 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  67%
+node_modules_date-fns_loc | 5 kB |   5.9 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  73%
+node_modules_date-fns_loc | 5 kB |   5.4 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  73%
+node_modules_date-fns_loc | 5 kB |   5.4 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  50%
+node_modules_date-fns_loc | 7 kB |   7.9 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  50%
+node_modules_date-fns_loc | 7 kB |   7.9 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  74%
+node_modules_date-fns_loc | 5 kB |   5.3 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  74%
+node_modules_date-fns_loc | 5 kB |   5.3 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  76%
+node_modules_date-fns_loc | 5 kB |   5.3 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  76%
+node_modules_date-fns_loc | 5 kB |   5.3 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  64%
+node_modules_date-fns_loc | 6 kB |   6.2 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  64%
+node_modules_date-fns_loc | 6 kB |   6.2 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  67%
+node_modules_date-fns_loc | 5 kB |   5.9 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  67%
+node_modules_date-fns_loc | 5 kB |   5.9 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  37%
+node_modules_date-fns_loc | 10 kB |  10.7 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  37%
+node_modules_date-fns_loc | 10 kB |  10.7 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  49%
+node_modules_date-fns_loc | 8 kB |   8.1 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  49%
+node_modules_date-fns_loc | 8 kB |   8.1 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  41%
+node_modules_date-fns_loc | 9 kB |   9.7 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  41%
+node_modules_date-fns_loc | 9 kB |   9.8 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  67%
+node_modules_date-fns_loc | 5 kB |   5.9 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  67%
+node_modules_date-fns_loc | 5 kB |   5.9 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:02 |  30%
+node_modules_date-fns_loc | 13 kB |  13.0 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:02 |  30%
+node_modules_date-fns_loc | 13 kB |  13.0 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  44%
+node_modules_date-fns_loc | 9 kB |   9.1 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  44%
+node_modules_date-fns_loc | 9 kB |   9.1 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  66%
+node_modules_date-fns_loc | 6 kB |   6.0 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  66%
+node_modules_date-fns_loc | 6 kB |   6.1 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  52%
+node_modules_date-fns_loc | 7 kB |   7.6 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  52%
+node_modules_date-fns_loc | 7 kB |   7.6 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  67%
+node_modules_date-fns_loc | 5 kB |   5.9 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_date-fns_loc | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  67%
+node_modules_date-fns_loc | 5 kB |   5.9 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_framer-motio | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  96%
+node_modules_framer-motio | 4 kB |   4.2 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_framer-motio | 4 kB |   4.0 kB/s | ETA: 00:00:27 |   3%
+node_modules_framer-motio | 114 kB | 114.6 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_next_0rd0oc- | 4 kB |   4.0 kB/s | ETA: 00:00:09 |   9%
+node_modules_next_0rd0oc- | 41 kB |  41.6 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_next_0x_me2y | 4 kB |   4.0 kB/s | ETA: 00:00:02 |  27%
+node_modules_next_0x_me2y | 14 kB |  14.3 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_next_dist_0- | 4 kB |   4.0 kB/s | ETA: 00:00:12 |   7%
+node_modules_next_dist_0- | 52 kB |  52.2 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_next_dist_02 | 4 kB |   4.0 kB/s | ETA: 00:00:08 |  10%
+node_modules_next_dist_02 | 39 kB |  39.4 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_next_dist_03 | 4 kB |   4.0 kB/s | ETA: 00:00:23 |   4%
+node_modules_next_dist_03 | 98 kB |  98.9 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_next_dist_06 | 4 kB |   4.0 kB/s | ETA: 00:00:38 |   2%
+node_modules_next_dist_06 | 156 kB | 156.3 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_next_dist_0a | 4 kB |   4.0 kB/s | ETA: 00:00:11 |   8%
+node_modules_next_dist_0a | 49 kB |  50.0 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_next_dist_0a | 4 kB |   4.0 kB/s | ETA: 00:00:08 |  10%
+node_modules_next_dist_0a | 39 kB |  39.4 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_next_dist_0h | 4 kB |   4.0 kB/s | ETA: 00:00:17 |   5%
+node_modules_next_dist_0h | 72 kB |  72.7 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_next_dist_cl | 2 kB |   2.5 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_next_dist_cl | 0 kB |   0.6 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_next_dist_cl | 0 kB |   0.5 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_next_dist_cl | 0 kB |   0.7 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_next_dist_es | 4 kB |   4.0 kB/s | ETA: 00:00:04 |  17%
+node_modules_next_dist_es | 22 kB |  22.5 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_next_dist_es | 4 kB |   4.0 kB/s | ETA: 00:00:04 |  17%
+node_modules_next_dist_es | 22 kB |  22.5 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_next_dist_es | 4 kB |   4.0 kB/s | ETA: 00:00:04 |  17%
+node_modules_next_dist_es | 22 kB |  22.3 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_next_dist_es | 4 kB |   4.0 kB/s | ETA: 00:00:04 |  17%
+node_modules_next_dist_es | 22 kB |  22.4 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_next_dist_es | 4 kB |   4.0 kB/s | ETA: 00:00:04 |  18%
+node_modules_next_dist_es | 22 kB |  22.1 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_next_dist_es | 4 kB |   4.0 kB/s | ETA: 00:00:04 |  17%
+node_modules_next_dist_es | 22 kB |  22.5 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_next_dist_es | 4 kB |   4.0 kB/s | ETA: 00:00:04 |  17%
+node_modules_next_dist_es | 22 kB |  22.4 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_next_dist_es | 4 kB |   4.0 kB/s | ETA: 00:00:04 |  17%
+node_modules_next_dist_es | 22 kB |  22.4 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_next_dist_es | 4 kB |   4.0 kB/s | ETA: 00:00:04 |  17%
+node_modules_next_dist_es | 22 kB |  22.5 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_next_dist_es | 4 kB |   4.0 kB/s | ETA: 00:00:04 |  17%
+node_modules_next_dist_es | 22 kB |  22.4 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_next_dist_es | 4 kB |   4.0 kB/s | ETA: 00:00:04 |  17%
+node_modules_next_dist_es | 22 kB |  22.4 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_next_dist_es | 4 kB |   4.0 kB/s | ETA: 00:00:04 |  18%
+node_modules_next_dist_es | 21 kB |  21.4 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_next_dist_es | 4 kB |   4.0 kB/s | ETA: 00:00:04 |  17%
+node_modules_next_dist_es | 22 kB |  22.4 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_next_dist_es | 4 kB |   4.0 kB/s | ETA: 00:00:04 |  17%
+node_modules_next_dist_es | 22 kB |  22.4 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_next_dist_es | 4 kB |   4.0 kB/s | ETA: 00:00:04 |  17%
+node_modules_next_dist_es | 22 kB |  22.6 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_next_dist_es | 4 kB |   4.0 kB/s | ETA: 00:00:04 |  17%
+node_modules_next_dist_es | 22 kB |  22.4 kB/s | ETA: 00:00:00 | 100%
+
+src_0gv9uq0._.js          | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  72%
+src_0gv9uq0._.js          | 5 kB |   5.5 kB/s | ETA: 00:00:00 | 100%
+
+src_app_(frontend)_contac | 4 kB |   4.0 kB/s | ETA: 00:00:15 |   6%
+src_app_(frontend)_contac | 64 kB |  64.2 kB/s | ETA: 00:00:00 | 100%
+
+src_app_(frontend)_cookie | 3 kB |   3.9 kB/s | ETA: 00:00:00 | 100%
+
+src_app_(frontend)_page_t | 4 kB |   4.0 kB/s | ETA: 00:00:09 |   9%
+src_app_(frontend)_page_t | 43 kB |  43.7 kB/s | ETA: 00:00:00 | 100%
+
+src_app_(frontend)_privac | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  95%
+src_app_(frontend)_privac | 4 kB |   4.2 kB/s | ETA: 00:00:00 | 100%
+
+src_app_(frontend)_produc | 4 kB |   4.0 kB/s | ETA: 00:00:11 |   8%
+src_app_(frontend)_produc | 49 kB |  49.0 kB/s | ETA: 00:00:00 | 100%
+
+src_app_(frontend)_produc | 4 kB |   4.0 kB/s | ETA: 00:00:16 |   5%
+src_app_(frontend)_produc | 71 kB |  71.8 kB/s | ETA: 00:00:00 | 100%
+
+src_app_(frontend)_terms_ | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  72%
+src_app_(frontend)_terms_ | 5 kB |   5.5 kB/s | ETA: 00:00:00 | 100%
+
+src_components_0kk8np8._. | 4 kB |   4.0 kB/s | ETA: 00:00:04 |  19%
+src_components_0kk8np8._. | 20 kB |  20.0 kB/s | ETA: 00:00:00 | 100%
+
+[root-of-the-server]__0-a | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  53%
+[root-of-the-server]__0-a | 7 kB |   7.4 kB/s | ETA: 00:00:00 | 100%
+
+[root-of-the-server]__0-i | 1 kB |   1.8 kB/s | ETA: 00:00:00 | 100%
+
+[root-of-the-server]__04- | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  53%
+[root-of-the-server]__04- | 7 kB |   7.5 kB/s | ETA: 00:00:00 | 100%
+
+[root-of-the-server]__04~ | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  42%
+[root-of-the-server]__04~ | 9 kB |   9.4 kB/s | ETA: 00:00:00 | 100%
+
+[root-of-the-server]__05l | 4 kB |   4.0 kB/s | ETA: 00:00:03 |  22%
+[root-of-the-server]__05l | 17 kB |  17.5 kB/s | ETA: 00:00:00 | 100%
+
+[root-of-the-server]__07h | 4 kB |   4.0 kB/s | ETA: 00:00:02 |  26%
+[root-of-the-server]__07h | 15 kB |  15.4 kB/s | ETA: 00:00:00 | 100%
+
+[root-of-the-server]__0f2 | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  54%
+[root-of-the-server]__0f2 | 7 kB |   7.4 kB/s | ETA: 00:00:00 | 100%
+
+[root-of-the-server]__0fs | 4 kB |   4.0 kB/s | ETA: 00:00:53 |   1%
+[root-of-the-server]__0fs | 217 kB | 217.5 kB/s | ETA: 00:00:00 | 100%
+
+[root-of-the-server]__0fw | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  58%
+[root-of-the-server]__0fw | 6 kB |   6.8 kB/s | ETA: 00:00:00 | 100%
+
+[root-of-the-server]__0gj | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  53%
+[root-of-the-server]__0gj | 7 kB |   7.4 kB/s | ETA: 00:00:00 | 100%
+
+[root-of-the-server]__0g~ | 4 kB |   4.0 kB/s | ETA: 00:00:04 |  17%
+[root-of-the-server]__0g~ | 22 kB |  22.6 kB/s | ETA: 00:00:00 | 100%
+
+[root-of-the-server]__0h8 | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  53%
+[root-of-the-server]__0h8 | 7 kB |   7.5 kB/s | ETA: 00:00:00 | 100%
+
+[root-of-the-server]__0i1 | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  53%
+[root-of-the-server]__0i1 | 7 kB |   7.5 kB/s | ETA: 00:00:00 | 100%
+
+[root-of-the-server]__0jn | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  53%
+[root-of-the-server]__0jn | 7 kB |   7.4 kB/s | ETA: 00:00:00 | 100%
+
+[root-of-the-server]__0on | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  62%
+[root-of-the-server]__0on | 6 kB |   6.4 kB/s | ETA: 00:00:00 | 100%
+
+[root-of-the-server]__0ow | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  53%
+[root-of-the-server]__0ow | 7 kB |   7.4 kB/s | ETA: 00:00:00 | 100%
+
+[root-of-the-server]__0ow | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  47%
+[root-of-the-server]__0ow | 8 kB |   8.5 kB/s | ETA: 00:00:00 | 100%
+
+[root-of-the-server]__0tb | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  53%
+[root-of-the-server]__0tb | 7 kB |   7.5 kB/s | ETA: 00:00:00 | 100%
+
+[root-of-the-server]__0vn | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  53%
+[root-of-the-server]__0vn | 7 kB |   7.5 kB/s | ETA: 00:00:00 | 100%
+
+[root-of-the-server]__0v~ | 1 kB |   1.4 kB/s | ETA: 00:00:00 | 100%
+
+[root-of-the-server]__0~q | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  53%
+[root-of-the-server]__0~q | 7 kB |   7.5 kB/s | ETA: 00:00:00 | 100%
+
+[root-of-the-server]__107 | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  53%
+[root-of-the-server]__107 | 7 kB |   7.4 kB/s | ETA: 00:00:00 | 100%
+
+[root-of-the-server]__10x | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  65%
+[root-of-the-server]__10x | 6 kB |   6.1 kB/s | ETA: 00:00:00 | 100%
+
+[root-of-the-server]__11r | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  34%
+[root-of-the-server]__11r | 11 kB |  11.6 kB/s | ETA: 00:00:00 | 100%
+
+[turbopack]_runtime.js    | 4 kB |   4.0 kB/s | ETA: 00:00:07 |  11%
+[turbopack]_runtime.js    | 33 kB |  33.4 kB/s | ETA: 00:00:00 | 100%
+
+_01yf3zo._.js             | 2 kB |   2.4 kB/s | ETA: 00:00:00 | 100%
+
+_053wxhp._.js             | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  35%
+_053wxhp._.js             | 11 kB |  11.3 kB/s | ETA: 00:00:00 | 100%
+
+_06nthze._.js             | 4 kB |   4.0 kB/s | ETA: 00:00:02 |  31%
+_06nthze._.js             | 12 kB |  12.7 kB/s | ETA: 00:00:00 | 100%
+
+_0bqlz9v._.js             | 4 kB |   4.0 kB/s | ETA: 00:00:08 |  10%
+_0bqlz9v._.js             | 36 kB |  36.6 kB/s | ETA: 00:00:00 | 100%
+
+_0d4e8es._.js             | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  65%
+_0d4e8es._.js             | 6 kB |   6.1 kB/s | ETA: 00:00:00 | 100%
+
+_0e~kbff._.js             | 4 kB |   4.0 kB/s | ETA: 00:00:05 |  16%
+_0e~kbff._.js             | 24 kB |  24.2 kB/s | ETA: 00:00:00 | 100%
+
+_0fj7fju._.js             | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  72%
+_0fj7fju._.js             | 5 kB |   5.5 kB/s | ETA: 00:00:00 | 100%
+
+_0fzu_nt._.js             | 4 kB |   4.0 kB/s | ETA: 00:00:33 |   2%
+_0fzu_nt._.js             | 138 kB | 138.7 kB/s | ETA: 00:00:00 | 100%
+
+_0hglm7z._.js             | 4 kB |   4.0 kB/s | ETA: 00:00:04 |  18%
+_0hglm7z._.js             | 21 kB |  21.1 kB/s | ETA: 00:00:00 | 100%
+
+_0mu1jh.._.js             | 4 kB |   4.0 kB/s | ETA: 00:00:10 |   8%
+_0mu1jh.._.js             | 46 kB |  46.3 kB/s | ETA: 00:00:00 | 100%
+
+_0m_3fvu._.js             | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  85%
+_0m_3fvu._.js             | 4 kB |   4.7 kB/s | ETA: 00:00:00 | 100%
+
+_0n5uuuk._.js             | 4 kB |   4.0 kB/s | ETA: 00:03:21 |   0%
+_0n5uuuk._.js             | 809 kB | 809.1 kB/s | ETA: 00:00:00 | 100%
+
+_0ycbo~g._.js             | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  70%
+_0ycbo~g._.js             | 5 kB |   5.7 kB/s | ETA: 00:00:00 | 100%
+
+_next-internal_server_app | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+_next-internal_server_app | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+_next-internal_server_app | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+_next-internal_server_app | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+_next-internal_server_app | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+_next-internal_server_app | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+_next-internal_server_app | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+_next-internal_server_app | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+_next-internal_server_app | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+_next-internal_server_app | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+_next-internal_server_app | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+_next-internal_server_app | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+_next-internal_server_app | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+_next-internal_server_app | 0 kB |   0.4 kB/s | ETA: 00:00:00 | 100%
+
+_next-internal_server_app | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+_next-internal_server_app | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+[externals]_next_dist_0sq | 1 kB |   1.0 kB/s | ETA: 00:00:00 | 100%
+
+[externals]_next_dist_com | 0 kB |   0.2 kB/s | ETA: 00:00:00 | 100%
+
+[root-of-the-server]__00a | 4 kB |   4.0 kB/s | ETA: 00:00:03 |  22%
+[root-of-the-server]__00a | 18 kB |  18.0 kB/s | ETA: 00:00:00 | 100%
+
+[root-of-the-server]__092 | 4 kB |   4.0 kB/s | ETA: 00:00:03 |  23%
+[root-of-the-server]__092 | 16 kB |  16.9 kB/s | ETA: 00:00:00 | 100%
+
+[root-of-the-server]__0c4 | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  40%
+[root-of-the-server]__0c4 | 9 kB |   9.8 kB/s | ETA: 00:00:00 | 100%
+
+[root-of-the-server]__0lp | 4 kB |   4.0 kB/s | ETA: 00:00:03 |  22%
+[root-of-the-server]__0lp | 17 kB |  17.8 kB/s | ETA: 00:00:00 | 100%
+
+[root-of-the-server]__0ow | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  40%
+[root-of-the-server]__0ow | 9 kB |   9.8 kB/s | ETA: 00:00:00 | 100%
+
+[root-of-the-server]__11j | 4 kB |   4.0 kB/s | ETA: 00:00:18 |   5%
+[root-of-the-server]__11j | 77 kB |  77.7 kB/s | ETA: 00:00:00 | 100%
+
+[turbopack]_runtime.js    | 4 kB |   4.0 kB/s | ETA: 00:00:07 |  11%
+[turbopack]_runtime.js    | 33 kB |  33.4 kB/s | ETA: 00:00:00 | 100%
+
+_0.tqv2r._.js             | 4 kB |   4.0 kB/s | ETA: 00:08:09 |   0%
+_0.tqv2r._.js             | 640 kB | 640.0 kB/s | ETA: 00:00:02 |  32%
+_0.tqv2r._.js             | 1264 kB | 632.0 kB/s | ETA: 00:00:01 |  64%
+_0.tqv2r._.js             | 1962 kB | 981.2 kB/s | ETA: 00:00:00 | 100%
+
+_0ae0dm0._.js             | 4 kB |   4.0 kB/s | ETA: 00:00:07 |  12%
+_0ae0dm0._.js             | 32 kB |  32.9 kB/s | ETA: 00:00:00 | 100%
+
+_0h4e-iv._.js             | 4 kB |   4.0 kB/s | ETA: 00:08:09 |   0%
+_0h4e-iv._.js             | 932 kB | 932.0 kB/s | ETA: 00:00:01 |  47%
+_0h4e-iv._.js             | 1636 kB | 818.0 kB/s | ETA: 00:00:00 |  83%
+_0h4e-iv._.js             | 1962 kB | 981.2 kB/s | ETA: 00:00:00 | 100%
+
+_0t~_jje._.js             | 4 kB |   4.0 kB/s | ETA: 00:00:02 |  30%
+_0t~_jje._.js             | 13 kB |  13.3 kB/s | ETA: 00:00:00 | 100%
+
+_0u5n2~i._.js             | 4 kB |   4.0 kB/s | ETA: 00:00:07 |  12%
+_0u5n2~i._.js             | 32 kB |  32.7 kB/s | ETA: 00:00:00 | 100%
+
+_next-internal_server_app | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+_next-internal_server_app | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+_next-internal_server_app | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+_next-internal_server_app | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+_next-internal_server_app | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+_next-internal_server_app | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+node_modules_next_dist_0d | 4 kB |   4.0 kB/s | ETA: 00:00:33 |   2%
+node_modules_next_dist_0d | 138 kB | 138.5 kB/s | ETA: 00:00:00 | 100%
+
+turbopack-node_modules_ne | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  40%
+turbopack-node_modules_ne | 9 kB |   9.8 kB/s | ETA: 00:00:00 | 100%
+
+[root-of-the-server]__0zr | 0 kB |   0.6 kB/s | ETA: 00:00:00 | 100%
+
+functions-config-manifest | 0 kB |   0.0 kB/s | ETA: 00:00:00 | 100%
+
+middleware-build-manifest | 0 kB |   0.6 kB/s | ETA: 00:00:00 | 100%
+
+middleware-manifest.json  | 1 kB |   1.3 kB/s | ETA: 00:00:00 | 100%
+
+next-font-manifest.js     | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+next-font-manifest.json   | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+404.html                  | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  52%
+404.html                  | 7 kB |   7.6 kB/s | ETA: 00:00:00 | 100%
+
+500.html                  | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  44%
+500.html                  | 8 kB |   9.0 kB/s | ETA: 00:00:00 | 100%
+
+pages-manifest.json       | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+prefetch-hints.json       | 0 kB |   0.0 kB/s | ETA: 00:00:00 | 100%
+
+server-reference-manifest | 1 kB |   1.1 kB/s | ETA: 00:00:00 | 100%
+
+server-reference-manifest | 0 kB |   0.9 kB/s | ETA: 00:00:00 | 100%
+
+admin_error.txt           | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  90%
+admin_error.txt           | 4 kB |   4.4 kB/s | ETA: 00:00:00 | 100%
+
+AGENTS.md                 | 0 kB |   0.3 kB/s | ETA: 00:00:00 | 100%
+
+Aeomed.svg                | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  62%
+Aeomed.svg                | 6 kB |   6.4 kB/s | ETA: 00:00:00 | 100%
+
+heyer.svg                 | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  48%
+heyer.svg                 | 8 kB |   8.2 kB/s | ETA: 00:00:00 | 100%
+
+perlong.svg               | 4 kB |   4.0 kB/s | ETA: 00:00:08 |  10%
+perlong.svg               | 37 kB |  37.7 kB/s | ETA: 00:00:00 | 100%
+
+zerone.svg                | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  38%
+zerone.svg                | 10 kB |  10.3 kB/s | ETA: 00:00:00 | 100%
+
+CE.svg                    | 1 kB |   1.4 kB/s | ETA: 00:00:00 | 100%
+
+Care Specialized Hospital | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  37%
+Care Specialized Hospital | 10 kB |  10.7 kB/s | ETA: 00:00:00 | 100%
+
+City Hospital.svg         | 4 kB |   4.0 kB/s | ETA: 00:00:04 |  19%
+City Hospital.svg         | 21 kB |  21.0 kB/s | ETA: 00:00:00 | 100%
+
+Continental Hospital.svg  | 4 kB |   4.0 kB/s | ETA: 00:00:04 |  18%
+Continental Hospital.svg  | 21 kB |  21.7 kB/s | ETA: 00:00:00 | 100%
+
+Implus Hospital.svg       | 4 kB |   4.0 kB/s | ETA: 00:00:02 |  29%
+Implus Hospital.svg       | 13 kB |  13.6 kB/s | ETA: 00:00:00 | 100%
+
+Popular Hospital .svg     | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  74%
+Popular Hospital .svg     | 5 kB |   5.4 kB/s | ETA: 00:00:00 | 100%
+
+United Hospital.svg       | 4 kB |   4.0 kB/s | ETA: 00:00:02 |  30%
+United Hospital.svg       | 13 kB |  13.3 kB/s | ETA: 00:00:00 | 100%
+
+DGDA.svg                  | 4 kB |   4.0 kB/s | ETA: 00:00:05 |  14%
+DGDA.svg                  | 27 kB |  27.7 kB/s | ETA: 00:00:00 | 100%
+
+FDA.svg                   | 1 kB |   1.4 kB/s | ETA: 00:00:00 | 100%
+
+Fevicon White Group.png   | 4 kB |   4.0 kB/s | ETA: 00:00:03 |  23%
+Fevicon White Group.png   | 17 kB |  17.3 kB/s | ETA: 00:00:00 | 100%
+
+Healing Technology Chairm | 4 kB |   4.0 kB/s | ETA: 00:05:41 |   0%
+Healing Technology Chairm | 544 kB | 544.0 kB/s | ETA: 00:00:01 |  39%
+Healing Technology Chairm | 1370 kB | 1370.8 kB/s | ETA: 00:00:00 | 100%
+
+Healing Technology Fevico | 4 kB |   4.0 kB/s | ETA: 00:00:04 |  18%
+Healing Technology Fevico | 21 kB |  21.4 kB/s | ETA: 00:00:00 | 100%
+
+healing technology logo S | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  42%
+healing technology logo S | 9 kB |   9.5 kB/s | ETA: 00:00:00 | 100%
+
+healing technology logo S | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  43%
+healing technology logo S | 9 kB |   9.2 kB/s | ETA: 00:00:00 | 100%
+
+Healing Technology OG.png | 4 kB |   4.0 kB/s | ETA: 00:04:35 |   0%
+Healing Technology OG.png | 544 kB | 544.0 kB/s | ETA: 00:00:01 |  49%
+Healing Technology OG.png | 1106 kB | 1106.5 kB/s | ETA: 00:00:00 | 100%
+
+IOS 13485.svg             | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  37%
+IOS 13485.svg             | 10 kB |  10.7 kB/s | ETA: 00:00:00 | 100%
+
+IOS 9000_2015.svg         | 4 kB |   4.0 kB/s | ETA: 00:00:02 |  31%
+IOS 9000_2015.svg         | 12 kB |  12.6 kB/s | ETA: 00:00:00 | 100%
+
+location .png             | 4 kB |   4.0 kB/s | ETA: 00:00:05 |  15%
+location .png             | 25 kB |  25.5 kB/s | ETA: 00:00:00 | 100%
+
+stock.jpg                 | 4 kB |   4.0 kB/s | ETA: 00:09:24 |   0%
+stock.jpg                 | 1776 kB | 1776.0 kB/s | ETA: 00:00:00 |  78%
+stock.jpg                 | 2261 kB | 2261.5 kB/s | ETA: 00:00:00 | 100%
+
+ATTRIBUTIONS.md           | 0 kB |   0.3 kB/s | ETA: 00:00:00 | 100%
+
+build.log                 | 2 kB |   2.7 kB/s | ETA: 00:00:00 | 100%
+
+build2.log                | 1 kB |   1.8 kB/s | ETA: 00:00:00 | 100%
+
+build3.log                | 1 kB |   1.7 kB/s | ETA: 00:00:00 | 100%
+
+build4.log                | 1 kB |   1.7 kB/s | ETA: 00:00:00 | 100%
+
+build5.log                | 1 kB |   1.7 kB/s | ETA: 00:00:00 | 100%
+
+build6.log                | 1 kB |   1.9 kB/s | ETA: 00:00:00 | 100%
+
+CLAUDE.md                 | 0 kB |   0.0 kB/s | ETA: 00:00:00 | 100%
+
+components.json           | 0 kB |   0.5 kB/s | ETA: 00:00:00 | 100%
+
+create-db.mjs             | 0 kB |   0.7 kB/s | ETA: 00:00:00 | 100%
+
+credentials.md            | 0 kB |   0.2 kB/s | ETA: 00:00:00 | 100%
+
+design.md                 | 1 kB |   1.4 kB/s | ETA: 00:00:00 | 100%
+
+err.log                   | 1 kB |   1.0 kB/s | ETA: 00:00:00 | 100%
+
+eslint.config.mjs         | 0 kB |   0.5 kB/s | ETA: 00:00:00 | 100%
+
+ATTRIBUTIONS.md           | 0 kB |   0.3 kB/s | ETA: 00:00:00 | 100%
+
+index.html                | 0 kB |   0.3 kB/s | ETA: 00:00:00 | 100%
+
+package.json              | 2 kB |   2.5 kB/s | ETA: 00:00:00 | 100%
+
+postcss.config.mjs        | 0 kB |   0.4 kB/s | ETA: 00:00:00 | 100%
+
+README.md                 | 0 kB |   0.3 kB/s | ETA: 00:00:00 | 100%
+
+App.tsx                   | 0 kB |   0.2 kB/s | ETA: 00:00:00 | 100%
+
+ImageWithFallback.tsx     | 1 kB |   1.1 kB/s | ETA: 00:00:00 | 100%
+
+Layout.tsx                | 4 kB |   4.0 kB/s | ETA: 00:00:03 |  22%
+Layout.tsx                | 17 kB |  17.6 kB/s | ETA: 00:00:00 | 100%
+
+PageTemplate.tsx          | 1 kB |   1.2 kB/s | ETA: 00:00:00 | 100%
+
+accordion.tsx             | 2 kB |   2.0 kB/s | ETA: 00:00:00 | 100%
+
+alert-dialog.tsx          | 3 kB |   3.8 kB/s | ETA: 00:00:00 | 100%
+
+alert.tsx                 | 1 kB |   1.6 kB/s | ETA: 00:00:00 | 100%
+
+aspect-ratio.tsx          | 0 kB |   0.3 kB/s | ETA: 00:00:00 | 100%
+
+avatar.tsx                | 1 kB |   1.1 kB/s | ETA: 00:00:00 | 100%
+
+badge.tsx                 | 1 kB |   1.6 kB/s | ETA: 00:00:00 | 100%
+
+breadcrumb.tsx            | 2 kB |   2.3 kB/s | ETA: 00:00:00 | 100%
+
+button.tsx                | 2 kB |   2.1 kB/s | ETA: 00:00:00 | 100%
+
+calendar.tsx              | 2 kB |   2.8 kB/s | ETA: 00:00:00 | 100%
+
+card.tsx                  | 1 kB |   1.9 kB/s | ETA: 00:00:00 | 100%
+
+carousel.tsx              | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  73%
+carousel.tsx              | 5 kB |   5.5 kB/s | ETA: 00:00:00 | 100%
+
+chart.tsx                 | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  41%
+chart.tsx                 | 9 kB |   9.6 kB/s | ETA: 00:00:00 | 100%
+
+checkbox.tsx              | 1 kB |   1.2 kB/s | ETA: 00:00:00 | 100%
+
+collapsible.tsx           | 0 kB |   0.8 kB/s | ETA: 00:00:00 | 100%
+
+command.tsx               | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  87%
+command.tsx               | 4 kB |   4.6 kB/s | ETA: 00:00:00 | 100%
+
+context-menu.tsx          | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  49%
+context-menu.tsx          | 8 kB |   8.1 kB/s | ETA: 00:00:00 | 100%
+
+dialog.tsx                | 3 kB |   3.7 kB/s | ETA: 00:00:00 | 100%
+
+drawer.tsx                | 3 kB |   4.0 kB/s | ETA: 00:00:00 | 100%
+
+dropdown-menu.tsx         | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  49%
+dropdown-menu.tsx         | 8 kB |   8.1 kB/s | ETA: 00:00:00 | 100%
+
+form.tsx                  | 3 kB |   3.7 kB/s | ETA: 00:00:00 | 100%
+
+hover-card.tsx            | 1 kB |   1.5 kB/s | ETA: 00:00:00 | 100%
+
+input-otp.tsx             | 2 kB |   2.2 kB/s | ETA: 00:00:00 | 100%
+
+input.tsx                 | 0 kB |   0.9 kB/s | ETA: 00:00:00 | 100%
+
+label.tsx                 | 0 kB |   0.6 kB/s | ETA: 00:00:00 | 100%
+
+menubar.tsx               | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  48%
+menubar.tsx               | 8 kB |   8.2 kB/s | ETA: 00:00:00 | 100%
+
+navigation-menu.tsx       | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  61%
+navigation-menu.tsx       | 6 kB |   6.5 kB/s | ETA: 00:00:00 | 100%
+
+pagination.tsx            | 2 kB |   2.6 kB/s | ETA: 00:00:00 | 100%
+
+popover.tsx               | 1 kB |   1.6 kB/s | ETA: 00:00:00 | 100%
+
+progress.tsx              | 0 kB |   0.7 kB/s | ETA: 00:00:00 | 100%
+
+radio-group.tsx           | 1 kB |   1.4 kB/s | ETA: 00:00:00 | 100%
+
+resizable.tsx             | 1 kB |   2.0 kB/s | ETA: 00:00:00 | 100%
+
+scroll-area.tsx           | 1 kB |   1.6 kB/s | ETA: 00:00:00 | 100%
+
+select.tsx                | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  65%
+select.tsx                | 6 kB |   6.1 kB/s | ETA: 00:00:00 | 100%
+
+separator.tsx             | 0 kB |   0.7 kB/s | ETA: 00:00:00 | 100%
+
+sheet.tsx                 | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  99%
+sheet.tsx                 | 4 kB |   4.0 kB/s | ETA: 00:00:00 | 100%
+
+sidebar.tsx               | 4 kB |   4.0 kB/s | ETA: 00:00:04 |  18%
+sidebar.tsx               | 21 kB |  21.2 kB/s | ETA: 00:00:00 | 100%
+
+skeleton.tsx              | 0 kB |   0.3 kB/s | ETA: 00:00:00 | 100%
+
+slider.tsx                | 1 kB |   2.0 kB/s | ETA: 00:00:00 | 100%
+
+sonner.tsx                | 0 kB |   0.6 kB/s | ETA: 00:00:00 | 100%
+
+switch.tsx                | 1 kB |   1.2 kB/s | ETA: 00:00:00 | 100%
+
+table.tsx                 | 2 kB |   2.4 kB/s | ETA: 00:00:00 | 100%
+
+tabs.tsx                  | 1 kB |   1.9 kB/s | ETA: 00:00:00 | 100%
+
+textarea.tsx              | 0 kB |   0.7 kB/s | ETA: 00:00:00 | 100%
+
+toggle-group.tsx          | 1 kB |   1.9 kB/s | ETA: 00:00:00 | 100%
+
+toggle.tsx                | 1 kB |   1.5 kB/s | ETA: 00:00:00 | 100%
+
+tooltip.tsx               | 1 kB |   1.9 kB/s | ETA: 00:00:00 | 100%
+
+use-mobile.ts             | 0 kB |   0.6 kB/s | ETA: 00:00:00 | 100%
+
+utils.ts                  | 0 kB |   0.2 kB/s | ETA: 00:00:00 | 100%
+
+mockData.ts               | 3 kB |   3.2 kB/s | ETA: 00:00:00 | 100%
+
+About.tsx                 | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  55%
+About.tsx                 | 7 kB |   7.3 kB/s | ETA: 00:00:00 | 100%
+
+Contact.tsx               | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  50%
+Contact.tsx               | 7 kB |   7.9 kB/s | ETA: 00:00:00 | 100%
+
+Cookies.tsx               | 1 kB |   1.8 kB/s | ETA: 00:00:00 | 100%
+
+Home.tsx                  | 4 kB |   4.0 kB/s | ETA: 00:00:02 |  27%
+Home.tsx                  | 14 kB |  14.3 kB/s | ETA: 00:00:00 | 100%
+
+News.tsx                  | 2 kB |   2.0 kB/s | ETA: 00:00:00 | 100%
+
+NotFound.tsx              | 0 kB |   0.8 kB/s | ETA: 00:00:00 | 100%
+
+Privacy.tsx               | 2 kB |   2.0 kB/s | ETA: 00:00:00 | 100%
+
+Products.tsx              | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  55%
+Products.tsx              | 7 kB |   7.3 kB/s | ETA: 00:00:00 | 100%
+
+Quality.tsx               | 1 kB |   1.7 kB/s | ETA: 00:00:00 | 100%
+
+Regulatory.tsx            | 1 kB |   1.8 kB/s | ETA: 00:00:00 | 100%
+
+Terms.tsx                 | 2 kB |   2.1 kB/s | ETA: 00:00:00 | 100%
+
+routes.ts                 | 1 kB |   1.2 kB/s | ETA: 00:00:00 | 100%
+
+27b4648f777c0ff1034273634 | 4 kB |   4.0 kB/s | ETA: 00:00:19 |   4%
+27b4648f777c0ff1034273634 | 80 kB |  80.2 kB/s | ETA: 00:00:00 | 100%
+
+36a886ef4d471c6972b477e3e | 4 kB |   4.0 kB/s | ETA: 00:00:19 |   4%
+36a886ef4d471c6972b477e3e | 81 kB |  81.1 kB/s | ETA: 00:00:00 | 100%
+
+39874e1a514d8a3f83c95d2fb | 4 kB |   4.0 kB/s | ETA: 00:12:30 |   0%
+39874e1a514d8a3f83c95d2fb | 832 kB | 832.0 kB/s | ETA: 00:00:02 |  27%
+39874e1a514d8a3f83c95d2fb | 1120 kB | 560.0 kB/s | ETA: 00:00:03 |  37%
+39874e1a514d8a3f83c95d2fb | 1844 kB | 614.7 kB/s | ETA: 00:00:01 |  61%
+39874e1a514d8a3f83c95d2fb | 2716 kB | 679.0 kB/s | ETA: 00:00:00 |  90%
+39874e1a514d8a3f83c95d2fb | 3007 kB | 751.8 kB/s | ETA: 00:00:00 | 100%
+
+e2225487728b55367532ed5c8 | 4 kB |   4.0 kB/s | ETA: 00:00:19 |   4%
+e2225487728b55367532ed5c8 | 81 kB |  81.4 kB/s | ETA: 00:00:00 | 100%
+
+healing-tech-prd.md       | 4 kB |   4.0 kB/s | ETA: 00:00:08 |  10%
+healing-tech-prd.md       | 36 kB |  36.5 kB/s | ETA: 00:00:00 | 100%
+
+main.tsx                  | 0 kB |   0.2 kB/s | ETA: 00:00:00 | 100%
+
+fonts.css                 | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+index.css                 | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+tailwind.css              | 0 kB |   0.1 kB/s | ETA: 00:00:00 | 100%
+
+theme.css                 | 4 kB |   4.0 kB/s | ETA: 00:00:00 |  75%
+theme.css                 | 5 kB |   5.3 kB/s | ETA: 00:00:00 | 100%
+
+vite.config.ts            | 0 kB |   0.6 kB/s | ETA: 00:00:00 | 100%
+
+importmap_error.txt       | 1 kB |   1.1 kB/s | ETA: 00:00:00 | 100%
+
+importmap_result.txt      | 1 kB |   1.2 kB/s | ETA: 00:00:00 | 100%
+
+next.config.ts            | 0 kB |   0.2 kB/s | ETA: 00:00:00 | 100%
+
+color.cjs                 | 4 kB |   4.0 kB/s | ETA: 00:00:10 |   9%
+color.cjs                 | 44 kB |  44.1 kB/s | ETA: 00:00:00 | 100%
+
+index.cjs                 | 0 kB |   0.0 kB/s | ETA: 00:00:00 | 100%
+
+package.json              | 1 kB |   1.5 kB/s | ETA: 00:00:00 | 100%
+
+sharp-win32-arm64.node    | 4 kB |   4.0 kB/s | ETA: 00:01:45 |   0%
+sharp-win32-arm64.node    | 425 kB | 425.5 kB/s | ETA: 00:00:00 | 100%
+
+package.json              | 0 kB |   0.9 kB/s | ETA: 00:00:00 | 100%
+
+versions.json             | 0 kB |   0.6 kB/s | ETA: 00:00:00 | 100%
+
+index.js                  | 4 kB |   4.0 kB/s | ETA: 00:00:01 |  41%
+index.js                  | 9 kB |   9.7 kB/s | ETA: 00:00:00 | 100%
+
+package.json              | 0 kB |   0.9 kB/s | ETA: 00:00:00 | 100%

@@ -1,0 +1,6 @@
+HOME_IS:/var/www/vhosts/healingtechnology.com.bd
+total 208
+drwxr-xr-x 11 healingtechnology psacln   4096 Apr  8 22:29 .
+drwxr-x--- 11 healingtechnology psaserv  4096 Apr  8 21:43 ..
+-rw-r--r--  1 healingtechnology psacln     21 Apr  8 21:41 BUILD_ID
+-rw-r--r--  1 healingtechnology psacln   1008 Apr  8 21:40 app-path-routes-manifest.json

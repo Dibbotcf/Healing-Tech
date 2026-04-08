@@ -1,0 +1,7 @@
+total 1488
+drwxr-xr-x  9 healingtechnology psacln   4096 Apr  8 21:41 .
+drwxr-xr-x 11 healingtechnology psacln   4096 Apr  8 21:41 ..
+-rw-r--r--  1 healingtechnology psacln    132 Apr  8 21:41 .env
+drwxr-xr-x  4 healingtechnology psacln   4096 Apr  8 21:41 .next
+---
+ls: cannot access '/var/www/vhosts/healingtechnology.com.bd/httpdocs/payload.db': No such file or directory

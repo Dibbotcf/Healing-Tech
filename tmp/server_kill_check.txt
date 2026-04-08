@@ -1,0 +1,3 @@
+KILLED_OLD
+-rw-r--r-- 1 healingtechnology psacln 7137 Apr  8 22:54 /var/www/vhosts/healingtechnology.com.bd/httpdocs/.next/standalone/server.js
+next
