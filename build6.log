@@ -1,0 +1,43 @@
+
+> healing-technology@0.1.0 build
+> next build
+
+Γû▓ Next.js 16.2.2 (Turbopack)
+- Environments: .env
+
+ΓÜá The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+  Creating an optimized production build ...
+Turbopack build encountered 1 warnings:
+./next.config.ts
+Encountered unexpected file in NFT list
+A file was traced that indicates that the whole project was traced unintentionally. Somewhere in the import trace below, there are:
+- filesystem operations (like path.join, path.resolve or fs.readFile), or
+- very dynamic requires (like require('./' + foo)).
+To resolve this, you can
+- remove them if possible, or
+- only use them in development, or
+- make sure they are statically scoped to some subfolder: path.join(process.cwd(), 'data', bar), or
+- add ignore comments: path.join(/*turbopackIgnore: true*/ process.cwd(), bar)
+
+Import trace:
+  App Route:
+    ./next.config.ts
+    ./src/app/api/seed-images/route.ts
+
+
+Γ£ô Compiled successfully in 18.9s
+  Running TypeScript ...
+Failed to type check.
+
+./src/components/ProductSpecsTable.tsx:27:13
+Type error: Type '{ children: Element[]; "aria-label": string; removeWrapper: true; className: string; }' is not assignable to type 'IntrinsicAttributes & Omit<TableRootProps, "ref"> & RefAttributes<HTMLDivElement>'.
+  Property 'removeWrapper' does not exist on type 'IntrinsicAttributes & Omit<TableRootProps, "ref"> & RefAttributes<HTMLDivElement>'.
+
+  25 |           <Table 
+  26 |             aria-label={`${group.groupTitle} Specifications`} 
+> 27 |             removeWrapper 
+     |             ^
+  28 |             className="border border-[#27272a] rounded-2xl overflow-hidden bg-[#18181b]"
+  29 |           >
+  30 |             <TableHeader>
+Next.js build worker exited with code: 1 and signal: null

@@ -21,7 +21,7 @@ export async function GET() {
     { name: 'Hungustads', slug: 'hungustads' },
     { name: 'Healing Technology', slug: 'healing-technology', countryOfOrigin: 'Bangladesh' },
   ]
-  const brandIds: Record<string, string> = {}
+  const brandIds: Record<string, string | number> = {}
   console.log('Seeding Brands...')
   for (const b of brandsData) {
     try {
@@ -49,7 +49,7 @@ export async function GET() {
     { title: 'Clinical Accessories', slug: 'clinical-accessories' },
     { title: 'Diagnostics/Lab', slug: 'diagnostics-lab' },
   ]
-  const categoryIds: Record<string, string> = {}
+  const categoryIds: Record<string, string | number> = {}
   console.log('Seeding Categories...')
   for (const c of categoriesData) {
     try {

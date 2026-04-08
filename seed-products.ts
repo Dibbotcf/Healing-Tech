@@ -17,7 +17,7 @@ async function seedData() {
     { name: 'Hungustads', slug: 'hungustads' },
     { name: 'Healing Technology', slug: 'healing-technology', countryOfOrigin: 'Bangladesh' },
   ]
-  const brandIds: Record<string, string> = {}
+  const brandIds: Record<string, string | number> = {}
   console.log('Seeding Brands...')
   for (const b of brandsData) {
     try {
@@ -43,7 +43,7 @@ async function seedData() {
     { title: 'Clinical Accessories', slug: 'clinical-accessories' },
     { title: 'Diagnostics/Lab', slug: 'diagnostics-lab' },
   ]
-  const categoryIds: Record<string, string> = {}
+  const categoryIds: Record<string, string | number> = {}
   console.log('Seeding Categories...')
   for (const c of categoriesData) {
     try {
@@ -281,7 +281,7 @@ async function seedData() {
       } else {
         console.log(`⏩ Skipped product: ${p.name} (already exists)`)
       }
-    } catch (e) {
+    } catch (e: any) {
       console.error(`Failed to create product ${p.name}:`, e.message)
     }
   }

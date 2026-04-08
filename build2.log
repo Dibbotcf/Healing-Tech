@@ -1,0 +1,50 @@
+
+> healing-technology@0.1.0 build
+> next build
+
+Γû▓ Next.js 16.2.2 (Turbopack)
+- Environments: .env
+
+ΓÜá The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+  Creating an optimized production build ...
+Found 1 warning while optimizing generated CSS:
+
+Γöé   initial-value: 0;
+Γöé }
+Γöé @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+Γöå        ^-- @import rules must precede all rules aside from @charset and @layer statements
+Γöå
+Γöé :root {
+Γöé   --card: #ffffff;
+
+Turbopack build encountered 1 warnings:
+./next.config.ts
+Encountered unexpected file in NFT list
+A file was traced that indicates that the whole project was traced unintentionally. Somewhere in the import trace below, there are:
+- filesystem operations (like path.join, path.resolve or fs.readFile), or
+- very dynamic requires (like require('./' + foo)).
+To resolve this, you can
+- remove them if possible, or
+- only use them in development, or
+- make sure they are statically scoped to some subfolder: path.join(process.cwd(), 'data', bar), or
+- add ignore comments: path.join(/*turbopackIgnore: true*/ process.cwd(), bar)
+
+Import trace:
+  App Route:
+    ./next.config.ts
+    ./src/app/api/seed-images/route.ts
+
+
+Γ£ô Compiled successfully in 17.6s
+  Running TypeScript ...
+Failed to type check.
+
+./Figma Design Site/src/app/App.tsx:1:32
+Type error: Cannot find module 'react-router' or its corresponding type declarations.
+
+> 1 | import { RouterProvider } from "react-router";
+    |                                ^
+  2 | import { router } from "./routes";
+  3 |
+  4 | export default function App() {
+Next.js build worker exited with code: 1 and signal: null

@@ -24,14 +24,13 @@ export function ProductSpecsTable({ specGroups }: { specGroups: SpecGroup[] }) {
           </h3>
           <Table 
             aria-label={`${group.groupTitle} Specifications`} 
-            removeWrapper 
             className="border border-[#27272a] rounded-2xl overflow-hidden bg-[#18181b]"
           >
             <TableHeader>
               <TableColumn className="bg-[#18181b] text-zinc-400 uppercase text-xs font-semibold tracking-widest py-4 border-b border-zinc-800 w-1/3">Feature</TableColumn>
               <TableColumn className="bg-[#18181b] text-zinc-400 uppercase text-xs font-semibold tracking-widest py-4 border-b border-zinc-800">Specification</TableColumn>
             </TableHeader>
-            <TableBody items={group.rows || []} emptyContent="No specifications available.">
+            <TableBody items={group.rows || []}>
               {(row) => (
                 <TableRow key={row.label} className="border-b border-zinc-800 hover:bg-zinc-800/50 transition-colors">
                   <TableCell className="px-6 py-4 text-sm font-medium text-zinc-300 capitalize">{row.label}</TableCell>

@@ -1,0 +1,43 @@
+
+> healing-technology@0.1.0 build
+> next build
+
+Γû▓ Next.js 16.2.2 (Turbopack)
+- Environments: .env
+
+ΓÜá The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+  Creating an optimized production build ...
+Turbopack build encountered 1 warnings:
+./next.config.ts
+Encountered unexpected file in NFT list
+A file was traced that indicates that the whole project was traced unintentionally. Somewhere in the import trace below, there are:
+- filesystem operations (like path.join, path.resolve or fs.readFile), or
+- very dynamic requires (like require('./' + foo)).
+To resolve this, you can
+- remove them if possible, or
+- only use them in development, or
+- make sure they are statically scoped to some subfolder: path.join(process.cwd(), 'data', bar), or
+- add ignore comments: path.join(/*turbopackIgnore: true*/ process.cwd(), bar)
+
+Import trace:
+  App Route:
+    ./next.config.ts
+    ./src/app/api/seed-images/route.ts
+
+
+Γ£ô Compiled successfully in 19.5s
+  Running TypeScript ...
+Failed to type check.
+
+./seed-products.ts:26:9
+Type error: Type 'string | number' is not assignable to type 'string'.
+  Type 'number' is not assignable to type 'string'.
+
+  24 |       const existing = await payload.find({ collection: 'brands', where: { slug: { equals:...
+  25 |       if (existing.docs.length > 0) {
+> 26 |         brandIds[b.name] = existing.docs[0].id
+     |         ^
+  27 |       } else {
+  28 |         const created = await payload.create({ collection: 'brands', data: b })
+  29 |         brandIds[b.name] = created.id
+Next.js build worker exited with code: 1 and signal: null
