@@ -12,7 +12,9 @@ interface Product {
   slug: string;
   listingSummary: string;
   markAsNew?: boolean;
-  heroImage?: { url: string } | null;
+  price?: number | null;
+  discountPrice?: number | null;
+  heroImage?: { url: string; mimeType?: string } | null;
   category?: { title: string; slug: string } | string;
   brand?: { name: string } | string;
 }
@@ -32,10 +34,7 @@ export function ProductCarousel() {
       .then((r) => r.json())
       .then((data) => {
         let fetchedProducts = data.docs || [];
-        // Duplicate products if there are too few to enforce an infinite scroll loop safely
-        if (fetchedProducts.length > 0 && fetchedProducts.length < 8) {
-          fetchedProducts = [...fetchedProducts, ...fetchedProducts, ...fetchedProducts].slice(0, 8);
-        }
+
         setProducts(fetchedProducts);
         setLoading(false);
       })
@@ -113,7 +112,11 @@ export function ProductCarousel() {
                     <div className="bg-white rounded-xl border border-gray-100 hover:border-[#12B5CB]/30 hover:shadow-xl transition-all duration-300 overflow-hidden h-full flex flex-col">
                       <div className="relative h-[200px] bg-[#F8F9FA] overflow-hidden pointer-events-none">
                         {heroUrl ? (
-                          <img src={heroUrl} alt={product.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                          product.heroImage?.mimeType?.startsWith('video/') ? (
+                            <video src={heroUrl} autoPlay loop muted playsInline className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                          ) : (
+                            <img src={heroUrl} alt={product.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                          )
                         ) : (
                           <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-[#00355D]/5 to-[#12B5CB]/10">
                             <span className="text-[#00355D]/20 text-6xl font-bold">{product.name.charAt(0)}</span>
@@ -129,11 +132,26 @@ export function ProductCarousel() {
                         {catTitle && <p className="text-[10px] font-bold text-[#12B5CB] uppercase tracking-[0.1em] mb-2">{catTitle}</p>}
                         <h3 className="font-bold text-[#00355D] text-xl tracking-tight mb-3 group-hover:text-[#12B5CB] transition-colors leading-snug">{product.name}</h3>
                         <p className="text-sm text-[#575B5F] leading-relaxed line-clamp-2 mb-4 flex-1">{product.listingSummary}</p>
-                        <div className="flex items-center justify-between mt-auto pt-4 border-t border-gray-50">
-                          {brandName && <span className="text-xs text-[#575B5F] font-bold uppercase tracking-wider">{brandName}</span>}
-                          <span className="text-[#12B5CB] text-sm font-bold inline-flex items-center gap-1 group-hover:gap-2 transition-all">
-                            View Details <ArrowRight className="w-3.5 h-3.5" />
-                          </span>
+                        
+                        <div className="mt-auto flex flex-col gap-3">
+                          {(product.price != null || product.discountPrice != null) && (
+                            <div className="flex items-center gap-2">
+                              {product.discountPrice != null ? (
+                                <>
+                                  <span className="text-lg font-extrabold text-[#12B5CB]">৳{product.discountPrice.toLocaleString()}</span>
+                                  <span className="text-sm text-gray-400 line-through">৳{product.price?.toLocaleString()}</span>
+                                </>
+                              ) : (
+                                <span className="text-lg font-extrabold text-[#12B5CB]">৳{product.price?.toLocaleString()}</span>
+                              )}
+                            </div>
+                          )}
+                          <div className="flex items-center justify-between pt-4 border-t border-gray-50">
+                            {brandName && <span className="text-xs text-[#575B5F] font-bold uppercase tracking-wider">{brandName}</span>}
+                            <span className="text-[#12B5CB] text-sm font-bold inline-flex items-center gap-1 group-hover:gap-2 transition-all">
+                              View Details <ArrowRight className="w-3.5 h-3.5" />
+                            </span>
+                          </div>
                         </div>
                       </div>
                     </div>

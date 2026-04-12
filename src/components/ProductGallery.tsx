@@ -1,16 +1,16 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, Play } from "lucide-react";
 
-export function ProductGallery({ images }: { images: { url: string; alt?: string }[] }) {
+type MediaItem = { url: string; alt?: string; mimeType?: string };
+
+export function ProductGallery({ images }: { images: MediaItem[] }) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   if (!images || images.length === 0) {
     return (
       <div className="w-full aspect-square bg-white rounded-3xl flex flex-col items-center justify-center gap-4 shadow-xl shadow-[#00355D]/5 border border-[#00355D]/5">
-        {/* Clean geometric placeholder — no generic icons */}
         <div className="flex items-center justify-center gap-3 opacity-20">
           <div className="w-8 h-8 rounded-full bg-[#12B5CB]" />
           <div className="w-16 h-2 rounded-full bg-[#00355D]" />
@@ -24,42 +24,84 @@ export function ProductGallery({ images }: { images: { url: string; alt?: string
   const next = () => setCurrentIndex((prev) => (prev + 1) % images.length);
   const prev = () => setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
 
-  return (
-    <div className="w-full aspect-square bg-white rounded-3xl flex items-center justify-center p-8 relative overflow-hidden shadow-xl shadow-[#00355D]/5 group">
-      <Image
-        src={images[currentIndex].url}
-        alt={images[currentIndex].alt || `Product Image ${currentIndex + 1}`}
-        fill
-        className="object-contain p-8 mix-blend-multiply transition-opacity duration-300"
-      />
-      
-      {images.length > 1 && (
-        <>
-          <button
-            onClick={prev}
-            className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/80 backdrop-blur border border-gray-200 rounded-full flex items-center justify-center text-gray-700 hover:bg-white hover:text-[#12B5CB] shadow-md opacity-0 group-hover:opacity-100 transition-all pointer-events-auto"
-          >
-            <ChevronLeft className="w-5 h-5" />
-          </button>
-          <button
-            onClick={next}
-            className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/80 backdrop-blur border border-gray-200 rounded-full flex items-center justify-center text-gray-700 hover:bg-white hover:text-[#12B5CB] shadow-md opacity-0 group-hover:opacity-100 transition-all pointer-events-auto"
-          >
-            <ChevronRight className="w-5 h-5" />
-          </button>
+  const current = images[currentIndex];
+  const isVideo = current.mimeType?.startsWith('video/') || /\.(mp4|webm|ogg|mov)$/i.test(current.url);
 
-          {/* Dots Indicator */}
-          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-2">
-            {images.map((_, i) => (
+  return (
+    <div className="flex flex-col gap-4">
+      {/* Main viewer */}
+      <div className="w-full aspect-square bg-white rounded-3xl relative overflow-hidden shadow-xl shadow-[#00355D]/5 group border border-[#00355D]/5">
+        {isVideo ? (
+          <video
+            key={current.url}
+            src={current.url}
+            autoPlay
+            loop
+            muted
+            playsInline
+            controls
+            className="absolute inset-0 w-full h-full object-contain p-4"
+          />
+        ) : (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            key={current.url}
+            src={current.url}
+            alt={current.alt || `Product Image ${currentIndex + 1}`}
+            className="absolute inset-0 w-full h-full object-contain p-8 mix-blend-multiply transition-opacity duration-300"
+          />
+        )}
+
+        {/* Prev/Next arrows */}
+        {images.length > 1 && (
+          <>
+            <button
+              onClick={prev}
+              className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/80 backdrop-blur border border-gray-200 rounded-full flex items-center justify-center text-gray-700 hover:bg-white hover:text-[#12B5CB] shadow-md opacity-0 group-hover:opacity-100 transition-all"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+            <button
+              onClick={next}
+              className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/80 backdrop-blur border border-gray-200 rounded-full flex items-center justify-center text-gray-700 hover:bg-white hover:text-[#12B5CB] shadow-md opacity-0 group-hover:opacity-100 transition-all"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
+          </>
+        )}
+      </div>
+
+      {/* Thumbnail strip — only shows if there are multiple items */}
+      {images.length > 1 && (
+        <div className="flex gap-2 overflow-x-auto pb-1">
+          {images.map((item, i) => {
+            const thumbIsVideo = item.mimeType?.startsWith('video/') || /\.(mp4|webm|ogg|mov)$/i.test(item.url);
+            return (
               <button
                 key={i}
                 onClick={() => setCurrentIndex(i)}
-                className={`w-2 h-2 rounded-full transition-all ${i === currentIndex ? 'bg-[#12B5CB] w-4' : 'bg-gray-300 hover:bg-gray-400'}`}
-              />
-            ))}
-          </div>
-        </>
+                className={`flex-shrink-0 w-16 h-16 rounded-xl overflow-hidden border-2 transition-all ${
+                  i === currentIndex ? 'border-[#12B5CB] shadow-md' : 'border-transparent hover:border-gray-300'
+                }`}
+              >
+                {thumbIsVideo ? (
+                  <div className="w-full h-full bg-[#00355D]/10 flex items-center justify-center">
+                    <Play className="w-5 h-5 text-[#12B5CB]" />
+                  </div>
+                ) : (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={item.url}
+                    alt={item.alt || `Thumbnail ${i + 1}`}
+                    className="w-full h-full object-cover mix-blend-multiply"
+                  />
+                )}
+              </button>
+            );
+          })}
+        </div>
       )}
     </div>
   );
 }
+

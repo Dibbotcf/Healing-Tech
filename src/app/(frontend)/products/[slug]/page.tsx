@@ -6,6 +6,7 @@ import { ArrowLeft, CheckCircle2, FileText, Download } from 'lucide-react'
 import { notFound } from 'next/navigation'
 import ReactCountryFlag from "react-country-flag"
 import { ProductGallery } from '@/components/ProductGallery'
+import { BrandPopupCard } from '@/components/BrandPopupCard'
 
 // Extracts the first word/country from strings like "Malaysia (Pressure regulator)"
 const extractCountry = (raw: string): string => {
@@ -52,14 +53,14 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
   const category = product.category && typeof product.category !== 'string' ? product.category : null;
 
   // Gather all images for the gallery (hero + gallery array)
-  const images: { url: string; alt?: string }[] = [];
+  const images: { url: string; alt?: string; mimeType?: string }[] = [];
   if (product.heroImage && typeof product.heroImage !== 'string' && product.heroImage.url) {
-    images.push({ url: product.heroImage.url, alt: (product.heroImage as any).alt || product.name });
+    images.push({ url: product.heroImage.url, alt: (product.heroImage as any).alt || product.name, mimeType: (product.heroImage as any).mimeType });
   }
   if (product.gallery && product.gallery.length > 0) {
     product.gallery.forEach((g: any) => {
       if (g.image && typeof g.image !== 'string' && g.image.url) {
-        images.push({ url: g.image.url, alt: g.alt || g.image.alt || product.name });
+        images.push({ url: g.image.url, alt: g.alt || g.image.alt || product.name, mimeType: (g.image as any).mimeType });
       }
     });
   }
@@ -142,6 +143,20 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
                 {product.name}
               </h1>
 
+              {/* Pricing */}
+              {(product.price != null || product.discountPrice != null) && (
+                <div className="flex items-end gap-3 mb-8">
+                  {product.discountPrice != null ? (
+                    <>
+                      <span className="text-4xl md:text-5xl font-extrabold text-[#12B5CB] tracking-tight">৳{product.discountPrice.toLocaleString()}</span>
+                      <span className="text-xl md:text-2xl text-[#575B5F]/50 line-through pb-1">৳{product.price?.toLocaleString()}</span>
+                    </>
+                  ) : (
+                    <span className="text-4xl md:text-5xl font-extrabold text-[#12B5CB] tracking-tight">৳{product.price?.toLocaleString()}</span>
+                  )}
+                </div>
+              )}
+
               {/* Short Summary */}
               {product.shortSummary && (
                 <p className="text-base md:text-lg text-[#00355D]/70 font-light leading-relaxed mb-10 max-w-xl tracking-[-0.01em]">
@@ -170,23 +185,9 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
                   Request a Quote
                 </Link>
 
-                {/* Brand card — only logo (no icon fallback) */}
+                {/* Brand card popup */}
                 {brand && (
-                  <div className="flex items-center gap-3 bg-white pl-4 pr-5 py-2.5 rounded-full border border-[#00355D]/8 shadow-sm">
-                    {brandLogoUrl ? (
-                      <div className="relative h-7 w-[72px] mix-blend-multiply flex-shrink-0">
-                        <Image src={brandLogoUrl} alt={brand.name} fill className="object-contain" />
-                      </div>
-                    ) : null}
-                    <div className="flex flex-col gap-0.5">
-                      <span className="text-[9px] text-[#00355D]/40 uppercase tracking-[0.2em] font-bold leading-none">
-                        Manufacturer
-                      </span>
-                      <span className="text-sm text-[#00355D] font-bold leading-none tracking-[-0.02em]">
-                        {brand.name}
-                      </span>
-                    </div>
-                  </div>
+                  <BrandPopupCard brand={brand} brandLogoUrl={brandLogoUrl} />
                 )}
               </div>
             </div>

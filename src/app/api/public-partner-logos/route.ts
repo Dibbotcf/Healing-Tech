@@ -1,0 +1,29 @@
+import { getPayload } from "payload";
+import configPromise from "@/payload.config";
+import { NextResponse } from "next/server";
+
+export const dynamic = 'force-dynamic';
+
+export async function GET() {
+  try {
+    const payload = await getPayload({ config: configPromise });
+
+    const logoDocs = await payload.find({
+      collection: "partner-logos",
+      sort: "sortOrder",
+      limit: 100,
+    });
+
+    const logos = logoDocs.docs.map((l: any) => ({
+      id: String(l.id),
+      name: l.name,
+      logo: typeof l.logo === "object" ? l.logo.url : "",
+      website: l.website || "",
+    }));
+
+    return NextResponse.json(logos);
+  } catch (error) {
+    console.error("Partner logos API Error:", error);
+    return NextResponse.json([], { status: 500 });
+  }
+}

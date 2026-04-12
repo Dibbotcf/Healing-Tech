@@ -4,17 +4,20 @@ import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import path from 'path'
 import { fileURLToPath } from 'url'
 import { seoPlugin } from '@payloadcms/plugin-seo'
+import sharp from 'sharp'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
 export default buildConfig({
+  sharp,
   serverURL: process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:12000',
   cors: process.env.NEXT_PUBLIC_SITE_URL ? [process.env.NEXT_PUBLIC_SITE_URL] : undefined,
   csrf: process.env.NEXT_PUBLIC_SITE_URL ? [process.env.NEXT_PUBLIC_SITE_URL] : undefined,
   admin: {
     user: 'users',
     theme: 'dark',
+    suppressHydrationWarning: true,
     livePreview: {
       url: process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:12000',
       collections: ['products', 'legalPages'],
@@ -26,6 +29,21 @@ export default buildConfig({
       auth: true,
       admin: { useAsTitle: 'email' },
       fields: [],
+    },
+    // Partner Logos
+    {
+      slug: 'partner-logos',
+      admin: {
+        useAsTitle: 'name',
+        defaultColumns: ['name', 'logo'],
+      },
+      access: { read: () => true },
+      fields: [
+        { name: 'name', type: 'text', required: true },
+        { name: 'logo', type: 'upload', relationTo: 'media', required: true },
+        { name: 'website', type: 'text' },
+        { name: 'sortOrder', type: 'number', defaultValue: 0 },
+      ],
     },
     // Brands
     {
@@ -93,6 +111,8 @@ export default buildConfig({
       fields: [
         { name: 'name', type: 'text', required: true },
         { name: 'slug', type: 'text', required: true, unique: true },
+        { name: 'price', type: 'number', label: 'Price (৳)' },
+        { name: 'discountPrice', type: 'number', label: 'Discount Price (৳)' },
         { name: 'markAsNew', type: 'checkbox', label: 'Mark as NEW (displays badge)', defaultValue: false },
         { name: 'sku', type: 'text' },
         { name: 'category', type: 'relationship', relationTo: 'categories', required: true },
@@ -288,9 +308,10 @@ export default buildConfig({
       slug: 'media',
       upload: {
         staticDir: path.resolve(dirname, '../public/media'),
+        mimeTypes: ['image/*', 'video/*', 'application/pdf'],
       },
       fields: [
-        { name: 'alt', type: 'text', required: true }
+        { name: 'alt', type: 'text', required: false }
       ]
     }
   ],

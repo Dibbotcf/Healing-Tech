@@ -301,7 +301,7 @@ export default function Navbar() {
                           className="group relative bg-white border border-gray-100 rounded-xl p-5 hover:border-[#12B5CB]/40 hover: transition-all duration-200 text-left cursor-pointer"
                         >
                           {prod.markAsNew && (
-                            <div className="absolute top-3 right-3 bg-[#12B5CB] text-white text-[10px] font-bold px-2 py-0.5 rounded-xl flex items-center gap-1 uppercase tracking-wider">
+                            <div className="absolute top-3 right-3 z-10 bg-[#12B5CB] text-white text-[10px] font-bold px-2 py-0.5 rounded-xl flex items-center gap-1 uppercase tracking-wider shadow-sm">
                               <Sparkles className="w-3 h-3" /> New
                             </div>
                           )}

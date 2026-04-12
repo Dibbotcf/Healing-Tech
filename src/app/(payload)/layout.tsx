@@ -12,7 +12,7 @@ type Args = {
 
 export default function Layout({ children }: Args) {
   return (
-    <RootLayout config={configPromise} importMap={importMap} serverFunction={serverFunction}>
+    <RootLayout config={configPromise} importMap={importMap} serverFunction={serverFunction} suppressHydrationWarning>
       {children}
     </RootLayout>
   )

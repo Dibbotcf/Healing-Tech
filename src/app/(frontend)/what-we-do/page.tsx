@@ -1,25 +1,49 @@
 "use client";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+
 import { Globe, Ship, ShieldCheck, Award, Wrench, Activity, Stethoscope, Settings, PenTool, CheckCircle2 } from "lucide-react";
 import { WorldMap } from "@/components/ui/map";
 import Image from "next/image";
 
 const supplyRoutes = [
-  { start: { lat: 51.1657, lng: 10.4515, label: "Germany" }, end: { lat: 23.685, lng: 90.3563, label: "Dhaka" } },
+  { start: { lat: 51.1657, lng: 10.4515, label: "Germany" },     end: { lat: 23.685, lng: 90.3563, label: "Dhaka" } },
   { start: { lat: 37.5665, lng: 126.978, label: "South Korea" }, end: { lat: 23.685, lng: 90.3563, label: "Dhaka" } },
-  { start: { lat: 35.8617, lng: 104.1954, label: "China" }, end: { lat: 23.685, lng: 90.3563, label: "Dhaka" } },
-  { start: { lat: 36.2048, lng: 138.2529, label: "Japan" }, end: { lat: 23.685, lng: 90.3563, label: "Dhaka" } },
-  { start: { lat: 38.9637, lng: 35.2433, label: "Turkey" }, end: { lat: 23.685, lng: 90.3563, label: "Dhaka" } },
+  { start: { lat: 35.8617, lng: 104.1954, label: "China" },      end: { lat: 23.685, lng: 90.3563, label: "Dhaka" } },
+  { start: { lat: 36.2048, lng: 138.2529, label: "Japan" },      end: { lat: 23.685, lng: 90.3563, label: "Dhaka" } },
+  { start: { lat: 38.9637, lng: 35.2433, label: "Turkey" },      end: { lat: 23.685, lng: 90.3563, label: "Dhaka" } },
+  { start: { lat: 37.0902, lng: -95.7129, label: "USA" },        end: { lat: 23.685, lng: 90.3563, label: "Dhaka" } },
+  { start: { lat: 55.3781, lng: -3.4360, label: "UK" },          end: { lat: 23.685, lng: 90.3563, label: "Dhaka" } },
+  { start: { lat: 20.5937, lng: 78.9629, label: "India" },       end: { lat: 23.685, lng: 90.3563, label: "Dhaka" } },
+  { start: { lat: 41.8719, lng: 12.5674, label: "Italy" },       end: { lat: 23.685, lng: 90.3563, label: "Dhaka" } },
+  { start: { lat: -25.2744, lng: 133.7751, label: "Australia" }, end: { lat: 23.685, lng: 90.3563, label: "Dhaka" } },
+  { start: { lat: 46.8182, lng: 8.2275, label: "Switzerland" }, end: { lat: 23.685, lng: 90.3563, label: "Dhaka" } },
+  { start: { lat: 52.1326, lng: 5.2913, label: "Netherlands" }, end: { lat: 23.685, lng: 90.3563, label: "Dhaka" } },
+  { start: { lat: 46.2276, lng: 2.2137, label: "France" },      end: { lat: 23.685, lng: 90.3563, label: "Dhaka" } },
+  { start: { lat: 1.3521, lng: 103.8198, label: "Singapore" },  end: { lat: 23.685, lng: 90.3563, label: "Dhaka" } },
+  { start: { lat: 60.1282, lng: 18.6435, label: "Sweden" },     end: { lat: 23.685, lng: 90.3563, label: "Dhaka" } },
 ];
 
-const brandLogos = [
+const INITIAL_BRAND_LOGOS = [
   { name: "Heyer Medical", country: "GERMANY", logo: "/brands/heyer.svg" },
   { name: "Aeomed", country: "CHINA", logo: "/brands/Aeomed.svg" },
   { name: "Perlong Medical", country: "CHINA", logo: "/brands/perlong.svg" },
   { name: "Zerone", country: "SOUTH KOREA", logo: "/brands/zerone.svg" },
 ];
 
+
 export default function WhatWeDoPage() {
+  const [brands, setBrands] = useState(INITIAL_BRAND_LOGOS);
+
+  useEffect(() => {
+    fetch("/api/public-partner-logos")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data && data.length > 0) setBrands(data);
+      })
+      .catch((err) => console.error("Error fetching partner logos:", err));
+  }, []);
+
   return (
     <div className="w-full bg-white font-['Inter'] tracking-tight">
       {/* ── HERO ── */}
@@ -54,7 +78,7 @@ export default function WhatWeDoPage() {
 
                 {/* Big Brand Logos */}
                 <div className="grid grid-cols-2 gap-x-10 gap-y-8">
-                  {brandLogos.map((brand, i) => (
+                  {brands.map((brand, i) => (
                     <div key={i} className="flex items-center">
                       <div className="relative h-10 w-full max-w-[160px]">
                         <Image
