@@ -7,6 +7,7 @@ import { notFound } from 'next/navigation'
 import ReactCountryFlag from "react-country-flag"
 import { ProductGallery } from '@/components/ProductGallery'
 import { BrandPopupCard } from '@/components/BrandPopupCard'
+import { ProductClientActions } from '@/components/ProductClientActions'
 
 // Extracts the first word/country from strings like "Malaysia (Pressure regulator)"
 const extractCountry = (raw: string): string => {
@@ -178,12 +179,7 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
 
               {/* CTA Row */}
               <div className="flex flex-wrap items-center gap-4 pt-8 border-t border-[#00355D]/8">
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center gap-2 bg-[#12B5CB] hover:bg-[#009EE2] active:bg-[#007ab5] text-white px-7 py-3.5 rounded-full text-sm font-bold transition-colors shadow-md hover:shadow-lg"
-                >
-                  Request a Quote
-                </Link>
+                <ProductClientActions product={product} />
 
                 {/* Brand card popup */}
                 {brand && (

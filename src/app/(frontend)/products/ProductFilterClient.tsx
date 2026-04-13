@@ -2,9 +2,11 @@
 
 import React, { useState, useMemo } from 'react';
 import Link from 'next/link';
-import { Filter, Sparkles, CheckCircle2, ArrowRight } from 'lucide-react';
+import { Filter, Sparkles, ShoppingCart, Zap } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Checkbox } from '@heroui/react';
+import { useCartStore } from '@/lib/cartStore';
+import { useRouter } from 'next/navigation';
 
 export default function ProductClientWrapper({ 
   initialProducts, 
@@ -19,6 +21,8 @@ export default function ProductClientWrapper({
     initialCategorySlug ? [initialCategorySlug] : []
   );
   const [searchTerm, setSearchTerm] = useState("");
+  const { addItem, items } = useCartStore();
+  const router = useRouter();
 
   const toggleCategory = (slug: string) => {
     setSelectedCategories(prev => 
@@ -150,12 +154,46 @@ export default function ProductClientWrapper({
                       {product.listingSummary || product.shortSummary || "Premium medical equipment imported by Healing Technology. Please contact our team for comprehensive technical specifications and operational capabilities."}
                     </p>
                     
-                    <div className="flex items-center gap-3 mt-auto">
-                      <Link href={`/products/${product.slug}`} className="flex-1 bg-white border border-[#12B5CB] hover:bg-[#12B5CB]/5 text-[#00355D] text-center py-2.5 rounded-full text-sm font-bold transition-colors cursor-pointer">
-                        View Details
-                      </Link>
-                      <Link href="/contact" className="flex-1 bg-[#12B5CB] hover:bg-[#009EE2] text-white text-center py-2.5 rounded-full text-sm font-bold transition-colors font-['Inter'] shadow-sm hover:shadow-md cursor-pointer">
-                        Request Quote
+                    <div className="mt-4 pt-4 border-t border-gray-100 flex flex-col gap-2">
+                      {/* Pricing */}
+                      {(product.price != null || product.discountPrice != null) && (
+                        <div className="flex items-end gap-2 mb-1">
+                          {product.discountPrice != null ? (
+                            <>
+                              <span className="text-xl font-extrabold text-[#12B5CB] tracking-tight leading-none">৳{product.discountPrice.toLocaleString()}</span>
+                              <span className="text-xs text-[#575B5F]/50 line-through pb-0.5">৳{product.price?.toLocaleString()}</span>
+                            </>
+                          ) : (
+                            <span className="text-xl font-extrabold text-[#12B5CB] tracking-tight leading-none">৳{product.price?.toLocaleString()}</span>
+                          )}
+                        </div>
+                      )}
+
+                      <div className="flex items-center gap-2 mt-1">
+                        <button 
+                          onClick={(e) => { 
+                            e.preventDefault(); 
+                            e.stopPropagation(); 
+                            addItem({ id: product.id, name: product.name, price: product.price, discountPrice: product.discountPrice, heroImage: product.heroImage, slug: product.slug }, 1); 
+                          }} 
+                          className="flex-1 bg-[#12B5CB]/10 hover:bg-[#12B5CB]/20 text-[#12B5CB] text-center py-2.5 rounded-xl text-xs font-bold transition-colors shadow-sm flex justify-center items-center gap-1.5 cursor-pointer"
+                        >
+                          <ShoppingCart className="w-3.5 h-3.5" /> Cart
+                        </button>
+                        <button 
+                          onClick={(e) => { 
+                            e.preventDefault(); 
+                            e.stopPropagation(); 
+                            addItem({ id: product.id, name: product.name, price: product.price, discountPrice: product.discountPrice, heroImage: product.heroImage, slug: product.slug }, 1); 
+                            router.push('/checkout');
+                          }} 
+                          className="flex-1 bg-[#00355D] hover:bg-[#002543] text-white text-center py-2.5 rounded-xl text-xs font-bold transition-colors shadow-sm cursor-pointer flex justify-center items-center gap-1.5"
+                        >
+                          <Zap className="w-3.5 h-3.5" fill="currentColor" /> Order
+                        </button>
+                      </div>
+                      <Link href={`/products/${product.slug}`} className="w-full text-center py-2 text-xs font-bold text-[#575B5F] hover:text-[#12B5CB] transition-colors cursor-pointer mt-1">
+                        View Full Details
                       </Link>
                     </div>
                   </div>

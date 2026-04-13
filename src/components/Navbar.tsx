@@ -4,7 +4,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState, useRef, useCallback } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import { X, Plus, ChevronRight, ArrowRight, Sparkles, Menu, ArrowUpRight } from "lucide-react";
+import { X, Plus, ChevronRight, ArrowRight, Sparkles, Menu, ArrowUpRight, ShoppingBag } from "lucide-react";
+import { CartSidebar } from "./CartSidebar";
+import { useCartStore } from "@/lib/cartStore";
 
 interface Category { id: string; title: string; slug: string; }
 interface Product  { id: string; name: string; slug: string; category: string; markAsNew?: boolean; image?: string; }
@@ -17,6 +19,10 @@ export default function Navbar() {
   const [products, setProducts]             = useState<Product[]>([]);
   const [loading, setLoading]               = useState(true);
   const [scrolled, setScrolled]             = useState(false);
+  const [cartOpen, setCartOpen]             = useState(false);
+  const [mounted, setMounted]               = useState(false);
+  
+  const getTotalItems = useCartStore((state) => state.getTotalItems);
 
   const pathname = usePathname();
   const router   = useRouter();
@@ -31,6 +37,7 @@ export default function Navbar() {
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
     window.addEventListener("scroll", onScroll);
+    setMounted(true);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
@@ -145,9 +152,24 @@ export default function Navbar() {
 
           {/* ── RIGHT PILL: Contact ── */}
           <div className="hidden lg:flex items-center bg-white rounded-full overflow-hidden pointer-events-auto" style={{ height: "52px" }}>
+            <button
+               onClick={() => setCartOpen(true)}
+               className="pl-6 pr-2 text-sm font-semibold tracking-tight text-[#111] hover:text-[#00355D] transition-colors h-full flex items-center gap-2 group"
+            >
+               <div className="relative">
+                 <ShoppingBag className="w-5 h-5 text-[#00355D] group-hover:text-[#12B5CB] transition-colors" />
+                 {mounted && getTotalItems() > 0 && (
+                   <span className="absolute -top-1.5 -right-2 bg-[#12B5CB] text-white text-[9px] font-bold w-4 h-4 flex items-center justify-center rounded-full border-2 border-white">
+                     {getTotalItems()}
+                   </span>
+                 )}
+               </div>
+               <span className="hidden xl:block">Cart</span>
+            </button>
+            <div className="w-px h-6 bg-gray-100 mx-2"></div>
             <Link
               href="/contact"
-              className="pl-6 pr-4 text-sm font-semibold tracking-tight text-[#111] hover:text-[#00355D] transition-colors h-full flex items-center"
+              className="pl-2 pr-4 text-sm font-semibold tracking-tight text-[#111] hover:text-[#00355D] transition-colors h-full flex items-center"
             >
               Contact Us
             </Link>
@@ -382,6 +404,11 @@ export default function Navbar() {
           </div>
         </div>
       </div>
+      
+      {/* ═══════════════════════════════════════
+          CART SIDEBAR
+      ═══════════════════════════════════════ */}
+      <CartSidebar isOpen={cartOpen} setIsOpen={setCartOpen} />
     </div>
   );
 }

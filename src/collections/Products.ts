@@ -13,6 +13,7 @@ export const Products: CollectionConfig = {
     { name: 'name', type: 'text', required: true },
     { name: 'slug', type: 'text', required: true, unique: true },
     { name: 'sku', type: 'text' },
+    { name: 'price', type: 'number' },
     { name: 'category', type: 'relationship', relationTo: 'categories', required: true },
     { name: 'brand', type: 'relationship', relationTo: 'brands', required: true },
     { name: 'brochurePageRef', type: 'text' },

@@ -303,6 +303,123 @@ export default buildConfig({
         },
       ],
     },
+    // Orders
+    {
+      slug: 'orders',
+      admin: {
+        useAsTitle: 'orderNumber',
+        defaultColumns: ['orderNumber', 'customerName', 'totalAmount', 'paymentStatus', 'status', 'invoiceLink'],
+      },
+      access: { 
+        read: ({ req: { user } }) => Boolean(user),
+        create: () => true, // open to allow checkout creation
+        update: ({ req: { user } }) => Boolean(user),
+        delete: ({ req: { user } }) => Boolean(user),
+      },
+      fields: [
+        { name: 'orderNumber', type: 'text', required: true, unique: true },
+        {
+          name: 'customer',
+          type: 'group',
+          fields: [
+            { name: 'firstName', type: 'text', required: true },
+            { name: 'lastName', type: 'text', required: true },
+            { name: 'email', type: 'email', required: true },
+            { name: 'phone', type: 'text', required: true },
+            { name: 'address', type: 'textarea', required: true },
+            { name: 'city', type: 'text', required: true },
+          ],
+        },
+        { 
+          name: 'customerName', 
+          type: 'text', 
+          admin: { hidden: true }, 
+          hooks: { 
+            beforeChange: [({ siblingData }) => {
+              if (siblingData?.customer) {
+                return `${siblingData.customer.firstName || ''} ${siblingData.customer.lastName || ''}`.trim()
+              }
+              return ''
+            }] 
+          } 
+        },
+        {
+          name: 'items',
+          type: 'array',
+          required: true,
+          fields: [
+            { name: 'product', type: 'relationship', relationTo: 'products', required: true },
+            { name: 'quantity', type: 'number', required: true, min: 1 },
+            { name: 'priceAtPurchase', type: 'number', required: true },
+          ],
+        },
+        { name: 'totalAmount', type: 'number', required: true },
+        { 
+          name: 'paymentMethod', 
+          type: 'select', 
+          options: [
+            { label: 'bKash', value: 'bkash' },
+            { label: 'SSLCommerz', value: 'sslcommerz' },
+            { label: 'Cash on Delivery', value: 'cod' }
+          ], 
+          required: true 
+        },
+        { 
+          name: 'paymentStatus', 
+          type: 'select', 
+          options: [
+            { label: 'Unpaid', value: 'unpaid' },
+            { label: 'Paid', value: 'paid' },
+            { label: 'Failed', value: 'failed' }
+          ], 
+          defaultValue: 'unpaid' 
+        },
+        { 
+          name: 'status', 
+          type: 'select', 
+          options: [
+            { label: 'Pending', value: 'pending' },
+            { label: 'Processing', value: 'processing' },
+            { label: 'Shipped', value: 'shipped' },
+            { label: 'Delivered', value: 'delivered' },
+            { label: 'Cancelled', value: 'cancelled' }
+          ], 
+          defaultValue: 'pending' 
+        },
+        {
+          name: 'invoiceLink',
+          type: 'text',
+          admin: {
+            readOnly: true,
+            description: 'Link to the printable digital invoice. Share this with the customer.',
+            position: 'sidebar',
+            components: {
+              Cell: '@/components/InvoiceLinkCell#InvoiceLinkCell'
+            }
+          },
+          hooks: {
+            beforeChange: [
+              ({ siblingData }) => {
+                if (siblingData?.orderNumber) {
+                  const base = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:12000';
+                  return `${base}/invoice/${siblingData.orderNumber}`;
+                }
+                return '';
+              }
+            ]
+          }
+        },
+        {
+          name: 'paymentEvidence',
+          type: 'upload',
+          relationTo: 'media',
+          admin: {
+            description: 'Screenshot or document proving payment.',
+            position: 'sidebar'
+          }
+        }
+      ],
+    },
     // Media
     {
       slug: 'media',
