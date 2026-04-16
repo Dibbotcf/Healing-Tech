@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Checkbox } from '@heroui/react';
 import { useCartStore } from '@/lib/cartStore';
 import { useRouter } from 'next/navigation';
+import { getMediaUrl } from '@/lib/getMediaUrl';
 
 export default function ProductClientWrapper({ 
   initialProducts, 
@@ -136,13 +137,24 @@ export default function ProductClientWrapper({
                       <Sparkles className="w-3 h-3" /> NEW
                     </div>
                   )}
-                  <Link href={`/products/${product.slug}`} className="block relative h-48 bg-[#F8F9FA] p-6 flex flex-col justify-end overflow-hidden group-hover:bg-[#EEF4FB] transition-colors cursor-pointer">
-                    <div className="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-[10px] font-bold text-[#00355D] uppercase tracking-widest shadow-sm">
+                  <Link href={`/products/${product.slug}`} className="block relative h-48 bg-[#F8F9FA] overflow-hidden group-hover:bg-[#EEF4FB] transition-colors cursor-pointer">
+                    {/* Category badge */}
+                    <div className="absolute top-3 left-3 z-10 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-[10px] font-bold text-[#00355D] uppercase tracking-widest shadow-sm">
                       {categoryDef?.title || 'System'}
                     </div>
-                    <div className="text-[#00355D]/20 mt-8 mb-2 flex items-center justify-center h-full">
-                       <span className="font-bold text-gray-300 text-6xl opacity-20">{product.name.substring(0, 2)}</span>
-                    </div>
+                    {/* Hero image or initial placeholder */}
+                    {product.heroImage && typeof product.heroImage !== 'string' && product.heroImage.url ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
+                        src={getMediaUrl(product.heroImage.url) || ''}
+                        alt={product.name}
+                        className="w-full h-full object-contain p-6 mix-blend-multiply group-hover:scale-105 transition-transform duration-500"
+                      />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center">
+                        <span className="font-bold text-gray-200 text-7xl select-none">{product.name.substring(0, 2)}</span>
+                      </div>
+                    )}
                   </Link>
                   
                   <div className="p-6 flex-1 flex flex-col cursor-default">
@@ -174,7 +186,7 @@ export default function ProductClientWrapper({
                           onClick={(e) => { 
                             e.preventDefault(); 
                             e.stopPropagation(); 
-                            addItem({ id: product.id, name: product.name, price: product.price, discountPrice: product.discountPrice, heroImage: product.heroImage, slug: product.slug }, 1); 
+                            addItem({ id: product.id, name: product.name, price: product.price, discountPrice: product.discountPrice, heroImage: product.heroImage ? { ...product.heroImage, url: getMediaUrl(product.heroImage?.url) } : undefined, slug: product.slug }, 1); 
                           }} 
                           className="flex-1 bg-[#12B5CB]/10 hover:bg-[#12B5CB]/20 text-[#12B5CB] text-center py-2.5 rounded-xl text-xs font-bold transition-colors shadow-sm flex justify-center items-center gap-1.5 cursor-pointer"
                         >
@@ -184,7 +196,7 @@ export default function ProductClientWrapper({
                           onClick={(e) => { 
                             e.preventDefault(); 
                             e.stopPropagation(); 
-                            addItem({ id: product.id, name: product.name, price: product.price, discountPrice: product.discountPrice, heroImage: product.heroImage, slug: product.slug }, 1); 
+                            addItem({ id: product.id, name: product.name, price: product.price, discountPrice: product.discountPrice, heroImage: product.heroImage ? { ...product.heroImage, url: getMediaUrl(product.heroImage?.url) } : undefined, slug: product.slug }, 1); 
                             router.push('/checkout');
                           }} 
                           className="flex-1 bg-[#00355D] hover:bg-[#002543] text-white text-center py-2.5 rounded-xl text-xs font-bold transition-colors shadow-sm cursor-pointer flex justify-center items-center gap-1.5"

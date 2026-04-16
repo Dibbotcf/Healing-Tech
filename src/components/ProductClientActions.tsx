@@ -4,6 +4,7 @@ import { useCartStore } from "@/lib/cartStore";
 import { ShoppingCart, Zap } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { getMediaUrl } from "@/lib/getMediaUrl";
 
 export function ProductClientActions({ product }: { product: any }) {
   const { addItem, items } = useCartStore();
@@ -16,7 +17,7 @@ export function ProductClientActions({ product }: { product: any }) {
     name: product.name,
     price: product.price,
     discountPrice: product.discountPrice,
-    heroImage: product.heroImage,
+    heroImage: product.heroImage ? { ...product.heroImage, url: getMediaUrl(product.heroImage?.url) } : undefined,
     slug: product.slug,
   };
 

@@ -7,6 +7,7 @@ import { ArrowRight, ShieldCheck, Wrench } from "lucide-react";
 import { TestimonialsSection } from "@/components/TestimonialsSection";
 import { FAQSection } from "@/components/FAQSection";
 import { ProductCarousel } from "@/components/ProductCarousel";
+import { HeroSlider } from "@/components/HeroSlider";
 import Image from "next/image";
 import { WorldMap } from "@/components/ui/map";
 
@@ -62,47 +63,12 @@ export default function Home() {
 
   return (
     <div className="w-full font-['Inter'] tracking-tight">
-      {/* Hero Section */}
+      {/* ═══════════════════════════════════════
+          HERO SECTION — Auto-sliding carousel
+      ═══════════════════════════════════════ */}
       <section className="relative min-h-[100dvh] lg:h-screen lg:min-h-[700px] flex items-start pt-48 md:pt-56 lg:pt-64 pb-24 lg:pb-0 overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <motion.img
-            initial={{ scale: 1.05 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: 1.5, ease: "easeOut" }}
-            src="/figma-assets/39874e1a514d8a3f83c95d2fb9c7db3c89ab86f0.png"
-            alt="Modern Operation Theater"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#00355D]/95 via-[#00355D]/30 to-[#00355D]/20 md:to-transparent" />
-        </div>
-
-        <div className="container mx-auto px-4 lg:px-8 max-w-[1440px] relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="max-w-4xl text-white"
-          >
-            <h1 className="font-['Inter'] text-4xl md:text-5xl lg:text-[4rem] font-normal leading-tight tracking-tight mb-4 md:mb-6 text-white text-balance">
-              Empowering Bangladesh<br className="hidden md:block"/> Healthcare with Precision<br className="hidden md:block"/> Clinical Solutions.
-            </h1>
-            <div className="flex flex-wrap gap-4">
-              <Link
-                href="/products"
-                className="bg-[#12B5CB] hover:bg-[#009EE2] text-white px-8 py-4 rounded-xl text-base font-bold transition-all hover:scale-105 inline-flex items-center gap-2"
-              >
-                Explore Product Catalog
-                <ArrowRight className="w-5 h-5" />
-              </Link>
-              <Link
-                href="/contact"
-                className="bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/30 text-white px-8 py-4 rounded-xl text-base font-bold transition-all"
-              >
-                Speak to an Expert
-              </Link>
-            </div>
-          </motion.div>
-        </div>
+        {/* Background & Text slider */}
+        <HeroSlider />
       </section>
 
       {/* Brand Partners Marquee */}

@@ -5,6 +5,7 @@ import { X, Trash2, ShoppingBag, ArrowRight } from "lucide-react";
 import { useCartStore } from "@/lib/cartStore";
 import Image from "next/image";
 import Link from "next/link";
+import { getMediaUrl } from "@/lib/getMediaUrl";
 
 interface CartSidebarProps {
   isOpen: boolean;
@@ -69,7 +70,7 @@ export function CartSidebar({ isOpen, setIsOpen }: CartSidebarProps) {
           ) : (
             <div className="space-y-6">
               {items.map((item) => {
-                const img = item.product.heroImage?.url || '/healing technology logo SVG-04.svg';
+                const img = getMediaUrl(item.product.heroImage?.url) || '/healing technology logo SVG-04.svg';
                 const currentPrice = item.product.discountPrice ?? item.product.price ?? 0;
                 
                 return (

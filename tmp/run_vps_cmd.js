@@ -18,6 +18,14 @@ async function run() {
       console.log(`Uploading ${arg1} to ${arg2}`);
       await ssh.putFile(arg1, arg2);
       console.log('Upload complete.');
+    } else if (mode === 'download') {
+      console.log(`Downloading ${arg2} to ${arg1}`);
+      await ssh.getFile(arg1, arg2);
+      console.log('Download complete.');
+    } else if (mode === 'downloadDir') {
+      console.log(`Downloading directory ${arg2} to ${arg1}`);
+      await ssh.getDirectory(arg1, arg2);
+      console.log('Download complete.');
     } else {
       const cmd = process.argv[2];
       console.log(`Executing: ${cmd}`);

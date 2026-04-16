@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ArrowRight, ChevronLeft, ChevronRight, Sparkles } from "lucide-react";
 import useEmblaCarousel from 'embla-carousel-react';
 import Autoplay from 'embla-carousel-autoplay';
+import { getMediaUrl } from "@/lib/getMediaUrl";
 
 interface Product {
   id: string;
@@ -100,15 +101,15 @@ export function ProductCarousel() {
 
         {/* Embla Carousel Viewport */}
         <div className="overflow-hidden cursor-grab active:cursor-grabbing" ref={emblaRef}>
-          <div className="flex gap-6 backface-hidden touch-pan-y">
+          <div className="flex ml-[-24px] backface-hidden touch-pan-y">
             {products.map((product, i) => {
               const catTitle = product.category && typeof product.category !== "string" ? product.category.title : "";
               const brandName = product.brand && typeof product.brand !== "string" ? product.brand.name : "";
-              const heroUrl = product.heroImage?.url;
+              const heroUrl = getMediaUrl(product.heroImage?.url);
 
               return (
-                <div key={i} className="flex-[0_0_auto] min-w-[320px] max-w-[320px] group pb-8">
-                  <Link href={`/products/${product.slug}`} className="block h-full">
+                <div key={i} className="flex-[0_0_320px] min-w-0 pl-6 group pb-8">
+                  <Link href={`/products/${product.slug}`} className="block h-full relative">
                     <div className="bg-white rounded-xl border border-gray-100 hover:border-[#12B5CB]/30 hover:shadow-xl transition-all duration-300 overflow-hidden h-full flex flex-col">
                       <div className="relative h-[200px] bg-[#F8F9FA] overflow-hidden pointer-events-none">
                         {heroUrl ? (

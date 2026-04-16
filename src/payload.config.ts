@@ -423,6 +423,7 @@ export default buildConfig({
     // Media
     {
       slug: 'media',
+      access: { read: () => true },
       upload: {
         staticDir: path.resolve(dirname, '../public/media'),
         mimeTypes: ['image/*', 'video/*', 'application/pdf'],

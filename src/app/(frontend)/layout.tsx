@@ -45,7 +45,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning className={`${inter.variable}`}>
-      <body className="antialiased">
+      <body className="antialiased" suppressHydrationWarning>
         <div className="min-h-screen bg-[#F8F9FA] text-[#111111] tracking-tight flex flex-col" style={{ fontFamily: "var(--font-sans, 'Inter', sans-serif)" }}>
           <Navbar />
           <main className="flex-grow">{children}</main>

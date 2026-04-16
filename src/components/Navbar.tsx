@@ -84,17 +84,19 @@ export default function Navbar() {
           {/* ── LEFT PILL: Logo + Nav ── */}
           <div
             className={`hidden lg:flex items-center gap-0 bg-white rounded-full transition-shadow duration-300 pointer-events-auto overflow-hidden`}
-            style={{ height: "52px" }}
+            style={{ height: "68px" }}
           >
             {/* Logo */}
-            <Link href="/" className="flex items-center pl-5 pr-4 flex-shrink-0 border-r border-gray-100" style={{ height: "52px" }}>
+            <Link href="/" className="flex items-center pl-5 pr-4 flex-shrink-0 border-r border-gray-100" style={{ height: "68px" }}>
               <Image
                 src="/healing technology logo SVG-04.svg"
                 alt="Healing Technology"
                 width={175}
                 height={46}
-                className="object-contain w-auto"
-                style={{ height: "38px", width: "auto", filter: "brightness(0) saturate(100%) invert(12%) sepia(84%) saturate(500%) hue-rotate(180deg)" }}
+                unoptimized
+                priority
+                className="object-contain"
+                style={{ height: "60px", width: "228px", filter: "brightness(0) saturate(100%) invert(12%) sepia(84%) saturate(500%) hue-rotate(180deg)" }}
               />
             </Link>
 
@@ -139,19 +141,21 @@ export default function Navbar() {
           </div>
 
           {/* ── MOBILE: compact logo ── */}
-          <Link href="/" className="flex items-center lg:hidden bg-white rounded-full px-5 py-2 pointer-events-auto" style={{ height: "52px" }}>
+          <Link href="/" className="flex items-center lg:hidden bg-white rounded-full px-5 py-2 pointer-events-auto" style={{ height: "68px" }}>
             <Image
               src="/healing technology logo SVG-04.svg"
               alt="Healing Technology"
               width={175}
               height={46}
-              className="object-contain w-auto"
-              style={{ height: "36px", width: "auto", filter: "brightness(0) saturate(100%) invert(12%) sepia(84%) saturate(500%) hue-rotate(180deg)" }}
+              unoptimized
+              priority
+              className="object-contain"
+              style={{ height: "57px", width: "218px", filter: "brightness(0) saturate(100%) invert(12%) sepia(84%) saturate(500%) hue-rotate(180deg)" }}
             />
           </Link>
 
           {/* ── RIGHT PILL: Contact ── */}
-          <div className="hidden lg:flex items-center bg-white rounded-full overflow-hidden pointer-events-auto" style={{ height: "52px" }}>
+          <div className="hidden lg:flex items-center bg-white rounded-full overflow-hidden pointer-events-auto" style={{ height: "68px" }}>
             <button
                onClick={() => setCartOpen(true)}
                className="pl-6 pr-2 text-sm font-semibold tracking-tight text-[#111] hover:text-[#00355D] transition-colors h-full flex items-center gap-2 group"
@@ -177,7 +181,7 @@ export default function Navbar() {
             <div className="pr-2 flex items-center h-full">
               <Link
                 href="/contact"
-                className="w-10 h-10 rounded-full bg-[#00355D] flex items-center justify-center hover:bg-[#12B5CB] transition-colors group"
+                className="w-14 h-14 rounded-full bg-[#00355D] flex items-center justify-center hover:bg-[#12B5CB] transition-colors group"
                 aria-label="Contact Us"
               >
                 <ArrowUpRight className="w-4 h-4 text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
@@ -188,7 +192,7 @@ export default function Navbar() {
           {/* ── MOBILE hamburger ── */}
           <button
             onClick={() => setMobileOpen((o) => !o)}
-            className="lg:hidden w-12 h-12 rounded-full bg-white flex items-center justify-center text-[#00355D] hover:bg-gray-50 transition-colors pointer-events-auto"
+            className="lg:hidden w-14 h-14 rounded-full bg-white flex items-center justify-center text-[#00355D] hover:bg-gray-50 transition-colors pointer-events-auto"
           >
             {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>

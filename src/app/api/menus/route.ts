@@ -1,6 +1,7 @@
 import { getPayload } from "payload";
 import configPromise from "@/payload.config";
 import { NextResponse } from "next/server";
+import { getMediaUrl } from "@/lib/getMediaUrl";
 
 export const dynamic = 'force-dynamic';
 
@@ -40,7 +41,7 @@ export async function GET() {
       // Extract hero image URL if available
       let imageUrl = "";
       if (p.heroImage && typeof p.heroImage === "object" && "url" in p.heroImage) {
-        imageUrl = (p.heroImage as any).url || "";
+        imageUrl = getMediaUrl((p.heroImage as any).url) || "";
       }
 
       return {
