@@ -13,7 +13,7 @@ function BkashPaymentContent() {
   return (
     <div className="bg-white p-10 rounded-2xl shadow-md border border-[#E3106E]/20 text-center max-w-md w-full relative overflow-hidden">
       <div className="flex items-center justify-center mb-6">
-         <Image src="/healing technology logo SVG-04.svg" alt="Healing Technology" width={150} height={40} className="object-contain filter brightness-0" />
+         <Image src="/logo-dark.svg" alt="Healing Technology" width={200} height={42} className="object-contain" />
       </div>
       
       <div className="w-16 h-16 bg-[#E3106E]/10 rounded-full flex items-center justify-center mx-auto mb-6">

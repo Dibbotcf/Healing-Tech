@@ -92,7 +92,7 @@ function SubmitEvidenceContent() {
   return (
     <div className="bg-white p-10 md:p-14 rounded-3xl shadow-sm border border-gray-100 max-w-lg w-full relative overflow-hidden text-center">
       <div className="flex items-center justify-center mb-8">
-         <Image src="/healing technology logo SVG-04.svg" alt="Healing Technology" width={180} height={40} className="object-contain filter brightness-0" />
+         <Image src="/logo-dark.svg" alt="Healing Technology" width={220} height={48} className="object-contain" />
       </div>
 
       <h1 className="text-2xl font-bold text-[#111111] mb-2 tracking-tight">Submit Payment Evidence</h1>

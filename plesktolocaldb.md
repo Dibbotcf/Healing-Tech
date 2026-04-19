@@ -37,10 +37,21 @@ node tmp/run_vps_cmd.js download backup.sql /var/www/vhosts/healingtechnology.co
 ```
 
 ### Step 3: Download Media Assets
+
 Because Payload CMS relates database entries directly to specific file paths, the actual images and PDFs needed to be recursively synced as well.
 
+> **Crucial Context:** When Next.js builds on the VPS, it compiles into a highly optimized `standalone` hidden folder. Consequently, new media uploaded through the deployed Payload admin portal will end up securely placed inside `.next/standalone/public/media` rather than the traditional static `/public/media` directory. 
+
+To ensure complete coverage (fetching legacy deployments and newly uploaded files), run both of these download tasks:
+
+**Download Pre-Build/Static Media:**
 ```bash
 node tmp/run_vps_cmd.js downloadDir public/media /var/www/vhosts/healingtechnology.com.bd/httpdocs/public/media
+```
+
+**Download Newly Uploaded Standalone Media:**
+```bash
+node tmp/run_vps_cmd.js downloadDir public/media /var/www/vhosts/healingtechnology.com.bd/httpdocs/.next/standalone/public/media
 ```
 
 ### Step 4: Wipe Current Local Database Schema
@@ -62,4 +73,13 @@ Finally, the local development Next.js server was restarted to clear the cache, 
 
 ```bash
 npm run dev
+```
+
+## Automating the Sync Process
+To prevent manual copy-pasting of these commands or accidentally skipping the `standalone` media downloads, an automated script has been created. 
+
+Simply execute the automated synchronization script in PowerShell:
+
+```powershell
+.\scripts\sync_from_vps.ps1
 ```

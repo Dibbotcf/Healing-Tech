@@ -70,7 +70,7 @@ export function CartSidebar({ isOpen, setIsOpen }: CartSidebarProps) {
           ) : (
             <div className="space-y-6">
               {items.map((item) => {
-                const img = getMediaUrl(item.product.heroImage?.url) || '/healing technology logo SVG-04.svg';
+                const img = getMediaUrl(item.product.heroImage?.url) || '/logo-dark.svg';
                 const currentPrice = item.product.discountPrice ?? item.product.price ?? 0;
                 
                 return (

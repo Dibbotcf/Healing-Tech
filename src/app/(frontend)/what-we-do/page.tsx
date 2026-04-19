@@ -47,31 +47,27 @@ export default function WhatWeDoPage() {
   return (
     <div className="w-full bg-white font-['Inter'] tracking-tight">
       {/* ── HERO ── */}
-      <section className="pt-32 md:pt-[160px] pb-16 px-6 lg:px-8 max-w-[1440px] mx-auto mb-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="max-w-5xl">
+      <section className="relative w-full pt-32 pb-16 md:pt-[160px] md:pb-32 overflow-hidden border-b border-gray-100 mb-10">
+        <div className="absolute inset-0 z-0">
+          <Image 
+            src="/what-we-do-hero-hd-v2.png" 
+            alt="Medical professionals collaborating" 
+            fill 
+            className="object-cover object-center md:object-right" 
+            priority 
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/90 md:via-white/50 to-white/30 md:to-transparent" />
+        </div>
+        
+        <div className="px-6 lg:px-8 max-w-[1440px] mx-auto relative z-10">
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="max-w-3xl lg:max-w-4xl">
             <p className="text-[#12B5CB] text-xs font-bold uppercase tracking-[0.15em] mb-6">Our Services</p>
-            <h1 className="font-['Inter'] text-4xl md:text-[60px] lg:text-[80px] font-bold mb-6 md:mb-8 tracking-[-0.04em] leading-tight md:leading-[1] text-[#00355D]">
+            <h1 className="font-['Inter'] text-4xl md:text-[80px] font-bold mb-6 md:mb-8 tracking-[-0.04em] leading-tight md:leading-[1.05] text-[#00355D]">
               Comprehensive <br className="hidden md:block" /> Healthcare Solutions.
             </h1>
             <p className="text-lg md:text-2xl text-[#575B5F] leading-relaxed md:leading-[1.4] font-normal max-w-2xl">
               From direct global sourcing to 24/7 technical support—we provide an end-to-end ecosystem ensuring your clinical ops never stop.
             </p>
-          </motion.div>
-          
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.95 }} 
-            animate={{ opacity: 1, scale: 1 }} 
-            transition={{ delay: 0.2, duration: 0.6 }} 
-            className="relative h-[300px] sm:h-[400px] lg:h-[500px] w-full rounded-[2rem] overflow-hidden shadow-2xl"
-          >
-            <Image
-              src="/figma-assets/what-we-do-hero.png"
-              alt="Medical professionals collaborating"
-              fill
-              className="object-cover"
-              priority
-            />
           </motion.div>
         </div>
       </section>

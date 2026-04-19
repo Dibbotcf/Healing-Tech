@@ -22,7 +22,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 mb-20">
           <div className="lg:col-span-4">
             <div className="mb-8">
-              <Image src="/healing technology logo SVG-04.svg" alt="Healing Technology" width={180} height={48} className="h-10 md:h-12 w-auto object-contain opacity-90 mb-6" />
+              <Image src="/logo-light.svg" alt="Healing Technology" width={180} height={48} className="h-10 md:h-12 w-auto object-contain opacity-90 mb-6" />
               <h2 className="text-xl lg:text-2xl font-bold text-white uppercase tracking-tighter leading-none mb-2">
                 Serving Bangladesh
               </h2>

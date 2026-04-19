@@ -4,8 +4,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState, useRef, useCallback } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import { X, Plus, ChevronRight, ArrowRight, Sparkles, Menu, ArrowUpRight, ShoppingBag } from "lucide-react";
+import { X, Plus, ChevronRight, ArrowRight, Sparkles, Menu, ArrowUpRight, ShoppingBag, Search } from "lucide-react";
 import { CartSidebar } from "./CartSidebar";
+import { SearchModal } from "./SearchModal";
 import { useCartStore } from "@/lib/cartStore";
 
 interface Category { id: string; title: string; slug: string; }
@@ -20,6 +21,7 @@ export default function Navbar() {
   const [loading, setLoading]               = useState(true);
   const [scrolled, setScrolled]             = useState(false);
   const [cartOpen, setCartOpen]             = useState(false);
+  const [searchOpen, setSearchOpen]         = useState(false);
   const [mounted, setMounted]               = useState(false);
   
   const getTotalItems = useCartStore((state) => state.getTotalItems);
@@ -89,14 +91,14 @@ export default function Navbar() {
             {/* Logo */}
             <Link href="/" className="flex items-center pl-5 pr-4 flex-shrink-0 border-r border-gray-100" style={{ height: "68px" }}>
               <Image
-                src="/healing technology logo SVG-04.svg"
+                src="/logo-dark.svg"
                 alt="Healing Technology"
-                width={175}
-                height={46}
+                width={228}
+                height={60}
                 unoptimized
                 priority
                 className="object-contain"
-                style={{ height: "60px", width: "228px", filter: "brightness(0) saturate(100%) invert(12%) sepia(84%) saturate(500%) hue-rotate(180deg)" }}
+                style={{ height: "60px", width: "228px" }}
               />
             </Link>
 
@@ -143,16 +145,27 @@ export default function Navbar() {
           {/* ── MOBILE: compact logo ── */}
           <Link href="/" className="flex items-center lg:hidden bg-white rounded-full px-5 py-2 pointer-events-auto" style={{ height: "68px" }}>
             <Image
-              src="/healing technology logo SVG-04.svg"
+              src="/logo-dark.svg"
               alt="Healing Technology"
-              width={175}
-              height={46}
+              width={218}
+              height={57}
               unoptimized
               priority
               className="object-contain"
-              style={{ height: "57px", width: "218px", filter: "brightness(0) saturate(100%) invert(12%) sepia(84%) saturate(500%) hue-rotate(180deg)" }}
+              style={{ height: "57px", width: "218px" }}
             />
           </Link>
+
+          <div className="hidden lg:flex flex-1 justify-end">
+            <button
+               onClick={() => setSearchOpen(true)}
+               className="flex items-center justify-center bg-white rounded-full pointer-events-auto hover:bg-gray-50 transition-colors group"
+               style={{ width: "68px", height: "68px" }}
+               aria-label="Search site"
+            >
+               <Search className="w-5 h-5 text-[#00355D] group-hover:text-[#12B5CB] group-hover:scale-110 transition-all duration-300" />
+            </button>
+          </div>
 
           {/* ── RIGHT PILL: Contact ── */}
           <div className="hidden lg:flex items-center bg-white rounded-full overflow-hidden pointer-events-auto" style={{ height: "68px" }}>
@@ -413,6 +426,11 @@ export default function Navbar() {
           CART SIDEBAR
       ═══════════════════════════════════════ */}
       <CartSidebar isOpen={cartOpen} setIsOpen={setCartOpen} />
+
+      {/* ═══════════════════════════════════════
+          SEARCH MODAL
+      ═══════════════════════════════════════ */}
+      <SearchModal isOpen={searchOpen} onClose={() => setSearchOpen(false)} products={products} />
     </div>
   );
 }

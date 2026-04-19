@@ -139,7 +139,7 @@ export default function CheckoutPage() {
         
         {/* Top Logo */}
         <div className="mb-8 flex items-center gap-4">
-           <Image src="/healing technology logo SVG-04.svg" alt="Healing Technology" width={180} height={40} className="object-contain filter brightness-0" />
+           <Image src="/logo-dark.svg" alt="Healing Technology" width={220} height={48} className="object-contain" />
            <div className="h-8 w-px bg-gray-200"></div>
            <h1 className="text-2xl font-bold text-[#00355D] tracking-tight">Secure Checkout</h1>
         </div>
@@ -214,7 +214,7 @@ export default function CheckoutPage() {
               
               <div className="space-y-4 mb-6 max-h-[300px] overflow-y-auto pr-2">
                 {items.map(item => {
-                   const img = item.product.heroImage?.url || '/healing technology logo SVG-04.svg';
+                   const img = item.product.heroImage?.url || '/logo-dark.svg';
                    const currentPrice = item.product.discountPrice ?? item.product.price ?? 0;
                    return (
                     <div key={item.product.id} className="flex gap-4">
