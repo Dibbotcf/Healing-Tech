@@ -149,7 +149,11 @@ export function WorldMap({
     <div
       ref={containerRef}
       className="w-full relative overflow-visible bg-transparent cursor-grab active:cursor-grabbing z-10"
-      style={{ height: `${dimensions.height}px` }}
+      style={{ 
+        height: `${dimensions.height}px`,
+        WebkitMaskImage: "radial-gradient(circle at center, black 70%, transparent 100%)",
+        maskImage: "radial-gradient(circle at center, black 70%, transparent 100%)"
+      }}
     >
       <Globe
         ref={globeRef}

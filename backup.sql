@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict UgF1QKIVaTmtwN7tfY3KktNE8nLtwXHZotAdqa177LmX15JnpLGhEILcQkREYQ1
+\restrict wtPjd4Gh9i7Nr8jjWTdMwEtlAvaWXAWAULH8or2z64lqOMOOtw4nBag05sZ37WP
 
 -- Dumped from database version 14.22 (Ubuntu 14.22-0ubuntu0.22.04.1)
 -- Dumped by pg_dump version 14.22 (Ubuntu 14.22-0ubuntu0.22.04.1)
@@ -1337,6 +1337,7 @@ COPY public.brands (id, name, slug, country_of_origin, summary, certifications_t
 23	National Electrocare	National Electrocare	Bangladesh	National Electrocare is a Bangladesh-based manufacturer and supplier specializing in physiotherapy, rehabilitation, and electrotherapy equipment. They focus on providing high-quality, locally produced, and affordable devices—such as ultrasound therapy machines, traction units, and TENS units—to clinics and hospitals for pain management.	\N	23	\N	t	2026-04-15 09:59:37.992+00	2026-04-13 05:07:05.579+00
 10	Puao Medical	Nanjing Puao Medical Equipment	China	Nanjing Puao Medical Equipment Co.Ltd. is a prominent Chinese manufacturer specializing in anesthesia machines, ventilators, and patient monitors. Based in Nanjing and established in the 1970s, it is a high-tech enterprise that exports medical hardware to over 100 countries. The company holds CE and ISO certifications, supplying both domestic hospitals and international markets with critical care equipment.	\N	26	\N	t	2026-04-15 10:05:40.269+00	2026-04-11 09:38:11.606+00
 27	HFMED	hfmed	China	Manufacturer: Shanghai Huifeng Medical Instrument Co., Ltd. is a high-tech enterprise with nearly 30 years of manufacturing experience.\nProduction Scale: Operates three dedicated factories with strict, in-house quality control and offers customized OEM services directly, eliminating third-party involvement.\nCore Products: Specializes in over 200 varieties of commercial medical equipment, focusing heavily on surgical lights, operating tables, and medical pendants.\nGlobal Supply: Distributes products to over 200 countries, with established sales bases in over 50 countries.\nCompliance: Fully certified for international commercial distribution with ISO 9001, ISO 13485, CE, SGS, and FDA certifications.	\N	34	\N	t	2026-04-15 11:00:07.772+00	2026-04-15 10:58:45.979+00
+29	TRIUP	triup	China	Founded in 1997, TRIUP International Corp. is a globally recognized manufacturer and exporter of premium medical equipment. Based in Nanjing, China, TRIUP specializes in delivering high-quality, reliable medical solutions to healthcare facilities worldwide.	\N	60	\N	t	2026-04-19 07:52:04.616+00	2026-04-19 07:52:04.616+00
 \.
 
 
@@ -1414,7 +1415,6 @@ COPY public.media (id, alt, updated_at, created_at, url, thumbnail_u_r_l, filena
 13	\N	2026-04-15 07:08:42.045+00	2026-04-15 07:08:42.045+00	/api/media/file/fff84c20-7177-44c2-9318-93de2ca0f473.png_290xaf.png	\N	fff84c20-7177-44c2-9318-93de2ca0f473.png_290xaf.png	image/png	14395	283	35	50	50
 14	\N	2026-04-15 07:29:57.337+00	2026-04-15 07:29:57.337+00	/api/media/file/logo%20bd.jpg	\N	logo bd.jpg	image/jpeg	70913	1091	1123	50	50
 15	\N	2026-04-15 07:31:37.808+00	2026-04-15 07:31:37.808+00	/api/media/file/imgi_11_default.png	\N	imgi_11_default.png	image/png	4863	223	72	50	50
-16	\N	2026-04-15 07:47:10.695+00	2026-04-15 07:47:10.695+00	/api/media/file/suxinlogo.webp	\N	suxinlogo.webp	image/webp	9332	756	247	50	50
 17	\N	2026-04-15 09:53:30.907+00	2026-04-15 09:53:30.907+00	/api/media/file/newupdatedlogo-1304x424.png	\N	newupdatedlogo-1304x424.png	image/png	54597	1304	424	50	50
 18	\N	2026-04-15 09:54:25.091+00	2026-04-15 09:54:25.091+00	/api/media/file/2-90x90.webp	\N	2-90x90.webp	image/webp	5656	90	68	50	50
 19	\N	2026-04-15 09:55:27.857+00	2026-04-15 09:55:27.857+00	/api/media/file/Shenzhen-Le-Medical-Technology-Co-Ltd-.webp	\N	Shenzhen-Le-Medical-Technology-Co-Ltd-.webp	image/webp	1992	119	45	50	50
@@ -1431,8 +1431,44 @@ COPY public.media (id, alt, updated_at, created_at, url, thumbnail_u_r_l, filena
 30	\N	2026-04-15 10:10:36.814+00	2026-04-15 10:10:36.814+00	/api/media/file/imgi_8_235.png	\N	imgi_8_235.png	image/png	7485	250	61	50	50
 31	\N	2026-04-15 10:31:03.842+00	2026-04-15 10:31:03.841+00	/api/media/file/ot%20double.png	\N	ot double.png	image/png	174630	818	415	50	50
 32	\N	2026-04-15 10:51:26.93+00	2026-04-15 10:51:26.93+00	/api/media/file/imgi_6_hf-l60-l84c-led219d6.png	\N	imgi_6_hf-l60-l84c-led219d6.png	image/png	341636	750	750	50	50
-33	\N	2026-04-15 10:53:32.2+00	2026-04-15 10:53:32.2+00	/api/media/file/HF-L60-L84C-LED.pdf	\N	HF-L60-L84C-LED.pdf	application/pdf	2559546	\N	\N	\N	\N
 34	\N	2026-04-15 11:00:06.789+00	2026-04-15 11:00:06.788+00	/api/media/file/logo.webp	\N	logo.webp	image/webp	5210	400	97	50	50
+16	\N	2026-04-16 10:33:07.903+00	2026-04-15 07:47:10.695+00	/api/media/file/Asset%203.png	\N	Asset 3.png	image/png	8753	523	119	50	50
+35	\N	2026-04-16 11:24:23.554+00	2026-04-16 11:24:23.553+00	/api/media/file/imgi_9_baidizhutuzhaopian.png	\N	imgi_9_baidizhutuzhaopian.png	image/png	325573	800	800	50	50
+36	\N	2026-04-16 11:24:34.299+00	2026-04-16 11:24:34.299+00	/api/media/file/imgi_10_weixintupian_20251028142828_54_139.png	\N	imgi_10_weixintupian_20251028142828_54_139.png	image/png	939752	1440	810	50	50
+38	\N	2026-04-16 11:26:07.436+00	2026-04-16 11:26:07.436+00	/api/media/file/imgi_12_96a47b0f3e090c713949d1fb9e1540f-1.png	\N	imgi_12_96a47b0f3e090c713949d1fb9e1540f-1.png	image/png	2625708	1702	1276	50	50
+39	\N	2026-04-16 11:27:47.706+00	2026-04-16 11:27:47.706+00	/api/media/file/imgi_13_IMG_2166.png	\N	imgi_13_IMG_2166.png	image/png	8731208	4032	3024	50	50
+40	\N	2026-04-16 11:29:19.476+00	2026-04-16 11:29:19.476+00	/api/media/file/imgi_9_baidizhutuzhaopian-1.png	\N	imgi_9_baidizhutuzhaopian-1.png	image/png	325573	800	800	50	50
+41	\N	2026-04-16 11:33:38.803+00	2026-04-16 11:33:38.802+00	/api/media/file/000.png	\N	000.png	image/png	8868954	3194	2305	50	50
+37	\N	2026-04-16 11:36:25.957+00	2026-04-16 11:24:43.915+00	/api/media/file/imgi_12_96a47b0f3e090c713949d1fb9e1540f.png	\N	imgi_12_96a47b0f3e090c713949d1fb9e1540f.png	image/png	2444747	1520	1099	50	50
+42	\N	2026-04-16 12:11:52.409+00	2026-04-16 12:11:52.409+00	/api/media/file/Healing%20Technology.jpg	\N	Healing Technology.jpg	image/jpeg	2770387	4096	2954	50	50
+43	\N	2026-04-16 12:17:24.948+00	2026-04-16 12:17:24.948+00	/api/media/file/Healing%20Technology%202.jpg	\N	Healing Technology 2.jpg	image/jpeg	1159799	4096	2954	50	50
+44	\N	2026-04-19 06:33:20.938+00	2026-04-19 06:33:20.937+00	/api/media/file/1.%20Brochure%20OL9500-%20cfv.png	\N	1. Brochure OL9500- cfv.png	image/png	960987	1724	1035	50	50
+45	\N	2026-04-19 06:36:21.061+00	2026-04-19 06:36:21.061+00	/api/media/file/1.%20Brochure%20OL9500-2024V1gregre.png	\N	1. Brochure OL9500-2024V1gregre.png	image/png	567890	810	607	50	50
+46	\N	2026-04-19 06:43:34.917+00	2026-04-19 06:43:34.917+00	/api/media/file/1.%20Brochure%20OL9500.jpg	\N	1. Brochure OL9500.jpg	image/jpeg	1624699	4031	3023	50	50
+47	\N	2026-04-19 06:51:06.373+00	2026-04-19 06:51:06.372+00	/api/media/file/Heyer%20OT%20Light-7.png	\N	Heyer OT Light-7.png	image/png	4874756	3110	1867	50	50
+48	\N	2026-04-19 06:51:19.674+00	2026-04-19 06:51:19.674+00	/api/media/file/Heyer%20OT%20Light-3.png	\N	Heyer OT Light-3.png	image/png	1324674	1399	933	50	50
+49	\N	2026-04-19 06:53:14.612+00	2026-04-19 06:53:14.612+00	/api/media/file/Heyer%20OT%20Light-2.jpg	\N	Heyer OT Light-2.jpg	image/jpeg	1622050	5616	3744	50	50
+50	\N	2026-04-19 06:53:40.38+00	2026-04-19 06:53:40.38+00	/api/media/file/Heyer%20OT%20Light-1.png	\N	Heyer OT Light-1.png	image/png	12845774	3744	4898	50	50
+51	\N	2026-04-19 07:20:16.861+00	2026-04-19 07:20:16.861+00	/api/media/file/Heyer%20OT%20Table-8.png	\N	Heyer OT Table-8.png	image/png	963026	2434	1623	50	50
+52	\N	2026-04-19 07:20:29.136+00	2026-04-19 07:20:29.136+00	/api/media/file/Heyer%20OT%20Table.png	\N	Heyer OT Table.png	image/png	975331	1991	2655	50	50
+53	\N	2026-04-19 07:20:47.476+00	2026-04-19 07:20:47.476+00	/api/media/file/Heyer%20OT%20Table-2.png	\N	Heyer OT Table-2.png	image/png	3634636	4961	3484	50	50
+54	\N	2026-04-19 07:21:16.105+00	2026-04-19 07:21:16.105+00	/api/media/file/Heyer%20OT%20Table%20Spec.png	\N	Heyer OT Table Spec.png	image/png	661337	2552	3299	50	50
+55	\N	2026-04-19 07:21:39.064+00	2026-04-19 07:21:39.064+00	/api/media/file/Heyer%20OT%20Table-9.png	\N	Heyer OT Table-9.png	image/png	963026	2434	1623	50	50
+56	\N	2026-04-19 07:23:17.886+00	2026-04-19 07:23:17.886+00	/api/media/file/Heyer%20OT%20Table%20Spec-1.png	\N	Heyer OT Table Spec-1.png	image/png	657060	2552	3299	50	50
+57	\N	2026-04-19 07:39:13.737+00	2026-04-19 07:39:13.737+00	/api/media/file/imgi_5_big_69323bdb75c8c.png	\N	imgi_5_big_69323bdb75c8c.png	image/png	82240	542	356	50	50
+58	\N	2026-04-19 07:39:46.363+00	2026-04-19 07:39:46.363+00	/api/media/file/3008A-catalog.png	\N	3008A-catalog.png	image/png	294653	934	494	50	50
+59	\N	2026-04-19 07:42:42.43+00	2026-04-19 07:42:42.43+00	/api/media/file/imgi_5_big_69323bdb75c8c-1.png	\N	imgi_5_big_69323bdb75c8c-1.png	image/png	82240	542	356	50	50
+60	\N	2026-04-19 07:50:12.406+00	2026-04-19 07:50:12.406+00	/api/media/file/Triup%20logo.png	\N	Triup logo.png	image/png	19143	170	71	50	50
+61	\N	2026-04-19 08:02:51.174+00	2026-04-19 08:02:51.174+00	/api/media/file/imgi_36_SXS3008-800-800.png	\N	imgi_36_SXS3008-800-800.png	image/png	167622	747	475	50	50
+62	\N	2026-04-19 08:03:43.178+00	2026-04-19 08:03:43.178+00	/api/media/file/imgi_36_SXS3008-800-801.png	\N	imgi_36_SXS3008-800-801.png	image/png	209001	800	800	50	50
+63	\N	2026-04-19 08:04:04.112+00	2026-04-19 08:04:04.112+00	/api/media/file/imgi_9_1.png	\N	imgi_9_1.png	image/png	238325	844	614	50	50
+64	\N	2026-04-19 08:09:28.815+00	2026-04-19 08:09:28.815+00	/api/media/file/dc240b4d-0393-4119-b82c-075d9696b069.png	\N	dc240b4d-0393-4119-b82c-075d9696b069.png	image/png	1681962	4032	2268	50	50
+65	\N	2026-04-19 08:14:04.74+00	2026-04-19 08:14:04.739+00	/api/media/file/HF%20Med%20OT%20LIght-3.png	\N	HF Med OT LIght-3.png	image/png	4383256	2480	3148	50	50
+66	\N	2026-04-19 08:14:23.253+00	2026-04-19 08:14:23.253+00	/api/media/file/HF%20Med%20OT%20LIght-4.png	\N	HF Med OT LIght-4.png	image/png	2083595	2480	1540	50	50
+67	\N	2026-04-19 08:15:48.317+00	2026-04-19 08:15:48.317+00	/api/media/file/HF%20Med%20OT%20LIght.png	\N	HF Med OT LIght.png	image/png	2162152	2480	2996	50	50
+68	\N	2026-04-19 08:36:26.323+00	2026-04-19 08:36:26.322+00	/api/media/file/OT%20Light%20Double%20dome-1.png	\N	OT Light Double dome-1.png	image/png	2181105	2734	1636	50	50
+69	\N	2026-04-19 08:37:45.371+00	2026-04-19 08:37:45.37+00	/api/media/file/imgi_13_IMG_2166-1.png	\N	imgi_13_IMG_2166-1.png	image/png	8731208	4032	3024	50	50
+70	\N	2026-04-19 08:38:19.377+00	2026-04-19 08:38:19.377+00	/api/media/file/Untitled%20design.png	\N	Untitled design.png	image/png	6829829	4096	2954	50	50
 \.
 
 
@@ -1451,6 +1487,7 @@ COPY public.orders (id, order_number, customer_first_name, customer_last_name, c
 8	ORD-20260415-9109	Abu	Abid	nirobislam36@gmail.com	01301844100	14/2 Topkhana Road Ansari Bhaban (Ground floor),Bangladesh Medical Association Bhaban West Side ,Polton Dhaka-1000\nOpposite Side Of Press Club	Dhaka, Bangladesh	Abu Abid	0	bkash	unpaid	pending	https://healingtechnology.com.bd/invoice/ORD-20260415-9109	\N	2026-04-15 08:17:25.587+00	2026-04-15 08:17:25.587+00
 9	ORD-20260415-5589	Abu	Abid	nirobislam36@gmail.com	01301844100	14/2 Topkhana Road Ansari Bhaban (Ground floor),Bangladesh Medical Association Bhaban West Side ,Polton Dhaka-1000\nOpposite Side Of Press Club	Dhaka, Bangladesh	Abu Abid	200	bkash	unpaid	pending	https://healingtechnology.com.bd/invoice/ORD-20260415-5589	\N	2026-04-15 08:27:47.66+00	2026-04-15 08:27:47.659+00
 10	ORD-20260415-2679	Abu	Abid	nirobislam36@gmail.com	01301844100	14/2 Topkhana Road Ansari Bhaban (Ground floor),Bangladesh Medical Association Bhaban West Side ,Polton Dhaka-1000\nOpposite Side Of Press Club	Dhaka, Bangladesh	Abu Abid	0	sslcommerz	unpaid	pending	https://healingtechnology.com.bd/invoice/ORD-20260415-2679	\N	2026-04-15 11:04:51.706+00	2026-04-15 11:04:51.706+00
+11	ORD-20260419-7264	Abu	Abid	nirobislam36@gmail.com	01301844100	14/2 Topkhana Road Ansari Bhaban (Ground floor),Bangladesh Medical Association Bhaban West Side ,Polton Dhaka-1000\nOpposite Side Of Press Club	Dhaka, Bangladesh	Abu Abid	0	sslcommerz	unpaid	pending	https://healingtechnology.com.bd/invoice/ORD-20260419-7264	\N	2026-04-19 07:35:26.236+00	2026-04-19 07:35:26.235+00
 \.
 
 
@@ -1469,6 +1506,7 @@ COPY public.orders_items (_order, _parent_id, id, product_id, quantity, price_at
 1	8	69df49956e3450bd0f0bf9ce	25	1	0
 1	9	69df4c036e3450bd0f0bf9cf	24	1	200
 1	10	69df70d36e3450bd0f0bf9d0	25	1	0
+1	11	69e485beefdc0ce4e8001c53	25	2	0
 \.
 
 
@@ -1493,6 +1531,7 @@ COPY public.payload_kv (id, key, data) FROM stdin;
 --
 
 COPY public.payload_locked_documents (id, global_slug, updated_at, created_at) FROM stdin;
+87	\N	2026-04-16 11:26:14.303+00	2026-04-16 11:26:14.303+00
 \.
 
 
@@ -1501,6 +1540,8 @@ COPY public.payload_locked_documents (id, global_slug, updated_at, created_at) F
 --
 
 COPY public.payload_locked_documents_rels (id, "order", parent_id, path, users_id, brands_id, categories_id, certifications_id, products_id, legal_pages_id, testimonials_id, faqs_id, inquiries_id, media_id, partner_logos_id, orders_id) FROM stdin;
+173	\N	87	document	\N	\N	\N	\N	\N	\N	\N	\N	\N	38	\N	\N
+174	\N	87	user	1	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
 \.
 
 
@@ -1527,11 +1568,12 @@ COPY public.payload_preferences (id, key, value, updated_at, created_at) FROM st
 12	collection-orders	{}	2026-04-14 10:18:23.415+00	2026-04-14 10:18:23.414+00
 7	collection-faqs	{"limit": 10}	2026-04-14 10:18:32.518+00	2026-04-09 04:21:07.997+00
 13	collection-partner-logos	{}	2026-04-15 06:02:14.066+00	2026-04-15 06:02:14.066+00
-14	collection-products-25	{"fields": {"keyHighlights": {"collapsed": ["69df2e50b960ec5fbf6307a0"]}}}	2026-04-15 06:21:19.072+00	2026-04-15 06:21:19.073+00
 1	collection-brands	{"sort": "name", "limit": 50}	2026-04-15 07:09:00.432+00	2026-04-09 04:20:36.711+00
 11	nav	{"open": true}	2026-04-15 07:30:02.71+00	2026-04-11 06:40:57.781+00
-4	collection-products	{"limit": 10, "editViewType": "default"}	2026-04-15 07:36:47.924+00	2026-04-09 04:20:39.04+00
 2	collection-categories	{"sort": "title", "limit": 25}	2026-04-15 10:25:58.349+00	2026-04-09 04:20:37.616+00
+4	collection-products	{"limit": 25, "editViewType": "default"}	2026-04-19 07:24:06.374+00	2026-04-09 04:20:39.04+00
+16	collection-products-31	{"fields": {"specGroups": {"collapsed": ["69e479dd34931c3b26d3a31f"]}}}	2026-04-19 08:23:04.427+00	2026-04-19 08:23:04.429+00
+14	collection-products-25	{"fields": {"specGroups": {"collapsed": ["69e491749227f07265a2b764"]}, "keyHighlights": {"collapsed": ["69df2e50b960ec5fbf6307a0"]}, "specGroups.0.rows": {"collapsed": ["69e491c79227f07265a2b765", "69e4923f9227f07265a2b766", "69e492619227f07265a2b767", "69e492729227f07265a2b768", "69e4929a9227f07265a2b769", "69e493309227f07265a2b76a", "69e4933b9227f07265a2b76b", "69e4934f9227f07265a2b76c", "69e493a79227f07265a2b76d"]}}}	2026-04-19 08:35:57.923+00	2026-04-15 06:21:19.073+00
 \.
 
 
@@ -1549,11 +1591,12 @@ COPY public.payload_preferences_rels (id, "order", parent_id, path, users_id) FR
 33	\N	12	user	1
 34	\N	7	user	1
 39	\N	13	user	1
-40	\N	14	user	1
 49	\N	1	user	1
 52	\N	11	user	1
-54	\N	4	user	1
 58	\N	2	user	1
+59	\N	4	user	1
+60	\N	16	user	1
+64	\N	14	user	1
 \.
 
 
@@ -1580,15 +1623,15 @@ COPY public.products (id, name, slug, mark_as_new, sku, category_id, brand_id, b
 16	Hematology Analyzer	ht-hematology-analyzer	f	\N	7	9	\N	\N	\N	\N	\N	\N	\N	\N	published	\N	\N	\N	2026-04-09 04:28:09.375+00	2026-04-09 04:28:09.375+00	\N	\N
 17	Ultrasonogram (Portable/Trolley)	ht-ultrasonogram	f	\N	7	9	\N	\N	\N	\N	\N	\N	\N	\N	published	\N	\N	\N	2026-04-09 04:28:09.41+00	2026-04-09 04:28:09.41+00	\N	\N
 19	ICU Bed (Electric)	icu-bed-electric	f	\N	4	9	\N	\N	\N	\N	\N	\N	\N	\N	published	\N	\N	\N	2026-04-09 04:28:09.465+00	2026-04-09 04:28:09.465+00	\N	\N
-20	Ambulance Stretcher	ambulance-stretcher-auto	f	\N	5	9	\N	\N	\N	\N	\N	\N	\N	\N	published	\N	\N	\N	2026-04-09 04:28:09.494+00	2026-04-09 04:28:09.494+00	\N	\N
-21	Stretcher Trolley	stretcher-trolley-hydraulic	f	\N	5	9	\N	\N	\N	\N	\N	\N	\N	\N	published	\N	\N	\N	2026-04-09 04:28:09.519+00	2026-04-09 04:28:09.519+00	\N	\N
-22	Gynaecological Bed	gynaecological-bed-manual	f	\N	4	9	\N	\N	\N	\N	\N	\N	\N	\N	published	\N	\N	\N	2026-04-09 04:28:09.549+00	2026-04-09 04:28:09.549+00	\N	\N
-23	Wheelchair (Manual/Chrome)	manual-wheelchair	f	\N	5	9	\N	\N	\N	\N	\N	\N	\N	\N	published	\N	\N	\N	2026-04-09 04:28:09.583+00	2026-04-09 04:28:09.583+00	\N	\N
 18	Microscope (Binocular)	ht-microscope	f	\N	7	4	\N	\N	\N	\N	\N	\N	\N	\N	published	\N	\N	\N	2026-04-15 05:58:23.756+00	2026-04-09 04:28:09.443+00	\N	\N
-24	Autoclave (Vertical/Horizontal)	surgical-autoclave	t	\N	6	9	\N	\N	\N	\N	\N	\N	\N	\N	published	\N	\N	\N	2026-04-15 10:34:01.591+00	2026-04-09 04:28:09.626+00	500	200
-25	Suxin Medical SX-700/700 LED Shadowless Operating Lamp	SuxinMedicalSX700700	t	SX-700/700	7	7	OT Light Double Dome 700/700	OT Light Double Dome 700/700	Suxin Medical SX-700/700 Color Dual Dome LED Shadowless Operating Lamp\nProduct Overview\nThe Suxin Medical SX-700/700 is a premium, ceiling-mounted dual-dome surgical light designed to meet the rigorous demands of modern operating theaters. Featuring a unique "lamp-flower" design, this high-performance lighting system provides exceptional shadow-free illumination, advanced color rendering, and unparalleled reliability for complex surgical procedures.\n\nEquipped with authentic, imported German Osram LEDs, the SX-700/700 ensures a stable, long-lasting light source that medical professionals can depend on.\nKey Features\n\nAdvanced Color LED Layout: Specifically engineered with red and green lights to relieve visual fatigue during lengthy procedures and provide superior clarity for precise vascular identification.\n\nPremium German Osram LEDs: Utilizes genuine, imported Osram LED beads to guarantee a highly stable light output and an extraordinary lifespan of up to 80,000 hours, significantly reducing maintenance costs.\n\nRedundant Double Control System: Features a high-tech, user-friendly central and side dual-control system. This built-in redundancy provides a 100% operational guarantee, ensuring uninterrupted lighting when it matters most.\n\nOptimal Comfort: Generates cold light with a minimal temperature rise of just 1°C at the surgeon's head area, maintaining a comfortable and safe environment for both the surgical team and the patient.\nTechnical Specifications:\n(Note: Specifications apply to both 700mm domes in the dual-head configuration)\nParameter Specification Dome Diameter 700 mm / 700 mm \nLED Beads Quantity 84 per dome\nIlluminance 40,000 - 180,000 Lux\nColor Temperature 4000 - 5700 K\nSpot Diameter 150 - 350 mm\nDepth of Irradiation 1200 mm\nColor Rendering Index (CRI)96%\nBrightness Adjustment 1 - 100% (Digital Display)\nTemperature Rise (Surgeon's Head)1°C\nLED Lifespan 80,000 hours	The Suxin Medical SX-700/700 is a dual-dome, ceiling-mounted LED shadowless surgical lamp powered by genuine German Osram LEDs. Delivering up to 180,000 Lux of adjustable illumination and an impressive 80,000-hour lifespan, it features a specialized color LED layout (red and green) to reduce visual fatigue and enhance vascular clarity. Complete with a fail-safe double control system, it provides highly reliable, premium lighting for complex operating environments.	\N	4	China	CE Mark (CE-MDR): Certified compliant with European Medical Device Regulations, ensuring the products meet rigorous health, safety, and environmental protection standards for the European Economic Area.\nISO 13485 (EN ISO 13485:2016): Certified under the international standard for quality management systems specifically for the design and manufacture of medical devices.\nISO 9001: Certified for overall quality management systems, demonstrating consistent manufacturing and strict quality control processes.\nIEC 60601-1 / EN 60601-1:2016: Fully compliant with the internationally recognized general standards for the basic safety and essential performance of medical electrical equipment.\nIEC 60601-2-41: Compliant with the specific international safety and performance standards tailored for surgical luminaires (operating lights) and luminaires for diagnosis.\nFree Sales Certificate (FSC): Approved for international export and commercial distribution.\nJiangsu Provincial FDA Approval: Fully licensed and approved by the regional Food and Drug Administration in their manufacturing jurisdiction (Jiangsu Province, China).	published			\N	2026-04-15 10:32:31.532+00	2026-04-15 06:17:33.443+00	\N	\N
+22	Heyer OP830 Electric Operating Table	Heyer-OP830	f	Heyer-OP830	7	2	\N	Heyer OP830 Electric Operating Table	Heyer OP830 Electric Operating Table\nThe OP830 electric operating table by Heyer is constructed from high-quality alloy steel, perfectly balancing a lightweight design with robust strength. It is engineered for stable, dynamic intraoperative positioning and maintains a dynamic load capacity of over 135 kg.\n\nKey Features\nRadiolucent Tabletop: Allows for clear intraoperative X-ray and C-arm imaging while maintaining a high load-bearing capacity.\n\nOptimal Patient Comfort: Features an easy-to-clean, 60mm detachable multi-layer memory foam mattress that conforms to the patient's body to evenly distribute pressure.\n\nAdjustable Headplate: The detachable headplate is firmly fixed to prevent movement during surgery and can be easily adjusted up or down with just one hand.\n\nBuilt-in Kidney Bridge: Provides a 136 mm lift utilizing a simple wrench for stable support, providing maximum convenience for abdominal or urinary system surgeries.\n\nElectric Hydraulic Braking: Equipped with four 5 cm diameter brake rods that provide strong, reliable locking on any surface with the push of a button.\n\nIntuitive Controls: Designed for single-handed operation with easy-to-understand icons and a battery indicator. An automatic standby mode activates after 60 seconds of inactivity to avoid accidental touches.\n\nDurable Side Rails: Built with equal-length 304 stainless steel side rails featuring a treated surface for safe handling and accessory mounting.	The Heyer OP830 \nElectric Operating Table is crafted from high-quality alloy steel, perfectly balancing a lightweight design with robust strength to support a dynamic load of over 135 kg. Designed for surgical precision and patient comfort, it is an essential asset for modern operating rooms.\n\nCore Highlights:\n\nImaging Ready: Features a radiolucent tabletop that allows for clear intraoperative X-ray and C-arm imaging without sacrificing load-bearing capacity.\n\nEnhanced Comfort: Equipped with an easy-to-clean, 60mm multi-layer memory foam mattress that evenly distributes pressure.\n\nSurgical Versatility: Includes a 136mm kidney bridge lift for abdominal/urinary procedures, a fully adjustable and securely fixed headplate, and 304 stainless steel side rails for accessories.\n\nPrecision & Safety: Boasts an electric hydraulic braking system for rock-solid stability, plus an intuitive, single-handed remote control with a 60-second auto-standby to prevent accidental adjustments.	\N	51	German	The Heyer OP830 Electric Operating Tables are manufactured to the highest international medical standards, ensuring absolute safety and reliability in the operating room.\n\nCE Mark Certified: Fully compliant with European health, safety, and environmental protection directives for medical devices.\n\nISO 13485 & ISO 9001: Manufactured under globally recognized, strict Quality Management Systems specifically designed for medical equipment.\n\nGlobal OR Standards: Backed by Heyer Medical’s 130+ year legacy of German engineering and rigorous quality control testing for structural integrity and dynamic load safety.	published	Healing Technology — Heyer OP830 Electric Operating Table	The Heyer OP830 \nElectric Operating Table is crafted from high-quality alloy steel, perfectly balancing a lightweight design with robust strength to support a dynamic load of over 135 kg. Designed for surgical precision and patient comfort, it is an essential asset for modern operating rooms.\n\nCore Highlights:\n\nImaging Ready: Features a radiolucent tabletop that allows for clear intraoperative X-ray and C-arm imaging without sacrificing load-bearing capacity.\n\nEnhanced Comfort: Equipped with an easy-to-clean, 60mm multi-layer memory foam mattress that evenly distributes pressure.\n\nSurgical Versatility: Includes a 136mm kidney bridge lift for abdominal/urinary procedures, a fully adjustable and securely fixed headplate, and 304 stainless steel side rails for accessories.\n\nPrecision & Safety: Boasts an electric hydraulic braking system for rock-solid stability, plus an intuitive, single-handed remote control with a 60-second auto-standby to prevent accidental adjustments.	55	2026-04-19 07:23:19.902+00	2026-04-09 04:28:09.549+00	\N	\N
+21	TRIUP 3008A Hydraulic Operation Table	TRIUP-3008A	f	TRIUP-3008A	7	16	\N	TRIUP 3008A Hydraulic Operation Table	TRIUP 3008A Hydraulic Operation Table\nThe 3008 and 3008A models by TRIUP International Corp. are head-operating universal hydraulic tables designed to support a wide variety of surgical disciplines. These highly adaptable tables are ideal for thoracic surgery, abdominal surgery, ophthalmology, otorhinolaryngology, obstetrics and gynecology, urinary surgery, and orthopedics.\n\nKey Features & Design:\nReliable Hydraulic Operation: The table's height (rise and drop) is effortlessly controlled using a pedal-operated oil pump, while all other multi-directional movements are precisely handled by a mechanical transmission head.\n\nModel Options: The 3008 is the standard configuration, while the upgraded 3008A features a premium stainless steel base shell, stand column, and bed surface for enhanced durability and hygiene.\n\nEnhanced Comfort: To ensure patient comfort and safety during procedures, the included shoulder supports, body supports, and armrests are finished with a leather wrap\n\nTechnical Specifications\n\nHeight Range  760mm to 1010mm\nDimensions (Length x Width)   2010mm x 480mmLateral \nTilt (Left / Right)   ≥20° / ≥20°\nTrendelenburg / Reverse   ≥25° / ≥25°\nBack Section (Up / Down)   ≥80° / ≥10°\nHead Section (Up / Down)   ≥60° / ≥90°\nLeg Section (Down)   ≥90°\nWaist Board Lifting   120 mm	The 3008A Hydraulic Operation Table by TRIUP International is a highly versatile, multi-discipline surgical table designed to accommodate everything from orthopedics and obstetrics to thoracic and ophthalmic procedures.\n\nCore Highlights:\n\nReliable Mechanics: Features a smooth, pedal-operated hydraulic oil pump for height adjustments, paired with a mechanical transmission head for precise, multi-directional tilt and section controls.\n\nDurable Construction: While the 3008 is a reliable standard model, the 3008A upgrade features a premium stainless steel base, column, and bed surface for superior hygiene and longevity.\n\nComprehensive Comfort: Comes fully equipped with standard positioning accessories—including shoulder, body, and arm supports—all finished with comfortable leather wraps to ensure optimal patient safety and stability.	\N	57	China	Manufactured by TRIUP International Corp., the 3008 and 3008A Hydraulic Operation Tables are backed by over 20 years of medical manufacturing expertise and adhere to strict international quality control standards:\n\nISO 13485 & ISO 9000 Certified: Manufactured under globally recognized, strict Quality Management Systems specifically dedicated to medical device production.\n\nCE Marked / TUV Certified: Meets the rigorous health, safety, and environmental protection directives required for international and European medical markets.\n\nGlobal Export Standards: Designed and tested to meet reliable operational and safety criteria for hospitals and surgical centers worldwide.	published	Healing Technology — TRIUP 3008A Hydraulic Operation Table	The 3008A Hydraulic Operation Table by TRIUP International is a highly versatile, multi-discipline surgical table designed to accommodate everything from orthopedics and obstetrics to thoracic and ophthalmic procedures.\n\nCore Highlights:\n\nReliable Mechanics: Features a smooth, pedal-operated hydraulic oil pump for height adjustments, paired with a mechanical transmission head for precise, multi-directional tilt and section controls.\n\nDurable Construction: While the 3008 is a reliable standard model, the 3008A upgrade features a premium stainless steel base, column, and bed surface for superior hygiene and longevity.\n\nComprehensive Comfort: Comes fully equipped with standard positioning accessories—including shoulder, body, and arm supports—all finished with comfortable leather wraps to ensure optimal patient safety and stability.	59	2026-04-19 07:52:19.418+00	2026-04-09 04:28:09.519+00	\N	\N
+25	Suxin Medical SX-700/700 LED Shadowless Operating Lamp	SuxinMedicalSX700700	t	SX-700/700	7	7	OT Light Double Dome 700/700	OT Light Double Dome 700/700	Suxin Medical SX-700/700 Color Dual Dome LED Shadowless Operating Lamp\nProduct Overview\nThe Suxin Medical SX-700/700 is a premium, ceiling-mounted dual-dome surgical light designed to meet the rigorous demands of modern operating theaters. Featuring a unique "lamp-flower" design, this high-performance lighting system provides exceptional shadow-free illumination, advanced color rendering, and unparalleled reliability for complex surgical procedures.\n\nEquipped with authentic, imported German Osram LEDs, the SX-700/700 ensures a stable, long-lasting light source that medical professionals can depend on.\nKey Features\n\nAdvanced Color LED Layout: Specifically engineered with red and green lights to relieve visual fatigue during lengthy procedures and provide superior clarity for precise vascular identification.\n\nPremium German Osram LEDs: Utilizes genuine, imported Osram LED beads to guarantee a highly stable light output and an extraordinary lifespan of up to 80,000 hours, significantly reducing maintenance costs.\n\nRedundant Double Control System: Features a high-tech, user-friendly central and side dual-control system. This built-in redundancy provides a 100% operational guarantee, ensuring uninterrupted lighting when it matters most.\n\nOptimal Comfort: Generates cold light with a minimal temperature rise of just 1°C at the surgeon's head area, maintaining a comfortable and safe environment for both the surgical team and the patient.	The Suxin Medical SX-700/700 is a dual-dome, ceiling-mounted LED shadowless surgical lamp powered by genuine German Osram LEDs. Delivering up to 180,000 Lux of adjustable illumination and an impressive 80,000-hour lifespan, it features a specialized color LED layout (red and green) to reduce visual fatigue and enhance vascular clarity. Complete with a fail-safe double control system, it provides highly reliable, premium lighting for complex operating environments.	\N	4	China	CE Mark (CE-MDR): Certified compliant with European Medical Device Regulations, ensuring the products meet rigorous health, safety, and environmental protection standards for the European Economic Area.\nISO 13485 (EN ISO 13485:2016): Certified under the international standard for quality management systems specifically for the design and manufacture of medical devices.\nISO 9001: Certified for overall quality management systems, demonstrating consistent manufacturing and strict quality control processes.\nIEC 60601-1 / EN 60601-1:2016: Fully compliant with the internationally recognized general standards for the basic safety and essential performance of medical electrical equipment.\nIEC 60601-2-41: Compliant with the specific international safety and performance standards tailored for surgical luminaires (operating lights) and luminaires for diagnosis.\nFree Sales Certificate (FSC): Approved for international export and commercial distribution.\nJiangsu Provincial FDA Approval: Fully licensed and approved by the regional Food and Drug Administration in their manufacturing jurisdiction (Jiangsu Province, China).	published	Healing Technology — Suxin Medical SX-700/700 LED Shadowless Operating Lamp	The Suxin Medical SX-700/700 is a dual-dome, ceiling-mounted LED shadowless surgical lamp powered by genuine German Osram LEDs. Delivering up to 180,000 Lux of adjustable illumination and an impressive 80,000-hour lifespan, it features a specialized color LED layout (red and green) to reduce visual fatigue and enhance vascular clarity. Complete with a fail-safe double control system, it provides highly reliable, premium lighting for complex operating environments.	68	2026-04-19 08:38:21.364+00	2026-04-15 06:17:33.443+00	\N	\N
 30	Suxin Medical SX-II 700/700 LED Shadowless Operating Lamp	SuxinMedicalSX-II700700	f	SX-II 700/700	7	7	\N	OT Light Double Dome 700/700	\N	\N	\N	31	China	\N	published	Healing Technology — SX-II 700/700 LED Shadowless Operating Lamp	\N	\N	2026-04-15 10:35:04.696+00	2026-04-15 10:31:47.117+00	\N	\N
-31	HF MED HF-L60 L84C LED shadowless operating lamp	HF-L60-L84C	f	HF-L60 L84C	7	27	\N	HF MED HF-L60 L84C LED shadowless operating lamp	Product Overview\nThe HF-L60 L84C LED is a shadowless operating lamp manufactured by SHANGHAI HUIFENG MEDICAL INSTRUMENT CO.,LTD (HFMED). It is designed as an ideal surgical light solution to meet the diverse requirements of general surgery.\nKey Features\nAdvanced Lighting Control: The lamp features precise dimming control to accommodate various lighting requests. It utilizes high-density light mixing technology to provide both high brightness and high-quality light.\nAdjustable Settings: Users can utilize 8 levels of brightness adjustment and 3 levels of color temperature adjustment (3800K to 5000K ±300K). It also features manual mechanical spot size adjustment ranging from 160mm to 200mm.\nENDO Mode: The lamp is equipped with a one-button dim light setting, specifically designed as an Endoscope Mode. This allows surgeons to quickly switch from general mode without interfering with their field of vision during tissue observation.\nSuperior Thermal Management: An original thermal management system is built in to effectively reduce the temperature of the chip core. It uses a cast high-heat-conducting aluminum alloy radiator to instantly derive heat, which effectively reduces the lamp's temperature and improves its service life.\nHygienic Design: The streamlined lamp body features a superior laminar flow design. This careful assembly increases airflow efficiency, helping to remove dust and bacteria from around the lamp.\nSterilizable Handle: The lamp includes a removable handle that can withstand high-temperature sterilization. This ensures doctors and nurses can safely and conveniently control the light's direction and depth.\n\nTechnical Specifications\nIlluminance:\t≥ 145,000 Lux < 160,000 Lux (Note: Also rated at ≥ 160,000 lux max)\nColor Temperature:\t 3800K ± 300K; 4400K ± 300K; 5000K ± 300K\nSpot Diameter\t:  160 - 200mm\nInput Power:   90VA\nNumber of LED Tubes:   60pcs + 84pcs\nLED Tube Power:   3.2V / 3W\nColor Rendering Index (Ra):   96 ≤ Ra ≤ 100\nTotal Irradiance:   ≤ 500W/m²\nIllumination Depth:   20%: Not less than 1070mm\nIllumination Depth (60%):   Not less than 560mm\nENDO Illuminance:   ≥ 10,000 Lux\nGL Illuminance:   ≥ 12,000 Lux	The HF-L60 L84C LED is a shadowless operating lamp manufactured by HFMED, designed to meet the diverse needs of general surgery.\nKey Highlights:\nHigh-Quality Lighting: Delivers an illuminance of up to roughly 160,000 Lux and features an excellent color rendering index (Ra) of 96 to 100.\nCustomizable Control: Offers 8 brightness levels, 3 color temperature settings ranging from 3800K to 5000K, and an adjustable spot diameter of 160-200mm.\nSpecialized Modes: Features a one-button "ENDO Mode" that dims the light for endoscopic procedures, allowing surgeons to observe tissue without visual interference.\nDurability & Hygiene: Built with a high-heat-conducting aluminum alloy radiator for efficient cooling, a streamlined laminar flow design to help remove bacteria and dust, and a removable handle that can be sterilized at high temperatures.	\N	32	China	CE Mark: Specifically indicated on the HF-L60 L84C LED product document.\n\nISO 9001 & ISO 13485: Certified for general and medical device quality management systems.\n\nFDA: Certified to meet United States Food and Drug Administration standards.\n\nSGS: Verified and inspected for product quality and safety compliance.\n\nMDR / MDA: Compliant with international Medical Device Regulations.\n\nCredit Rating: Recognized locally in Shanghai as a Quality Credit A-level enterprise for medical device manufacturing.	published	Healing Technology — HF MED HF-L60 L84C LED shadowless operating lamp	\N	\N	2026-04-15 10:59:27.228+00	2026-04-15 10:54:14.981+00	\N	\N
+20	Suxin SXS3008 Head-Operated Comprehensive Operating Table	Suxin-SXS3008	f	Suxin-SXS3008	7	7	\N	Suxin SXS3008 Head-Operated Comprehensive Operating Table	Suxin SXS3008 Head-Operated Comprehensive Operating Table\nThe Suxin SXS3008 Series (including the SXS3008-II and SXS3008-III models) by Jiangsu Suxin Medical Equipment is a highly versatile, head-controlled hydraulic operating table. Engineered for precision and stability, it is an ideal, multi-functional solution for a wide range of surgical disciplines, including general surgery (thorax, abdomen, perineum), neurosurgery, ophthalmology, ENT, gynecology, and orthopedics.\n\nKey Features\nHead-Controlled Hydraulics: Features a reliable, smooth oil-pump hydraulic lifting mechanism. All multi-directional positional adjustments (tilt, back, and leg plates) are safely and efficiently controlled from the head side of the table by the anesthesiologist or surgical staff.\n\nExceptional Stability: The central hydraulic column is purposefully designed to prevent overturning, safely supporting a maximum dynamic load capacity of over 250 kg. Select models feature a T-base design for enhanced floor stability during rigorous procedures.\n\nPremium Construction: Built for the demanding operating room environment, the base seat and column are available in high-quality stainless steel (providing superior rust resistance and hygiene) or durable carbon steel with powder coating.\n\nFlexible Patient Positioning: Equipped with a split-type leg plate to accommodate complex lower limb positioning and an integrated kidney bridge elevator for optimized access during abdominal and kidney surgeries.\n\nC-Arm & X-Ray Ready: The advanced SXS3008-III model features a double tabletop design with a radiolucent upper surface, ensuring clear, unobstructed intraoperative X-ray and imaging capabilities.\n\nTechnical Specifications\nOverall Dimensions   (L x W)2100 mm x 500 mm (±20 mm)\nWorking Table Height   750 mm (±50 mm)\nHeight Adjustment Range   Up to 250 mm\nLateral Tilt (Left / Right)   ≥ 20°\nTrendelenburg / Reverse   ≥ 20° to 25°\nBack Plate Adjustment   +70° to -15° (Up to +80° upward)\nHead Plate Adjustment   ±30° to 90°\nLeg Plate (Downwards)   ≥ 90°\nKidney Bridge Lift   ≥ 100 mm to 120 mm\nMaximum Load Capacity   > 250 kg	The Suxin SXS3008 Series is a highly versatile, head-controlled hydraulic operating table designed to support a wide variety of surgical disciplines. Built for rigorous operating room environments, it provides exceptional stability with a safe load capacity of over 250 kg.\n\nCore Highlights:\n\nHead-Controlled Precision: Features smooth hydraulic lifting, with all multi-directional positioning (tilt, back, and leg adjustments) safely operated from the head of the table.\n\nSurgical Versatility: Equipped with a split-type leg plate for complex lower limb positioning and a built-in kidney bridge providing up to 120mm of elevation.\n\nImaging Ready: The premium SXS3008-III model features a dual-layer radiolucent tabletop, perfectly accommodating intraoperative X-ray and C-arm imaging.\n\nDurable Construction: Built with an anti-overturn central column and available in premium stainless steel for maximum hygiene and rust resistance.	\N	61	China	Manufactured by Jiangsu Suxin Medical Equipment Co., Ltd., the SXS3008 Series is built to strict international safety and quality standards, ensuring absolute reliability in demanding surgical environments:\n\nCE Marked: Fully certified to meet European health, safety, and environmental protection standards for medical devices.\n\nISO 13485 & ISO 9001 Certified: Produced under globally recognized Quality Management Systems specifically mandated for medical equipment manufacturing and operational excellence.\n\nProvincial Regulatory Approval: Officially authorized and recognized by the Jiangsu Provincial Food and Drug Administration as a high-quality medical device.	published	Healing Technology — Suxin SXS3008 Head-Operated Comprehensive Operating Table	The Suxin SXS3008 Series is a highly versatile, head-controlled hydraulic operating table designed to support a wide variety of surgical disciplines. Built for rigorous operating room environments, it provides exceptional stability with a safe load capacity of over 250 kg.\n\nCore Highlights:\n\nHead-Controlled Precision: Features smooth hydraulic lifting, with all multi-directional positioning (tilt, back, and leg adjustments) safely operated from the head of the table.\n\nSurgical Versatility: Equipped with a split-type leg plate for complex lower limb positioning and a built-in kidney bridge providing up to 120mm of elevation.\n\nImaging Ready: The premium SXS3008-III model features a dual-layer radiolucent tabletop, perfectly accommodating intraoperative X-ray and C-arm imaging.\n\nDurable Construction: Built with an anti-overturn central column and available in premium stainless steel for maximum hygiene and rust resistance.	62	2026-04-19 08:09:31.615+00	2026-04-09 04:28:09.494+00	\N	\N
+24	Suxin Medical SX-700 Shadowless Operating Light	SuxinmedicalSX-700	t	SX-700	7	7	\N	Suxin Medical SX-700 Shadowless Operating Light	Product Overview\nProduct Name: Color Led Two Controls System Ceiling Shadowless Lamp Operating Light\n\nModel: SX-700\n\nBrand: Suxin Medical\n\nManufacturer: Jiangsu Suxin Medical Equipment Co., Ltd.\n\nKey Features\nSanitary Design: Features a fully enclosed, streamlined structure designed to meet the laminar flow purification and hygiene requirements of modern operating rooms.\n\nFlexible Positioning: Utilizes a professionally designed six-joint suspension system with a 340° rotating arm. This ensures flexible, portable, and natural positioning without any drifting.\n\nAdvanced Cold Lighting: Employs novel German cold lighting technology. It produces no infrared or ultraviolet radiation and prevents temperature rise on the surgical team's heads.\n\nLong Lifespan: The LED cold lighting source has a remarkably long service life of up to 80,000 hours, eliminating the need for bulb replacements and providing an eco-friendly and economical solution.\n\nAdjustable Lighting: The color temperature is adjustable from 3700K to 5000K, which helps in making more accurate diagnoses and reduces visual fatigue for doctors. It also features a specific endoscope control mode for different surgical lighting needs.\n\nOptical Precision: Each LED is equipped with a lens refracting and luminous system. The overall design creates a uniform light column with high brightness, ensuring a soft, deep-gathering effect for both high-brightness and high-depth surgical needs.\n\nControls: Features an easy-to-use button-type control panel.	The SX-700 is an advanced, ceiling-mounted surgical light designed to meet the strict hygiene and illumination standards of modern operating rooms. Powered by German cold LED technology, it delivers high-depth, uniform lighting with zero heat, infrared, or UV radiation.\n\nKey Highlights:\n\nUltra-Long Lifespan: Up to 80,000 hours of continuous use with zero bulb replacements.\n\nPrecision Lighting: Adjustable color temperature (3700K–5000K) to reduce eye strain, plus a dedicated endoscope mode.\n\nSeamless Mobility: A 6-joint suspension system with a 340° rotating arm ensures smooth, drift-free positioning.\n\nSanitary Design: Fully enclosed and streamlined to support laminar flow purification in surgical environments.	\N	35	China	CE Mark (CE-MDR): Certified compliant with European Medical Device Regulations, ensuring the products meet rigorous health, safety, and environmental protection standards for the European Economic Area.\nISO 13485 (EN ISO 13485:2016): Certified under the international standard for quality management systems specifically for the design and manufacture of medical devices.\nISO 9001: Certified for overall quality management systems, demonstrating consistent manufacturing and strict quality control processes.\nIEC 60601-1 / EN 60601-1:2016: Fully compliant with the internationally recognized general standards for the basic safety and essential performance of medical electrical equipment.\nIEC 60601-2-41: Compliant with the specific international safety and performance standards tailored for surgical luminaires (operating lights) and luminaires for diagnosis.\nFree Sales Certificate (FSC): Approved for international export and commercial distribution.\nJiangsu Provincial FDA Approval: Fully licensed and approved by the regional Food and Drug Administration in their manufacturing jurisdiction (Jiangsu Province, China).	published	Healing Technology — Suxin Medical SX-700 Shadowless Operating Light	The SX-700 is an advanced, ceiling-mounted surgical light designed to meet the strict hygiene and illumination standards of modern operating rooms. Powered by German cold LED technology, it delivers high-depth, uniform lighting with zero heat, infrared, or UV radiation.\n\nKey Highlights:\n\nUltra-Long Lifespan: Up to 80,000 hours of continuous use with zero bulb replacements.\n\nPrecision Lighting: Adjustable color temperature (3700K–5000K) to reduce eye strain, plus a dedicated endoscope mode.\n\nSeamless Mobility: A 6-joint suspension system with a 340° rotating arm ensures smooth, drift-free positioning.\n\nSanitary Design: Fully enclosed and streamlined to support laminar flow purification in surgical environments.	40	2026-04-16 12:17:29.725+00	2026-04-09 04:28:09.626+00	\N	\N
+31	HF MED HF-L60 L84C LED shadowless operating lamp	HF-L60-L84C	f	HF-L60 L84C	7	27	\N	HF MED HF-L60 L84C LED shadowless operating lamp	Product Overview\nThe HF-L60 L84C LED is a shadowless operating lamp manufactured by SHANGHAI HUIFENG MEDICAL INSTRUMENT CO.,LTD (HFMED). It is designed as an ideal surgical light solution to meet the diverse requirements of general surgery.\nKey Features\nAdvanced Lighting Control: The lamp features precise dimming control to accommodate various lighting requests. It utilizes high-density light mixing technology to provide both high brightness and high-quality light.\n\nAdjustable Settings: Users can utilize 8 levels of brightness adjustment and 3 levels of color temperature adjustment (3800K to 5000K ±300K). It also features manual mechanical spot size adjustment ranging from 160mm to 200mm.\n\nENDO Mode: The lamp is equipped with a one-button dim light setting, specifically designed as an Endoscope Mode. This allows surgeons to quickly switch from general mode without interfering with their field of vision during tissue observation.\n\nSuperior Thermal Management: An original thermal management system is built in to effectively reduce the temperature of the chip core. It uses a cast high-heat-conducting aluminum alloy radiator to instantly derive heat, which effectively reduces the lamp's temperature and improves its service life.\n\nHygienic Design: The streamlined lamp body features a superior laminar flow design. This careful assembly increases airflow efficiency, helping to remove dust and bacteria from around the lamp.\n\nSterilizable Handle: The lamp includes a removable handle that can withstand high-temperature sterilization. This ensures doctors and nurses can safely and conveniently control the light's direction and depth.	The HF-L60 L84C LED is a shadowless operating lamp manufactured by HFMED, designed to meet the diverse needs of general surgery.\n\nKey Highlights:\nHigh-Quality Lighting: Delivers an illuminance of up to roughly 160,000 Lux and features an excellent color rendering index (Ra) of 96 to 100.\n\nCustomizable Control: Offers 8 brightness levels, 3 color temperature settings ranging from 3800K to 5000K, and an adjustable spot diameter of 160-200mm.\n\nSpecialized Modes: Features a one-button "ENDO Mode" that dims the light for endoscopic procedures, allowing surgeons to observe tissue without visual interference.\n\nDurability & Hygiene: Built with a high-heat-conducting aluminum alloy radiator for efficient cooling, a streamlined laminar flow design to help remove bacteria and dust, and a removable handle that can be sterilized at high temperatures.	\N	32	China	CE Mark: Specifically indicated on the HF-L60 L84C LED product document.\n\nISO 9001 & ISO 13485: Certified for general and medical device quality management systems.\n\nFDA: Certified to meet United States Food and Drug Administration standards.\n\nSGS: Verified and inspected for product quality and safety compliance.\n\nMDR / MDA: Compliant with international Medical Device Regulations.\n\nCredit Rating: Recognized locally in Shanghai as a Quality Credit A-level enterprise for medical device manufacturing.	published	Healing Technology — HF MED HF-L60 L84C LED shadowless operating lamp	\N	\N	2026-04-19 08:23:49.139+00	2026-04-15 10:54:14.981+00	\N	\N
+23	Heyer Purelit OL9500	Purelit-OL9500	f	Purelit-OL9500	7	2	\N	Heyer Purelit OL9500	The Purelit OL9500 series by Heyer is an advanced surgical lighting system designed to meet the needs of high-end medical users. The product holds 15 patents and has been recognized with the 2010 Red Star Design Award and the 2013 High-tech Produce Star by the Beijing Government.\n\nKey Features:\nDesign & Hygiene:\nThe light head features an ultra-thin, streamlined aluminum alloy shell that provides low wind resistance, allowing stable laminar airflow to reach the surgical wound and prevent cross-infection.\nThe aluminum shell also offers outstanding heat dissipation to extend the life of the LEDs.\nIt includes a detachable and sterilizable PSU Polysulfone handle that can withstand heating up to 135°C.\n\nLighting Quality & Precision:\nThe system delivers an all-dimensional, shadowless lighting experience with a white LED light that eliminates colored cast shadows.\nA multi-lens structure with patented focus technology can deliver a light spot diameter of up to 250mm and an illumination depth of up to 1,400mm.\nIt includes two independent LED bulbs specifically to provide basic illumination for endoscopic surgeries.\nThe synthetic resin light screen features anti-infrared coating (to prevent tissue desiccation), 2H hardness scratch-proofing, and an anti-static coating (to prevent floating particle absorption).\n\nControl & Safety:\nA microprocessor control panel allows surgeons to easily adjust lighting intensity in 10 levels, from 30% to 100%.\nThe multi-lens matrix structure is designed to prevent a total blackout if a single light module fails, ensuring patient safety during operations.\nIt uses a German-imported spring arm that maintains its position without drifting.\n\nEfficiency & Adaptability:\nThe LED bulbs have a long life expectancy of up to 70,000 hours, making them reliable and cost-effective with low power consumption.\nThe system is HD camera compatible and supports low-height ceiling mounting.\n\nTechnical Specifications\nThe series includes two main models: the larger OLSS70 (featuring 20 matrix lens modules and 160 LEDs) and the smaller OL9550 (featuring 10 matrix lens modules and 80 LEDs).\nHere is a comparison of their technical specifications:\nSpecification\t  OLSS70\t    OL9550\nDiameter of lights\t700 mm\t500 mm\nIllumination\t160,000 Lux\t160,000 Lux\nColor temperature\t4,300 K\t4,300 K\nColor rendering Index (Ra)\t95%\t95%\nDiameter of light spot\t250 mm\t200 mm\nLED power\t160 W\t80 W\nIllumination depth (60%)\t2600 mm\t2400 mm\nLED service life\t70,000 hours\t70,000 hours\nBackground light illumination\t230 Lux\t230 Lux\nQuantity of LED bulbs\t160\t80\nMinimum installation height\t2,800 mm\t2,800 mm\nIllumination adjustment\t30% to 100%\t30% to 100%\nTemp rise (surgical area surface)\t15±0.5 °C\t15±0.5 °C\nTemp rise (surgeon's head)\t1±0.5 °C\t1±0.5 °C	The Purelit OL9500 Series by Heyer is a premium LED surgical lighting system that delivers up to 160,000 Lux of shadowless, true-color illumination. Designed for the rigorous demands of modern operating rooms, it combines exceptional optical clarity with advanced safety and hygiene features.\n\nCore Highlights:\n\nPrecision Optics: Delivers a 95% Color Rendering Index (CRI) for accurate tissue visualization, with a fail-safe multi-lens matrix that prevents complete blackouts if a single LED fails.\n\nEnhanced Hygiene & Safety: Features an ultra-thin, aerodynamic profile that supports sterile laminar airflow. Its specialized light screen repels dust, resists scratches, and blocks infrared heat to prevent patient tissue desiccation.\n\nErgonomic & Durable: Equipped with a drift-free German spring arm, a sterilizable handle, and energy-efficient LEDs that boast a 70,000-hour lifespan.	\N	44	German	Certifications & Awards\nBacked by world-class manufacturing standards and recognized for innovation, the Purelit OL9500 Series meets the strictest regulatory requirements for modern surgical environments:\n\nGlobal Compliance: CE Marked and manufactured under ISO 13485 & ISO 9001 certified quality management systems.\n\nOR Safety Standard: Class I medical electrical safety rating with IPX2 protection against fluid ingress.\n\nPatented Innovation: Protected by 15 advanced technology patents.\n\nAward-Winning Design: Winner of the Red Star Design Award and recognized as a "High-Tech Produce Star" for its advanced aerodynamic and optical engineering.	published	Healing Technology — Heyer Purelit OL9500	The Purelit OL9500 Series by Heyer is a premium LED surgical lighting system that delivers up to 160,000 Lux of shadowless, true-color illumination. Designed for the rigorous demands of modern operating rooms, it combines exceptional optical clarity with advanced safety and hygiene features.\n\nCore Highlights:\n\nPrecision Optics: Delivers a 95% Color Rendering Index (CRI) for accurate tissue visualization, with a fail-safe multi-lens matrix that prevents complete blackouts if a single LED fails.\n\nEnhanced Hygiene & Safety: Features an ultra-thin, aerodynamic profile that supports sterile laminar airflow. Its specialized light screen repels dust, resists scratches, and blocks infrared heat to prevent patient tissue desiccation.\n\nErgonomic & Durable: Equipped with a drift-free German spring arm, a sterilizable handle, and energy-efficient LEDs that boast a 70,000-hour lifespan.	\N	2026-04-19 06:54:46.571+00	2026-04-09 04:28:09.583+00	\N	\N
 \.
 
 
@@ -1612,7 +1655,6 @@ COPY public.products_applications (_order, _parent_id, id, department) FROM stdi
 --
 
 COPY public.products_download_items (_order, _parent_id, id, title, type, file_id, external_url) FROM stdin;
-1	31	69df6df2e9e9f373bb369927	HF MED HF-L60 L84C LED shadowless operating lamp	brochure	33	\N
 \.
 
 
@@ -1629,9 +1671,29 @@ COPY public.products_faq_items (_order, _parent_id, id, question, answer) FROM s
 --
 
 COPY public.products_gallery (_order, _parent_id, id, image_id, alt) FROM stdin;
+1	31	69e48ebc9227f07265a2b755	65	\N
+2	31	69e48ed19227f07265a2b756	66	\N
+3	31	69e48f289227f07265a2b757	67	\N
 1	25	69df33c9b960ec5fbf6307ab	7	\N
 2	25	69df33bfb960ec5fbf6307aa	6	\N
-3	25	69df338fb960ec5fbf6307a9	5	\N
+3	25	69e4943e9227f07265a2b76e	69	\N
+4	25	69e4945c9227f07265a2b76f	70	\N
+1	24	69e0c6ed57af051018456dbe	36	\N
+2	24	69e0c7ad57af051018456dc2	39	\N
+3	24	69e0c6f757af051018456dbf	42	\N
+4	24	69e0c81a57af051018456dc4	43	\N
+1	23	69e477359227f07265a2b748	45	\N
+2	23	69e479839227f07265a2b74a	46	\N
+3	23	69e47b319227f07265a2b74b	47	\N
+4	23	69e47b5c9227f07265a2b74c	48	\N
+5	23	69e47b6a9227f07265a2b74d	49	\N
+6	23	69e47be19227f07265a2b74e	50	\N
+1	22	69e482339227f07265a2b74f	52	\N
+2	22	69e4823f9227f07265a2b750	53	\N
+3	22	69e482519227f07265a2b751	56	\N
+1	21	69e486a49227f07265a2b752	58	\N
+1	20	69e48c659227f07265a2b753	63	\N
+2	20	69e48d469227f07265a2b754	64	\N
 \.
 
 
@@ -1648,7 +1710,7 @@ COPY public.products_key_highlights (_order, _parent_id, id, item) FROM stdin;
 --
 
 COPY public.products_rels (id, "order", parent_id, path, products_id) FROM stdin;
-22	1	25	relatedProducts	1
+28	1	24	relatedProducts	25
 \.
 
 
@@ -1658,6 +1720,8 @@ COPY public.products_rels (id, "order", parent_id, path, products_id) FROM stdin
 
 COPY public.products_spec_groups (_order, _parent_id, id, group_title) FROM stdin;
 1	1	69d72ad886da9424464137fb	Technical Specs
+1	31	69e479dd34931c3b26d3a31f	Main Parameters
+1	25	69e491749227f07265a2b764	Technical perameters
 \.
 
 
@@ -1669,6 +1733,27 @@ COPY public.products_spec_groups_rows (_order, _parent_id, id, label, value) FRO
 1	69d72ad886da9424464137fb	69d72ad886da9424464137f8	Illuminance	50,000-160,000 Lux
 2	69d72ad886da9424464137fb	69d72ad886da9424464137f9	LED Bulbs	84 pcs
 3	69d72ad886da9424464137fb	69d72ad886da9424464137fa	Service Life	≥60,000 Hours
+1	69e479dd34931c3b26d3a31f	69e479e934931c3b26d3a320	Illuminance	≥145.000 Lux <160.000 Lux
+2	69e479dd34931c3b26d3a31f	69e48ff19227f07265a2b758	Colour temperature	3800K+300K;4400K+300K;5000K+300OK
+3	69e479dd34931c3b26d3a31f	69e4901f9227f07265a2b759	Spot diameter	160-200mm
+4	69e479dd34931c3b26d3a31f	69e4902a9227f07265a2b75a	Input Power	90VA
+5	69e479dd34931c3b26d3a31f	69e490389227f07265a2b75b	LED secondarylight-emitting tube power	3.2V/3W
+6	69e479dd34931c3b26d3a31f	69e4904b9227f07265a2b75c	Number of LED secondarylight-emitting tubes	60pcs + 84pcs
+7	69e479dd34931c3b26d3a31f	69e4905b9227f07265a2b75d	ENDO	≥10000 Lux
+8	69e479dd34931c3b26d3a31f	69e490699227f07265a2b75e	GL	≥12000 Lux
+9	69e479dd34931c3b26d3a31f	69e4907f9227f07265a2b75f	Color rendering index(Ra)	96≤Ra≤100
+10	69e479dd34931c3b26d3a31f	69e4908c9227f07265a2b760	Color rendering index(Ra)	96≤Ra≤100
+11	69e479dd34931c3b26d3a31f	69e4909d9227f07265a2b761	Total irradiance	≤500W/m²
+12	69e479dd34931c3b26d3a31f	69e490ab9227f07265a2b762	Illumination depth	20%:Notless than 1070mm. 60%:Not less than 560mm
+1	69e491749227f07265a2b764	69e491c79227f07265a2b765	Dome diameter(mm)	700 / 700
+2	69e491749227f07265a2b764	69e4923f9227f07265a2b766	Illuminance (lux)	40000-180000
+3	69e491749227f07265a2b764	69e492619227f07265a2b767	Color temperature(K)	4000-5700
+4	69e491749227f07265a2b764	69e492729227f07265a2b768	Spot diameter(mm)	150-350
+5	69e491749227f07265a2b764	69e4929a9227f07265a2b769	Depth of irradiation(mm)	1200
+6	69e491749227f07265a2b764	69e493309227f07265a2b76a	Color rendering index(%)	96
+7	69e491749227f07265a2b764	69e4933b9227f07265a2b76b	Brightness adjustment digital display	1-100%
+8	69e491749227f07265a2b764	69e4934f9227f07265a2b76c	Temperature rise of surgeon's head	1°C
+9	69e491749227f07265a2b764	69e493a79227f07265a2b76d	Led lifespan(h)	80000
 \.
 
 
@@ -1710,7 +1795,8 @@ COPY public.users (id, updated_at, created_at, email, reset_password_token, rese
 --
 
 COPY public.users_sessions (_order, _parent_id, id, created_at, expires_at) FROM stdin;
-1	1	54471abd-9a8c-4749-a46a-fa252ab79ef1	2026-04-15 05:56:56.38+00	2026-04-15 11:54:02.826+00
+1	1	5b57eb42-fa36-4910-946a-e0c9c2970cd1	2026-04-19 06:44:30.346+00	2026-04-19 08:44:30.346+00
+2	1	5eaa4c5c-6e37-41dd-901d-1e784165de05	2026-04-19 07:57:27.588+00	2026-04-19 09:57:27.588+00
 \.
 
 
@@ -1718,7 +1804,7 @@ COPY public.users_sessions (_order, _parent_id, id, created_at, expires_at) FROM
 -- Name: brands_id_seq; Type: SEQUENCE SET; Schema: public; Owner: healingtech
 --
 
-SELECT pg_catalog.setval('public.brands_id_seq', 27, true);
+SELECT pg_catalog.setval('public.brands_id_seq', 29, true);
 
 
 --
@@ -1767,14 +1853,14 @@ SELECT pg_catalog.setval('public.legal_pages_id_seq', 1, false);
 -- Name: media_id_seq; Type: SEQUENCE SET; Schema: public; Owner: healingtech
 --
 
-SELECT pg_catalog.setval('public.media_id_seq', 34, true);
+SELECT pg_catalog.setval('public.media_id_seq', 70, true);
 
 
 --
 -- Name: orders_id_seq; Type: SEQUENCE SET; Schema: public; Owner: healingtech
 --
 
-SELECT pg_catalog.setval('public.orders_id_seq', 10, true);
+SELECT pg_catalog.setval('public.orders_id_seq', 11, true);
 
 
 --
@@ -1795,14 +1881,14 @@ SELECT pg_catalog.setval('public.payload_kv_id_seq', 1, false);
 -- Name: payload_locked_documents_id_seq; Type: SEQUENCE SET; Schema: public; Owner: healingtech
 --
 
-SELECT pg_catalog.setval('public.payload_locked_documents_id_seq', 78, true);
+SELECT pg_catalog.setval('public.payload_locked_documents_id_seq', 120, true);
 
 
 --
 -- Name: payload_locked_documents_rels_id_seq; Type: SEQUENCE SET; Schema: public; Owner: healingtech
 --
 
-SELECT pg_catalog.setval('public.payload_locked_documents_rels_id_seq', 156, true);
+SELECT pg_catalog.setval('public.payload_locked_documents_rels_id_seq', 240, true);
 
 
 --
@@ -1816,14 +1902,14 @@ SELECT pg_catalog.setval('public.payload_migrations_id_seq', 1, true);
 -- Name: payload_preferences_id_seq; Type: SEQUENCE SET; Schema: public; Owner: healingtech
 --
 
-SELECT pg_catalog.setval('public.payload_preferences_id_seq', 15, true);
+SELECT pg_catalog.setval('public.payload_preferences_id_seq', 16, true);
 
 
 --
 -- Name: payload_preferences_rels_id_seq; Type: SEQUENCE SET; Schema: public; Owner: healingtech
 --
 
-SELECT pg_catalog.setval('public.payload_preferences_rels_id_seq', 58, true);
+SELECT pg_catalog.setval('public.payload_preferences_rels_id_seq', 64, true);
 
 
 --
@@ -1837,7 +1923,7 @@ SELECT pg_catalog.setval('public.products_id_seq', 31, true);
 -- Name: products_rels_id_seq; Type: SEQUENCE SET; Schema: public; Owner: healingtech
 --
 
-SELECT pg_catalog.setval('public.products_rels_id_seq', 22, true);
+SELECT pg_catalog.setval('public.products_rels_id_seq', 50, true);
 
 
 --
@@ -3201,5 +3287,5 @@ ALTER TABLE ONLY public.users_sessions
 -- PostgreSQL database dump complete
 --
 
-\unrestrict UgF1QKIVaTmtwN7tfY3KktNE8nLtwXHZotAdqa177LmX15JnpLGhEILcQkREYQ1
+\unrestrict wtPjd4Gh9i7Nr8jjWTdMwEtlAvaWXAWAULH8or2z64lqOMOOtw4nBag05sZ37WP
 

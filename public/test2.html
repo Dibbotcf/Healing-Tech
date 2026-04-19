@@ -1,0 +1,16 @@
+
+<html>
+<body style="background: #ccc;">
+  <h2>Top Logo</h2>
+  <svg viewBox="130 490 350 140" style="width: 500px; border: 1px solid red; background: white;">
+    ${svg.replace(/<svg[^>]*>/, '').replace(/<\/svg>/, '')}
+  </svg>
+  <h2>Bottom Logo</h2>
+  <svg viewBox="130 360 350 140" style="width: 500px; border: 1px solid blue; background: #222;">
+    ${svg.replace(/<svg[^>]*>/, '').replace(/<\/svg>/, '')}
+  </svg>
+  <style>
+    /* Turn off the global clipPath on <g id="layer-MC0"> to prevent clipping from the A4 document bounds */
+  </style>
+</body>
+</html>

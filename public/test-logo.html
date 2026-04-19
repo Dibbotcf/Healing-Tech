@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body { background: #eee; margin: 0; padding: 20px; }
+    svg { border: 1px solid red; }
+  </style>
+</head>
+<body>
+  <div id="container"></div>
+  <script>
+    fetch('/logo-new.svg')
+      .then(r => r.text())
+      .then(text => {
+        document.getElementById('container').innerHTML = text;
+        const svg = document.querySelector('svg');
+        const paths = Array.from(svg.querySelectorAll('path, text'));
+        
+        let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+        
+        paths.forEach(p => {
+          const bbox = p.getBoundingClientRect();
+          if(bbox.width > 0 && bbox.height > 0) {
+            console.log(p.id, p.getAttribute('aria-label'), bbox.x, bbox.y, bbox.width, bbox.height);
+          }
+        });
+        
+        // Find bounds for the top logo elements (e.g. paths 1 to 35) vs bottom (37 to 55)
+        // We'll just group them by Y position
+      });
+  </script>
+</body>
+</html>

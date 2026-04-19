@@ -7,6 +7,7 @@ import { ArrowRight, ShieldCheck, Wrench } from "lucide-react";
 import { TestimonialsSection } from "@/components/TestimonialsSection";
 import { FAQSection } from "@/components/FAQSection";
 import { ProductCarousel } from "@/components/ProductCarousel";
+import { PremiumProductShowcase } from "@/components/PremiumProductShowcase";
 import { HeroSlider } from "@/components/HeroSlider";
 import Image from "next/image";
 import { WorldMap } from "@/components/ui/map";
@@ -94,6 +95,9 @@ export default function Home() {
 
       {/* Featured Equipment Carousel (CMS-driven) */}
       <ProductCarousel />
+
+      {/* Cinematic Expanding Showcase */}
+      <PremiumProductShowcase />
 
       {/* Value Proposition */}
       <section className="py-24 bg-white overflow-visible">
