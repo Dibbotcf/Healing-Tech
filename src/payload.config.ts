@@ -428,8 +428,7 @@ export default buildConfig({
       upload: {
         staticDir: path.resolve(dirname, '../public/media'),
         mimeTypes: ['image/*', 'video/*', 'application/pdf'],
-        // No file size limit — allow large videos and high-res images
-        fileSize: 2 * 1024 * 1024 * 1024, // 2 GB
+        // File size is limited at the Next.js level (2GB) via next.config.ts
       },
       fields: [
         { name: 'alt', type: 'text', required: false }
