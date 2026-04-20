@@ -88,9 +88,9 @@ export function ProductCarousel() {
                     <div className="relative h-[200px] bg-[#F8F9FA] overflow-hidden pointer-events-none">
                       {heroUrl ? (
                         product.heroImage?.mimeType?.startsWith('video/') ? (
-                          <video src={heroUrl} autoPlay loop muted playsInline className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                          <video src={heroUrl} autoPlay loop muted playsInline className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" />
                         ) : (
-                          <img src={heroUrl} alt={product.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                          <img src={heroUrl} alt={product.name} className="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-500" />
                         )
                       ) : (
                         <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-[#00355D]/5 to-[#12B5CB]/10">

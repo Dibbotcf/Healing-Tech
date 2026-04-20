@@ -76,6 +76,7 @@ export default buildConfig({
         { name: 'title', type: 'text', required: true },
         { name: 'slug', type: 'text', required: true, unique: true },
         { name: 'parent', type: 'relationship', relationTo: 'categories' },
+        { name: 'heroImage', type: 'upload', relationTo: 'media', label: 'Hero Image' },
         { name: 'shortDescription', type: 'textarea' },
         { name: 'heroTitle', type: 'text' },
         { name: 'heroDescription', type: 'richText' },
@@ -427,6 +428,8 @@ export default buildConfig({
       upload: {
         staticDir: path.resolve(dirname, '../public/media'),
         mimeTypes: ['image/*', 'video/*', 'application/pdf'],
+        // No file size limit — allow large videos and high-res images
+        fileSize: 2 * 1024 * 1024 * 1024, // 2 GB
       },
       fields: [
         { name: 'alt', type: 'text', required: false }

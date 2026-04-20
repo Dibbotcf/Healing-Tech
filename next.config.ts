@@ -4,6 +4,11 @@ import path from 'path'
 
 const nextConfig: NextConfig = {
   output: "standalone",
+  experimental: {
+    serverActions: {
+      bodySizeLimit: '2gb',
+    },
+  },
   images: {
     remotePatterns: [
       {

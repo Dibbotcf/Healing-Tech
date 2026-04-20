@@ -38,10 +38,15 @@ export async function GET() {
         }
       }
 
-      // Extract hero image URL if available
+      // Extract hero image URL if available (fallback to first gallery image)
       let imageUrl = "";
       if (p.heroImage && typeof p.heroImage === "object" && "url" in p.heroImage) {
         imageUrl = getMediaUrl((p.heroImage as any).url) || "";
+      } else if (p.gallery && Array.isArray(p.gallery) && p.gallery.length > 0) {
+        const firstGalleryImg = p.gallery[0].image;
+        if (firstGalleryImg && typeof firstGalleryImg === "object" && "url" in firstGalleryImg) {
+          imageUrl = getMediaUrl((firstGalleryImg as any).url) || "";
+        }
       }
 
       return {

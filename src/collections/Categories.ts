@@ -13,6 +13,7 @@ export const Categories: CollectionConfig = {
     { name: 'title', type: 'text', required: true },
     { name: 'slug', type: 'text', required: true, unique: true },
     { name: 'parent', type: 'relationship', relationTo: 'categories' },
+    { name: 'heroImage', type: 'upload', relationTo: 'media' },
     { name: 'shortDescription', type: 'textarea' },
     { name: 'heroTitle', type: 'text' },
     { name: 'heroDescription', type: 'richText' },

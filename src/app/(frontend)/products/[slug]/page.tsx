@@ -73,6 +73,12 @@ export default async function ProductDetailPage({
       }
     });
   }
+  
+  // Ultimate fallback to SEO meta image if still empty
+  if (images.length === 0 && product.meta?.image && typeof product.meta.image !== 'string' && product.meta.image.url) {
+    const backupUrl = getMediaUrl(product.meta.image.url);
+    if (backupUrl) images.push({ url: backupUrl, alt: product.name, mimeType: (product.meta.image as any).mimeType });
+  }
 
   // ── Country ───────────────────────────────────────────────
   const rawCountry   = product.originCountry || '';

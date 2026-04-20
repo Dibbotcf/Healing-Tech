@@ -7,7 +7,7 @@ import { ArrowRight, ShieldCheck, Wrench } from "lucide-react";
 import { TestimonialsSection } from "@/components/TestimonialsSection";
 import { FAQSection } from "@/components/FAQSection";
 import { ProductCarousel } from "@/components/ProductCarousel";
-import { PremiumProductShowcase } from "@/components/PremiumProductShowcase";
+import { CategoryShowcase } from "@/components/CategoryShowcase";
 import { HeroSlider } from "@/components/HeroSlider";
 import Image from "next/image";
 import { WorldMap } from "@/components/ui/map";
@@ -96,8 +96,8 @@ export default function Home() {
       {/* Featured Equipment Carousel (CMS-driven) */}
       <ProductCarousel />
 
-      {/* Cinematic Expanding Showcase */}
-      <PremiumProductShowcase />
+      {/* Cinematic Expanding Category Showcase */}
+      <CategoryShowcase />
 
       {/* Value Proposition */}
       <section className="py-24 bg-white overflow-visible">
@@ -115,21 +115,21 @@ export default function Home() {
                   No middlemen. No grey markets. We source, import, and deliver internationally certified medical devices from the brands that hospitals worldwide rely on — straight to your facility.
                 </p>
 
-                {/* Big Brand Logos */}
-                <div className="grid grid-cols-2 gap-x-10 gap-y-8">
-                  {brands.map((brand, i) => (
-                    <div key={i} className="flex items-center">
-                      <div className="relative h-10 w-full max-w-[160px]">
-                        <Image
-                          src={brand.logo}
-                          alt={brand.name}
-                          fill
-                          className="object-contain object-left"
-                          style={{ filter: "brightness(0) saturate(100%) invert(14%) sepia(47%) saturate(2894%) hue-rotate(192deg) brightness(97%) contrast(101%)" }}
-                        />
+                {/* Animated Brand Logos Marquee */}
+                <div className="relative w-full max-w-full overflow-hidden mt-8 [mask-image:linear-gradient(to_right,transparent,black_10%,black_80%,transparent)]">
+                  <div className="flex items-center space-x-12 animate-[marquee_20s_linear_infinite] whitespace-nowrap">
+                    {[...brands, ...brands, ...brands, ...brands].map((brand, i) => (
+                      <div key={i} className="relative h-12 w-32 shrink-0 flex items-center justify-left">
+                        {brand.logo ? (
+                          <img
+                            src={brand.logo}
+                            alt={brand.name}
+                            className="h-full w-full object-contain object-left transition-transform duration-300 hover:scale-105"
+                          />
+                        ) : null}
                       </div>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
                 </div>
               </div>
 

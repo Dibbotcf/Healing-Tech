@@ -332,7 +332,7 @@ export default function Navbar() {
                     </div>
                   ) : (
                     <div className="grid grid-cols-2 xl:grid-cols-3 gap-4">
-                      {activeProds.slice(0, 9).map((prod, i) => (
+                      {activeProds.map((prod, i) => (
                         <button
                           key={prod.id}
                           onClick={() => handleProductClick(prod.slug)}
