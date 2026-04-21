@@ -43,9 +43,9 @@ fi
 # ── 5. Copy .env + public + static assets to standalone ───────
 echo "[5/7] Copying assets + .env to standalone..." | tee -a "$LOG"
 cp "$APP_DIR/.env" "$STANDALONE_DIR/.env" 2>&1 | tee -a "$LOG"
-cp -rf "$APP_DIR/public" "$STANDALONE_DIR/public" 2>&1 | tee -a "$LOG"
-mkdir -p "$STANDALONE_DIR/.next/static"
-cp -rf "$APP_DIR/.next/static" "$STANDALONE_DIR/.next/static" 2>&1 | tee -a "$LOG"
+rm -rf "$STANDALONE_DIR/public" "$STANDALONE_DIR/.next/static"
+cp -r "$APP_DIR/public" "$STANDALONE_DIR/" 2>&1 | tee -a "$LOG"
+cp -r "$APP_DIR/.next/static" "$STANDALONE_DIR/.next/" 2>&1 | tee -a "$LOG"
 
 # ── 6. Kill existing Node process on the port ────────────────
 echo "[6/7] Stopping existing server on port $PORT..." | tee -a "$LOG"
