@@ -4,10 +4,12 @@
 # Run this on the server: bash redeploy.sh
 # =============================================================
 
+export PATH=/opt/plesk/node/22/bin:$PATH
+
 APP_DIR="/var/www/vhosts/healingtechnology.com.bd/httpdocs"
 STANDALONE_DIR="$APP_DIR/.next/standalone"
 LOG="$APP_DIR/redeploy.log"
-PORT=3000
+PORT=12000
 
 echo "=============================" | tee -a "$LOG"
 echo "Deploy started: $(date)" | tee -a "$LOG"
