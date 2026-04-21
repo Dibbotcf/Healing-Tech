@@ -9,12 +9,19 @@
 export function getMediaUrl(url: string | null | undefined): string | null {
   if (!url) return null;
 
+  let pathname = url;
   try {
     const parsed = new URL(url);
-    // Return just the pathname (e.g. /api/media/file/foo.png)
-    return parsed.pathname;
+    pathname = parsed.pathname;
   } catch {
-    // Already a relative path — return as-is
-    return url;
+    // Already a relative path — keep it
   }
+
+  // Payload v3 stores URLs as /api/media/file/[filename]
+  // We serve them via Next.js natively from public/media mapped to /media/[filename]
+  if (pathname.startsWith('/api/media/file/')) {
+    pathname = pathname.replace('/api/media/file/', '/media/');
+  }
+
+  return pathname;
 }
