@@ -30,6 +30,21 @@ export default buildConfig({
       admin: { useAsTitle: 'email' },
       fields: [],
     },
+    // Client Logos
+    {
+      slug: 'client-logos',
+      admin: {
+        useAsTitle: 'name',
+        defaultColumns: ['name', 'logo', 'sortOrder'],
+      },
+      access: { read: () => true },
+      fields: [
+        { name: 'name', type: 'text', required: true },
+        { name: 'logo', type: 'upload', relationTo: 'media', required: true },
+        { name: 'website', type: 'text' },
+        { name: 'sortOrder', type: 'number', defaultValue: 0 },
+      ],
+    },
     // Partner Logos
     {
       slug: 'partner-logos',

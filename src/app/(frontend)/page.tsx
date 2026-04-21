@@ -38,7 +38,7 @@ const INITIAL_BRAND_LOGOS = [
 ];
 
 
-const clientLogos = [
+const INITIAL_CLIENT_LOGOS = [
   { name: "Care Specialized Hospital", logo: "/clients/Care Specialized Hospital.svg" },
   { name: "City Hospital", logo: "/clients/City Hospital.svg" },
   { name: "Continental Hospital", logo: "/clients/Continental Hospital.svg" },
@@ -52,6 +52,7 @@ const clientLogos = [
 
 export default function Home() {
   const [brands, setBrands] = useState(INITIAL_BRAND_LOGOS);
+  const [clients, setClients] = useState(INITIAL_CLIENT_LOGOS);
 
   useEffect(() => {
     fetch("/api/public-partner-logos")
@@ -60,6 +61,13 @@ export default function Home() {
         if (data && data.length > 0) setBrands(data);
       })
       .catch((err) => console.error("Error fetching partner logos:", err));
+
+    fetch("/api/public-client-logos")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data && data.length > 0) setClients(data);
+      })
+      .catch((err) => console.error("Error fetching client logos:", err));
   }, []);
 
   return (
@@ -80,13 +88,15 @@ export default function Home() {
           </p>
         </div>
         <div className="flex items-center space-x-24 animate-[marquee_30s_linear_infinite] whitespace-nowrap px-4 py-6">
-          {[...clientLogos, ...clientLogos, ...clientLogos, ...clientLogos].map((client, index) => (
+          {[...clients, ...clients, ...clients, ...clients].map((client, index) => (
             <div key={index} className="inline-flex items-center mx-12">
-              <img 
-                src={client.logo} 
-                alt={client.name} 
-                className="h-12 md:h-16 w-auto max-w-none object-contain brightness-0 opacity-60 hover:opacity-100 transition-all duration-300" 
-              />
+              {client.logo ? (
+                <img 
+                  src={client.logo} 
+                  alt={client.name} 
+                  className="h-12 md:h-16 w-auto max-w-none object-contain brightness-0 opacity-60 hover:opacity-100 transition-all duration-300" 
+                />
+              ) : null}
             </div>
           ))}
         </div>
