@@ -143,7 +143,7 @@ export default function Navbar() {
           </div>
 
           {/* ── MOBILE: compact logo ── */}
-          <Link href="/" className="flex items-center lg:hidden bg-white rounded-full px-5 py-2 pointer-events-auto" style={{ height: "68px" }}>
+          <Link href="/" className="flex items-center lg:hidden bg-white rounded-full pl-4 pr-2 py-1 pointer-events-auto max-w-[200px] sm:max-w-[240px] flex-shrink" style={{ height: "56px" }}>
             <Image
               src="/logo-dark.svg"
               alt="Healing Technology"
@@ -151,8 +151,7 @@ export default function Navbar() {
               height={57}
               unoptimized
               priority
-              className="object-contain"
-              style={{ height: "57px", width: "218px" }}
+              className="object-contain w-full h-full object-left"
             />
           </Link>
 
