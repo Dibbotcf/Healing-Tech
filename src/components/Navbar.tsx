@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState, useRef, useCallback } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import { X, Plus, ChevronRight, ArrowRight, Sparkles, Menu, ArrowUpRight, ShoppingBag, Search } from "lucide-react";
+import { X, Plus, ChevronRight, ArrowRight, Sparkles, Menu, ArrowUpRight, ShoppingBag, Search, Box, Info, Activity, Mail, Phone } from "lucide-react";
 import { CartSidebar } from "./CartSidebar";
 import { SearchModal } from "./SearchModal";
 import { useCartStore } from "@/lib/cartStore";
@@ -395,49 +395,89 @@ export default function Navbar() {
           MOBILE MENU
       ═══════════════════════════════════════ */}
       <div
-        className={`fixed inset-0 z-40 lg:hidden transition-all duration-400 ${
-          mobileOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        className={`fixed inset-0 z-40 lg:hidden transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+          mobileOpen ? "opacity-100 pointer-events-auto bg-white/80 backdrop-blur-md" : "opacity-0 pointer-events-none"
         }`}
         style={{ paddingTop: "72px" }}
       >
-        <div className="h-full bg-white overflow-y-auto px-6 py-8 flex flex-col pt-24">
+        {/* Full-screen drawer effect that slides up slightly */}
+        <div 
+          className={`h-full bg-white overflow-y-auto px-6 py-8 flex flex-col pt-16 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+            mobileOpen ? "translate-y-0" : "translate-y-8"
+          }`}
+        >
           <p className="text-[10px] font-black text-[#575B5F] uppercase tracking-[0.15em] mb-4 ml-1">Menu</p>
-          <div className="space-y-2 mb-8">
-            <Link
-              href="/products"
-              onClick={() => setMobileOpen(false)}
-              className="w-full flex items-center justify-between py-4 px-5 rounded-2xl text-[#111111] hover:bg-gray-50 border border-gray-100 transition-all text-sm font-bold shadow-sm"
-            >
-              Product Catalog <ChevronRight className="w-4 h-4 text-[#12B5CB]" />
-            </Link>
-            
+          <div className="space-y-3 mb-8">
             {[
-              { label: "About Us", href: "/about" },
-              { label: "What We Do", href: "/what-we-do" },
-            ].map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                onClick={() => setMobileOpen(false)}
-                className="block py-4 px-5 rounded-2xl text-[#111111] hover:bg-gray-50 border border-transparent transition-all text-sm font-bold"
-              >
-                {item.label}
-              </Link>
-            ))}
+              { label: "Product Catalog", href: "/products", icon: Box, color: "text-[#12B5CB]" },
+              { label: "About Us", href: "/about", icon: Info, color: "text-[#00355D]" },
+              { label: "What We Do", href: "/what-we-do", icon: Activity, color: "text-[#00355D]" },
+            ].map((item, i) => {
+              const Icon = item.icon;
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setMobileOpen(false)}
+                  className="group flex items-center justify-between p-4 rounded-[20px] border border-gray-100/80 bg-gray-50/50 hover:bg-white hover:border-[#12B5CB]/30 hover:shadow-sm transition-all"
+                  style={{
+                    transform: mobileOpen ? "translateY(0)" : "translateY(20px)",
+                    opacity: mobileOpen ? 1 : 0,
+                    transition: `all 0.4s cubic-bezier(0.16, 1, 0.3, 1) ${i * 0.08}s`,
+                  }}
+                >
+                  <div className="flex items-center gap-4">
+                    <div className={`w-12 h-12 rounded-[14px] flex items-center justify-center bg-white shadow-sm ${item.color} group-hover:scale-110 group-hover:shadow-md transition-all duration-300`}>
+                      <Icon className="w-[22px] h-[22px]" />
+                    </div>
+                    <span className="text-[15px] font-bold text-[#111111] group-hover:text-[#12B5CB] transition-colors">
+                      {item.label}
+                    </span>
+                  </div>
+                  <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center shadow-sm group-hover:bg-[#12B5CB] transition-colors duration-300">
+                    <ChevronRight className="w-4 h-4 text-gray-400 group-hover:text-white" />
+                  </div>
+                </Link>
+              );
+            })}
           </div>
 
-          <div className="mt-auto">
-            <div className="bg-[#f8f9fa] rounded-2xl p-5 mb-6">
-                <p className="text-xs text-[#575B5F] mb-3 leading-relaxed">Need technical support or have an inquiry?</p>
-                <a href="mailto:info@healingtech.com.bd" className="text-sm font-bold text-[#00355D] block">info@healingtech.com.bd</a>
-                <a href="tel:+8801675292991" className="text-sm font-bold text-[#00355D] block mt-1">+88 01675 292991</a>
+          <div 
+            className="mt-auto transition-all duration-500"
+            style={{
+              transform: mobileOpen ? "translateY(0)" : "translateY(20px)",
+              opacity: mobileOpen ? 1 : 0,
+              transitionDelay: "200ms"
+            }}
+          >
+            <div className="bg-gradient-to-br from-[#00355D] to-[#001D33] rounded-[24px] p-7 mb-6 text-white relative overflow-hidden shadow-xl shadow-[#00355D]/10">
+                {/* Decorative blob */}
+                <div className="absolute -top-12 -right-12 w-40 h-40 bg-[#12B5CB]/20 rounded-full blur-3xl pointer-events-none" />
+                
+                <p className="text-[11px] text-white/60 mb-5 font-bold uppercase tracking-[0.1em]">Support & Inquiries</p>
+                
+                <div className="space-y-4">
+                  <a href="mailto:info@healingtech.com.bd" className="flex items-center gap-3.5 hover:opacity-80 transition-opacity">
+                    <div className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center backdrop-blur-sm border border-white/5">
+                      <Mail className="w-4 h-4 text-[#12B5CB]" />
+                    </div>
+                    <span className="text-sm font-semibold tracking-[-0.01em]">info@healingtech.com.bd</span>
+                  </a>
+                  <a href="tel:+8801675292991" className="flex items-center gap-3.5 hover:opacity-80 transition-opacity">
+                    <div className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center backdrop-blur-sm border border-white/5">
+                      <Phone className="w-4 h-4 text-[#12B5CB]" />
+                    </div>
+                    <span className="text-sm font-semibold tracking-[-0.01em]">+88 01675 292991</span>
+                  </a>
+                </div>
             </div>
+            
             <Link
               href="/contact"
               onClick={() => setMobileOpen(false)}
-              className="block w-full bg-[#00355D] hover:bg-[#12B5CB] text-white text-center font-bold py-4 rounded-full text-sm tracking-[-0.02em] transition-colors"
+              className="group flex items-center justify-center gap-2 w-full bg-[#12B5CB] hover:bg-[#009EE2] active:scale-[0.98] text-white font-bold py-4 rounded-[20px] text-[15px] transition-all hover:shadow-lg hover:shadow-[#12B5CB]/20"
             >
-              Contact Us
+              Contact Us <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
         </div>
