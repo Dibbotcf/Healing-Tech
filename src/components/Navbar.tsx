@@ -202,13 +202,34 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* ── MOBILE hamburger ── */}
-          <button
-            onClick={() => setMobileOpen((o) => !o)}
-            className="lg:hidden w-14 h-14 rounded-full bg-white flex items-center justify-center text-[#00355D] hover:bg-gray-50 transition-colors pointer-events-auto"
-          >
-            {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-          </button>
+          {/* ── MOBILE buttons ── */}
+          <div className="lg:hidden flex items-center gap-2 pointer-events-auto">
+            <button
+               onClick={() => setSearchOpen(true)}
+               className="w-[52px] h-[52px] md:w-14 md:h-14 bg-white rounded-full flex items-center justify-center text-[#00355D]"
+               aria-label="Search site"
+            >
+               <Search className="w-5 h-5 md:w-5 md:h-5" />
+            </button>
+            <button
+               onClick={() => setCartOpen(true)}
+               className="relative w-[52px] h-[52px] md:w-14 md:h-14 bg-white rounded-full flex items-center justify-center text-[#00355D]"
+               aria-label="View cart"
+            >
+               <ShoppingBag className="w-5 h-5 md:w-5 md:h-5" />
+               {mounted && getTotalItems() > 0 && (
+                 <span className="absolute top-1.5 right-1.5 md:top-2 md:right-2 bg-[#12B5CB] text-white text-[9px] font-bold w-4 h-4 flex items-center justify-center rounded-full border-2 border-white">
+                   {getTotalItems()}
+                 </span>
+               )}
+            </button>
+            <button
+              onClick={() => setMobileOpen((o) => !o)}
+              className="w-[52px] h-[52px] md:w-14 md:h-14 rounded-full bg-white flex items-center justify-center text-[#00355D] hover:bg-gray-50 transition-colors"
+            >
+              {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </button>
+          </div>
         </div>
       </header>
 

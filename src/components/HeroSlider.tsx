@@ -102,7 +102,7 @@ export function HeroSlider() {
       <div className="absolute inset-0 bg-gradient-to-t from-[#00355D]/95 via-[#00355D]/35 to-[#00355D]/25 pointer-events-none" />
 
       {/* Dynamic Text Overlay */}
-      <div className="absolute inset-0 flex items-start pt-[120px] sm:pt-48 md:pt-56 lg:pt-64 z-10 pointer-events-none">
+      <div className="absolute inset-0 flex items-center z-10 pointer-events-none pb-12 lg:pb-0">
         <div className="container mx-auto px-6 lg:px-8 max-w-[1440px]">
           <AnimatePresence mode="wait">
             <motion.div
