@@ -269,7 +269,7 @@ export default function Navbar() {
                   }}
                   className="flex items-center gap-2 text-sm font-bold text-[#12B5CB] hover:text-[#009EE2] transition-colors"
                 >
-                  Full Catalog <ArrowRight className="w-4 h-4" />
+                  View All Products <ArrowRight className="w-4 h-4" />
                 </button>
                 <button
                   onClick={() => setMegaOpen(false)}
