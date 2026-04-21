@@ -5,6 +5,7 @@
 # =============================================================
 
 export PATH=/opt/plesk/node/22/bin:$PATH
+NODE=/opt/plesk/node/22/bin/node
 
 APP_DIR="/var/www/vhosts/healingtechnology.com.bd/httpdocs"
 STANDALONE_DIR="$APP_DIR/.next/standalone"
@@ -25,31 +26,46 @@ git pull origin master 2>&1 | tee -a "$LOG"
 echo "[2/7] Installing dependencies..." | tee -a "$LOG"
 npm install --legacy-peer-deps 2>&1 | tee -a "$LOG"
 
-# ── 3. Run Payload migrations ────────────────────────────────
-echo "[3/7] Running Payload CMS migrations..." | tee -a "$LOG"
-npx payload migrate 2>&1 | tee -a "$LOG"
+# ── 3. Run Payload migrations (skip errors — ESM compat issue) ─
+echo "[3/7] Running Payload CMS migrations (best-effort)..." | tee -a "$LOG"
+npx payload migrate 2>&1 | tee -a "$LOG" || true
 
 # ── 4. Build the app ─────────────────────────────────────────
 echo "[4/7] Building Next.js app..." | tee -a "$LOG"
 npm run build 2>&1 | tee -a "$LOG"
 
-# ── 5. Copy public & static assets to standalone ─────────────
-echo "[5/7] Copying assets to standalone..." | tee -a "$LOG"
-cp -r "$APP_DIR/public" "$STANDALONE_DIR/public" 2>&1 | tee -a "$LOG"
+# Check build actually succeeded
+if [ ! -f "$STANDALONE_DIR/server.js" ]; then
+  echo "❌ BUILD FAILED — server.js not found in standalone. Aborting." | tee -a "$LOG"
+  exit 1
+fi
+
+# ── 5. Copy .env + public + static assets to standalone ───────
+echo "[5/7] Copying assets + .env to standalone..." | tee -a "$LOG"
+cp "$APP_DIR/.env" "$STANDALONE_DIR/.env" 2>&1 | tee -a "$LOG"
+cp -rf "$APP_DIR/public" "$STANDALONE_DIR/public" 2>&1 | tee -a "$LOG"
 mkdir -p "$STANDALONE_DIR/.next/static"
-cp -r "$APP_DIR/.next/static" "$STANDALONE_DIR/.next/static" 2>&1 | tee -a "$LOG"
+cp -rf "$APP_DIR/.next/static" "$STANDALONE_DIR/.next/static" 2>&1 | tee -a "$LOG"
 
 # ── 6. Kill existing Node process on the port ────────────────
 echo "[6/7] Stopping existing server on port $PORT..." | tee -a "$LOG"
 fuser -k ${PORT}/tcp 2>/dev/null || true
 sleep 2
 
-# ── 7. Start new server with setsid ──────────────────────────
-echo "[7/7] Starting server with setsid..." | tee -a "$LOG"
+# ── 7. Start new server with explicit PORT ───────────────────
+echo "[7/7] Starting server on port $PORT..." | tee -a "$LOG"
 cd "$STANDALONE_DIR"
-setsid node server.js >> "$LOG" 2>&1 &
+export PORT=$PORT
+export NODE_ENV=production
+setsid $NODE server.js >> "$LOG" 2>&1 &
 
-echo "" | tee -a "$LOG"
-echo "✅ Deploy complete at $(date)" | tee -a "$LOG"
-echo "   App running on port $PORT" | tee -a "$LOG"
-echo "   Logs: $LOG" | tee -a "$LOG"
+sleep 3
+if fuser ${PORT}/tcp > /dev/null 2>&1; then
+  echo "" | tee -a "$LOG"
+  echo "✅ Deploy complete at $(date)" | tee -a "$LOG"
+  echo "   ✓ Server confirmed running on port $PORT" | tee -a "$LOG"
+  echo "   Logs: $LOG" | tee -a "$LOG"
+else
+  echo "" | tee -a "$LOG"
+  echo "⚠️  Deploy finished but server NOT detected on port $PORT — check logs!" | tee -a "$LOG"
+fi
