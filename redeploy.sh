@@ -43,8 +43,19 @@ fi
 # ── 5. Copy .env + public + static assets to standalone ───────
 echo "[5/7] Copying assets + .env to standalone..." | tee -a "$LOG"
 cp "$APP_DIR/.env" "$STANDALONE_DIR/.env" 2>&1 | tee -a "$LOG"
-rm -rf "$STANDALONE_DIR/public" "$STANDALONE_DIR/.next/static"
-cp -r "$APP_DIR/public" "$STANDALONE_DIR/" 2>&1 | tee -a "$LOG"
+
+# Use rsync to MERGE public folder — preserves CMS-uploaded media files
+# that were uploaded via Payload admin panel and are NOT tracked in git
+mkdir -p "$STANDALONE_DIR/public/media"
+rsync -a --update "$APP_DIR/public/" "$STANDALONE_DIR/public/" 2>&1 | tee -a "$LOG"
+
+# Sync from persistent media storage (CMS uploads survive redeploys here)
+PERSISTENT_MEDIA="/var/www/vhosts/healingtechnology.com.bd/persistent/media"
+if [ -d "$PERSISTENT_MEDIA" ]; then
+  rsync -a --update "$PERSISTENT_MEDIA/" "$STANDALONE_DIR/public/media/" 2>&1 | tee -a "$LOG"
+  echo "   ✓ Synced persistent media to standalone" | tee -a "$LOG"
+fi
+
 cp -r "$APP_DIR/.next/static" "$STANDALONE_DIR/.next/" 2>&1 | tee -a "$LOG"
 
 # ── 6. Kill existing Node process on the port ────────────────

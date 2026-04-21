@@ -441,7 +441,11 @@ export default buildConfig({
       slug: 'media',
       access: { read: () => true },
       upload: {
-        staticDir: path.resolve(dirname, '../public/media'),
+        // In production, PAYLOAD_MEDIA_DIR should point to a persistent folder
+        // outside the git tree (e.g. /var/www/vhosts/.../persistent/media)
+        // so that CMS-uploaded images survive redeployments.
+        // Falls back to public/media for local development.
+        staticDir: process.env.PAYLOAD_MEDIA_DIR || path.resolve(dirname, '../public/media'),
         mimeTypes: ['image/*', 'video/*', 'application/pdf'],
         // File size is limited at the Next.js level (2GB) via next.config.ts
       },
