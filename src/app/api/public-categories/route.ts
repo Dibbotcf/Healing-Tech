@@ -23,8 +23,8 @@ export async function GET() {
     const categories = await Promise.all(
       categoryDocs.docs.map(async (c: any) => {
         let imageUrl: string | null = null;
-        if (c.heroImage && typeof c.heroImage === "object" && typeof c.heroImage.url === "string") {
-          imageUrl = getMediaUrl(c.heroImage.url);
+        if (c.heroImage && typeof c.heroImage === "object" && c.heroImage.url) {
+          imageUrl = getMediaUrl(String(c.heroImage.url));
         }
 
         // Fetch up to 10 products associated with this category
@@ -40,8 +40,8 @@ export async function GET() {
 
         const productImages: string[] = [];
         products.docs.forEach((p: any) => {
-          if (p.heroImage && typeof p.heroImage === "object" && typeof p.heroImage.url === "string") {
-            productImages.push(getMediaUrl(p.heroImage.url));
+          if (p.heroImage && typeof p.heroImage === "object" && p.heroImage.url) {
+            productImages.push(getMediaUrl(String(p.heroImage.url)));
           }
         });
 

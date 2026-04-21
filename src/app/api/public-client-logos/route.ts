@@ -19,7 +19,7 @@ export async function GET() {
     const logos = logoDocs.docs.map((l: any) => ({
       id: String(l.id),
       name: l.name,
-      logo: typeof l.logo === "object" && typeof l.logo?.url === "string" ? getMediaUrl(l.logo.url) : "",
+      logo: typeof l.logo === "object" && l.logo?.url ? getMediaUrl(String(l.logo.url)) : "",
       website: l.website || "",
     }));
 
