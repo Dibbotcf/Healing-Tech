@@ -138,10 +138,6 @@ export default function ProductClientWrapper({
                     </div>
                   )}
                   <Link href={`/products/${product.slug}`} className="block relative h-48 bg-[#F8F9FA] overflow-hidden group-hover:bg-[#EEF4FB] transition-colors cursor-pointer">
-                    {/* Category badge */}
-                    <div className="absolute top-3 left-3 z-10 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-[10px] font-bold text-[#00355D] uppercase tracking-widest shadow-sm">
-                      {categoryDef?.title || 'System'}
-                    </div>
                     {/* Hero image or initial placeholder */}
                     {product.heroImage && typeof product.heroImage !== 'string' && product.heroImage.url ? (
                       // eslint-disable-next-line @next/next/no-img-element
@@ -158,7 +154,11 @@ export default function ProductClientWrapper({
                   </Link>
                   
                   <div className="p-6 flex-1 flex flex-col cursor-default">
-                    <div className="text-[10px] font-bold text-[#575B5F] mb-2 uppercase tracking-widest">{brandDef?.name || 'Partner Brand'}</div>
+                    <div className="text-[10px] font-bold text-[#12B5CB] mb-2 uppercase tracking-widest">
+                      {categoryDef?.title || 'System'} 
+                      {brandDef?.name && <span className="text-[#575B5F] px-1.5">•</span>} 
+                      {brandDef?.name && <span className="text-[#575B5F]">{brandDef.name}</span>}
+                    </div>
                     <Link href={`/products/${product.slug}`} className="cursor-pointer">
                       <h3 className="font-['Inter'] text-lg font-bold text-[#111111] mb-2 leading-tight tracking-[-0.03em] hover:text-[#12B5CB] transition-colors">{product.name}</h3>
                     </Link>

@@ -47,7 +47,7 @@ export default function WhatWeDoPage() {
   return (
     <div className="w-full bg-white font-['Inter'] tracking-tight">
       {/* ── HERO ── */}
-      <section className="relative w-full pt-32 pb-16 md:pt-[160px] md:pb-32 overflow-hidden border-b border-gray-100 mb-10">
+      <section className="relative w-full pt-32 pb-16 md:pt-[160px] md:pb-32 overflow-hidden border-b border-gray-100">
         <div className="absolute inset-0 z-0">
           <Image 
             src="/what-we-do-hero-hd-v2.png" 
