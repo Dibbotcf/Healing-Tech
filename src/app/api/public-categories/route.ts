@@ -41,7 +41,8 @@ export async function GET() {
         const productImages: string[] = [];
         products.docs.forEach((p: any) => {
           if (p.heroImage && typeof p.heroImage === "object" && p.heroImage.url) {
-            productImages.push(getMediaUrl(String(p.heroImage.url)));
+            const parsedUrl = getMediaUrl(p.heroImage.url);
+            if (parsedUrl) productImages.push(parsedUrl);
           }
         });
 
