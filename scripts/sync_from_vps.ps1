@@ -19,6 +19,9 @@ node tmp/run_vps_cmd.js downloadDir public/media /var/www/vhosts/healingtechnolo
 Write-Host "`n[3.5/5] Syncing Dynamic Media (Standalone uploads)..." -ForegroundColor Yellow
 node tmp/run_vps_cmd.js downloadDir public/media /var/www/vhosts/healingtechnology.com.bd/httpdocs/.next/standalone/public/media
 
+Write-Host "`n[3.6/5] Syncing Persistent Media (CMS admin uploads)..." -ForegroundColor Yellow
+node tmp/run_vps_cmd.js downloadDir public/media /var/www/vhosts/healingtechnology.com.bd/persistent/media
+
 # Step 4: Wipe Current Local Database Schema
 Write-Host "`n[4/5] Wiping local Docker schema to prevent conflicts..." -ForegroundColor Yellow
 docker exec -i healing-technology-postgres psql -U postgres -d healing-technology -c "DROP SCHEMA public CASCADE; CREATE SCHEMA public;"

@@ -77,7 +77,7 @@ export function RelatedProducts({ products }: { products: RelatedProduct[] }) {
                   <img
                     src={heroUrl}
                     alt={product.name}
-                    className="w-full h-full object-contain p-6 mix-blend-multiply group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-contain p-6 group-hover:scale-105 transition-transform duration-500"
                   />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-[#00355D]/5 to-[#12B5CB]/10">

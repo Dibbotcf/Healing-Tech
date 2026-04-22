@@ -116,7 +116,7 @@ export default function ProductClientWrapper({
           <span>Showing <strong className="text-[#00355D] font-bold">{filteredProducts.length}</strong> products</span>
         </div>
 
-        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+        <motion.div layout className="grid grid-cols-2 md:grid-cols-2 xl:grid-cols-3 gap-3 md:gap-6">
           <AnimatePresence>
             {filteredProducts.map((product) => {
               const categoryDef = product.category && typeof product.category !== 'string' ? product.category : null;
@@ -137,14 +137,14 @@ export default function ProductClientWrapper({
                       <Sparkles className="w-3 h-3" /> NEW
                     </div>
                   )}
-                  <Link href={`/products/${product.slug}`} className="block relative h-48 bg-[#F8F9FA] overflow-hidden group-hover:bg-[#EEF4FB] transition-colors cursor-pointer">
+                  <Link href={`/products/${product.slug}`} className="block relative h-36 md:h-48 bg-[#F8F9FA] overflow-hidden group-hover:bg-[#EEF4FB] transition-colors cursor-pointer">
                     {/* Hero image or initial placeholder */}
                     {product.heroImage && typeof product.heroImage !== 'string' && product.heroImage.url ? (
                       // eslint-disable-next-line @next/next/no-img-element
                       <img
                         src={getMediaUrl(product.heroImage.url) || ''}
                         alt={product.name}
-                        className="w-full h-full object-contain p-6 mix-blend-multiply group-hover:scale-105 transition-transform duration-500"
+                        className="w-full h-full object-contain p-6 group-hover:scale-105 transition-transform duration-500"
                       />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center">
@@ -153,44 +153,44 @@ export default function ProductClientWrapper({
                     )}
                   </Link>
                   
-                  <div className="p-6 flex-1 flex flex-col cursor-default">
+                  <div className="p-3 md:p-6 flex-1 flex flex-col cursor-default">
                     <div className="text-[10px] font-bold text-[#12B5CB] mb-2 uppercase tracking-widest">
                       {categoryDef?.title || 'System'} 
                       {brandDef?.name && <span className="text-[#575B5F] px-1.5">•</span>} 
                       {brandDef?.name && <span className="text-[#575B5F]">{brandDef.name}</span>}
                     </div>
                     <Link href={`/products/${product.slug}`} className="cursor-pointer">
-                      <h3 className="font-['Inter'] text-lg font-bold text-[#111111] mb-2 leading-tight tracking-[-0.03em] hover:text-[#12B5CB] transition-colors">{product.name}</h3>
+                      <h3 className="font-['Inter'] text-sm md:text-lg font-bold text-[#111111] mb-1 md:mb-2 leading-tight tracking-[-0.03em] hover:text-[#12B5CB] transition-colors line-clamp-2">{product.name}</h3>
                     </Link>
-                    <p className="text-[#575B5F] text-sm mb-6 flex-1 font-light line-clamp-3 leading-relaxed">
+                    <p className="text-[#575B5F] text-xs md:text-sm mb-3 md:mb-6 font-light line-clamp-3 leading-relaxed overflow-hidden">
                       {product.listingSummary || product.shortSummary || "Premium medical equipment imported by Healing Technology. Please contact our team for comprehensive technical specifications and operational capabilities."}
                     </p>
                     
-                    <div className="mt-4 pt-4 border-t border-gray-100 flex flex-col gap-2">
+                    <div className="mt-2 md:mt-4 pt-2 md:pt-4 border-t border-gray-100 flex flex-col gap-1.5 md:gap-2">
                       {/* Pricing */}
                       {(product.price != null || product.discountPrice != null) && (
-                        <div className="flex items-end gap-2 mb-1">
+                        <div className="flex items-end gap-2 mb-0.5">
                           {product.discountPrice != null ? (
                             <>
-                              <span className="text-xl font-extrabold text-[#12B5CB] tracking-tight leading-none">৳{product.discountPrice.toLocaleString()}</span>
+                              <span className="text-base md:text-xl font-extrabold text-[#12B5CB] tracking-tight leading-none">৳{product.discountPrice.toLocaleString()}</span>
                               <span className="text-xs text-[#575B5F]/50 line-through pb-0.5">৳{product.price?.toLocaleString()}</span>
                             </>
                           ) : (
-                            <span className="text-xl font-extrabold text-[#12B5CB] tracking-tight leading-none">৳{product.price?.toLocaleString()}</span>
+                            <span className="text-base md:text-xl font-extrabold text-[#12B5CB] tracking-tight leading-none">৳{product.price?.toLocaleString()}</span>
                           )}
                         </div>
                       )}
 
-                      <div className="flex items-center gap-2 mt-1">
+                      <div className="flex flex-col sm:flex-row items-center gap-1.5 md:gap-2 mt-0.5">
                         <button 
                           onClick={(e) => { 
                             e.preventDefault(); 
                             e.stopPropagation(); 
                             addItem({ id: product.id, name: product.name, price: product.price, discountPrice: product.discountPrice, heroImage: product.heroImage ? { ...product.heroImage, url: getMediaUrl(product.heroImage?.url) } : undefined, slug: product.slug }, 1); 
                           }} 
-                          className="flex-1 bg-[#12B5CB]/10 hover:bg-[#12B5CB]/20 text-[#12B5CB] text-center py-2.5 rounded-xl text-xs font-bold transition-colors shadow-sm flex justify-center items-center gap-1.5 cursor-pointer"
+                          className="w-full bg-[#12B5CB]/10 hover:bg-[#12B5CB]/20 text-[#12B5CB] text-center py-2 rounded-xl text-xs font-bold transition-colors shadow-sm flex justify-center items-center gap-1 cursor-pointer"
                         >
-                          <ShoppingCart className="w-3.5 h-3.5" /> Cart
+                          <ShoppingCart className="w-3 h-3" /> Cart
                         </button>
                         <button 
                           onClick={(e) => { 
@@ -199,12 +199,12 @@ export default function ProductClientWrapper({
                             addItem({ id: product.id, name: product.name, price: product.price, discountPrice: product.discountPrice, heroImage: product.heroImage ? { ...product.heroImage, url: getMediaUrl(product.heroImage?.url) } : undefined, slug: product.slug }, 1); 
                             router.push('/checkout');
                           }} 
-                          className="flex-1 bg-[#00355D] hover:bg-[#002543] text-white text-center py-2.5 rounded-xl text-xs font-bold transition-colors shadow-sm cursor-pointer flex justify-center items-center gap-1.5"
+                          className="w-full bg-[#00355D] hover:bg-[#002543] text-white text-center py-2 rounded-xl text-xs font-bold transition-colors shadow-sm cursor-pointer flex justify-center items-center gap-1"
                         >
-                          <Zap className="w-3.5 h-3.5" fill="currentColor" /> Order
+                          <Zap className="w-3 h-3" fill="currentColor" /> Order
                         </button>
                       </div>
-                      <Link href={`/products/${product.slug}`} className="w-full text-center py-2 text-xs font-bold text-[#575B5F] hover:text-[#12B5CB] transition-colors cursor-pointer mt-1">
+                      <Link href={`/products/${product.slug}`} className="hidden sm:block w-full text-center py-2 text-xs font-bold text-[#575B5F] hover:text-[#12B5CB] transition-colors cursor-pointer mt-1">
                         View Full Details
                       </Link>
                     </div>

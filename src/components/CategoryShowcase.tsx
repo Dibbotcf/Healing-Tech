@@ -18,10 +18,8 @@ interface Category {
 export function CategoryShowcase() {
   const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(true);
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [startIndex, setStartIndex] = useState(0);
 
-  // How many horizontal slices to show at a time
   const visibleCount = 8;
 
   useEffect(() => {
@@ -36,11 +34,11 @@ export function CategoryShowcase() {
 
   if (loading) {
     return (
-      <section className="py-16 bg-white overflow-hidden">
+      <section className="py-16 bg-[#F8FAFC] overflow-hidden">
         <div className="container mx-auto px-4 lg:px-8 max-w-[1440px]">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[...Array(visibleCount)].map((_, i) => (
-              <div key={i} className="h-[400px] bg-gray-100 rounded-xl animate-pulse w-full" />
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+            {[...Array(8)].map((_, i) => (
+              <div key={i} className="h-[380px] bg-gray-100 rounded-2xl animate-pulse w-full" />
             ))}
           </div>
         </div>
@@ -50,136 +48,160 @@ export function CategoryShowcase() {
 
   if (!categories.length) return null;
 
-  // Sliced array for the current view
   const visibleCategories = categories.slice(startIndex, startIndex + visibleCount);
 
   const slideNext = () => {
     if (startIndex + visibleCount < categories.length) {
-      setStartIndex((prev) => prev + 4);
-      setHoveredIndex(null);
+      setStartIndex((prev) => prev + visibleCount);
     }
   };
 
   const slidePrev = () => {
     if (startIndex > 0) {
-      setStartIndex((prev) => prev - 4);
-      setHoveredIndex(null);
+      setStartIndex((prev) => prev - visibleCount);
     }
   };
 
+  const canPrev = startIndex > 0;
+  const canNext = startIndex + visibleCount < categories.length;
+
   return (
-    <section className="py-16 bg-white overflow-hidden">
+    <section className="py-20 bg-[#F8FAFC] overflow-hidden">
       <div className="container mx-auto px-4 lg:px-12 max-w-[1500px]">
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }} 
-          whileInView={{ opacity: 1, y: 0 }} 
-          viewport={{ once: true }} 
-          transition={{ duration: 0.6 }} 
-          className="mb-10 flex flex-col md:flex-row items-center justify-between gap-6"
+
+        {/* ── Section Header ── */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mb-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-4"
         >
           <div>
-            <span className="text-[#12B5CB] font-bold tracking-widest text-xs lg:text-sm uppercase mb-2 block">Browse by Department</span>
-            <h2 className="font-['Inter'] text-3xl lg:text-[2.5rem] font-bold text-[#00355D] tracking-tighter">Our Medical Categories</h2>
+            <span className="text-[#12B5CB] font-bold tracking-widest text-xs lg:text-sm uppercase mb-2 block">
+              Browse by Department
+            </span>
+            <h2 className="font-['Inter'] text-3xl lg:text-[2.5rem] font-bold text-[#00355D] tracking-tighter">
+              Our Medical Categories
+            </h2>
           </div>
 
-          {/* Desktop Arrow Controls */}
-          <div className="hidden md:flex items-center gap-3">
-            <button 
-              onClick={slidePrev} 
-              disabled={startIndex === 0}
-              className={`w-12 h-12 rounded-full border flex items-center justify-center transition-all ${startIndex === 0 ? 'border-gray-200 text-gray-300 cursor-not-allowed' : 'border-gray-300 text-[#00355D] hover:bg-[#00355D] hover:text-white hover:border-[#00355D]'}`}
+          {/* Pagination Controls */}
+          <div className="flex items-center gap-3">
+            <button
+              onClick={slidePrev}
+              disabled={!canPrev}
+              className={`w-11 h-11 rounded-full border-2 flex items-center justify-center transition-all duration-200 ${
+                canPrev
+                  ? "border-[#00355D] text-[#00355D] hover:bg-[#00355D] hover:text-white"
+                  : "border-gray-200 text-gray-300 cursor-not-allowed"
+              }`}
             >
-              <ChevronLeft className="w-6 h-6" />
+              <ChevronLeft className="w-5 h-5" />
             </button>
-            <button 
-              onClick={slideNext} 
-              disabled={startIndex + visibleCount >= categories.length}
-              className={`w-12 h-12 rounded-full border flex items-center justify-center transition-all ${startIndex + visibleCount >= categories.length ? 'border-gray-200 text-gray-300 cursor-not-allowed' : 'border-gray-300 text-[#00355D] hover:bg-[#00355D] hover:text-white hover:border-[#00355D]'}`}
+            <button
+              onClick={slideNext}
+              disabled={!canNext}
+              className={`w-11 h-11 rounded-full border-2 flex items-center justify-center transition-all duration-200 ${
+                canNext
+                  ? "border-[#00355D] text-[#00355D] hover:bg-[#00355D] hover:text-white"
+                  : "border-gray-200 text-gray-300 cursor-not-allowed"
+              }`}
             >
-              <ChevronRight className="w-6 h-6" />
+              <ChevronRight className="w-5 h-5" />
             </button>
           </div>
         </motion.div>
 
-        {/* The Accordion Stage */}
-        <div className="relative group/stage">
-          {/* Absolute Floating Arrows */}
-          {startIndex > 0 && (
-            <button 
-              onClick={slidePrev} 
-              className="absolute -left-4 md:-left-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-white rounded-full shadow-[0_8px_30px_rgb(0,0,0,0.12)] flex items-center justify-center text-[#00355D] hover:scale-110 hover:text-[#12B5CB] transition-all"
-            >
-              <ChevronLeft className="w-6 h-6" />
-            </button>
-          )}
+        {/* ── Cards Grid ── */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+          <AnimatePresence mode="popLayout">
+            {visibleCategories.map((category, index) => {
+              const imageUrl = category.image ? getMediaUrl(category.image) : null;
 
-          {startIndex + visibleCount < categories.length && (
-            <button 
-               onClick={slideNext} 
-               className="absolute -right-4 md:-right-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-white rounded-full shadow-[0_8px_30px_rgb(0,0,0,0.12)] flex items-center justify-center text-[#00355D] hover:scale-110 hover:text-[#12B5CB] transition-all"
-            >
-              <ChevronRight className="w-6 h-6" />
-            </button>
-          )}
+              return (
+                <motion.div
+                  key={category.id}
+                  layout
+                  initial={{ opacity: 0, y: 48, scale: 0.95 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: 20, scale: 0.95, transition: { duration: 0.18 } }}
+                  transition={{
+                    type: "spring",
+                    stiffness: 260,
+                    damping: 26,
+                    delay: index * 0.08,
+                  }}
+                  whileHover={{
+                    y: -10,
+                    scale: 1.025,
+                    transition: { duration: 0.22, ease: [0.25, 0.46, 0.45, 0.94] },
+                  }}
+                  className="group cursor-pointer"
+                >
+                  <Link href={`/products?category=${category.slug}`} className="block h-full">
+                    <div className="bg-white rounded-2xl overflow-hidden h-full flex flex-col shadow-[0_2px_16px_rgba(0,53,93,0.07)] hover:shadow-[0_16px_48px_rgba(0,53,93,0.16)] transition-shadow duration-350 border border-transparent hover:border-[#12B5CB]/20">
 
-          {/* Slices Container */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full">
-            <AnimatePresence mode="popLayout">
-              {visibleCategories.map((category, index) => {
-                const imageUrl = category.image ? getMediaUrl(category.image) : null;
+                      {/* ── Image Zone (dominant) ── */}
+                      <div className="relative h-[190px] sm:h-[230px] lg:h-[280px] bg-gradient-to-br from-[#EEF4FB] to-[#F1F5F9] overflow-hidden flex-shrink-0">
+                        {/* Dark gradient reveal on hover */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#00355D]/40 via-[#00355D]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400 z-10 pointer-events-none" />
 
-                return (
-                  <motion.div
-                    key={category.id}
-                    layout="position"
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 30, transition: { duration: 0.2 } }}
-                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                    onMouseEnter={() => setHoveredIndex(index)}
-                    onMouseLeave={() => setHoveredIndex(null)}
-                    className="group"
-                  >
-                    <Link href={`/products?category=${category.slug}`} className="block h-full relative">
-                      <div className="bg-white rounded-xl border border-gray-100 hover:border-[#12B5CB]/30 hover:shadow-xl transition-all duration-300 overflow-hidden h-full flex flex-col">
-                        <div className="relative h-[200px] bg-[#F8F9FA] overflow-hidden pointer-events-none">
-                          <CategoryImageSlider productImages={category.productImages} fallbackImage={imageUrl} categoryTitle={category.title} />
+                        {/* Product count pill — always visible */}
+                        <div className="absolute top-3 left-3 z-20">
+                          <span className="text-[10px] font-bold text-[#12B5CB] uppercase tracking-[0.08em] bg-white/90 backdrop-blur-sm px-2.5 py-1 rounded-full border border-[#12B5CB]/20 shadow-sm">
+                            {category.productCount || 0} Products
+                          </span>
                         </div>
-                        <div className="p-6 flex flex-col flex-1 pointer-events-none">
-                          <div className="flex items-center mb-2">
-                            <span className="text-[10px] font-bold text-[#12B5CB] uppercase tracking-[0.1em] bg-[#12B5CB]/10 px-2 py-1 rounded-md">
-                              {category.productCount || 0} Products
-                            </span>
-                          </div>
-                          <h3 className="font-bold text-[#00355D] text-xl tracking-tight mb-3 group-hover:text-[#12B5CB] transition-colors leading-snug">
-                            {category.title}
-                          </h3>
-                          <p className="text-sm text-[#575B5F] leading-relaxed line-clamp-2 mb-4 flex-1">
-                            {category.shortDescription || `Explore our high-quality ${category.title.toLowerCase()} for medical applications.`}
-                          </p>
-                          
-                          <div className="mt-auto flex flex-col gap-3">
-                            <div className="flex items-center justify-between pt-4 border-t border-gray-50">
-                              <span className="text-[#12B5CB] text-sm font-bold inline-flex items-center gap-1 group-hover:gap-2 transition-all">
-                                View Products <ArrowRight className="w-3.5 h-3.5" />
-                              </span>
-                            </div>
+
+                        {/* Arrow badge (slides in on hover) */}
+                        <div className="absolute bottom-3 right-3 z-20 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+                          <div className="w-9 h-9 rounded-full bg-[#12B5CB] flex items-center justify-center shadow-lg">
+                            <ArrowRight className="w-4 h-4 text-white" />
                           </div>
                         </div>
+
+                        <CategoryImageSlider
+                          productImages={category.productImages}
+                          fallbackImage={imageUrl}
+                          categoryTitle={category.title}
+                        />
                       </div>
-                    </Link>
-                  </motion.div>
-                );
-              })}
-            </AnimatePresence>
-          </div>
+
+                      {/* ── Info Area (compact — no description) ── */}
+                      <div className="px-5 py-4 flex items-center justify-between gap-3">
+                        {/* Category Name */}
+                        <h3 className="font-['Inter'] font-bold text-[#00355D] text-base sm:text-lg lg:text-xl tracking-tight leading-snug group-hover:text-[#12B5CB] transition-colors duration-300 flex-1">
+                          {category.title}
+                        </h3>
+
+                        {/* Animated arrow hint */}
+                        <ArrowRight className="w-5 h-5 text-[#12B5CB] opacity-0 group-hover:opacity-100 -translate-x-1 group-hover:translate-x-0 transition-all duration-300 flex-shrink-0" />
+                      </div>
+
+                    </div>
+                  </Link>
+                </motion.div>
+              );
+            })}
+          </AnimatePresence>
         </div>
+
       </div>
     </section>
   );
 }
 
-function CategoryImageSlider({ productImages, fallbackImage, categoryTitle }: { productImages?: string[], fallbackImage: string | null, categoryTitle: string }) {
+// ── Animated Image Slider ────────────────────────────────────────────────────
+function CategoryImageSlider({
+  productImages,
+  fallbackImage,
+  categoryTitle,
+}: {
+  productImages?: string[];
+  fallbackImage: string | null;
+  categoryTitle: string;
+}) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
@@ -192,26 +214,36 @@ function CategoryImageSlider({ productImages, fallbackImage, categoryTitle }: { 
 
   if (productImages && productImages.length > 0) {
     return (
-      <div className="w-full h-full relative group-hover:scale-105 transition-transform duration-500">
-         {productImages.map((src, i) => (
-            <img 
-              key={i} 
-              src={src} 
-              alt={`${categoryTitle} product ${i+1}`} 
-              className={`absolute inset-0 w-full h-full object-contain p-4 transition-opacity duration-1000 ease-in-out ${i === currentIndex ? 'opacity-100 z-10' : 'opacity-0 z-0'}`} 
-            />
-         ))}
+      <div className="w-full h-full relative group-hover:scale-[1.07] transition-transform duration-500 ease-out">
+        {productImages.map((src, i) => (
+          <img
+            key={i}
+            src={src}
+            alt={`${categoryTitle} product ${i + 1}`}
+            className={`absolute inset-0 w-full h-full object-contain p-6 transition-opacity duration-1000 ease-in-out ${
+              i === currentIndex ? "opacity-100 z-10" : "opacity-0 z-0"
+            }`}
+          />
+        ))}
       </div>
     );
   }
-  
+
   if (fallbackImage) {
-     return <img src={fallbackImage} alt={categoryTitle} className="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-500" />;
+    return (
+      <img
+        src={fallbackImage}
+        alt={categoryTitle}
+        className="w-full h-full object-contain p-6 group-hover:scale-[1.07] transition-transform duration-500 ease-out"
+      />
+    );
   }
 
   return (
-    <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-[#00355D]/5 to-[#12B5CB]/10 group-hover:scale-105 transition-transform duration-500">
-       <span className="text-[#00355D]/20 text-6xl font-bold">{categoryTitle.charAt(0)}</span>
+    <div className="w-full h-full flex items-center justify-center group-hover:scale-[1.07] transition-transform duration-500 ease-out">
+      <span className="text-[#00355D]/12 text-8xl font-black select-none tracking-tighter">
+        {categoryTitle.charAt(0)}
+      </span>
     </div>
   );
 }

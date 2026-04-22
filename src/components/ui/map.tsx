@@ -52,9 +52,12 @@ export function WorldMap({
     const updateDimensions = () => {
       if (containerRef.current) {
         const rect = containerRef.current.getBoundingClientRect();
-        // Square-ish aspect for the globe
-        const size = Math.min(rect.width, 700);
-        setDimensions({ width: rect.width, height: Math.max(size, 500) });
+        const isMobile = window.innerWidth < 1024;
+        // On mobile: cap to 320px; on desktop: cap to 700px
+        const maxSize = isMobile ? 320 : 700;
+        const minSize = isMobile ? 280 : 500;
+        const size = Math.min(rect.width, maxSize);
+        setDimensions({ width: rect.width, height: Math.max(size, minSize) });
       }
     };
     updateDimensions();

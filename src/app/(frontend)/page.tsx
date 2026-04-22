@@ -87,14 +87,14 @@ export default function Home() {
             Clients who continue to trust us
           </p>
         </div>
-        <div className="flex items-center space-x-24 animate-[marquee_30s_linear_infinite] whitespace-nowrap px-4 py-6">
+        <div className="flex items-center space-x-8 md:space-x-24 animate-[marquee_30s_linear_infinite] whitespace-nowrap px-2 md:px-4 py-4 md:py-6">
           {[...clients, ...clients, ...clients, ...clients].map((client, index) => (
-            <div key={index} className="inline-flex items-center mx-12">
+            <div key={index} className="inline-flex items-center mx-4 md:mx-12">
               {client.logo ? (
                 <img 
                   src={client.logo} 
                   alt={client.name} 
-                  className="h-12 md:h-16 w-auto max-w-none object-contain brightness-0 opacity-60 hover:opacity-100 transition-all duration-300" 
+                  className="h-8 md:h-16 w-auto max-w-none object-contain brightness-0 opacity-60 hover:opacity-100 transition-all duration-300" 
                 />
               ) : null}
             </div>
@@ -144,7 +144,7 @@ export default function Home() {
               </div>
 
               {/* Right — 3D Globe (glow overflows) */}
-              <div className="relative lg:-mr-8 overflow-visible">
+              <div className="relative lg:-mr-8 overflow-hidden lg:overflow-visible max-h-[320px] lg:max-h-none">
                 <WorldMap dots={supplyRoutes} lineColor="#12B5CB" />
               </div>
             </div>
