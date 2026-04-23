@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict A2SIIPTrWbjAk6sJVXm5pKKrHdsAJVKY87mg92218YJsfWHT3V4s0zKTNCtXCb4
+\restrict F0Ie42u3uQGjc1EyEljdLvFlWxoDHJJe6TpR4A0Nz4lIEGSZ7ZzZA8cBCUfdLGd
 
 -- Dumped from database version 14.22 (Ubuntu 14.22-0ubuntu0.22.04.1)
 -- Dumped by pg_dump version 14.22 (Ubuntu 14.22-0ubuntu0.22.04.1)
@@ -297,6 +297,44 @@ ALTER TABLE public.certifications_rels_id_seq OWNER TO healingtech;
 --
 
 ALTER SEQUENCE public.certifications_rels_id_seq OWNED BY public.certifications_rels.id;
+
+
+--
+-- Name: client_logos; Type: TABLE; Schema: public; Owner: healingtechnology.co_bgieab3zdtl
+--
+
+CREATE TABLE public.client_logos (
+    id integer NOT NULL,
+    name character varying NOT NULL,
+    logo_id integer NOT NULL,
+    website character varying,
+    sort_order numeric DEFAULT 0,
+    updated_at timestamp with time zone DEFAULT now() NOT NULL,
+    created_at timestamp with time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE public.client_logos OWNER TO "healingtechnology.co_bgieab3zdtl";
+
+--
+-- Name: client_logos_id_seq; Type: SEQUENCE; Schema: public; Owner: healingtechnology.co_bgieab3zdtl
+--
+
+CREATE SEQUENCE public.client_logos_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.client_logos_id_seq OWNER TO "healingtechnology.co_bgieab3zdtl";
+
+--
+-- Name: client_logos_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: healingtechnology.co_bgieab3zdtl
+--
+
+ALTER SEQUENCE public.client_logos_id_seq OWNED BY public.client_logos.id;
 
 
 --
@@ -663,7 +701,8 @@ CREATE TABLE public.payload_locked_documents_rels (
     inquiries_id integer,
     media_id integer,
     partner_logos_id integer,
-    orders_id integer
+    orders_id integer,
+    client_logos_id integer
 );
 
 
@@ -1188,6 +1227,13 @@ ALTER TABLE ONLY public.certifications_rels ALTER COLUMN id SET DEFAULT nextval(
 
 
 --
+-- Name: client_logos id; Type: DEFAULT; Schema: public; Owner: healingtechnology.co_bgieab3zdtl
+--
+
+ALTER TABLE ONLY public.client_logos ALTER COLUMN id SET DEFAULT nextval('public.client_logos_id_seq'::regclass);
+
+
+--
 -- Name: faqs id; Type: DEFAULT; Schema: public; Owner: healingtech
 --
 
@@ -1375,6 +1421,14 @@ COPY public.certifications_rels (id, "order", parent_id, path, brands_id, produc
 
 
 --
+-- Data for Name: client_logos; Type: TABLE DATA; Schema: public; Owner: healingtechnology.co_bgieab3zdtl
+--
+
+COPY public.client_logos (id, name, logo_id, website, sort_order, updated_at, created_at) FROM stdin;
+\.
+
+
+--
 -- Data for Name: faqs; Type: TABLE DATA; Schema: public; Owner: healingtech
 --
 
@@ -1464,7 +1518,6 @@ COPY public.media (id, alt, updated_at, created_at, url, thumbnail_u_r_l, filena
 61	\N	2026-04-19 08:02:51.174+00	2026-04-19 08:02:51.174+00	/api/media/file/imgi_36_SXS3008-800-800.png	\N	imgi_36_SXS3008-800-800.png	image/png	167622	747	475	50	50
 62	\N	2026-04-19 08:03:43.178+00	2026-04-19 08:03:43.178+00	/api/media/file/imgi_36_SXS3008-800-801.png	\N	imgi_36_SXS3008-800-801.png	image/png	209001	800	800	50	50
 63	\N	2026-04-19 08:04:04.112+00	2026-04-19 08:04:04.112+00	/api/media/file/imgi_9_1.png	\N	imgi_9_1.png	image/png	238325	844	614	50	50
-64	\N	2026-04-19 08:09:28.815+00	2026-04-19 08:09:28.815+00	/api/media/file/dc240b4d-0393-4119-b82c-075d9696b069.png	\N	dc240b4d-0393-4119-b82c-075d9696b069.png	image/png	1681962	4032	2268	50	50
 65	\N	2026-04-19 08:14:04.74+00	2026-04-19 08:14:04.739+00	/api/media/file/HF%20Med%20OT%20LIght-3.png	\N	HF Med OT LIght-3.png	image/png	4383256	2480	3148	50	50
 66	\N	2026-04-19 08:14:23.253+00	2026-04-19 08:14:23.253+00	/api/media/file/HF%20Med%20OT%20LIght-4.png	\N	HF Med OT LIght-4.png	image/png	2083595	2480	1540	50	50
 67	\N	2026-04-19 08:15:48.317+00	2026-04-19 08:15:48.317+00	/api/media/file/HF%20Med%20OT%20LIght.png	\N	HF Med OT LIght.png	image/png	2162152	2480	2996	50	50
@@ -1491,6 +1544,7 @@ COPY public.media (id, alt, updated_at, created_at, url, thumbnail_u_r_l, filena
 89	\N	2026-04-20 11:06:05.295+00	2026-04-20 11:06:05.295+00	/api/media/file/imgi_83_ICU-Anesthesia-Machine-with-Factory-Price-Medical-Equipment-Medical.png	\N	imgi_83_ICU-Anesthesia-Machine-with-Factory-Price-Medical-Equipment-Medical.png	image/png	611340	768	1003	50	50
 85	\N	2026-04-20 11:07:00.217+00	2026-04-20 11:04:06.364+00	/api/media/file/imgi_21_ICU-Anesthesia-Machine-with-Factory-Price-Medical-Equipment-Medical-1.png	\N	imgi_21_ICU-Anesthesia-Machine-with-Factory-Price-Medical-Equipment-Medical-1.png	image/png	533362	768	768	50	50
 90	\N	2026-04-20 11:07:45.862+00	2026-04-20 11:07:45.862+00	/api/media/file/imgi_21_ICU-Anesthesia-Machine-with-Factory-Price-Medical-Equipment-Medical-2.png	\N	imgi_21_ICU-Anesthesia-Machine-with-Factory-Price-Medical-Equipment-Medical-2.png	image/png	469689	741	640	50	50
+64	\N	2026-04-22 12:56:29.415+00	2026-04-19 08:09:28.815+00	/api/media/file/dc240b4d-0393-4119-b82c-075d9696b069.png	\N	dc240b4d-0393-4119-b82c-075d9696b069.png	image/png	1720465	1841	1966	50	50
 91	\N	2026-04-20 11:37:38.817+00	2026-04-20 11:37:38.817+00	/api/media/file/imgi_80_Mt-High-Frequency-Electrocautery-Diagnosis-Equipment-Gynecology-El.png	\N	imgi_80_Mt-High-Frequency-Electrocautery-Diagnosis-Equipment-Gynecology-El.png	image/png	362850	1080	749	50	50
 92	\N	2026-04-20 11:38:00.011+00	2026-04-20 11:38:00.011+00	/api/media/file/imgi_81_Mt-High-Frequency-Electrocautery-Diagnosis-Equipment-Gynecology-El.png	\N	imgi_81_Mt-High-Frequency-Electrocautery-Diagnosis-Equipment-Gynecology-El.png	image/png	323584	1047	615	50	50
 93	\N	2026-04-20 11:51:41.033+00	2026-04-20 11:51:41.033+00	/api/media/file/Soft%20Touch.png	\N	Soft Touch.png	image/png	27690	1544	642	50	50
@@ -1523,6 +1577,8 @@ COPY public.media (id, alt, updated_at, created_at, url, thumbnail_u_r_l, filena
 120	\N	2026-04-21 08:30:07.319+00	2026-04-21 08:30:07.319+00	/api/media/file/Aeonmed%20Bipap.png	\N	Aeonmed Bipap.png	image/png	1883037	2221	1200	50	50
 121	\N	2026-04-21 08:33:17.413+00	2026-04-21 08:33:17.413+00	/api/media/file/BiPAP-brochure-1.jpg	\N	BiPAP-brochure-1.jpg	image/jpeg	1033517	2207	1598	50	50
 122	\N	2026-04-21 08:35:24.812+00	2026-04-21 08:35:24.812+00	/api/media/file/BiPAP-brochure-2.jpg	\N	BiPAP-brochure-2.jpg	image/jpeg	1033517	3575	2384	50	50
+123	\N	2026-04-22 12:50:39.578+00	2026-04-22 12:50:39.577+00	/api/media/file/imgi_7_20201027124042_43551-1.png	\N	imgi_7_20201027124042_43551-1.png	image/png	277787	871	672	50	50
+124	\N	2026-04-22 12:51:47.033+00	2026-04-22 12:51:47.032+00	/api/media/file/BiPAP-brochure-3.jpg	\N	BiPAP-brochure-3.jpg	image/jpeg	1033517	3575	2384	50	50
 \.
 
 
@@ -1602,7 +1658,7 @@ COPY public.payload_locked_documents (id, global_slug, updated_at, created_at) F
 -- Data for Name: payload_locked_documents_rels; Type: TABLE DATA; Schema: public; Owner: healingtech
 --
 
-COPY public.payload_locked_documents_rels (id, "order", parent_id, path, users_id, brands_id, categories_id, certifications_id, products_id, legal_pages_id, testimonials_id, faqs_id, inquiries_id, media_id, partner_logos_id, orders_id) FROM stdin;
+COPY public.payload_locked_documents_rels (id, "order", parent_id, path, users_id, brands_id, categories_id, certifications_id, products_id, legal_pages_id, testimonials_id, faqs_id, inquiries_id, media_id, partner_logos_id, orders_id, client_logos_id) FROM stdin;
 \.
 
 
@@ -1632,13 +1688,14 @@ COPY public.payload_preferences (id, key, value, updated_at, created_at) FROM st
 8	collection-inquiries	{"limit": 10}	2026-04-11 07:33:37.147+00	2026-04-09 04:21:08.4+00
 22	collection-products-17	{"fields": {"specGroups": {"collapsed": ["69e609a11d522a8c2a7de9ea", "69e60a4b1d522a8c2a7de9f4"]}}}	2026-04-20 11:14:31.774+00	2026-04-20 11:14:31.776+00
 23	collection-products-16	{"fields": {"specGroups": {"collapsed": ["69e6104e1d522a8c2a7dea06"]}}}	2026-04-20 11:44:53.258+00	2026-04-20 11:44:53.259+00
-24	collection-products-15	{"fields": {"gallery": {"collapsed": ["69e72eb03220efc4a063a404", "69e72e3f3220efc4a063a400", "69e72e533220efc4a063a401", "69e72e643220efc4a063a402", "69e72e753220efc4a063a403"]}, "specGroups": {"collapsed": ["69e72f2f3220efc4a063a405"]}, "applications": {"collapsed": ["69e72c423220efc4a063a3fc", "69e72c453220efc4a063a3fd", "69e72c4d3220efc4a063a3fe", "69e72c563220efc4a063a3ff"]}}}	2026-04-21 08:08:10.458+00	2026-04-21 08:02:18.307+00
 25	collection-products-14	{"fields": {"specGroups": {"collapsed": ["69e733cd3220efc4a063a40e"]}, "applications": {"collapsed": ["69e7352ea1dc14718977d686", "69e73539a1dc14718977d687", "69e73541a1dc14718977d688", "69e7354aa1dc14718977d689"]}}}	2026-04-21 08:30:31.718+00	2026-04-21 08:24:51.751+00
 12	collection-orders	{}	2026-04-14 10:18:23.415+00	2026-04-14 10:18:23.414+00
 7	collection-faqs	{"limit": 10}	2026-04-14 10:18:32.518+00	2026-04-09 04:21:07.997+00
+26	collection-client-logos	{}	2026-04-22 12:46:48.862+00	2026-04-22 12:46:48.861+00
+11	nav	{"open": true, "groups": {"Collections": {"open": true}}}	2026-04-22 12:47:36.692+00	2026-04-11 06:40:57.781+00
 13	collection-partner-logos	{}	2026-04-15 06:02:14.066+00	2026-04-15 06:02:14.066+00
+24	collection-products-15	{"fields": {"gallery": {"collapsed": []}, "specGroups": {"collapsed": ["69e72f2f3220efc4a063a405"]}, "applications": {"collapsed": ["69e72c423220efc4a063a3fc", "69e72c453220efc4a063a3fd", "69e72c4d3220efc4a063a3fe", "69e72c563220efc4a063a3ff"]}}}	2026-04-22 12:47:52.346+00	2026-04-21 08:02:18.307+00
 1	collection-brands	{"sort": "name", "limit": 50}	2026-04-15 07:09:00.432+00	2026-04-09 04:20:36.711+00
-11	nav	{"open": true}	2026-04-15 07:30:02.71+00	2026-04-11 06:40:57.781+00
 2	collection-categories	{"sort": "title", "limit": 25}	2026-04-15 10:25:58.349+00	2026-04-09 04:20:37.616+00
 4	collection-products	{"limit": 25, "editViewType": "default"}	2026-04-19 07:24:06.374+00	2026-04-09 04:20:39.04+00
 16	collection-products-31	{"fields": {"specGroups": {"collapsed": ["69e479dd34931c3b26d3a31f"]}}}	2026-04-19 08:23:04.427+00	2026-04-19 08:23:04.429+00
@@ -1664,13 +1721,14 @@ COPY public.payload_preferences_rels (id, "order", parent_id, path, users_id) FR
 22	\N	8	user	1
 86	\N	22	user	1
 87	\N	23	user	1
-90	\N	24	user	1
 94	\N	25	user	1
 33	\N	12	user	1
 34	\N	7	user	1
+97	\N	26	user	1
+99	\N	11	user	1
 39	\N	13	user	1
+101	\N	24	user	1
 49	\N	1	user	1
-52	\N	11	user	1
 58	\N	2	user	1
 59	\N	4	user	1
 60	\N	16	user	1
@@ -1699,7 +1757,7 @@ COPY public.products (id, name, slug, mark_as_new, sku, category_id, brand_id, b
 13	Heyer HK-400III Syringe Pump	heyer-hk-400iii-syringe	f	\N	2	2	\N	\N	Lightweight syringe pump identifying sizes from 2ml to 60ml.	\N	\N	\N	\N	\N	published	\N	\N	\N	2026-04-09 04:28:09.274+00	2026-04-09 04:28:09.274+00	\N	\N
 19	Aeonmed Aeon7200 Anesthesia Machine With Ventilator	Aeonmed-Aeon7200	f	Aeonmed-Aeon7200	7	3	\N	Aeonmed Aeon7200 Anesthesia Machine With Ventilator	Aeonmed Aeon7200 Anesthesia Machine With Ventilator\nThe Aeonmed Aeon7200 is an advanced, high-performance anesthesia delivery system designed to provide safe, reliable, and efficient care during surgical procedures. Engineered for both adult and pediatric patients, it combines precise gas delivery, dynamic ventilation modes, and a robust suite of real-time monitoring features.\n\nWith CE certification ensuring it meets stringent international safety standards, the Aeon7200 is an ideal solution for modern hospital operation theaters, surgical centers, and emergency units.\n\nKey Features & Innovations\nIntuitive Interface: Features an 8.4-inch color touchscreen display equipped with a navigation knob for quick, easy setup and parameter adjustments.\n\nVersatile Ventilation: Supports Volume, Pressure, and SIMV ventilation modes to accommodate a wide variety of anesthesia applications.\n\nAdvanced Moisture Control: Incorporates a built-in, maintenance-free patented sensor that prevents moisture condensation, ensuring accurate monitoring and protecting the internal circuitry.\n\nPrecision Low-Flow Delivery: Equipped with double tubes in series for each gas, making it highly responsive and easy to operate during low and mini-flow anesthesia.\n\nEnvironmental & Patient Safety: Features optional Anesthetic Gas Monitoring (AGM) to conveniently control gas concentration, and an optional Anesthetic Gas Scavenging System (AGSS) to reduce air pollution within the operating room.	The Aeonmed Aeon7200 is a highly versatile, CE-certified anesthesia delivery system featuring an integrated ventilator. Designed to seamlessly manage both adult and pediatric patients, it balances advanced technological precision with rigorous patient safety features for the modern operating room.\n\nCore Highlights:\n\nIntuitive Operation: Features an 8.4-inch color touchscreen with a navigation knob for quick, streamlined parameter adjustments.\n\nAdvanced Ventilation: Supports multiple ventilation modes (IPPV, PLV, SIMV, Spont) with a broad tidal volume range of 20 to 1500 ml.\n\nPrecision Low-Flow Delivery: Utilizes double-tube flowmeters specifically engineered for accurate, easy control during low and mini-flow anesthesia.\n\nEnhanced Safety & Reliability: Built with a patented maintenance-free moisture condensation sensor, comprehensive safety alarms, and a reliable 120-minute battery backup.	\N	82	China	The Aeonmed Aeon7200 Anesthesia Machine is manufactured to the highest global medical device standards, ensuring absolute safety, reliability, and precision in critical care environments:\n\nCE Certified: Fully compliant with European health, safety, and environmental protection directives. This certification guarantees that the machine meets stringent international clinical safety requirements for medical devices.\n\nISO 13485 Compliant: Manufactured by Aeonmed under a globally recognized Quality Management System specifically dedicated to the design and production of safe, high-quality medical equipment.\n\nBuilt-In Safety Standards: Engineered with hypoxic guard systems, automatic O2 deficiency alarms, and a patented NO WATER VAPOR COAGULATION sensor, fulfilling strict regulatory requirements for patient safety during anesthesia delivery.	published	Healing Technology — Aeonmed Aeon7200 Anesthesia Machine With Ventilator	The Aeonmed Aeon7200 is a highly versatile, CE-certified anesthesia delivery system featuring an integrated ventilator. Designed to seamlessly manage both adult and pediatric patients, it balances advanced technological precision with rigorous patient safety features for the modern operating room.\n\nCore Highlights:\n\nIntuitive Operation: Features an 8.4-inch color touchscreen with a navigation knob for quick, streamlined parameter adjustments.\n\nAdvanced Ventilation: Supports multiple ventilation modes (IPPV, PLV, SIMV, Spont) with a broad tidal volume range of 20 to 1500 ml.\n\nPrecision Low-Flow Delivery: Utilizes double-tube flowmeters specifically engineered for accurate, easy control during low and mini-flow anesthesia.\n\nEnhanced Safety & Reliability: Built with a patented maintenance-free moisture condensation sensor, comprehensive safety alarms, and a reliable 120-minute battery backup.	72	2026-04-20 10:56:27.252+00	2026-04-09 04:28:09.465+00	\N	\N
 16	SOFT TOUCH ESU 400 Electrosurgical Unit	SOFTTOUCH-ESU400	f	SOFTTOUCH-ESU400	7	30	\N	SOFT TOUCH ESU 400 Electrosurgical Unit	SOFT TOUCH Advanced Electrosurgical Unit (High-Frequency Electrotome)\nProduct Overview\nThe SOFT TOUCH Electrosurgical Unit is a high-performance, multi-function high-frequency electrotome designed to meet the rigorous demands of general departments and diverse surgical needs. Featuring dual-way power output, exceptionally stable performance, and advanced safety mechanisms, the SOFT TOUCH unit delivers the precision and reliability surgeons require. With instantaneous switching between cutting and coagulation, and seamless compatibility with laparoscopic accessories, it is an essential and versatile tool for any modern surgical suite.\n\nKey Features & Benefits\nVersatile Operating Modes: Equipped with 7 distinct working modes to handle a wide variety of surgical procedures:\nPure Cutting, Mixed Cutting 1, Mixed Cutting 2, Standard Coagulation, Spraying Coagulation, Bipolar 1, Bipolar 2\n\nBroad Power Range: Offers unipolar power from 0–400W and bipolar power from 0–100W, ensuring the precise energy delivery needed for both delicate tissues and heavy-duty surgical tasks.\n\nAdvanced Safety Systems:\n\nNeutral Plate Monitoring: Automatically measures the contact quality between the patient's skin and the neutral plate. The system instantly triggers an alarm and halts output if contact resistance drops below 140 Ω.\n\nShort Circuit Protection: Features a fully suspended CF type design. The host computer actively protects itself to maintain normal, safe output in the rare event of an overload or short circuit during unipolar or bipolar use.\n\nIntelligent Double CPU Design: Built with dual CPUs for highly reliable core storage. The robust database seamlessly manages various impedance changes during use, guaranteeing a highly stable and consistent energy output.\n\nEfficient Workflow: Allows for instantaneous switching between cutting and coagulation output during manual operation, streamlining the surgical process and reducing operative time.	The SOFT TOUCH Advanced Electrosurgical Unit is a versatile, high-frequency surgical electrotome designed for precision and safety across diverse medical departments. Featuring advanced dual-CPU technology, it offers 7 distinct working modes—delivering up to 400W of unipolar power and 100W of bipolar power—for seamless cutting and rapid coagulation. Equipped with intelligent safety systems like real-time neutral plate monitoring and short-circuit protection, this unit provides surgeons with exceptionally stable and reliable performance for everything from delicate plastic surgery to heavy-duty general and laparoscopic procedures.	\N	94	China	The SOFT TOUCH Electrosurgical Unit is manufactured to meet stringent international medical and electrical safety standards:\n\nGB 9706.1-2007 / IEC 60601-1:1988: General requirements for safety of medical electrical equipment.\n\nGB 9706.4-2009 / IEC 60601-2-2:2006: Special requirements for the safety of high-frequency surgical equipment.\n\nYY 0505-2012 / IEC 60601-1-2:2004: Electromagnetic compatibility requirements and experiments.\n\nYY1057-2016: General specification for medical foot switches.	published	Healing Technology — SOFT TOUCH ESU 400 Electrosurgical Unit	The SOFT TOUCH Advanced Electrosurgical Unit is a versatile, high-frequency surgical electrotome designed for precision and safety across diverse medical departments. Featuring advanced dual-CPU technology, it offers 7 distinct working modes—delivering up to 400W of unipolar power and 100W of bipolar power—for seamless cutting and rapid coagulation. Equipped with intelligent safety systems like real-time neutral plate monitoring and short-circuit protection, this unit provides surgeons with exceptionally stable and reliable performance for everything from delicate plastic surgery to heavy-duty general and laparoscopic procedures.	\N	2026-04-20 11:57:01.166+00	2026-04-09 04:28:09.375+00	\N	\N
-15	Aeonmed AS100A Auto CPAP	AS100A-AutoCPAP	f	AS100A-AutoCPAP	4	3	\N	Aeonmed AS100A Auto CPAP	AS100A Auto CPAP: Choose a Better Product for a Higher Quality Sleep\nBacked by AEONMED’s more than 20 years of expertise in respiratory research, the AS100A Auto CPAP is engineered to deliver a superior, high-precision treatment experience. This advanced device is designed to automatically adjust treatment pressure according to the patient's breathing airflow and airway conditions, ensuring maximum effectiveness and comfort throughout the night.\n\nKey Features & Benefits\nIntelligent CSA Identification: The AS100A effectively identifies Central Sleep Apnea (CSA) and Obstructive Sleep Apnea (OSA) to reduce improper pressure rises that could negatively affect the patient.\n\nAS-Dry Technology: Following humidified treatment, the turbine blows at a lower speed for 30 minutes to cool down and dry the airway and water tank. This maintains a dry environment, protects the machine against moisture, reduces bacterial breeding, and ensures a healthy treatment experience.\n\nAS-Elex Expiration Pressure Release: To increase patient compliance and reduce discomfort, this feature provides 3 different grades of pressure release during expiration.\n\nSmooth Breathing Shifts: The unique tracking system follows every breath closely, guaranteeing super smooth shifts between inspiration and expiration.\n\nReal-Time Manual Titration: This function allows doctors to complete the clinical titration process without having to stop the patient's treatment.\n\nIntuitive Touch Screen: A 3.5-inch touch screen ensures a fashionable, high-tech view while simplifying operation and report reviews.\n\nComprehensive Data Storage: An included SD card stores up to 5 years of therapy data. Users can easily read their P90 pressure, AHI, SNI, CAI, AI, Average pressure, and Leak data directly on the screen or through PC software.\n\nSuperior Air Filtration: An optional folded PM2.5/Pollen filter (unfolding up to 20cm2) ensures efficient dust and pollen filtering to provide clean air, protect the inner airway of the device, and prolong its working life.\n\nCompact and Travel-Ready: With a light and compact design, the whole device weighs just 1.3 kg, making it a great choice for both home and travel use.	AEONMED AS100A Auto CPAP\nThe AEONMED AS100A Auto CPAP is a premium, travel-friendly respiratory device engineered for superior sleep therapy. It automatically adjusts pressure to match your breathing patterns, featuring advanced CSA identification and AS-Elex expiration relief for maximum comfort. Complete with an intuitive 3.5-inch touch screen, ultra-quiet operation (≤ 30dB), and innovative AS-Dry technology to maintain a clean, moisture-free system, the AS100A delivers high-precision, comfortable treatment both at home and on the go.	\N	111	China	Aeonmed AS100A Auto CPAP indicate that the device carries the following major medical and quality certifications:\n\nCE Mark (EU): Certified to meet European health, safety, and environmental protection standards for medical devices.\n\nFDA Approval (U.S.): Approved/cleared by the U.S. Food and Drug Administration for medical use.\n\nISO Certifications: Aeonmed manufactures its devices under strict quality control standards, holding certificates such as ISO 13485:2016 (Quality Management Systems for Medical Devices) and ISO 9001:2015.	published	Healing Technology — Aeonmed AS100A Auto CPAP	AEONMED AS100A Auto CPAP\nThe AEONMED AS100A Auto CPAP is a premium, travel-friendly respiratory device engineered for superior sleep therapy. It automatically adjusts pressure to match your breathing patterns, featuring advanced CSA identification and AS-Elex expiration relief for maximum comfort. Complete with an intuitive 3.5-inch touch screen, ultra-quiet operation (≤ 30dB), and innovative AS-Dry technology to maintain a clean, moisture-free system, the AS100A delivers high-precision, comfortable treatment both at home and on the go.	117	2026-04-21 08:19:16.116+00	2026-04-09 04:28:09.341+00	\N	\N
+14	AEONMED BF30ST BiPAP	AEONMED-BF30STBiPAP	f	AEONMED-BF30STBiPAP	4	3	\N	AEONMED BF30ST BiPAP	AEONMED NeoBip BF30ST Non-Invasive Ventilator\nThe Aeonmed BF30ST from the NeoBip series is a high-performance non-invasive ventilator designed to deliver accurate, intelligent control for every comfortable breath. Engineered with over 20 years of technology accumulation, this device features a unique pressure control algorithm that rapidly adapts to a patient's breathing efforts to ensure perfect synchronization. It is intended specifically for the treatment of adult Obstructive Sleep Apnea (OSA) or for patients with pulmonary insufficiency requiring respiratory support.\n\nAdvanced Therapy Modes & VGPS Technology\nThe BF30ST supports a comprehensive suite of ventilation modes, including CPAP, S, T, S/T, and VGPS.\n\nVGPS (Volume Guarantee Pressure Support): This mode guarantees a pre-set tidal volume target.\n\nIf the system detects that a patient's inspiratory volume is falling short, it automatically raises the inspiratory pressure to achieve the target volume.\n\nThis ensures the patient's tidal volume is maintained, even if their airway resistance or compliance changes during the night.\n\nAdditionally, a low tidal volume alarm provides an extra layer of ventilation safety.\n\nKey Features\nUltra-Fast Synchronization: Features a 6-level adjustable pressure rise slope. The device responds to a patient's inspiratory trigger in as fast as 150ms, ensuring smooth breaths and easing the workload on respiratory muscles.\n\nHigh-Resolution Touchscreen: Built with a vibrant 4.3-inch colorful touchscreen display. It utilizes an exquisite UI design that displays multiple monitored parameters simultaneously, paired with a highly flexible navigator knob for effortless operation.\n\nWhisper-Quiet Operation: Operates at a remarkably low noise level of less than 30dB, ensuring uninterrupted sleep for both the patient and their partner.\n\nTravel-Friendly & Detachable Design: The main unit weighs only 0.82kg, scaling to a total of 1.26kg when the humidifier is attached. The detachable design between the main unit and humidifier makes it highly convenient for both home use and traveling.\n\nAS-Dry Technology: Includes automated AS-Dry technology to help reduce internal moisture, keeping the equipment hygienic.	AEONMED NeoBip BF30ST BiPAP: Quick Summary\n\nThe AEONMED NeoBip BF30ST is an advanced, non-invasive ventilator tailored for adults managing Obstructive Sleep Apnea (OSA) or pulmonary insufficiency. Its standout feature is VGPS (Volume Guarantee Pressure Support), an intelligent technology that automatically adjusts pressure to ensure your target tidal volume is always met.\n\nEngineered for exceptional comfort and synchronization, it responds to breathing triggers in just 150 milliseconds. A vibrant 4.3-inch touchscreen allows for effortless navigation, while the whisper-quiet motor (under 30dB) guarantees a peaceful night. With its lightweight, detachable humidifier design, the BF30ST is the perfect, versatile solution for both reliable home therapy and travel.	\N	124	German	The AEONMED NeoBip BF30ST BiPAP is manufactured under stringent global quality control protocols to ensure premium safety and performance. The device meets or exceeds the following international medical and safety standards:\n\nCE Mark: Certified to meet the European Union's health, safety, and environmental protection requirements for medical devices.\n\nISO 13485: Manufactured in a facility certified for Quality Management Systems specific to medical devices.\n\nISO 80601-2-70:2015: Compliant with specific requirements for the basic safety and essential performance of sleep apnea breathing therapy equipment.\n\nISO 80601-2-74:2017: Compliant with standards for respiratory humidifying equipment.\n\nEN 60601-1 / EN 60601-1-2 / EN 60601-1-11: Meets rigorous international electrical safety and electromagnetic compatibility standards for medical electrical equipment, including specific certifications for home healthcare environments.	published	Healing Technology — AEONMED BF30ST BiPAP	AEONMED NeoBip BF30ST BiPAP: Quick Summary\n\nThe AEONMED NeoBip BF30ST is an advanced, non-invasive ventilator tailored for adults managing Obstructive Sleep Apnea (OSA) or pulmonary insufficiency. Its standout feature is VGPS (Volume Guarantee Pressure Support), an intelligent technology that automatically adjusts pressure to ensure your target tidal volume is always met.\n\nEngineered for exceptional comfort and synchronization, it responds to breathing triggers in just 150 milliseconds. A vibrant 4.3-inch touchscreen allows for effortless navigation, while the whisper-quiet motor (under 30dB) guarantees a peaceful night. With its lightweight, detachable humidifier design, the BF30ST is the perfect, versatile solution for both reliable home therapy and travel.	120	2026-04-22 12:51:48.601+00	2026-04-09 04:28:09.307+00	\N	\N
 22	Heyer OP830 Electric Operating Table	Heyer-OP830	f	Heyer-OP830	7	2	\N	Heyer OP830 Electric Operating Table	Heyer OP830 Electric Operating Table\nThe OP830 electric operating table by Heyer is constructed from high-quality alloy steel, perfectly balancing a lightweight design with robust strength. It is engineered for stable, dynamic intraoperative positioning and maintains a dynamic load capacity of over 135 kg.\n\nKey Features\nRadiolucent Tabletop: Allows for clear intraoperative X-ray and C-arm imaging while maintaining a high load-bearing capacity.\n\nOptimal Patient Comfort: Features an easy-to-clean, 60mm detachable multi-layer memory foam mattress that conforms to the patient's body to evenly distribute pressure.\n\nAdjustable Headplate: The detachable headplate is firmly fixed to prevent movement during surgery and can be easily adjusted up or down with just one hand.\n\nBuilt-in Kidney Bridge: Provides a 136 mm lift utilizing a simple wrench for stable support, providing maximum convenience for abdominal or urinary system surgeries.\n\nElectric Hydraulic Braking: Equipped with four 5 cm diameter brake rods that provide strong, reliable locking on any surface with the push of a button.\n\nIntuitive Controls: Designed for single-handed operation with easy-to-understand icons and a battery indicator. An automatic standby mode activates after 60 seconds of inactivity to avoid accidental touches.\n\nDurable Side Rails: Built with equal-length 304 stainless steel side rails featuring a treated surface for safe handling and accessory mounting.	The Heyer OP830 \nElectric Operating Table is crafted from high-quality alloy steel, perfectly balancing a lightweight design with robust strength to support a dynamic load of over 135 kg. Designed for surgical precision and patient comfort, it is an essential asset for modern operating rooms.\n\nCore Highlights:\n\nImaging Ready: Features a radiolucent tabletop that allows for clear intraoperative X-ray and C-arm imaging without sacrificing load-bearing capacity.\n\nEnhanced Comfort: Equipped with an easy-to-clean, 60mm multi-layer memory foam mattress that evenly distributes pressure.\n\nSurgical Versatility: Includes a 136mm kidney bridge lift for abdominal/urinary procedures, a fully adjustable and securely fixed headplate, and 304 stainless steel side rails for accessories.\n\nPrecision & Safety: Boasts an electric hydraulic braking system for rock-solid stability, plus an intuitive, single-handed remote control with a 60-second auto-standby to prevent accidental adjustments.	\N	51	German	The Heyer OP830 Electric Operating Tables are manufactured to the highest international medical standards, ensuring absolute safety and reliability in the operating room.\n\nCE Mark Certified: Fully compliant with European health, safety, and environmental protection directives for medical devices.\n\nISO 13485 & ISO 9001: Manufactured under globally recognized, strict Quality Management Systems specifically designed for medical equipment.\n\nGlobal OR Standards: Backed by Heyer Medical’s 130+ year legacy of German engineering and rigorous quality control testing for structural integrity and dynamic load safety.	published	Healing Technology — Heyer OP830 Electric Operating Table	The Heyer OP830 \nElectric Operating Table is crafted from high-quality alloy steel, perfectly balancing a lightweight design with robust strength to support a dynamic load of over 135 kg. Designed for surgical precision and patient comfort, it is an essential asset for modern operating rooms.\n\nCore Highlights:\n\nImaging Ready: Features a radiolucent tabletop that allows for clear intraoperative X-ray and C-arm imaging without sacrificing load-bearing capacity.\n\nEnhanced Comfort: Equipped with an easy-to-clean, 60mm multi-layer memory foam mattress that evenly distributes pressure.\n\nSurgical Versatility: Includes a 136mm kidney bridge lift for abdominal/urinary procedures, a fully adjustable and securely fixed headplate, and 304 stainless steel side rails for accessories.\n\nPrecision & Safety: Boasts an electric hydraulic braking system for rock-solid stability, plus an intuitive, single-handed remote control with a 60-second auto-standby to prevent accidental adjustments.	55	2026-04-19 09:46:30.737+00	2026-04-09 04:28:09.549+00	\N	\N
 18	JINLING-820 Anesthesia Machine With Ventilator	JINLING-820	f	JINLING-820	7	10	\N	JINLING-820 Anesthesia Machine With Ventilator	JINLING-820 Anesthesia Machine\nProduct Overview\nThe JINLING-820 is a highly advanced, pneumatically driven, and electronically controlled anesthesia workstation. Designed to meet the rigorous demands of modern operating rooms and intensive care units, it combines an elegant, ergonomic frame with precise clinical engineering. From low-flow anesthesia to complex ventilation requirements, the JINLING-820 delivers reliable performance, comprehensive safety features, and intuitive controls to support superior patient care.\n\nKey Features & Benefits\nVersatile Operating Modes: Fully supports closed, semi-closed, and semi-open operating modes, adapting seamlessly to diverse clinical requirements and patient profiles.\n\nClear, Real-Time Monitoring: Equipped with a high-visibility 5.7-inch TFT display (with optional upgrades available), allowing clinicians to simultaneously monitor Pressure-Time and Frequency-Time waveforms for rapid patient assessment.\n\nIntegrated Respiratory Circuit: Features a standard metallic modular respiratory circuit. This advanced, highly durable design resolves common gas-sealing issues during high-temperature disinfection, ensuring sterilization is both easy and highly effective.\n\nComprehensive Ventilation: Offers a wide spectrum of ventilation modes, including A/C, IPPV, SIPPV, VCV, IMV, SIMV, PEEP, and Manual, providing maximum flexibility during complex surgical procedures.\n\nPrecision Gas Delivery: Built with a high-precision four-tube flowmeter (O2 and N2O) featuring an interlocking system to prevent hypoxic mixtures. Coupled with a highly stable Adjustable Pressure Limiting (APL) valve, the unit is optimized for low and ultra-low flow anesthesia.\n\nIntelligent Safety Systems: Includes an automated self-checking function upon startup, automatic self-calibrating sensors, and a robust power failure support system that automatically switches to an internal battery during AC power outages.	The JINLING-820 Anesthesia Machine is an advanced, highly versatile workstation built for modern operating rooms. It features a 5.7-inch real-time display, an easy-to-sterilize metallic modular respiratory circuit, and comprehensive ventilation modes suitable for diverse clinical needs. Designed for precision and safety, it includes a high-accuracy four-tube flowmeter optimized for low-flow anesthesia, automated self-checks, robust alarm systems, and reliable battery backup. The unit is fully CE, ISO 13485, and RoHS certified, ensuring top-tier clinical performance and patient safety.	\N	81	China	Manufactured under strict quality control standards, the JINLING-820 is internationally recognized for safety and reliability:\n\nCE Mark: Compliant with European health and safety standards for medical devices.\n\nISO 13485: Certified under the quality management system standard for the medical device industry.\n\nRoHS: Compliant with environmental safety standards regarding electronic components.	published	Healing Technology — JINLING-820 Anesthesia Machine With Ventilator	The JINLING-820 Anesthesia Machine is an advanced, highly versatile workstation built for modern operating rooms. It features a 5.7-inch real-time display, an easy-to-sterilize metallic modular respiratory circuit, and comprehensive ventilation modes suitable for diverse clinical needs. Designed for precision and safety, it includes a high-accuracy four-tube flowmeter optimized for low-flow anesthesia, automated self-checks, robust alarm systems, and reliable battery backup. The unit is fully CE, ISO 13485, and RoHS certified, ensuring top-tier clinical performance and patient safety.	73	2026-04-20 11:22:13.031+00	2026-04-09 04:28:09.443+00	\N	\N
 25	Suxin Medical SX-700/700 LED Shadowless Operating Lamp	SuxinMedicalSX700700	t	SX-700/700	7	7	OT Light Double Dome 700/700	OT Light Double Dome 700/700	Suxin Medical SX-700/700 Color Dual Dome LED Shadowless Operating Lamp\nProduct Overview\nThe Suxin Medical SX-700/700 is a premium, ceiling-mounted dual-dome surgical light designed to meet the rigorous demands of modern operating theaters. Featuring a unique "lamp-flower" design, this high-performance lighting system provides exceptional shadow-free illumination, advanced color rendering, and unparalleled reliability for complex surgical procedures.\n\nEquipped with authentic, imported German Osram LEDs, the SX-700/700 ensures a stable, long-lasting light source that medical professionals can depend on.\nKey Features\n\nAdvanced Color LED Layout: Specifically engineered with red and green lights to relieve visual fatigue during lengthy procedures and provide superior clarity for precise vascular identification.\n\nPremium German Osram LEDs: Utilizes genuine, imported Osram LED beads to guarantee a highly stable light output and an extraordinary lifespan of up to 80,000 hours, significantly reducing maintenance costs.\n\nRedundant Double Control System: Features a high-tech, user-friendly central and side dual-control system. This built-in redundancy provides a 100% operational guarantee, ensuring uninterrupted lighting when it matters most.\n\nOptimal Comfort: Generates cold light with a minimal temperature rise of just 1°C at the surgeon's head area, maintaining a comfortable and safe environment for both the surgical team and the patient.	The Suxin Medical SX-700/700 is a dual-dome, ceiling-mounted LED shadowless surgical lamp powered by genuine German Osram LEDs. Delivering up to 180,000 Lux of adjustable illumination and an impressive 80,000-hour lifespan, it features a specialized color LED layout (red and green) to reduce visual fatigue and enhance vascular clarity. Complete with a fail-safe double control system, it provides highly reliable, premium lighting for complex operating environments.	\N	4	China	CE Mark (CE-MDR): Certified compliant with European Medical Device Regulations, ensuring the products meet rigorous health, safety, and environmental protection standards for the European Economic Area.\nISO 13485 (EN ISO 13485:2016): Certified under the international standard for quality management systems specifically for the design and manufacture of medical devices.\nISO 9001: Certified for overall quality management systems, demonstrating consistent manufacturing and strict quality control processes.\nIEC 60601-1 / EN 60601-1:2016: Fully compliant with the internationally recognized general standards for the basic safety and essential performance of medical electrical equipment.\nIEC 60601-2-41: Compliant with the specific international safety and performance standards tailored for surgical luminaires (operating lights) and luminaires for diagnosis.\nFree Sales Certificate (FSC): Approved for international export and commercial distribution.\nJiangsu Provincial FDA Approval: Fully licensed and approved by the regional Food and Drug Administration in their manufacturing jurisdiction (Jiangsu Province, China).	published	Healing Technology — Suxin Medical SX-700/700 LED Shadowless Operating Lamp	The Suxin Medical SX-700/700 is a dual-dome, ceiling-mounted LED shadowless surgical lamp powered by genuine German Osram LEDs. Delivering up to 180,000 Lux of adjustable illumination and an impressive 80,000-hour lifespan, it features a specialized color LED layout (red and green) to reduce visual fatigue and enhance vascular clarity. Complete with a fail-safe double control system, it provides highly reliable, premium lighting for complex operating environments.	68	2026-04-21 06:34:56.485+00	2026-04-15 06:17:33.443+00	\N	\N
@@ -1707,8 +1765,8 @@ COPY public.products (id, name, slug, mark_as_new, sku, category_id, brand_id, b
 30	Suxin Medical SX-II 700/700 LED Shadowless Operating Lamp	SuxinMedicalSX-II700700	f	SX-II 700/700	7	7	\N	OT Light Double Dome 700/700	\N	\N	\N	31	China	\N	published	Healing Technology — SX-II 700/700 LED Shadowless Operating Lamp	\N	\N	2026-04-15 10:35:04.696+00	2026-04-15 10:31:47.117+00	\N	\N
 20	Suxin SXS3008 Head-Operated Comprehensive Operating Table	Suxin-SXS3008	f	Suxin-SXS3008	7	7	\N	Suxin SXS3008 Head-Operated Comprehensive Operating Table	Suxin SXS3008 Head-Operated Comprehensive Operating Table\nThe Suxin SXS3008 Series (including the SXS3008-II and SXS3008-III models) by Jiangsu Suxin Medical Equipment is a highly versatile, head-controlled hydraulic operating table. Engineered for precision and stability, it is an ideal, multi-functional solution for a wide range of surgical disciplines, including general surgery (thorax, abdomen, perineum), neurosurgery, ophthalmology, ENT, gynecology, and orthopedics.\n\nKey Features\nHead-Controlled Hydraulics: Features a reliable, smooth oil-pump hydraulic lifting mechanism. All multi-directional positional adjustments (tilt, back, and leg plates) are safely and efficiently controlled from the head side of the table by the anesthesiologist or surgical staff.\n\nExceptional Stability: The central hydraulic column is purposefully designed to prevent overturning, safely supporting a maximum dynamic load capacity of over 250 kg. Select models feature a T-base design for enhanced floor stability during rigorous procedures.\n\nPremium Construction: Built for the demanding operating room environment, the base seat and column are available in high-quality stainless steel (providing superior rust resistance and hygiene) or durable carbon steel with powder coating.\n\nFlexible Patient Positioning: Equipped with a split-type leg plate to accommodate complex lower limb positioning and an integrated kidney bridge elevator for optimized access during abdominal and kidney surgeries.\n\nC-Arm & X-Ray Ready: The advanced SXS3008-III model features a double tabletop design with a radiolucent upper surface, ensuring clear, unobstructed intraoperative X-ray and imaging capabilities.	The Suxin SXS3008 Series is a highly versatile, head-controlled hydraulic operating table designed to support a wide variety of surgical disciplines. Built for rigorous operating room environments, it provides exceptional stability with a safe load capacity of over 250 kg.\n\nCore Highlights:\n\nHead-Controlled Precision: Features smooth hydraulic lifting, with all multi-directional positioning (tilt, back, and leg adjustments) safely operated from the head of the table.\n\nSurgical Versatility: Equipped with a split-type leg plate for complex lower limb positioning and a built-in kidney bridge providing up to 120mm of elevation.\n\nImaging Ready: The premium SXS3008-III model features a dual-layer radiolucent tabletop, perfectly accommodating intraoperative X-ray and C-arm imaging.\n\nDurable Construction: Built with an anti-overturn central column and available in premium stainless steel for maximum hygiene and rust resistance.	\N	61	China	Manufactured by Jiangsu Suxin Medical Equipment Co., Ltd., the SXS3008 Series is built to strict international safety and quality standards, ensuring absolute reliability in demanding surgical environments:\n\nCE Marked: Fully certified to meet European health, safety, and environmental protection standards for medical devices.\n\nISO 13485 & ISO 9001 Certified: Produced under globally recognized Quality Management Systems specifically mandated for medical equipment manufacturing and operational excellence.\n\nProvincial Regulatory Approval: Officially authorized and recognized by the Jiangsu Provincial Food and Drug Administration as a high-quality medical device.	published	Healing Technology — Suxin SXS3008 Head-Operated Comprehensive Operating Table	The Suxin SXS3008 Series is a highly versatile, head-controlled hydraulic operating table designed to support a wide variety of surgical disciplines. Built for rigorous operating room environments, it provides exceptional stability with a safe load capacity of over 250 kg.\n\nCore Highlights:\n\nHead-Controlled Precision: Features smooth hydraulic lifting, with all multi-directional positioning (tilt, back, and leg adjustments) safely operated from the head of the table.\n\nSurgical Versatility: Equipped with a split-type leg plate for complex lower limb positioning and a built-in kidney bridge providing up to 120mm of elevation.\n\nImaging Ready: The premium SXS3008-III model features a dual-layer radiolucent tabletop, perfectly accommodating intraoperative X-ray and C-arm imaging.\n\nDurable Construction: Built with an anti-overturn central column and available in premium stainless steel for maximum hygiene and rust resistance.	62	2026-04-19 09:29:54.648+00	2026-04-09 04:28:09.494+00	\N	\N
 24	Suxin Medical SX-700 Shadowless Operating Light	SuxinmedicalSX-700	t	SX-700	7	7	\N	Suxin Medical SX-700 Shadowless Operating Light	Product Overview\nProduct Name: Color Led Two Controls System Ceiling Shadowless Lamp Operating Light\n\nModel: SX-700\n\nBrand: Suxin Medical\n\nManufacturer: Jiangsu Suxin Medical Equipment Co., Ltd.\n\nKey Features\nSanitary Design: Features a fully enclosed, streamlined structure designed to meet the laminar flow purification and hygiene requirements of modern operating rooms.\n\nFlexible Positioning: Utilizes a professionally designed six-joint suspension system with a 340° rotating arm. This ensures flexible, portable, and natural positioning without any drifting.\n\nAdvanced Cold Lighting: Employs novel German cold lighting technology. It produces no infrared or ultraviolet radiation and prevents temperature rise on the surgical team's heads.\n\nLong Lifespan: The LED cold lighting source has a remarkably long service life of up to 80,000 hours, eliminating the need for bulb replacements and providing an eco-friendly and economical solution.\n\nAdjustable Lighting: The color temperature is adjustable from 3700K to 5000K, which helps in making more accurate diagnoses and reduces visual fatigue for doctors. It also features a specific endoscope control mode for different surgical lighting needs.\n\nOptical Precision: Each LED is equipped with a lens refracting and luminous system. The overall design creates a uniform light column with high brightness, ensuring a soft, deep-gathering effect for both high-brightness and high-depth surgical needs.\n\nControls: Features an easy-to-use button-type control panel.	The SX-700 is an advanced, ceiling-mounted surgical light designed to meet the strict hygiene and illumination standards of modern operating rooms. Powered by German cold LED technology, it delivers high-depth, uniform lighting with zero heat, infrared, or UV radiation.\n\nKey Highlights:\n\nUltra-Long Lifespan: Up to 80,000 hours of continuous use with zero bulb replacements.\n\nPrecision Lighting: Adjustable color temperature (3700K–5000K) to reduce eye strain, plus a dedicated endoscope mode.\n\nSeamless Mobility: A 6-joint suspension system with a 340° rotating arm ensures smooth, drift-free positioning.\n\nSanitary Design: Fully enclosed and streamlined to support laminar flow purification in surgical environments.	\N	35	China	CE Mark (CE-MDR): Certified compliant with European Medical Device Regulations, ensuring the products meet rigorous health, safety, and environmental protection standards for the European Economic Area.\nISO 13485 (EN ISO 13485:2016): Certified under the international standard for quality management systems specifically for the design and manufacture of medical devices.\nISO 9001: Certified for overall quality management systems, demonstrating consistent manufacturing and strict quality control processes.\nIEC 60601-1 / EN 60601-1:2016: Fully compliant with the internationally recognized general standards for the basic safety and essential performance of medical electrical equipment.\nIEC 60601-2-41: Compliant with the specific international safety and performance standards tailored for surgical luminaires (operating lights) and luminaires for diagnosis.\nFree Sales Certificate (FSC): Approved for international export and commercial distribution.\nJiangsu Provincial FDA Approval: Fully licensed and approved by the regional Food and Drug Administration in their manufacturing jurisdiction (Jiangsu Province, China).	published	Healing Technology — Suxin Medical SX-700 Shadowless Operating Light	The SX-700 is an advanced, ceiling-mounted surgical light designed to meet the strict hygiene and illumination standards of modern operating rooms. Powered by German cold LED technology, it delivers high-depth, uniform lighting with zero heat, infrared, or UV radiation.\n\nKey Highlights:\n\nUltra-Long Lifespan: Up to 80,000 hours of continuous use with zero bulb replacements.\n\nPrecision Lighting: Adjustable color temperature (3700K–5000K) to reduce eye strain, plus a dedicated endoscope mode.\n\nSeamless Mobility: A 6-joint suspension system with a 340° rotating arm ensures smooth, drift-free positioning.\n\nSanitary Design: Fully enclosed and streamlined to support laminar flow purification in surgical environments.	40	2026-04-21 06:38:05.514+00	2026-04-09 04:28:09.626+00	\N	\N
-14	AEONMED BF30ST BiPAP	AEONMED-BF30STBiPAP	f	AEONMED-BF30STBiPAP	4	3	\N	AEONMED BF30ST BiPAP	AEONMED NeoBip BF30ST Non-Invasive Ventilator\nThe Aeonmed BF30ST from the NeoBip series is a high-performance non-invasive ventilator designed to deliver accurate, intelligent control for every comfortable breath. Engineered with over 20 years of technology accumulation, this device features a unique pressure control algorithm that rapidly adapts to a patient's breathing efforts to ensure perfect synchronization. It is intended specifically for the treatment of adult Obstructive Sleep Apnea (OSA) or for patients with pulmonary insufficiency requiring respiratory support.\n\nAdvanced Therapy Modes & VGPS Technology\nThe BF30ST supports a comprehensive suite of ventilation modes, including CPAP, S, T, S/T, and VGPS.\n\nVGPS (Volume Guarantee Pressure Support): This mode guarantees a pre-set tidal volume target.\n\nIf the system detects that a patient's inspiratory volume is falling short, it automatically raises the inspiratory pressure to achieve the target volume.\n\nThis ensures the patient's tidal volume is maintained, even if their airway resistance or compliance changes during the night.\n\nAdditionally, a low tidal volume alarm provides an extra layer of ventilation safety.\n\nKey Features\nUltra-Fast Synchronization: Features a 6-level adjustable pressure rise slope. The device responds to a patient's inspiratory trigger in as fast as 150ms, ensuring smooth breaths and easing the workload on respiratory muscles.\n\nHigh-Resolution Touchscreen: Built with a vibrant 4.3-inch colorful touchscreen display. It utilizes an exquisite UI design that displays multiple monitored parameters simultaneously, paired with a highly flexible navigator knob for effortless operation.\n\nWhisper-Quiet Operation: Operates at a remarkably low noise level of less than 30dB, ensuring uninterrupted sleep for both the patient and their partner.\n\nTravel-Friendly & Detachable Design: The main unit weighs only 0.82kg, scaling to a total of 1.26kg when the humidifier is attached. The detachable design between the main unit and humidifier makes it highly convenient for both home use and traveling.\n\nAS-Dry Technology: Includes automated AS-Dry technology to help reduce internal moisture, keeping the equipment hygienic.	AEONMED NeoBip BF30ST BiPAP: Quick Summary\n\nThe AEONMED NeoBip BF30ST is an advanced, non-invasive ventilator tailored for adults managing Obstructive Sleep Apnea (OSA) or pulmonary insufficiency. Its standout feature is VGPS (Volume Guarantee Pressure Support), an intelligent technology that automatically adjusts pressure to ensure your target tidal volume is always met.\n\nEngineered for exceptional comfort and synchronization, it responds to breathing triggers in just 150 milliseconds. A vibrant 4.3-inch touchscreen allows for effortless navigation, while the whisper-quiet motor (under 30dB) guarantees a peaceful night. With its lightweight, detachable humidifier design, the BF30ST is the perfect, versatile solution for both reliable home therapy and travel.	\N	122	German	The AEONMED NeoBip BF30ST BiPAP is manufactured under stringent global quality control protocols to ensure premium safety and performance. The device meets or exceeds the following international medical and safety standards:\n\nCE Mark: Certified to meet the European Union's health, safety, and environmental protection requirements for medical devices.\n\nISO 13485: Manufactured in a facility certified for Quality Management Systems specific to medical devices.\n\nISO 80601-2-70:2015: Compliant with specific requirements for the basic safety and essential performance of sleep apnea breathing therapy equipment.\n\nISO 80601-2-74:2017: Compliant with standards for respiratory humidifying equipment.\n\nEN 60601-1 / EN 60601-1-2 / EN 60601-1-11: Meets rigorous international electrical safety and electromagnetic compatibility standards for medical electrical equipment, including specific certifications for home healthcare environments.	published	Healing Technology — AEONMED BF30ST BiPAP	AEONMED NeoBip BF30ST BiPAP: Quick Summary\n\nThe AEONMED NeoBip BF30ST is an advanced, non-invasive ventilator tailored for adults managing Obstructive Sleep Apnea (OSA) or pulmonary insufficiency. Its standout feature is VGPS (Volume Guarantee Pressure Support), an intelligent technology that automatically adjusts pressure to ensure your target tidal volume is always met.\n\nEngineered for exceptional comfort and synchronization, it responds to breathing triggers in just 150 milliseconds. A vibrant 4.3-inch touchscreen allows for effortless navigation, while the whisper-quiet motor (under 30dB) guarantees a peaceful night. With its lightweight, detachable humidifier design, the BF30ST is the perfect, versatile solution for both reliable home therapy and travel.	120	2026-04-21 08:35:26.951+00	2026-04-09 04:28:09.307+00	\N	\N
 31	HF MED HF-L60 L84C LED shadowless operating lamp	HF-L60-L84C	f	HF-L60 L84C	7	27	\N	HF MED HF-L60 L84C LED shadowless operating lamp	Product Overview\nThe HF-L60 L84C LED is a shadowless operating lamp manufactured by SHANGHAI HUIFENG MEDICAL INSTRUMENT CO.,LTD (HFMED). It is designed as an ideal surgical light solution to meet the diverse requirements of general surgery.\nKey Features\nAdvanced Lighting Control: The lamp features precise dimming control to accommodate various lighting requests. It utilizes high-density light mixing technology to provide both high brightness and high-quality light.\n\nAdjustable Settings: Users can utilize 8 levels of brightness adjustment and 3 levels of color temperature adjustment (3800K to 5000K ±300K). It also features manual mechanical spot size adjustment ranging from 160mm to 200mm.\n\nENDO Mode: The lamp is equipped with a one-button dim light setting, specifically designed as an Endoscope Mode. This allows surgeons to quickly switch from general mode without interfering with their field of vision during tissue observation.\n\nSuperior Thermal Management: An original thermal management system is built in to effectively reduce the temperature of the chip core. It uses a cast high-heat-conducting aluminum alloy radiator to instantly derive heat, which effectively reduces the lamp's temperature and improves its service life.\n\nHygienic Design: The streamlined lamp body features a superior laminar flow design. This careful assembly increases airflow efficiency, helping to remove dust and bacteria from around the lamp.\n\nSterilizable Handle: The lamp includes a removable handle that can withstand high-temperature sterilization. This ensures doctors and nurses can safely and conveniently control the light's direction and depth.	The HF-L60 L84C LED is a shadowless operating lamp manufactured by HFMED, designed to meet the diverse needs of general surgery.\n\nKey Highlights:\nHigh-Quality Lighting: Delivers an illuminance of up to roughly 160,000 Lux and features an excellent color rendering index (Ra) of 96 to 100.\n\nCustomizable Control: Offers 8 brightness levels, 3 color temperature settings ranging from 3800K to 5000K, and an adjustable spot diameter of 160-200mm.\n\nSpecialized Modes: Features a one-button "ENDO Mode" that dims the light for endoscopic procedures, allowing surgeons to observe tissue without visual interference.\n\nDurability & Hygiene: Built with a high-heat-conducting aluminum alloy radiator for efficient cooling, a streamlined laminar flow design to help remove bacteria and dust, and a removable handle that can be sterilized at high temperatures.	\N	32	China	CE Mark: Specifically indicated on the HF-L60 L84C LED product document.\n\nISO 9001 & ISO 13485: Certified for general and medical device quality management systems.\n\nFDA: Certified to meet United States Food and Drug Administration standards.\n\nSGS: Verified and inspected for product quality and safety compliance.\n\nMDR / MDA: Compliant with international Medical Device Regulations.\n\nCredit Rating: Recognized locally in Shanghai as a Quality Credit A-level enterprise for medical device manufacturing.	published	Healing Technology — HF MED HF-L60 L84C LED shadowless operating lamp	\N	\N	2026-04-19 08:23:49.139+00	2026-04-15 10:54:14.981+00	\N	\N
+15	Aeonmed AS100A Auto CPAP	AS100A-AutoCPAP	f	AS100A-AutoCPAP	4	3	\N	Aeonmed AS100A Auto CPAP	AS100A Auto CPAP: Choose a Better Product for a Higher Quality Sleep\nBacked by AEONMED’s more than 20 years of expertise in respiratory research, the AS100A Auto CPAP is engineered to deliver a superior, high-precision treatment experience. This advanced device is designed to automatically adjust treatment pressure according to the patient's breathing airflow and airway conditions, ensuring maximum effectiveness and comfort throughout the night.\n\nKey Features & Benefits\nIntelligent CSA Identification: The AS100A effectively identifies Central Sleep Apnea (CSA) and Obstructive Sleep Apnea (OSA) to reduce improper pressure rises that could negatively affect the patient.\n\nAS-Dry Technology: Following humidified treatment, the turbine blows at a lower speed for 30 minutes to cool down and dry the airway and water tank. This maintains a dry environment, protects the machine against moisture, reduces bacterial breeding, and ensures a healthy treatment experience.\n\nAS-Elex Expiration Pressure Release: To increase patient compliance and reduce discomfort, this feature provides 3 different grades of pressure release during expiration.\n\nSmooth Breathing Shifts: The unique tracking system follows every breath closely, guaranteeing super smooth shifts between inspiration and expiration.\n\nReal-Time Manual Titration: This function allows doctors to complete the clinical titration process without having to stop the patient's treatment.\n\nIntuitive Touch Screen: A 3.5-inch touch screen ensures a fashionable, high-tech view while simplifying operation and report reviews.\n\nComprehensive Data Storage: An included SD card stores up to 5 years of therapy data. Users can easily read their P90 pressure, AHI, SNI, CAI, AI, Average pressure, and Leak data directly on the screen or through PC software.\n\nSuperior Air Filtration: An optional folded PM2.5/Pollen filter (unfolding up to 20cm2) ensures efficient dust and pollen filtering to provide clean air, protect the inner airway of the device, and prolong its working life.\n\nCompact and Travel-Ready: With a light and compact design, the whole device weighs just 1.3 kg, making it a great choice for both home and travel use.	AEONMED AS100A Auto CPAP\nThe AEONMED AS100A Auto CPAP is a premium, travel-friendly respiratory device engineered for superior sleep therapy. It automatically adjusts pressure to match your breathing patterns, featuring advanced CSA identification and AS-Elex expiration relief for maximum comfort. Complete with an intuitive 3.5-inch touch screen, ultra-quiet operation (≤ 30dB), and innovative AS-Dry technology to maintain a clean, moisture-free system, the AS100A delivers high-precision, comfortable treatment both at home and on the go.	\N	123	China	Aeonmed AS100A Auto CPAP indicate that the device carries the following major medical and quality certifications:\n\nCE Mark (EU): Certified to meet European health, safety, and environmental protection standards for medical devices.\n\nFDA Approval (U.S.): Approved/cleared by the U.S. Food and Drug Administration for medical use.\n\nISO Certifications: Aeonmed manufactures its devices under strict quality control standards, holding certificates such as ISO 13485:2016 (Quality Management Systems for Medical Devices) and ISO 9001:2015.	published	Healing Technology — Aeonmed AS100A Auto CPAP	AEONMED AS100A Auto CPAP\nThe AEONMED AS100A Auto CPAP is a premium, travel-friendly respiratory device engineered for superior sleep therapy. It automatically adjusts pressure to match your breathing patterns, featuring advanced CSA identification and AS-Elex expiration relief for maximum comfort. Complete with an intuitive 3.5-inch touch screen, ultra-quiet operation (≤ 30dB), and innovative AS-Dry technology to maintain a clean, moisture-free system, the AS100A delivers high-precision, comfortable treatment both at home and on the go.	117	2026-04-22 12:50:42.494+00	2026-04-09 04:28:09.341+00	\N	\N
 23	Heyer Purelit OL9500	Purelit-OL9500	f	Purelit-OL9500	7	2	\N	Heyer Purelit OL9500	The Purelit OL9500 series by Heyer is an advanced surgical lighting system designed to meet the needs of high-end medical users. The product holds 15 patents and has been recognized with the 2010 Red Star Design Award and the 2013 High-tech Produce Star by the Beijing Government.\n\nKey Features:\nDesign & Hygiene:\nThe light head features an ultra-thin, streamlined aluminum alloy shell that provides low wind resistance, allowing stable laminar airflow to reach the surgical wound and prevent cross-infection.\nThe aluminum shell also offers outstanding heat dissipation to extend the life of the LEDs.\nIt includes a detachable and sterilizable PSU Polysulfone handle that can withstand heating up to 135°C.\n\nLighting Quality & Precision:\nThe system delivers an all-dimensional, shadowless lighting experience with a white LED light that eliminates colored cast shadows.\nA multi-lens structure with patented focus technology can deliver a light spot diameter of up to 250mm and an illumination depth of up to 1,400mm.\nIt includes two independent LED bulbs specifically to provide basic illumination for endoscopic surgeries.\nThe synthetic resin light screen features anti-infrared coating (to prevent tissue desiccation), 2H hardness scratch-proofing, and an anti-static coating (to prevent floating particle absorption).\n\nControl & Safety:\nA microprocessor control panel allows surgeons to easily adjust lighting intensity in 10 levels, from 30% to 100%.\nThe multi-lens matrix structure is designed to prevent a total blackout if a single light module fails, ensuring patient safety during operations.\nIt uses a German-imported spring arm that maintains its position without drifting.\n\nEfficiency & Adaptability:\nThe LED bulbs have a long life expectancy of up to 70,000 hours, making them reliable and cost-effective with low power consumption.\nThe system is HD camera compatible and supports low-height ceiling mounting.\n\nTechnical Specifications\nThe series includes two main models: the larger OLSS70 (featuring 20 matrix lens modules and 160 LEDs) and the smaller OL9550 (featuring 10 matrix lens modules and 80 LEDs).\nHere is a comparison of their technical specifications:\nSpecification\t  OLSS70\t    OL9550\nDiameter of lights\t700 mm\t500 mm\nIllumination\t160,000 Lux\t160,000 Lux\nColor temperature\t4,300 K\t4,300 K\nColor rendering Index (Ra)\t95%\t95%\nDiameter of light spot\t250 mm\t200 mm\nLED power\t160 W\t80 W\nIllumination depth (60%)\t2600 mm\t2400 mm\nLED service life\t70,000 hours\t70,000 hours\nBackground light illumination\t230 Lux\t230 Lux\nQuantity of LED bulbs\t160\t80\nMinimum installation height\t2,800 mm\t2,800 mm\nIllumination adjustment\t30% to 100%\t30% to 100%\nTemp rise (surgical area surface)\t15±0.5 °C\t15±0.5 °C\nTemp rise (surgeon's head)\t1±0.5 °C\t1±0.5 °C	The Purelit OL9500 Series by Heyer is a premium LED surgical lighting system that delivers up to 160,000 Lux of shadowless, true-color illumination. Designed for the rigorous demands of modern operating rooms, it combines exceptional optical clarity with advanced safety and hygiene features.\n\nCore Highlights:\n\nPrecision Optics: Delivers a 95% Color Rendering Index (CRI) for accurate tissue visualization, with a fail-safe multi-lens matrix that prevents complete blackouts if a single LED fails.\n\nEnhanced Hygiene & Safety: Features an ultra-thin, aerodynamic profile that supports sterile laminar airflow. Its specialized light screen repels dust, resists scratches, and blocks infrared heat to prevent patient tissue desiccation.\n\nErgonomic & Durable: Equipped with a drift-free German spring arm, a sterilizable handle, and energy-efficient LEDs that boast a 70,000-hour lifespan.	\N	44	German	Certifications & Awards\nBacked by world-class manufacturing standards and recognized for innovation, the Purelit OL9500 Series meets the strictest regulatory requirements for modern surgical environments:\n\nGlobal Compliance: CE Marked and manufactured under ISO 13485 & ISO 9001 certified quality management systems.\n\nOR Safety Standard: Class I medical electrical safety rating with IPX2 protection against fluid ingress.\n\nPatented Innovation: Protected by 15 advanced technology patents.\n\nAward-Winning Design: Winner of the Red Star Design Award and recognized as a "High-Tech Produce Star" for its advanced aerodynamic and optical engineering.	published	Healing Technology — Heyer Purelit OL9500	The Purelit OL9500 Series by Heyer is a premium LED surgical lighting system that delivers up to 160,000 Lux of shadowless, true-color illumination. Designed for the rigorous demands of modern operating rooms, it combines exceptional optical clarity with advanced safety and hygiene features.\n\nCore Highlights:\n\nPrecision Optics: Delivers a 95% Color Rendering Index (CRI) for accurate tissue visualization, with a fail-safe multi-lens matrix that prevents complete blackouts if a single LED fails.\n\nEnhanced Hygiene & Safety: Features an ultra-thin, aerodynamic profile that supports sterile laminar airflow. Its specialized light screen repels dust, resists scratches, and blocks infrared heat to prevent patient tissue desiccation.\n\nErgonomic & Durable: Equipped with a drift-free German spring arm, a sterilizable handle, and energy-efficient LEDs that boast a 70,000-hour lifespan.	\N	2026-04-19 06:54:46.571+00	2026-04-09 04:28:09.583+00	\N	\N
 17	JINLING-850 Advance ICU Anesthesia Machine With Ventilator	JINLING-850Advance	f	JINLING-850Advance	7	10	\N	JINLING-850 Advance ICU Anesthesia Machine With Ventilator	JINLING-850 Anesthesia Machine\nProduct Overview\nThe JINLING-850 Anesthesia Machine is a state-of-the-art, pneumatically driven, and electronically controlled workstation engineered for precision and reliability in modern operating rooms and intensive care units. Designed to support closed, semi-closed, and semi-open operating modes, this highly versatile machine delivers comprehensive respiratory control. With its elegant, environmentally friendly frame and advanced interface, the JINLING-850 provides anesthesiologists with the confidence and flexibility needed for both routine surgeries and complex, low-flow anesthesia procedures.\n\nKey Features & Benefits\nAdvanced Real-Time Display: Available with an 8.4-inch (Standard Model) or 10.4-inch (Advanced Model) high-definition color TFT screen. It allows clinicians to easily monitor Pressure-Time, Flow-Time, Pressure-Volume, and Flow-Volume waveforms, enabling instant cycle switching at the touch of a button.\n\nHigh-Precision Gas Delivery: Features a sophisticated five-tube flowmeter (O2, N2O, and Air) fitted with an interlocking oxygen-nitrous oxide supply system, guaranteeing oxygen output never drops below a safe 21%.\n\nSuperior Modular Circuit: Built with a standard integrated metallic modular respiratory circuit. This premium design eliminates gas sealing issues during high-temperature disinfection, ensuring highly effective cleaning and sterilization.\n\nInnovative Na-Lime Tank: Equipped with an international rotating Sodium-lime canister made from imported PPSU material. It is resistant to temperatures up to 134°C and features an easy, one-handed operation system.\n\nLow-Flow Anesthesia Ready: Integrates an advanced, highly stable Adjustable Pressure Limiting (APL) valve, optimized for minimizing anesthetic gas use during low and ultra-low flow procedures.\n\nIntelligent Safety & Backup:\n\nFeatures an automated self-checking function during startup and self-calibrating sensors.\n\nAutomatically switches to a built-in backup battery (minimum 4-hour capacity) during AC power outages.\n\nIncludes comprehensive audible and visual alarms for tidal volume, airway pressure, oxygen concentration, asphyxia, and gas/power failures.	The JINLING-850 Anesthesia Machine is an advanced, highly versatile workstation designed for precision in both operating rooms and ICUs. Capable of supporting pediatric to adult patients, it features a vibrant color TFT display, comprehensive ventilation modes, and a precise five-tube flowmeter with interlocking safety mechanisms to prevent hypoxia.\n\nDesigned for ease of maintenance and infection control, it includes an easily sterilizable metallic modular respiratory circuit and a high-temperature-resistant sodium-lime canister. Fully optimized for low-flow anesthesia, the unit ensures maximum clinical safety with automated self-checks, robust alarm systems, and an automatic 4-hour battery backup.	\N	83	China	JINLING-850 Anesthesia Machine holds the following primary international certifications:\n\nCE Mark: Certified to meet European health, safety, and environmental protection standards for medical devices.\n\nISO 13485: Certified under the internationally recognized quality management system standard specific to the design and manufacture of medical devices.\n\nISO 9001: Compliant with general international quality management system standards.\n\nRoHS: Compliant with the Restriction of Hazardous Substances directive, ensuring the electronic components and manufacturing materials are environmentally safe.	published	Healing Technology — JINLING-850 Advance Anesthesia Machine With Ventilator	The JINLING-850 Anesthesia Machine is an advanced, highly versatile workstation designed for precision in both operating rooms and ICUs. Capable of supporting pediatric to adult patients, it features a vibrant color TFT display, comprehensive ventilation modes, and a precise five-tube flowmeter with interlocking safety mechanisms to prevent hypoxia.\n\nDesigned for ease of maintenance and infection control, it includes an easily sterilizable metallic modular respiratory circuit and a high-temperature-resistant sodium-lime canister. Fully optimized for low-flow anesthesia, the unit ensures maximum clinical safety with automated self-checks, robust alarm systems, and an automatic 4-hour battery backup.	84	2026-04-20 11:20:54.668+00	2026-04-09 04:28:09.41+00	\N	\N
 \.
@@ -1719,6 +1777,9 @@ COPY public.products (id, name, slug, mark_as_new, sku, category_id, brand_id, b
 --
 
 COPY public.products_applications (_order, _parent_id, id, department) FROM stdin;
+1	15	69e72c423220efc4a063a3fc	Obstructive Sleep Apnea (OSA) Treatment: Delivers a continuous, automatically adjusting flow of positive airway pressure to keep the user's airway open during sleep, effectively preventing apnea and hypopnea events.
+2	15	69e72c453220efc4a063a3fd	Central Sleep Apnea (CSA) Identification: Intelligently monitors breathing patterns to distinguish between OSA and CSA, preventing improper pressure increases that could negatively impact the patient during central apnea events.
+3	15	69e72c4d3220efc4a063a3fe	Home & Travel Care: Its ultra-lightweight (1.3 kg) and compact profile make it ideal for nightly domestic use, as well as a highly convenient solution for patients who travel frequently.
 1	25	69df2e65b960ec5fbf6307a1	Major Operating Theaters (OTs)
 2	25	69df2ebab960ec5fbf6307a3	Cardiothoracic & Neurosurgery
 3	25	69df2ebfb960ec5fbf6307a4	Orthopedic Surgery
@@ -1726,14 +1787,12 @@ COPY public.products_applications (_order, _parent_id, id, department) FROM stdi
 5	25	69df2ed1b960ec5fbf6307a6	Emergency & Trauma Centers
 6	25	69df2edbb960ec5fbf6307a7	Ambulatory Surgical Centers (ASCs)
 7	25	69df2ee5b960ec5fbf6307a8	Advanced Veterinary Hospitals
+4	15	69e72c563220efc4a063a3ff	Clinical Therapy & Titration: Features real-time manual titration, allowing healthcare providers and respiratory therapists to safely adjust clinical pressure settings without stopping the patient's ongoing treatment.
 1	20	69e49f859227f07265a2b770	General Surgery
 2	20	69e49fa69227f07265a2b771	Orthopedics
 3	20	69e49fa99227f07265a2b772	Gynecology & Urology
 4	20	69e49fb99227f07265a2b773	Head & Neck (ENT / Ophthalmology / Neurosurgery)
 5	20	69e49fc39227f07265a2b774	Trauma & Emergency
-1	15	69e72c423220efc4a063a3fc	Obstructive Sleep Apnea (OSA) Treatment: Delivers a continuous, automatically adjusting flow of positive airway pressure to keep the user's airway open during sleep, effectively preventing apnea and hypopnea events.
-2	15	69e72c453220efc4a063a3fd	Central Sleep Apnea (CSA) Identification: Intelligently monitors breathing patterns to distinguish between OSA and CSA, preventing improper pressure increases that could negatively impact the patient during central apnea events.
-3	15	69e72c4d3220efc4a063a3fe	Home & Travel Care: Its ultra-lightweight (1.3 kg) and compact profile make it ideal for nightly domestic use, as well as a highly convenient solution for patients who travel frequently.
 1	17	69e60b601d522a8c2a7de9f9	Operating Rooms (OR): Ideal for delivering and maintaining general inhalation anesthesia during both routine and complex, prolonged surgical procedures.
 2	17	69e60bae1d522a8c2a7de9fa	Intensive Care Units (ICU): Capable of providing advanced, reliable respiratory support and mechanical ventilation for critically ill patients.
 3	17	69e60bb81d522a8c2a7de9fb	Pediatric and Adult Care: With an expansive and precise tidal volume range (adjustable from 20 to 1500 ml) and versatile ventilation modes, it safely accommodates a broad spectrum of patient demographics, from small children to adults.
@@ -1744,7 +1803,6 @@ COPY public.products_applications (_order, _parent_id, id, department) FROM stdi
 3	18	69e60c461d522a8c2a7dea00	Ambulatory Surgery Centers: Suitable for outpatient surgical clinics that require reliable, high-precision anesthesia delivery and patient monitoring.
 4	18	69e60c4e1d522a8c2a7dea01	Diverse Patient Demographics: With a highly adjustable tidal volume (50 to 1500 ml) and versatile ventilation modes, the machine is fully capable of accommodating both adult and pediatric patients.
 5	18	69e60c561d522a8c2a7dea02	Low-Flow Anesthesia: Specifically optimized for low and ultra-low flow anesthesia techniques, which helps reduce anesthetic gas consumption and lowers the risk of environmental contamination in the surgical suite.
-4	15	69e72c563220efc4a063a3ff	Clinical Therapy & Titration: Features real-time manual titration, allowing healthcare providers and respiratory therapists to safely adjust clinical pressure settings without stopping the patient's ongoing treatment.
 1	14	69e7352ea1dc14718977d686	Complex Obstructive Sleep Apnea (OSA): Provides robust, dual-level positive airway pressure for adult patients who require higher pressure settings, or those who have difficulty tolerating standard single-pressure CPAP therapy.
 2	14	69e73539a1dc14718977d687	Pulmonary Insufficiency: Delivers essential, life-enhancing respiratory support for patients managing chronic conditions that compromise breathing capacity, such as Chronic Obstructive Pulmonary Disease (COPD) or restrictive lung disorders.
 3	14	69e73541a1dc14718977d688	Targeted Volume Ventilation: Utilizing the advanced VGPS mode, this device is ideal for patients who require a guaranteed tidal volume to maintain safe, stable ventilation throughout the night, adapting seamlessly to any changes in airway resistance.
@@ -1786,8 +1844,6 @@ COPY public.products_gallery (_order, _parent_id, id, image_id, alt) FROM stdin;
 1	17	69e608031d522a8c2a7de9e6	90	\N
 2	17	69e608281d522a8c2a7de9e7	86	\N
 3	17	69e608471d522a8c2a7de9e8	88	\N
-1	15	69e72eb03220efc4a063a404	116	\N
-2	15	69e72e3f3220efc4a063a400	112	\N
 4	17	69e608821d522a8c2a7de9e9	89	\N
 1	18	69e605df1d522a8c2a7de9e5	80	\N
 2	18	69e6055f1d522a8c2a7de9e1	76	\N
@@ -1795,9 +1851,6 @@ COPY public.products_gallery (_order, _parent_id, id, image_id, alt) FROM stdin;
 1	20	69e48c659227f07265a2b753	63	\N
 2	20	69e48d469227f07265a2b754	64	\N
 1	21	69e486a49227f07265a2b752	58	\N
-3	15	69e72e533220efc4a063a401	113	\N
-4	15	69e72e643220efc4a063a402	114	\N
-5	15	69e72e753220efc4a063a403	115	\N
 4	18	69e605671d522a8c2a7de9e2	77	\N
 5	18	69e605751d522a8c2a7de9e3	78	\N
 6	18	69e6057d1d522a8c2a7de9e4	79	\N
@@ -1811,10 +1864,15 @@ COPY public.products_gallery (_order, _parent_id, id, image_id, alt) FROM stdin;
 4	23	69e47b5c9227f07265a2b74c	48	\N
 5	23	69e47b6a9227f07265a2b74d	49	\N
 6	23	69e47be19227f07265a2b74e	50	\N
-1	14	69e73613a1dc14718977d68a	120	\N
-2	14	69e735043220efc4a063a417	119	\N
+1	15	69e72eb03220efc4a063a404	116	\N
+2	15	69e72e3f3220efc4a063a400	112	\N
+3	15	69e72e533220efc4a063a401	113	\N
+4	15	69e72e643220efc4a063a402	114	\N
 1	16	69e60fea1d522a8c2a7dea04	91	\N
 2	16	69e610031d522a8c2a7dea05	92	\N
+5	15	69e72e753220efc4a063a403	115	\N
+1	14	69e73613a1dc14718977d68a	120	\N
+2	14	69e735043220efc4a063a417	119	\N
 1	25	69df33bfb960ec5fbf6307aa	102	\N
 2	25	69df33c9b960ec5fbf6307ab	103	\N
 3	25	69e4943e9227f07265a2b76e	69	\N
@@ -1909,13 +1967,6 @@ COPY public.products_spec_groups_rows (_order, _parent_id, id, label, value) FRO
 10	69e479dd34931c3b26d3a31f	69e4908c9227f07265a2b760	Color rendering index(Ra)	96≤Ra≤100
 11	69e479dd34931c3b26d3a31f	69e4909d9227f07265a2b761	Total irradiance	≤500W/m²
 12	69e479dd34931c3b26d3a31f	69e490ab9227f07265a2b762	Illumination depth	20%:Notless than 1070mm. 60%:Not less than 560mm
-1	69e733cd3220efc4a063a40e	69e733d13220efc4a063a40f	IPAP Range:	6 – 30 hPa.
-2	69e733cd3220efc4a063a40e	69e733de3220efc4a063a410	EPAP Range:	4 – 25 hPa.
-3	69e733cd3220efc4a063a40e	69e733f43220efc4a063a411	Target Tidal Volume:	200ml – 1500ml.
-4	69e733cd3220efc4a063a40e	69e734013220efc4a063a412	Respiratory Rate:	10BPM / 5-40BPM.
-5	69e733cd3220efc4a063a40e	69e7340f3220efc4a063a413	Ramp Time:	0 – 60 minutes
-6	69e733cd3220efc4a063a40e	69e734213220efc4a063a414	Monitoring Parameters:	Tracks Pressure, Tidal volume, Minute ventilation, Respiratory rate, and Leakage.
-7	69e733cd3220efc4a063a40e	69e7342a3220efc4a063a415	Data Storage:	Equipped with an SD card for long-term therapy data tracking.
 1	69e49fd49227f07265a2b775	69e49fe19227f07265a2b776	Overall Dimensions   (L x W)	2100 mm x 500 mm (±20 mm)
 2	69e49fd49227f07265a2b775	69e49ff89227f07265a2b777	Working Table Height	750 mm (±50 mm)
 3	69e49fd49227f07265a2b775	69e4a00f9227f07265a2b778	Height Adjustment Range	Up to 250 mm
@@ -1968,6 +2019,8 @@ COPY public.products_spec_groups_rows (_order, _parent_id, id, label, value) FRO
 6	69e72f2f3220efc4a063a405	69e730373220efc4a063a40b	Weight:	Main device is 0.88 kg; 1.26 kg with the humidifier included
 7	69e72f2f3220efc4a063a405	69e730453220efc4a063a40c	Alerts:	Features alerts for power down, leaks, filter changes, an alarm clock, and customized notifications
 8	69e72f2f3220efc4a063a405	69e730543220efc4a063a40d	Design Options:	Available in four color choices to suit your personal preference
+1	69e733cd3220efc4a063a40e	69e733d13220efc4a063a40f	IPAP Range:	6 – 30 hPa.
+2	69e733cd3220efc4a063a40e	69e733de3220efc4a063a410	EPAP Range:	4 – 25 hPa.
 1	69e491749227f07265a2b764	69e491c79227f07265a2b765	Dome diameter(mm)	700 / 700
 2	69e491749227f07265a2b764	69e4923f9227f07265a2b766	Illuminance (lux)	40000-180000
 3	69e491749227f07265a2b764	69e492619227f07265a2b767	Color temperature(K)	4000-5700
@@ -2003,6 +2056,11 @@ COPY public.products_spec_groups_rows (_order, _parent_id, id, label, value) FRO
 7	69e491749227f07265a2b764	69e4933b9227f07265a2b76b	Brightness adjustment digital display	1-100%
 8	69e491749227f07265a2b764	69e4934f9227f07265a2b76c	Temperature rise of surgeon's head	1°C
 9	69e491749227f07265a2b764	69e493a79227f07265a2b76d	Led lifespan(h)	80000
+3	69e733cd3220efc4a063a40e	69e733f43220efc4a063a411	Target Tidal Volume:	200ml – 1500ml.
+4	69e733cd3220efc4a063a40e	69e734013220efc4a063a412	Respiratory Rate:	10BPM / 5-40BPM.
+5	69e733cd3220efc4a063a40e	69e7340f3220efc4a063a413	Ramp Time:	0 – 60 minutes
+6	69e733cd3220efc4a063a40e	69e734213220efc4a063a414	Monitoring Parameters:	Tracks Pressure, Tidal volume, Minute ventilation, Respiratory rate, and Leakage.
+7	69e733cd3220efc4a063a40e	69e7342a3220efc4a063a415	Data Storage:	Equipped with an SD card for long-term therapy data tracking.
 \.
 
 
@@ -2044,7 +2102,7 @@ COPY public.users (id, updated_at, created_at, email, reset_password_token, rese
 --
 
 COPY public.users_sessions (_order, _parent_id, id, created_at, expires_at) FROM stdin;
-1	1	aaa4617c-7a4b-4215-a7b0-9dc4e3f02d07	2026-04-22 06:35:28.294+00	2026-04-22 08:35:28.294+00
+1	1	098864e0-4bf7-4ab8-9c4d-4b00529bf05c	2026-04-22 12:03:51.594+00	2026-04-22 14:03:51.594+00
 \.
 
 
@@ -2077,6 +2135,13 @@ SELECT pg_catalog.setval('public.certifications_rels_id_seq', 1, false);
 
 
 --
+-- Name: client_logos_id_seq; Type: SEQUENCE SET; Schema: public; Owner: healingtechnology.co_bgieab3zdtl
+--
+
+SELECT pg_catalog.setval('public.client_logos_id_seq', 1, false);
+
+
+--
 -- Name: faqs_id_seq; Type: SEQUENCE SET; Schema: public; Owner: healingtech
 --
 
@@ -2101,7 +2166,7 @@ SELECT pg_catalog.setval('public.legal_pages_id_seq', 1, false);
 -- Name: media_id_seq; Type: SEQUENCE SET; Schema: public; Owner: healingtech
 --
 
-SELECT pg_catalog.setval('public.media_id_seq', 122, true);
+SELECT pg_catalog.setval('public.media_id_seq', 124, true);
 
 
 --
@@ -2129,14 +2194,14 @@ SELECT pg_catalog.setval('public.payload_kv_id_seq', 1, false);
 -- Name: payload_locked_documents_id_seq; Type: SEQUENCE SET; Schema: public; Owner: healingtech
 --
 
-SELECT pg_catalog.setval('public.payload_locked_documents_id_seq', 181, true);
+SELECT pg_catalog.setval('public.payload_locked_documents_id_seq', 183, true);
 
 
 --
 -- Name: payload_locked_documents_rels_id_seq; Type: SEQUENCE SET; Schema: public; Owner: healingtech
 --
 
-SELECT pg_catalog.setval('public.payload_locked_documents_rels_id_seq', 362, true);
+SELECT pg_catalog.setval('public.payload_locked_documents_rels_id_seq', 366, true);
 
 
 --
@@ -2150,14 +2215,14 @@ SELECT pg_catalog.setval('public.payload_migrations_id_seq', 1, true);
 -- Name: payload_preferences_id_seq; Type: SEQUENCE SET; Schema: public; Owner: healingtech
 --
 
-SELECT pg_catalog.setval('public.payload_preferences_id_seq', 25, true);
+SELECT pg_catalog.setval('public.payload_preferences_id_seq', 26, true);
 
 
 --
 -- Name: payload_preferences_rels_id_seq; Type: SEQUENCE SET; Schema: public; Owner: healingtech
 --
 
-SELECT pg_catalog.setval('public.payload_preferences_rels_id_seq', 94, true);
+SELECT pg_catalog.setval('public.payload_preferences_rels_id_seq', 101, true);
 
 
 --
@@ -2225,6 +2290,14 @@ ALTER TABLE ONLY public.certifications
 
 ALTER TABLE ONLY public.certifications_rels
     ADD CONSTRAINT certifications_rels_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: client_logos client_logos_pkey; Type: CONSTRAINT; Schema: public; Owner: healingtechnology.co_bgieab3zdtl
+--
+
+ALTER TABLE ONLY public.client_logos
+    ADD CONSTRAINT client_logos_pkey PRIMARY KEY (id);
 
 
 --
@@ -2577,6 +2650,27 @@ CREATE INDEX certifications_updated_at_idx ON public.certifications USING btree 
 
 
 --
+-- Name: client_logos_created_at_idx; Type: INDEX; Schema: public; Owner: healingtechnology.co_bgieab3zdtl
+--
+
+CREATE INDEX client_logos_created_at_idx ON public.client_logos USING btree (created_at);
+
+
+--
+-- Name: client_logos_logo_idx; Type: INDEX; Schema: public; Owner: healingtechnology.co_bgieab3zdtl
+--
+
+CREATE INDEX client_logos_logo_idx ON public.client_logos USING btree (logo_id);
+
+
+--
+-- Name: client_logos_updated_at_idx; Type: INDEX; Schema: public; Owner: healingtechnology.co_bgieab3zdtl
+--
+
+CREATE INDEX client_logos_updated_at_idx ON public.client_logos USING btree (updated_at);
+
+
+--
 -- Name: faqs_created_at_idx; Type: INDEX; Schema: public; Owner: healingtech
 --
 
@@ -2763,6 +2857,13 @@ CREATE INDEX payload_locked_documents_rels_categories_id_idx ON public.payload_l
 --
 
 CREATE INDEX payload_locked_documents_rels_certifications_id_idx ON public.payload_locked_documents_rels USING btree (certifications_id);
+
+
+--
+-- Name: payload_locked_documents_rels_client_logos_id_idx; Type: INDEX; Schema: public; Owner: healingtech
+--
+
+CREATE INDEX payload_locked_documents_rels_client_logos_id_idx ON public.payload_locked_documents_rels USING btree (client_logos_id);
 
 
 --
@@ -3243,6 +3344,14 @@ ALTER TABLE ONLY public.certifications_rels
 
 
 --
+-- Name: client_logos client_logos_logo_id_media_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: healingtechnology.co_bgieab3zdtl
+--
+
+ALTER TABLE ONLY public.client_logos
+    ADD CONSTRAINT client_logos_logo_id_media_id_fk FOREIGN KEY (logo_id) REFERENCES public.media(id) ON DELETE SET NULL;
+
+
+--
 -- Name: legal_pages legal_pages_meta_image_id_media_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: healingtech
 --
 
@@ -3304,6 +3413,14 @@ ALTER TABLE ONLY public.payload_locked_documents_rels
 
 ALTER TABLE ONLY public.payload_locked_documents_rels
     ADD CONSTRAINT payload_locked_documents_rels_certifications_fk FOREIGN KEY (certifications_id) REFERENCES public.certifications(id) ON DELETE CASCADE;
+
+
+--
+-- Name: payload_locked_documents_rels payload_locked_documents_rels_client_logos_fk; Type: FK CONSTRAINT; Schema: public; Owner: healingtech
+--
+
+ALTER TABLE ONLY public.payload_locked_documents_rels
+    ADD CONSTRAINT payload_locked_documents_rels_client_logos_fk FOREIGN KEY (client_logos_id) REFERENCES public.client_logos(id) ON DELETE CASCADE;
 
 
 --
@@ -3550,5 +3667,5 @@ ALTER TABLE ONLY public.users_sessions
 -- PostgreSQL database dump complete
 --
 
-\unrestrict A2SIIPTrWbjAk6sJVXm5pKKrHdsAJVKY87mg92218YJsfWHT3V4s0zKTNCtXCb4
+\unrestrict F0Ie42u3uQGjc1EyEljdLvFlWxoDHJJe6TpR4A0Nz4lIEGSZ7ZzZA8cBCUfdLGd
 

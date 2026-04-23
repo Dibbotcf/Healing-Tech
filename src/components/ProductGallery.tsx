@@ -137,6 +137,7 @@ function GalleryInner({
             />
           ) : (
             <>
+              {/* Clickable image to open fullscreen */}
               <AnimatePresence mode="wait">
                 <motion.img
                   key={current.url}
@@ -148,30 +149,19 @@ function GalleryInner({
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -30 }}
                   transition={{ duration: 0.22, ease: "easeOut" }}
-                  className="absolute inset-0 w-full h-full object-contain p-8 cursor-zoom-in select-none pointer-events-none"
+                  className="absolute inset-0 w-full h-full object-contain p-8 cursor-zoom-in select-none"
                 />
               </AnimatePresence>
 
-              {/* Tap zones for next/prev (transparent, full height half-width) */}
-              {hasMultiple && (
-                <>
-                  <button
-                    onClick={prev}
-                    aria-label="Previous image"
-                    className="absolute left-0 top-0 w-1/2 h-full z-10 opacity-0"
-                  />
-                  <button
-                    onClick={next}
-                    aria-label="Next image"
-                    className="absolute right-0 top-0 w-1/2 h-full z-10 opacity-0"
-                  />
-                </>
-              )}
-
-              {/* Zoom hint — desktop hover only */}
-              <div className="absolute top-4 right-4 bg-white/80 p-2 rounded-full shadow-sm opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none hidden md:block z-20">
+              {/* Zoom hint button — top-right corner */}
+              <button
+                type="button"
+                onClick={() => setIsFullscreen(true)}
+                aria-label="View fullscreen"
+                className="absolute top-4 right-4 bg-white/80 hover:bg-white p-2 rounded-full shadow-sm opacity-0 group-hover:opacity-100 transition-opacity hidden md:flex items-center justify-center z-20"
+              >
                 <ZoomIn className="w-5 h-5 text-[#00355D]/60" />
-              </div>
+              </button>
             </>
           )}
 
