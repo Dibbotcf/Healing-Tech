@@ -9,6 +9,12 @@ const nextConfig: NextConfig = {
       bodySizeLimit: '2gb',
     },
   },
+  // Allow Route Handlers (Payload /api/*) to accept large file uploads
+  api: {
+    bodyParser: {
+      sizeLimit: '2gb',
+    },
+  },
   images: {
     remotePatterns: [
       {

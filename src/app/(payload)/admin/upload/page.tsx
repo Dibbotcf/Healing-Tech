@@ -115,16 +115,26 @@ export default function AdminUploadPage() {
           // Auto-redirect to media dashboard after 2.5 seconds
           setTimeout(() => router.push("/admin/collections/media"), 2500);
         } catch {
-          setState((p) => ({ ...p, status: "error", error: "Upload succeeded but response was unreadable." }));
+          // Even if parse fails, treat as success if status was 2xx
+          setState((p) => ({ ...p, status: "success", progress: 100 }));
+          setTimeout(() => router.push("/admin/collections/media"), 2500);
         }
       } else {
-        let msg = `Server error ${xhr.status}`;
+        // Try to extract the real error from Payload's response
+        let msg = `Upload failed (HTTP ${xhr.status})`;
         try {
           const err = JSON.parse(xhr.responseText);
-          if (err?.errors?.[0]?.message) msg = err.errors[0].message;
-        } catch {}
-        if (xhr.status === 401 || xhr.status === 403) msg = "Not authenticated — please log in first.";
-        if (xhr.status === 413) msg = "File too large for the server. Check Nginx config.";
+          // Payload returns errors array or a message field
+          if (err?.errors?.[0]?.message) msg = `${err.errors[0].message} (${xhr.status})`;
+          else if (err?.message) msg = `${err.message} (${xhr.status})`;
+          else if (err?.error) msg = `${err.error} (${xhr.status})`;
+        } catch {
+          // Response wasn't JSON — show first 200 chars
+          msg = xhr.responseText?.slice(0, 200) || msg;
+        }
+        if (xhr.status === 401 || xhr.status === 403) msg = "Not authenticated — please log in to the admin panel first.";
+        if (xhr.status === 413) msg = "File too large — the server rejected it (413). Check Nginx client_max_body_size.";
+        if (xhr.status === 0) msg = "No response from server — the connection was reset. The file may be too large for the current server config.";
         setState((p) => ({ ...p, status: "error", error: msg }));
       }
     });
@@ -237,7 +247,7 @@ export default function AdminUploadPage() {
                 </div>
                 <div style={{ color: "var(--theme-elevation-500, #888)", fontSize: 13, marginBottom: 16 }}>or</div>
                 <button
-                  onClick={() => fileInputRef.current?.click()}
+                  onClick={(e) => { e.stopPropagation(); fileInputRef.current?.click(); }}
                   style={{ background: "#4f9cf9", border: "none", borderRadius: 8, padding: "10px 24px", color: "#fff", fontWeight: 700, cursor: "pointer", fontSize: 14 }}
                 >
                   Browse Files
