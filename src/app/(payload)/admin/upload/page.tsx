@@ -94,7 +94,14 @@ export default function AdminUploadPage() {
         setSpeed((e.loaded - lastRef.current.loaded) / elapsed);
         lastRef.current = { time: now, loaded: e.loaded };
       }
+      // Clear speed at 100% so "Processing on server…" shows immediately
+      if (pct === 100) setSpeed(null);
       setState((p) => ({ ...p, progress: pct, loaded: e.loaded, total: e.total }));
+    });
+
+    // upload.load fires when transfer is complete (server starts processing)
+    xhr.upload.addEventListener("load", () => {
+      setSpeed(null);
     });
 
     xhr.addEventListener("load", () => {
@@ -102,10 +109,11 @@ export default function AdminUploadPage() {
       if (xhr.status >= 200 && xhr.status < 300) {
         try {
           const data = JSON.parse(xhr.responseText);
-          const id = data?.doc?.id;
+          // Payload v3 returns { doc: {...} } for REST creates
+          const id = data?.doc?.id ?? data?.id ?? null;
           setState((p) => ({ ...p, status: "success", progress: 100, mediaId: id }));
-          // Auto-redirect to media dashboard after 2 seconds
-          setTimeout(() => router.push("/admin/collections/media"), 2000);
+          // Auto-redirect to media dashboard after 2.5 seconds
+          setTimeout(() => router.push("/admin/collections/media"), 2500);
         } catch {
           setState((p) => ({ ...p, status: "error", error: "Upload succeeded but response was unreadable." }));
         }
@@ -300,21 +308,34 @@ export default function AdminUploadPage() {
             />
           </div>
 
-          <div style={{ display: "flex", justifyContent: "space-between", fontSize: 12, color: "var(--theme-elevation-500, #666)" }}>
-            <span>
-              {speed != null && speed > 0 ? (
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", fontSize: 12, color: "var(--theme-elevation-500, #666)" }}>
+            <span style={{ display: "flex", alignItems: "center", gap: 8 }}>
+              {progress === 100 ? (
+                // Pulsing dot + message when server is processing
+                <>
+                  <span style={{
+                    display: "inline-block", width: 8, height: 8, borderRadius: "50%",
+                    background: "#4f9cf9",
+                    animation: "pulse 1.2s ease-in-out infinite",
+                  }} />
+                  <style>{`@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(0.8)} }`}</style>
+                  ⏳ Saving to Media Library… please wait
+                </>
+              ) : speed != null && speed > 0 ? (
                 <>
                   {formatSpeed(speed)}
-                  {eta != null && eta > 0 && <> · ETA {eta < 60 ? `${eta}s` : `${Math.ceil(eta / 60)}m`}</>}
+                  {eta != null && eta > 0 && <> · ETA {eta < 60 ? `${eta}s` : `${Math.ceil(eta / 60)}m`}</> }
                 </>
-              ) : progress < 100 ? "Uploading…" : "Processing on server…"}
+              ) : "Uploading…"}
             </span>
-            <button
-              onClick={() => xhrRef.current?.abort()}
-              style={{ background: "transparent", border: "1px solid var(--theme-elevation-200, #333)", color: "var(--theme-elevation-500, #888)", padding: "2px 10px", borderRadius: 6, cursor: "pointer", fontSize: 12 }}
-            >
-              Cancel
-            </button>
+            {progress < 100 && (
+              <button
+                onClick={() => xhrRef.current?.abort()}
+                style={{ background: "transparent", border: "1px solid var(--theme-elevation-200, #333)", color: "var(--theme-elevation-500, #888)", padding: "2px 10px", borderRadius: 6, cursor: "pointer", fontSize: 12 }}
+              >
+                Cancel
+              </button>
+            )}
           </div>
         </div>
       )}
