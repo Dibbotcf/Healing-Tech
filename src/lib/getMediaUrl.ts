@@ -18,10 +18,12 @@ export function getMediaUrl(url: string | null | undefined): string | null {
   }
 
   // Payload v3 stores URLs as /api/media/file/[filename]
-  // We serve them via Next.js natively from public/media mapped to /media/[filename]
-  if (pathname.startsWith('/api/media/file/')) {
-    pathname = pathname.replace('/api/media/file/', '/media/');
-  }
+  // We keep this path because Payload's API route will correctly serve the file 
+  // from the configured staticDir (e.g. persistent storage), even for files uploaded 
+  // after the server has started. This fixes the broken images issue on production.
+  // if (pathname.startsWith('/api/media/file/')) {
+  //   pathname = pathname.replace('/api/media/file/', '/media/');
+  // }
 
   return pathname;
 }
