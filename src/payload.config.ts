@@ -439,6 +439,12 @@ export default buildConfig({
     // Media
     {
       slug: 'media',
+      admin: {
+        defaultColumns: ['preview', 'filename', 'mimeType', 'filesize', 'updatedAt'],
+        components: {
+          beforeList: ['@/components/UploadBanner#UploadBanner'],
+        },
+      },
       access: { read: () => true },
       upload: {
         // In production, PAYLOAD_MEDIA_DIR should point to a persistent folder
@@ -450,7 +456,18 @@ export default buildConfig({
         // File size is limited at the Next.js level (2GB) via next.config.ts
       },
       fields: [
-        { name: 'alt', type: 'text', required: false }
+        { name: 'alt', type: 'text', required: false },
+        {
+          name: 'preview',
+          type: 'ui',
+          admin: {
+            position: 'sidebar',
+            components: {
+              Field: '@/components/MediaPreview#MediaPreview',
+              Cell: '@/components/MediaThumbnailCell#MediaThumbnailCell'
+            }
+          }
+        }
       ]
     }
   ],
