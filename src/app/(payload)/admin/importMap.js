@@ -28,7 +28,6 @@ import { MetaImageComponent as MetaImageComponent_a8a977ebc872c5d5ea7ee689724c08
 import { PreviewComponent as PreviewComponent_a8a977ebc872c5d5ea7ee689724c0860 } from '@payloadcms/plugin-seo/client'
 import { InvoiceLinkCell as InvoiceLinkCell_43ba82418e759463dedb81b31d0a9fad } from '@/components/InvoiceLinkCell'
 import { MediaPreview as MediaPreview_e48c723f95a8a1e72f8cc86bb6a5fe7f } from '@/components/MediaPreview'
-import { MediaThumbnailCell as MediaThumbnailCell_d496f29b2f2c9d5a472a9dc09cefebff } from '@/components/MediaThumbnailCell'
 import { UploadBanner as UploadBanner_373332e63866338ecfa1afbe9375d4f6 } from '@/components/UploadBanner'
 import { CollectionCards as CollectionCards_f9c02e79a4aed9a3924487c0cd4cafb1 } from '@payloadcms/next/rsc'
 
@@ -64,7 +63,6 @@ export const importMap = {
   "@payloadcms/plugin-seo/client#PreviewComponent": PreviewComponent_a8a977ebc872c5d5ea7ee689724c0860,
   "@/components/InvoiceLinkCell#InvoiceLinkCell": InvoiceLinkCell_43ba82418e759463dedb81b31d0a9fad,
   "@/components/MediaPreview#MediaPreview": MediaPreview_e48c723f95a8a1e72f8cc86bb6a5fe7f,
-  "@/components/MediaThumbnailCell#MediaThumbnailCell": MediaThumbnailCell_d496f29b2f2c9d5a472a9dc09cefebff,
   "@/components/UploadBanner#UploadBanner": UploadBanner_373332e63866338ecfa1afbe9375d4f6,
   "@payloadcms/next/rsc#CollectionCards": CollectionCards_f9c02e79a4aed9a3924487c0cd4cafb1
 }

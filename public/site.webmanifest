@@ -1,0 +1,23 @@
+{
+  "name": "Healing Technology",
+  "short_name": "Healing Tech",
+  "description": "Leading Medical Equipment Supplier in Bangladesh",
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/favicon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#214491"
+}
