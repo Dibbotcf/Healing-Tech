@@ -136,14 +136,27 @@ export default function ProductClientWrapper({
                     </div>
                   )}
                   <Link href={`/products/${product.slug}`} className="block relative h-36 md:h-48 bg-[#F8F9FA] overflow-hidden group-hover:bg-[#EEF4FB] transition-colors cursor-pointer">
-                    {/* Hero image or initial placeholder */}
+                    {/* Hero image / video / placeholder */}
                     {product.heroImage && typeof product.heroImage !== 'string' && product.heroImage.url ? (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img
-                        src={getMediaUrl(product.heroImage.url) || ''}
-                        alt={product.name}
-                        className="w-full h-full object-contain p-6 group-hover:scale-105 transition-transform duration-500"
-                      />
+                      product.heroImage.mimeType?.startsWith('video/') ? (
+                        // Video file — render a muted preview player
+                        <video
+                          src={getMediaUrl(product.heroImage.url) || ''}
+                          className="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-500"
+                          muted
+                          loop
+                          playsInline
+                          autoPlay
+                        />
+                      ) : (
+                        // Regular image
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img
+                          src={getMediaUrl(product.heroImage.url) || ''}
+                          alt={product.name}
+                          className="w-full h-full object-contain p-6 group-hover:scale-105 transition-transform duration-500"
+                        />
+                      )
                     ) : (
                       <div className="w-full h-full flex items-center justify-center">
                         <span className="font-bold text-gray-200 text-7xl select-none">{product.name.substring(0, 2)}</span>

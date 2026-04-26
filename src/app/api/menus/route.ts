@@ -38,14 +38,26 @@ export async function GET() {
         }
       }
 
-      // Extract hero image URL if available (fallback to first gallery image)
+      // Extract hero image URL — skip video files, use first real image
       let imageUrl = "";
-      if (p.heroImage && typeof p.heroImage === "object" && "url" in p.heroImage) {
-        imageUrl = getMediaUrl((p.heroImage as any).url) || "";
-      } else if (p.gallery && Array.isArray(p.gallery) && p.gallery.length > 0) {
-        const firstGalleryImg = p.gallery[0].image;
-        if (firstGalleryImg && typeof firstGalleryImg === "object" && "url" in firstGalleryImg) {
-          imageUrl = getMediaUrl((firstGalleryImg as any).url) || "";
+      const heroImg = p.heroImage;
+      if (heroImg && typeof heroImg === "object" && "url" in heroImg) {
+        const mime = (heroImg as any).mimeType || "";
+        if (!mime.startsWith("video/")) {
+          imageUrl = getMediaUrl((heroImg as any).url) || "";
+        }
+      }
+      // If heroImage was a video (or missing), try gallery for first image
+      if (!imageUrl && p.gallery && Array.isArray(p.gallery) && p.gallery.length > 0) {
+        for (const g of p.gallery) {
+          const gi = g.image;
+          if (gi && typeof gi === "object" && "url" in gi) {
+            const mime = (gi as any).mimeType || "";
+            if (!mime.startsWith("video/")) {
+              imageUrl = getMediaUrl((gi as any).url) || "";
+              break;
+            }
+          }
         }
       }
 
