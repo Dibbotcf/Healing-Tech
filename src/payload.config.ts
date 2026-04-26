@@ -447,14 +447,8 @@ export default buildConfig({
       },
       access: { read: () => true },
       upload: {
-        // In production, PAYLOAD_MEDIA_DIR should point to a persistent folder
-        // outside the git tree (e.g. /var/www/vhosts/.../persistent/media)
-        // so that CMS-uploaded images survive redeployments.
-        // Falls back to public/media for local development.
         staticDir: process.env.PAYLOAD_MEDIA_DIR || path.resolve(dirname, '../public/media'),
         mimeTypes: ['image/*', 'video/*', 'application/pdf'],
-        // Allow up to 2 GB uploads (Payload default is very low)
-        uploadLimitMB: 2000,
       },
       fields: [
         { name: 'alt', type: 'text', required: false },
