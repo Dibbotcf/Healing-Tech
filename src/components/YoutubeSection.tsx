@@ -6,86 +6,175 @@ import { motion } from "framer-motion";
 interface YoutubeVideo {
   id: string;
   title: string;
+  thumbnail: string;
+  pubDate: string;
 }
 
 export function YoutubeSection() {
   const [videos, setVideos] = useState<YoutubeVideo[]>([]);
+  const [activeId, setActiveId] = useState<string>("");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Fetch videos via RSS to JSON
     const channelId = "UChDk8dlzuE-Togr_T2_vHfg";
-    const rssUrl = encodeURIComponent(`https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`);
+    const rssUrl = encodeURIComponent(
+      `https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`
+    );
     fetch(`https://api.rss2json.com/v1/api.json?rss_url=${rssUrl}`)
       .then((res) => res.json())
       .then((data) => {
-        if (data && data.items) {
-          const vids = data.items.map((item: any) => {
-            const videoId = item.link.split("v=")[1];
+        if (data?.items) {
+          const vids: YoutubeVideo[] = data.items.slice(0, 6).map((item: any) => {
+            const videoId = item.link.split("v=")[1]?.split("&")[0];
             return {
               id: videoId,
               title: item.title,
+              thumbnail: item.thumbnail || `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`,
+              pubDate: item.pubDate ? new Date(item.pubDate).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" }) : "",
             };
           });
           setVideos(vids);
+          if (vids.length > 0) setActiveId(vids[0].id);
         }
         setLoading(false);
       })
-      .catch((err) => {
-        console.error("Error fetching YouTube videos:", err);
-        setLoading(false);
-      });
+      .catch(() => setLoading(false));
   }, []);
 
   if (loading || videos.length === 0) return null;
 
+  const activeVideo = videos.find((v) => v.id === activeId) ?? videos[0];
+  const otherVideos = videos.filter((v) => v.id !== activeId);
+
   return (
-    <div className="mb-20">
-      <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-16">
-        <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-red-50 mb-6">
-          <svg className="w-8 h-8 text-red-600" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+    <section className="mb-24 px-0">
+      {/* ── Section Header ── */}
+      <motion.div
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="text-center mb-12"
+      >
+        <div className="inline-flex items-center gap-3 bg-red-50 border border-red-100 px-5 py-2.5 rounded-full mb-5">
+          <svg className="w-5 h-5 text-red-600 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
           </svg>
+          <span className="text-sm font-bold text-red-600 uppercase tracking-wider">YouTube</span>
         </div>
-        <h2 className="font-['Inter'] text-[2.5rem] font-bold text-[#00355D] mb-4 tracking-tighter">Watch Us in Action</h2>
-        <p className="text-lg text-[#575B5F] max-w-xl mx-auto font-normal">Discover our products, installations, and expert insights on our YouTube channel.</p>
+        <h2 className="font-['Inter'] text-4xl md:text-5xl font-bold text-[#00355D] mb-4 tracking-tighter">
+          Watch Us in Action
+        </h2>
+        <p className="text-lg text-[#575B5F] max-w-2xl mx-auto">
+          Discover our products, clinical installations, and expert insights — straight from our channel.
+        </p>
       </motion.div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-center">
-        {videos.slice(0, 3).map((video, i) => (
-          <motion.div 
-            key={video.id}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: i * 0.1 }}
-            className={`group relative rounded-2xl overflow-hidden bg-gray-100 aspect-video shadow-sm hover:shadow-xl transition-all duration-300 ${videos.length === 1 ? 'md:col-start-2 lg:col-start-2' : ''}`}
+      {/* ── Main Layout: Featured + Playlist ── */}
+      <motion.div
+        initial={{ opacity: 0, y: 32 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ delay: 0.1 }}
+        className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start"
+      >
+        {/* ── LEFT: Featured large player ── */}
+        <div className="lg:col-span-2 flex flex-col gap-4">
+          <div
+            className="relative w-full rounded-2xl overflow-hidden shadow-2xl bg-black"
+            style={{ paddingTop: "56.25%" /* 16:9 */ }}
           >
             <iframe
+              key={activeId}
               className="absolute inset-0 w-full h-full"
-              src={`https://www.youtube.com/embed/${video.id}`}
-              title={video.title}
+              src={`https://www.youtube.com/embed/${activeId}?autoplay=0&rel=0&modestbranding=1`}
+              title={activeVideo.title}
               frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
-            ></iframe>
-          </motion.div>
-        ))}
-      </div>
-      
-      <div className="mt-12 text-center">
-        <a 
-          href="https://www.youtube.com/@HealingTechnology" 
-          target="_blank" 
+            />
+          </div>
+          {/* Video title under player */}
+          <div className="px-1">
+            <p className="text-[11px] font-bold text-red-500 uppercase tracking-widest mb-1">
+              Now Playing
+            </p>
+            <h3 className="font-['Inter'] text-lg font-bold text-[#00355D] leading-snug line-clamp-2">
+              {activeVideo.title}
+            </h3>
+            {activeVideo.pubDate && (
+              <p className="text-sm text-[#575B5F] mt-1">{activeVideo.pubDate}</p>
+            )}
+          </div>
+        </div>
+
+        {/* ── RIGHT: Playlist ── */}
+        <div className="flex flex-col gap-3 lg:max-h-[480px] lg:overflow-y-auto pr-1">
+          <p className="text-[10px] font-black text-[#575B5F] uppercase tracking-[0.15em] mb-1 px-1">
+            More Videos
+          </p>
+          {otherVideos.map((video, i) => (
+            <motion.button
+              key={video.id}
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.07 }}
+              onClick={() => {
+                setActiveId(video.id);
+                // Scroll to top of section on mobile
+                if (window.innerWidth < 1024) {
+                  document.getElementById("yt-section")?.scrollIntoView({ behavior: "smooth", block: "start" });
+                }
+              }}
+              className="group flex gap-3 items-start text-left w-full p-3 rounded-xl hover:bg-[#EEF4FB] transition-all duration-200 border border-transparent hover:border-[#12B5CB]/20"
+            >
+              {/* Thumbnail */}
+              <div className="relative flex-shrink-0 w-28 rounded-lg overflow-hidden aspect-video bg-gray-200 shadow-sm">
+                <img
+                  src={video.thumbnail}
+                  alt={video.title}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  onError={(e) => {
+                    (e.currentTarget as HTMLImageElement).src = `https://i.ytimg.com/vi/${video.id}/hqdefault.jpg`;
+                  }}
+                />
+                {/* Play icon */}
+                <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/30 transition-colors">
+                  <div className="w-7 h-7 bg-red-600 rounded-full flex items-center justify-center shadow-md">
+                    <svg className="w-3 h-3 text-white ml-0.5" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+              {/* Info */}
+              <div className="flex-1 min-w-0 pt-0.5">
+                <p className="text-sm font-semibold text-[#00355D] leading-snug line-clamp-3 group-hover:text-[#12B5CB] transition-colors">
+                  {video.title}
+                </p>
+                {video.pubDate && (
+                  <p className="text-xs text-[#575B5F] mt-1">{video.pubDate}</p>
+                )}
+              </div>
+            </motion.button>
+          ))}
+        </div>
+      </motion.div>
+
+      {/* ── Subscribe CTA ── */}
+      <div className="mt-10 text-center">
+        <a
+          href="https://www.youtube.com/@HealingTechnology"
+          target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-8 py-3.5 rounded-xl font-bold transition-colors shadow-sm hover:shadow-md"
+          className="inline-flex items-center gap-2.5 bg-red-600 hover:bg-red-700 active:scale-[0.98] text-white px-8 py-3.5 rounded-xl font-bold transition-all shadow-md hover:shadow-lg hover:shadow-red-200"
         >
-          <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+          <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
           </svg>
           Subscribe to our Channel
         </a>
       </div>
-    </div>
+    </section>
   );
 }
