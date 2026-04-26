@@ -11,6 +11,7 @@ import { CategoryShowcase } from "@/components/CategoryShowcase";
 import { HeroSlider } from "@/components/HeroSlider";
 import Image from "next/image";
 import { WorldMap } from "@/components/ui/map";
+import { YoutubeSection } from "@/components/YoutubeSection";
 
 const supplyRoutes = [
   { start: { lat: 51.1657, lng: 10.4515, label: "Germany" },     end: { lat: 23.685, lng: 90.3563, label: "Dhaka" } },
@@ -149,6 +150,9 @@ export default function Home() {
               </div>
             </div>
           </motion.div>
+
+          {/* ── YouTube Section ── */}
+          <YoutubeSection />
 
           {/* ── Why Hospitals Choose Us ── */}
           <div className="mt-32">

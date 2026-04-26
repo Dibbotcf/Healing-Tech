@@ -27,9 +27,7 @@ export default function ProductClientWrapper({
 
   const toggleCategory = (slug: string) => {
     setSelectedCategories(prev => 
-      prev.includes(slug) 
-        ? prev.filter(c => c !== slug) 
-        : [...prev, slug]
+      prev.includes(slug) ? [] : [slug]
     );
   };
 
