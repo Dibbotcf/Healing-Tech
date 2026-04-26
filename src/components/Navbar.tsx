@@ -89,7 +89,12 @@ export default function Navbar() {
             style={{ height: "68px" }}
           >
             {/* Logo */}
-            <Link href="/" className="flex items-center pl-5 pr-4 flex-shrink-0 border-r border-gray-100" style={{ height: "68px" }}>
+            <Link
+              href="/"
+              onClick={() => { setMegaOpen(false); setMobileOpen(false); }}
+              className="flex items-center pl-5 pr-4 flex-shrink-0 border-r border-gray-100"
+              style={{ height: "68px" }}
+            >
               <Image
                 src="/logo-dark.svg"
                 alt="Healing Technology"
@@ -143,7 +148,12 @@ export default function Navbar() {
           </div>
 
           {/* ── MOBILE: compact logo ── */}
-          <Link href="/" className="flex items-center lg:hidden bg-white rounded-full pl-4 pr-2 py-1 pointer-events-auto max-w-[200px] sm:max-w-[240px] flex-shrink" style={{ height: "56px" }}>
+          <Link
+            href="/"
+            onClick={() => { setMegaOpen(false); setMobileOpen(false); }}
+            className="flex items-center lg:hidden bg-white rounded-full pl-4 pr-2 py-1 pointer-events-auto max-w-[200px] sm:max-w-[240px] flex-shrink"
+            style={{ height: "56px" }}
+          >
             <Image
               src="/logo-dark.svg"
               alt="Healing Technology"
