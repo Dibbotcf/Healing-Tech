@@ -5,10 +5,10 @@ export function UploadBanner() {
   return (
     <div
       style={{
-        background: "linear-gradient(135deg, rgba(99,102,241,0.15) 0%, rgba(139,92,246,0.15) 100%)",
-        border: "1px solid rgba(99,102,241,0.3)",
+        background: "linear-gradient(135deg, rgba(79,156,249,0.12) 0%, rgba(124,58,237,0.12) 100%)",
+        border: "1px solid rgba(79,156,249,0.25)",
         borderRadius: 10,
-        padding: "10px 16px",
+        padding: "12px 18px",
         margin: "0 0 16px",
         display: "flex",
         alignItems: "center",
@@ -17,22 +17,19 @@ export function UploadBanner() {
         color: "#ccc",
       }}
     >
-      <span>🎬</span>
-      <span>
-        Uploading large videos? Use the{" "}
+      <span style={{ fontSize: 18 }}>🎬</span>
+      <div style={{ flex: 1 }}>
+        <strong style={{ color: "#fff" }}>Upload large videos or images</strong>
+        {" — "}use the{" "}
         <a
-          href="/upload"
-          target="_blank"
-          style={{
-            color: "#a5b4fc",
-            fontWeight: 600,
-            textDecoration: "underline",
-          }}
+          href="/admin/upload"
+          style={{ color: "#93c5fd", fontWeight: 700, textDecoration: "underline" }}
         >
           Custom Upload Page
         </a>{" "}
-        for real-time progress tracking and full video format support.
-      </span>
+        for real-time progress tracking and support for all video formats (MP4, MKV, AVI, MOV…).
+      </div>
     </div>
   );
 }
+
