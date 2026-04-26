@@ -10,7 +10,7 @@ import { SearchModal } from "./SearchModal";
 import { useCartStore } from "@/lib/cartStore";
 
 interface Category { id: string; title: string; slug: string; }
-interface Product  { id: string; name: string; slug: string; category: string; markAsNew?: boolean; image?: string; }
+interface Product  { id: string; name: string; slug: string; category: string; markAsNew?: boolean; image?: string; imageMime?: string; }
 
 export default function Navbar() {
   const [megaOpen, setMegaOpen]             = useState(false);
@@ -366,7 +366,19 @@ export default function Navbar() {
                           )}
                           {prod.image ? (
                             <div className="relative w-full h-20 mb-3 bg-gray-50 rounded-xl overflow-hidden">
-                              <Image src={prod.image} alt={prod.name} fill className="object-contain p-2" />
+                              {prod.imageMime?.startsWith('video/') ? (
+                                <video
+                                  src={prod.image}
+                                  className="w-full h-full object-cover"
+                                  muted
+                                  playsInline
+                                  preload="metadata"
+                                  style={{ pointerEvents: 'none' }}
+                                  onLoadedMetadata={(e) => { e.currentTarget.currentTime = 1; }}
+                                />
+                              ) : (
+                                <Image src={prod.image} alt={prod.name} fill className="object-contain p-2" />
+                              )}
                             </div>
                           ) : (
                             <div className="h-2 w-8 bg-[#12B5CB]/20 rounded-full mb-3 group-hover:bg-[#12B5CB]/50 transition-colors" />

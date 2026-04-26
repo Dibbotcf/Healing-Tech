@@ -38,25 +38,22 @@ export async function GET() {
         }
       }
 
-      // Extract hero image URL — skip video files, use first real image
+      // Extract hero image URL — include video files too, just track mimeType
       let imageUrl = "";
+      let imageMime = "";
       const heroImg = p.heroImage;
       if (heroImg && typeof heroImg === "object" && "url" in heroImg) {
-        const mime = (heroImg as any).mimeType || "";
-        if (!mime.startsWith("video/")) {
-          imageUrl = getMediaUrl((heroImg as any).url) || "";
-        }
+        imageUrl = getMediaUrl((heroImg as any).url) || "";
+        imageMime = (heroImg as any).mimeType || "";
       }
-      // If heroImage was a video (or missing), try gallery for first image
+      // If heroImage is completely missing, try gallery for first image
       if (!imageUrl && p.gallery && Array.isArray(p.gallery) && p.gallery.length > 0) {
         for (const g of p.gallery) {
           const gi = g.image;
           if (gi && typeof gi === "object" && "url" in gi) {
-            const mime = (gi as any).mimeType || "";
-            if (!mime.startsWith("video/")) {
-              imageUrl = getMediaUrl((gi as any).url) || "";
-              break;
-            }
+            imageUrl = getMediaUrl((gi as any).url) || "";
+            imageMime = (gi as any).mimeType || "";
+            break;
           }
         }
       }
@@ -68,6 +65,7 @@ export async function GET() {
         category: catId,
         markAsNew: !!p.markAsNew,
         image: imageUrl,
+        imageMime,
       };
     });
 
