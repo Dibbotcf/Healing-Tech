@@ -453,7 +453,8 @@ export default buildConfig({
         // Falls back to public/media for local development.
         staticDir: process.env.PAYLOAD_MEDIA_DIR || path.resolve(dirname, '../public/media'),
         mimeTypes: ['image/*', 'video/*', 'application/pdf'],
-        // File size is limited at the Next.js level (2GB) via next.config.ts
+        // Allow up to 2 GB uploads (Payload default is very low)
+        uploadLimitMB: 2000,
       },
       fields: [
         { name: 'alt', type: 'text', required: false },
