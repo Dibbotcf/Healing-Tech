@@ -440,7 +440,8 @@ export default buildConfig({
     {
       slug: 'media',
       admin: {
-        defaultColumns: ['preview', 'filename', 'mimeType', 'filesize', 'updatedAt'],
+        // filename must be first — it carries the row click handler for "Choose from existing"
+        defaultColumns: ['filename', 'mimeType', 'filesize', 'updatedAt'],
         components: {
           beforeList: ['@/components/UploadBanner#UploadBanner'],
         },
@@ -456,15 +457,17 @@ export default buildConfig({
           name: 'preview',
           type: 'ui',
           admin: {
+            // sidebar-only: shows video/image preview when editing a media document
             position: 'sidebar',
             components: {
               Field: '@/components/MediaPreview#MediaPreview',
-              Cell: '@/components/MediaThumbnailCell#MediaThumbnailCell'
+              // NOTE: No Cell here — custom Cell was blocking row clicks in the media picker drawer
             }
           }
         }
       ]
     }
+
   ],
   globals: [
     // Site Settings
