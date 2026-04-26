@@ -8,6 +8,8 @@ const nextConfig: NextConfig = {
     serverActions: {
       bodySizeLimit: '2gb',
     },
+    // Lift the 10MB body clone limit for middleware/route handlers (Payload's /api/media)
+    proxyClientMaxBodySize: '2gb',
   },
   images: {
     remotePatterns: [
