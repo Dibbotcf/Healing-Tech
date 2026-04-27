@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight, Sparkles, ChevronLeft, ChevronRight } from "lucide-react";
@@ -23,10 +23,12 @@ const PAGE_SIZE = 12; // 3 rows × 4 columns
 export function ProductCarousel() {
   const [allProducts, setAllProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
-  const [page, setPage] = useState(0); // 0-indexed page
+  const [page, setPage] = useState(0);
+  // Rotating order for the first-row spotlight cards
+  const [latestOrder, setLatestOrder] = useState<number[]>([0, 1, 2, 3]);
+  const shuffleRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   useEffect(() => {
-    // Fetch enough products to paginate (up to 60)
     fetch("/api/products?limit=60&sort=-createdAt&depth=1")
       .then((r) => r.json())
       .then((data) => {
@@ -34,6 +36,18 @@ export function ProductCarousel() {
         setLoading(false);
       })
       .catch(() => setLoading(false));
+  }, []);
+
+  // Rotate the first-row card positions every 3s
+  useEffect(() => {
+    shuffleRef.current = setInterval(() => {
+      setLatestOrder((prev) => {
+        const next = [...prev];
+        next.push(next.shift()!); // move first to end
+        return next;
+      });
+    }, 3000);
+    return () => { if (shuffleRef.current) clearInterval(shuffleRef.current); };
   }, []);
 
   if (loading) {
@@ -51,10 +65,6 @@ export function ProductCarousel() {
   }
 
   if (!allProducts.length) return null;
-
-  // Separate NEW products for the spotlight row
-  const newProducts = allProducts.filter((p) => p.markAsNew).slice(0, 4);
-  const hasNewRow = newProducts.length > 0;
 
   // Paginated regular products
   const totalPages = Math.ceil(allProducts.length / PAGE_SIZE);
@@ -88,46 +98,29 @@ export function ProductCarousel() {
           </div>
         </motion.div>
 
-        {/* ── NEW PRODUCTS SPOTLIGHT ROW ── */}
-        {hasNewRow && (
-          <div className="mb-10">
-            {/* Section label */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="flex items-center gap-3 mb-5"
-            >
-              <motion.div
-                animate={{ scale: [1, 1.15, 1] }}
-                transition={{ repeat: Infinity, duration: 1.8, ease: "easeInOut" }}
-                className="bg-[#12B5CB] text-white text-[11px] font-extrabold px-3 py-1 rounded-full flex items-center gap-1.5 uppercase tracking-widest shadow-lg shadow-[#12B5CB]/30"
-              >
-                <Sparkles className="w-3.5 h-3.5" /> Just Arrived
-              </motion.div>
-              <div className="h-px flex-1 bg-gradient-to-r from-[#12B5CB]/40 to-transparent" />
-            </motion.div>
-
-            <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6">
-              {newProducts.map((product, i) => {
+        {/* ── FIRST ROW: Latest 4 products — auto-shuffling positions ── */}
+        {page === 0 && pageProducts.length >= 4 && (
+          <div className="mb-3 md:mb-6">
+            <motion.div layout className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6">
+              {latestOrder.map((idx) => {
+                const product = pageProducts[idx];
+                if (!product) return null;
                 const catTitle = product.category && typeof product.category !== "string" ? product.category.title : "";
                 const brandName = product.brand && typeof product.brand !== "string" ? product.brand.name : "";
                 const heroUrl = getMediaUrl(product.heroImage?.url);
-
                 return (
                   <motion.div
                     key={product.id}
-                    initial={{ opacity: 0, y: 40, scale: 0.95 }}
-                    whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.55, delay: i * 0.1 }}
+                    layoutId={`latest-card-${product.id}`}
+                    layout
+                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
                     className="group relative"
                   >
-                    {/* Animated glow border */}
+                    {/* Pulsing glow border */}
                     <motion.div
-                      className="absolute -inset-0.5 rounded-2xl bg-gradient-to-br from-[#12B5CB] via-[#009EE2] to-[#12B5CB] opacity-60 blur-sm"
-                      animate={{ opacity: [0.4, 0.75, 0.4] }}
-                      transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut", delay: i * 0.3 }}
+                      className="absolute -inset-0.5 rounded-2xl bg-gradient-to-br from-[#12B5CB] via-[#009EE2] to-[#00355D]"
+                      animate={{ opacity: [0.15, 0.5, 0.15] }}
+                      transition={{ repeat: Infinity, duration: 3, ease: "easeInOut", delay: idx * 0.5 }}
                     />
                     <Link href={`/products/${product.slug}`} className="block h-full relative z-10">
                       <div className="bg-white rounded-xl border border-[#12B5CB]/20 hover:shadow-2xl hover:shadow-[#12B5CB]/20 transition-all duration-300 overflow-hidden h-full flex flex-col">
@@ -143,14 +136,15 @@ export function ProductCarousel() {
                               <span className="text-[#00355D]/20 text-6xl font-bold">{product.name.charAt(0)}</span>
                             </div>
                           )}
-                          {/* Floating NEW badge */}
-                          <motion.div
-                            className="absolute top-3 left-3 bg-[#12B5CB] text-white text-[10px] font-bold px-2.5 py-1 rounded-xl flex items-center gap-1 uppercase tracking-wider shadow-lg"
-                            animate={{ y: [0, -3, 0] }}
-                            transition={{ repeat: Infinity, duration: 2, ease: "easeInOut", delay: i * 0.2 }}
-                          >
-                            <Sparkles className="w-3 h-3" /> New
-                          </motion.div>
+                          {product.markAsNew && (
+                            <motion.div
+                              className="absolute top-3 left-3 bg-[#12B5CB] text-white text-[10px] font-bold px-2.5 py-1 rounded-xl flex items-center gap-1 uppercase tracking-wider shadow-lg"
+                              animate={{ y: [0, -4, 0] }}
+                              transition={{ repeat: Infinity, duration: 2, ease: "easeInOut", delay: idx * 0.3 }}
+                            >
+                              <Sparkles className="w-3 h-3" /> New
+                            </motion.div>
+                          )}
                         </div>
                         <div className="p-3 md:p-6 flex flex-col flex-1 pointer-events-none">
                           {catTitle && <p className="text-[10px] font-bold text-[#12B5CB] uppercase tracking-[0.1em] mb-2">{catTitle}</p>}
@@ -182,11 +176,11 @@ export function ProductCarousel() {
                   </motion.div>
                 );
               })}
-            </div>
+            </motion.div>
           </div>
         )}
 
-        {/* ── PAGINATED PRODUCT GRID ── */}
+        {/* ── ROWS 2 & 3: Remaining products (normal cards) ── */}
         <AnimatePresence mode="wait">
           <motion.div
             key={page}
@@ -196,10 +190,11 @@ export function ProductCarousel() {
             transition={{ duration: 0.4 }}
             className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6"
           >
-            {pageProducts.map((product, i) => {
+            {(page === 0 ? pageProducts.slice(4) : pageProducts).map((product, i) => {
               const catTitle = product.category && typeof product.category !== "string" ? product.category.title : "";
               const brandName = product.brand && typeof product.brand !== "string" ? product.brand.name : "";
               const heroUrl = getMediaUrl(product.heroImage?.url);
+              const isLatest = false; // rows 2+ are always normal
 
               return (
                 <motion.div
@@ -207,12 +202,24 @@ export function ProductCarousel() {
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.04 }}
-                  className="group"
+                  transition={{ duration: 0.5, delay: i * 0.06 }}
+                  className={`group ${isLatest ? "relative" : ""}`}
                 >
-                  <Link href={`/products/${product.slug}`} className="block h-full relative">
-                    <div className="bg-white rounded-xl border border-gray-100 hover:border-[#12B5CB]/30 hover:shadow-xl transition-all duration-300 overflow-hidden h-full flex flex-col">
-                      <div className="relative h-[200px] bg-[#F8F9FA] overflow-hidden pointer-events-none">
+                  {/* Pulsing glow border — only for latest 4 */}
+                  {isLatest && (
+                    <motion.div
+                      className="absolute -inset-0.5 rounded-2xl bg-gradient-to-br from-[#12B5CB] via-[#009EE2] to-[#00355D]"
+                      animate={{ opacity: [0.15, 0.5, 0.15] }}
+                      transition={{ repeat: Infinity, duration: 3, ease: "easeInOut", delay: i * 0.5 }}
+                    />
+                  )}
+                  <Link href={`/products/${product.slug}`} className="block h-full relative z-10">
+                    <div className={`bg-white rounded-xl transition-all duration-300 overflow-hidden h-full flex flex-col ${
+                      isLatest
+                        ? "border border-[#12B5CB]/20 hover:shadow-2xl hover:shadow-[#12B5CB]/20"
+                        : "border border-gray-100 hover:border-[#12B5CB]/30 hover:shadow-xl"
+                    }`}>
+                      <div className={`relative overflow-hidden pointer-events-none h-[140px] md:h-[200px] ${isLatest ? "bg-[#F0FAFD]" : "bg-[#F8F9FA]"}`}>
                         {heroUrl ? (
                           product.heroImage?.mimeType?.startsWith("video/") ? (
                             <video src={heroUrl} autoPlay loop muted playsInline className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" />
@@ -224,13 +231,22 @@ export function ProductCarousel() {
                             <span className="text-[#00355D]/20 text-6xl font-bold">{product.name.charAt(0)}</span>
                           </div>
                         )}
-                        {product.markAsNew && (
+                        {product.markAsNew && isLatest && (
+                          <motion.div
+                            className="absolute top-3 left-3 bg-[#12B5CB] text-white text-[10px] font-bold px-2.5 py-1 rounded-xl flex items-center gap-1 uppercase tracking-wider shadow-lg"
+                            animate={{ y: [0, -4, 0] }}
+                            transition={{ repeat: Infinity, duration: 2, ease: "easeInOut", delay: i * 0.3 }}
+                          >
+                            <Sparkles className="w-3 h-3" /> New
+                          </motion.div>
+                        )}
+                        {product.markAsNew && !isLatest && (
                           <div className="absolute top-3 left-3 bg-[#12B5CB] text-white text-[10px] font-bold px-2.5 py-1 rounded-xl flex items-center gap-1 uppercase tracking-wider shadow-sm">
                             <Sparkles className="w-3 h-3" /> New
                           </div>
                         )}
                       </div>
-                      <div className="p-6 flex flex-col flex-1 pointer-events-none">
+                      <div className="p-3 md:p-6 flex flex-col flex-1 pointer-events-none">
                         {catTitle && <p className="text-[10px] font-bold text-[#12B5CB] uppercase tracking-[0.1em] mb-2">{catTitle}</p>}
                         <h3 className="font-bold text-[#00355D] text-xl tracking-tight mb-3 group-hover:text-[#12B5CB] transition-colors leading-snug">{product.name}</h3>
                         <p className="text-sm text-[#575B5F] leading-relaxed line-clamp-2 mb-4 flex-1">{product.listingSummary}</p>
