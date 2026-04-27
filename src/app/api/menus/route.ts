@@ -13,6 +13,7 @@ export async function GET() {
       collection: "categories",
       depth: 0,
       limit: 100,
+      sort: "sortOrder",
     });
 
     const productDocs = await payload.find({

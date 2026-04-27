@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict RQD7Z1IfAjTJhqZmowbBCWaDuYuljrVG4Xk1TtZ5BBUvtjdMOTVPdGusWn8maSu
+\restrict 8h7blZkNwTSYqnDBcXYdpZxFc5o9qqmmI1KvRVFqS5XaHbxdvfAnzB6T89NhY9C
 
 -- Dumped from database version 14.22 (Ubuntu 14.22-0ubuntu0.22.04.1)
 -- Dumped by pg_dump version 14.22 (Ubuntu 14.22-0ubuntu0.22.04.1)
@@ -1386,6 +1386,7 @@ COPY public.brands (id, name, slug, country_of_origin, summary, certifications_t
 27	HFMED	hfmed	China	Manufacturer: Shanghai Huifeng Medical Instrument Co., Ltd. is a high-tech enterprise with nearly 30 years of manufacturing experience.\nProduction Scale: Operates three dedicated factories with strict, in-house quality control and offers customized OEM services directly, eliminating third-party involvement.\nCore Products: Specializes in over 200 varieties of commercial medical equipment, focusing heavily on surgical lights, operating tables, and medical pendants.\nGlobal Supply: Distributes products to over 200 countries, with established sales bases in over 50 countries.\nCompliance: Fully certified for international commercial distribution with ISO 9001, ISO 13485, CE, SGS, and FDA certifications.	\N	34	\N	t	2026-04-15 11:00:07.772+00	2026-04-15 10:58:45.979+00
 29	TRIUP	triup	China	Founded in 1997, TRIUP International Corp. is a globally recognized manufacturer and exporter of premium medical equipment. Based in Nanjing, China, TRIUP specializes in delivering high-quality, reliable medical solutions to healthcare facilities worldwide.	\N	60	\N	t	2026-04-19 07:52:04.616+00	2026-04-19 07:52:04.616+00
 30	SOFT TOUCH	softtouch	China	SOFT TOUCH is a trusted medical equipment brand dedicated to combining high-performance technology with clinical precision. Specializing in advanced surgical and critical care solutions—including high-frequency electrosurgical units and anesthesia workstations—we empower healthcare professionals with reliable, user-centric equipment. Built to stringent international safety standards, SOFT TOUCH delivers uncompromising quality and intuitive design, ensuring precise, minimally invasive care for optimal patient outcomes.	\N	93	\N	t	2026-04-20 11:51:44.441+00	2026-04-20 11:51:44.441+00
+31	Ucare	Ucare	China	Ucare is a high-accuracy medical device brand manufactured in China and exclusively imported and distributed in Bangladesh by Healing Technology.\n\nThe brand specializes in professional-grade diagnostic and respiratory tools for home and clinical use, including Digital BP Monitors, Nebulizers, Fetal Dopplers, and Infrared Thermometers. Combining global manufacturing standards with localized support, Ucare ensures that Bangladeshi consumers have access to reliable, CE-certified health monitoring technology with a dependable local warranty.\n\nKey Highlights:\n\nManufacturer: Precision-engineered in China (ISO/CE certified).\n\nImporter: Healing Technology (Dhaka, Bangladesh).\n\nCore Range: BP machines, nebulizers, dopplers, and digital thermometers.\n\nValue: Accurate, user-friendly, and supported by local after-sales service.	\N	141	\N	t	2026-04-27 04:59:56.113+00	2026-04-27 04:59:56.112+00
 \.
 
 
@@ -1395,12 +1396,12 @@ COPY public.brands (id, name, slug, country_of_origin, summary, certifications_t
 
 COPY public.categories (id, title, slug, parent_id, short_description, hero_title, hero_description, sort_order, is_active, meta_title, meta_description, meta_image_id, updated_at, created_at, hero_image_id) FROM stdin;
 2	ICU Equipment	icu-equipment	\N	\N	\N	\N	\N	t	\N	\N	\N	2026-04-09 04:28:08.664+00	2026-04-09 04:28:08.664+00	\N
-3	Neonatal Care	neonatal-care	\N	\N	\N	\N	\N	t	\N	\N	\N	2026-04-09 04:28:08.674+00	2026-04-09 04:28:08.673+00	\N
-7	Operation Theater Equipments	ot-quipments	\N	\N	\N	\N	\N	t	Healing Technology — Operation Theater Equipments	\N	\N	2026-04-15 10:19:25.522+00	2026-04-09 04:28:08.735+00	\N
-1	Diagnostic 	diagnostic-equipments	1	\N	\N	\N	\N	t	Healing Technology — OT Solutions		\N	2026-04-15 10:20:09.701+00	2026-04-09 04:28:08.651+00	\N
-6	Diagnostic Equipments	diagnosticequipments	\N	\N	\N	\N	\N	t	Healing Technology — Diagnostic Equipments	\N	\N	2026-04-15 10:21:00.546+00	2026-04-09 04:28:08.72+00	\N
-5	Hospital Furniture	hospital-furniture	\N	\N	\N	\N	\N	t	Healing Technology — Operation Theater Equipments	\N	\N	2026-04-15 10:23:40.272+00	2026-04-09 04:28:08.701+00	\N
-4	Respiratory Devices	respiratory-devices	\N	\N	\N	\N	\N	t	\N	\N	\N	2026-04-15 10:24:34.928+00	2026-04-09 04:28:08.691+00	\N
+7	Operation Theater Equipments	ot-quipments	\N	\N	\N	\N	1	t	Healing Technology — Operation Theater Equipments	\N	\N	2026-04-27 05:03:50.021+00	2026-04-09 04:28:08.735+00	\N
+6	Diagnostic Equipments	diagnosticequipments	\N	\N	\N	\N	2	t	Healing Technology — Diagnostic Equipments	\N	\N	2026-04-27 05:04:02.051+00	2026-04-09 04:28:08.72+00	\N
+5	Hospital Furniture	hospital-furniture	\N	\N	\N	\N	3	t	Healing Technology — Operation Theater Equipments	\N	\N	2026-04-27 05:04:13.758+00	2026-04-09 04:28:08.701+00	\N
+4	Respiratory Devices	respiratory-devices	\N	\N	\N	\N	4	t	\N	\N	\N	2026-04-27 05:04:31.204+00	2026-04-09 04:28:08.691+00	\N
+3	Neonatal Care	neonatal-care	\N	\N	\N	\N	6	t	\N	\N	\N	2026-04-27 05:04:56.339+00	2026-04-09 04:28:08.673+00	\N
+1	Medical Devices	Medical-Devices	1	Ucare is a high-accuracy medical device brand manufactured in China and exclusively imported and distributed in Bangladesh by Healing Technology.\n\nThe brand specializes in professional-grade diagnostic and respiratory tools for home and clinical use, including Digital BP Monitors, Nebulizers, Fetal Dopplers, and Infrared Thermometers. Combining global manufacturing standards with localized support, Ucare ensures that Bangladeshi consumers have access to reliable, CE-certified health monitoring technology with a dependable local warranty.\n\nKey Highlights:\n\nManufacturer: Precision-engineered in China (ISO/CE certified).\n\nImporter: Healing Technology (Dhaka, Bangladesh).\n\nCore Range: BP machines, nebulizers, dopplers, and digital thermometers.\n\nValue: Accurate, user-friendly, and supported by local after-sales service.	Medical Devices	\N	7	t	Healing Technology — Medical Devices	Ucare is a high-accuracy medical device brand manufactured in China and exclusively imported and distributed in Bangladesh by Healing Technology.\n\nThe brand specializes in professional-grade diagnostic and respiratory tools for home and clinical use, including Digital BP Monitors, Nebulizers, Fetal Dopplers, and Infrared Thermometers. Combining global manufacturing standards with localized support, Ucare ensures that Bangladeshi consumers have access to reliable, CE-certified health monitoring technology with a dependable local warranty.\n\nKey Highlights:\n\nManufacturer: Precision-engineered in China (ISO/CE certified).\n\nImporter: Healing Technology (Dhaka, Bangladesh).\n\nCore Range: BP machines, nebulizers, dopplers, and digital thermometers.\n\nValue: Accurate, user-friendly, and supported by local after-sales service.	141	2026-04-27 05:06:46.862+00	2026-04-09 04:28:08.651+00	140
 \.
 
 
@@ -1587,6 +1588,9 @@ COPY public.media (id, alt, updated_at, created_at, url, thumbnail_u_r_l, filena
 129	\N	2026-04-23 11:05:08.845+00	2026-04-23 11:02:20.68+00	/api/media/file/image%20(3).png	\N	image (3).png	image/png	91906	782	432	50	50
 131	\N	2026-04-25 05:12:59.072+00	2026-04-25 05:12:59.072+00	/api/media/file/Luvar%20Cpap-1.png	\N	Luvar Cpap-1.png	image/png	632230	1477	910	50	50
 132	\N	2026-04-25 05:27:20.802+00	2026-04-25 05:27:20.802+00	/api/media/file/imgi_10_51c530c44ce224c82eacced3c70e17d8.png	\N	imgi_10_51c530c44ce224c82eacced3c70e17d8.png	image/png	168415	663	465	50	50
+140	\N	2026-04-27 04:57:21.092+00	2026-04-27 04:57:21.092+00	/api/media/file/Designer%20(3).png	\N	Designer (3).png	image/png	1380025	1024	1024	50	50
+141	\N	2026-04-27 04:57:50.273+00	2026-04-27 04:57:50.273+00	/api/media/file/Designer%20(3)-1.png	\N	Designer (3)-1.png	image/png	830800	873	589	50	50
+142	\N	2026-04-27 10:07:03.901+00	2026-04-27 10:07:03.901+00	/api/media/file/0427.mp4	\N	0427.mp4	video/mp4	19392547	\N	\N	\N	\N
 \.
 
 
@@ -1595,19 +1599,7 @@ COPY public.media (id, alt, updated_at, created_at, url, thumbnail_u_r_l, filena
 --
 
 COPY public.orders (id, order_number, customer_first_name, customer_last_name, customer_email, customer_phone, customer_address, customer_city, customer_name, total_amount, payment_method, payment_status, status, invoice_link, payment_evidence_id, updated_at, created_at) FROM stdin;
-1	ORD-20260415-6643	Dibbo	Dutta	dibbo.tcfbd@gmail.com	01860242267	plot#GA-5/2,Road# Mohakhali	DHAKA	Dibbo Dutta	200	sslcommerz	unpaid	pending	https://healingtechnology.com.bd/invoice/ORD-20260415-6643	\N	2026-04-15 06:07:37.112+00	2026-04-15 06:07:37.112+00
-2	ORD-20260415-3239	TCF	BD	tokyoconsultingfirmlimited@gmail.com	01788960043	20 Kemal Ataturk Avenue, Banani C/A	DHAKA	TCF BD	200	sslcommerz	unpaid	pending	https://healingtechnology.com.bd/invoice/ORD-20260415-3239	\N	2026-04-15 06:10:31.549+00	2026-04-15 06:10:31.548+00
-3	ORD-20260415-2920	ROKIBUL	ISLAM	heal.tech36@gmail.com	01898876703	14/2 Ansari Bhaban ( Ground Floor ), Topkhana Road, Dhaka\n14/2	Dhaka, Bangladesh	ROKIBUL ISLAM	0	bkash	unpaid	pending	https://healingtechnology.com.bd/invoice/ORD-20260415-2920	\N	2026-04-15 07:51:52.363+00	2026-04-15 07:51:52.363+00
-4	ORD-20260415-7649	ROKIBUL	ISLAM	heal.tech36@gmail.com	01898876703	14/2 Ansari Bhaban ( Ground Floor ), Topkhana Road, Dhaka\n14/2	Dhaka, Bangladesh	ROKIBUL ISLAM	0	sslcommerz	unpaid	pending	https://healingtechnology.com.bd/invoice/ORD-20260415-7649	\N	2026-04-15 07:52:56.49+00	2026-04-15 07:52:56.49+00
-5	ORD-20260415-1161	ROKIBUL	ISLAM	heal.tech36@gmail.com	01898876703	14/2 Ansari Bhaban ( Ground Floor ), Topkhana Road, Dhaka\n14/2	Dhaka, Bangladesh	ROKIBUL ISLAM	0	bkash	unpaid	pending	https://healingtechnology.com.bd/invoice/ORD-20260415-1161	\N	2026-04-15 07:53:35.881+00	2026-04-15 07:53:35.881+00
-6	ORD-20260415-4782	Abu	Abid	nirobislam36@gmail.com	01301844100	14/2 Topkhana Road Ansari Bhaban (Ground floor),Bangladesh Medical Association Bhaban West Side ,Polton Dhaka-1000\nOpposite Side Of Press Club	Dhaka, Bangladesh	Abu Abid	0	sslcommerz	unpaid	pending	https://healingtechnology.com.bd/invoice/ORD-20260415-4782	\N	2026-04-15 07:53:40.849+00	2026-04-15 07:53:40.849+00
-7	ORD-20260415-4458	Abu	Abid	nirobislam36@gmail.com	01301844100	14/2 Topkhana Road Ansari Bhaban (Ground floor),Bangladesh Medical Association Bhaban West Side ,Polton Dhaka-1000\nOpposite Side Of Press Club	Dhaka, Bangladesh	Abu Abid	0	bkash	unpaid	pending	https://healingtechnology.com.bd/invoice/ORD-20260415-4458	\N	2026-04-15 08:15:27.671+00	2026-04-15 08:15:27.671+00
-8	ORD-20260415-9109	Abu	Abid	nirobislam36@gmail.com	01301844100	14/2 Topkhana Road Ansari Bhaban (Ground floor),Bangladesh Medical Association Bhaban West Side ,Polton Dhaka-1000\nOpposite Side Of Press Club	Dhaka, Bangladesh	Abu Abid	0	bkash	unpaid	pending	https://healingtechnology.com.bd/invoice/ORD-20260415-9109	\N	2026-04-15 08:17:25.587+00	2026-04-15 08:17:25.587+00
-9	ORD-20260415-5589	Abu	Abid	nirobislam36@gmail.com	01301844100	14/2 Topkhana Road Ansari Bhaban (Ground floor),Bangladesh Medical Association Bhaban West Side ,Polton Dhaka-1000\nOpposite Side Of Press Club	Dhaka, Bangladesh	Abu Abid	200	bkash	unpaid	pending	https://healingtechnology.com.bd/invoice/ORD-20260415-5589	\N	2026-04-15 08:27:47.66+00	2026-04-15 08:27:47.659+00
-10	ORD-20260415-2679	Abu	Abid	nirobislam36@gmail.com	01301844100	14/2 Topkhana Road Ansari Bhaban (Ground floor),Bangladesh Medical Association Bhaban West Side ,Polton Dhaka-1000\nOpposite Side Of Press Club	Dhaka, Bangladesh	Abu Abid	0	sslcommerz	unpaid	pending	https://healingtechnology.com.bd/invoice/ORD-20260415-2679	\N	2026-04-15 11:04:51.706+00	2026-04-15 11:04:51.706+00
-11	ORD-20260419-7264	Abu	Abid	nirobislam36@gmail.com	01301844100	14/2 Topkhana Road Ansari Bhaban (Ground floor),Bangladesh Medical Association Bhaban West Side ,Polton Dhaka-1000\nOpposite Side Of Press Club	Dhaka, Bangladesh	Abu Abid	0	sslcommerz	unpaid	pending	https://healingtechnology.com.bd/invoice/ORD-20260419-7264	\N	2026-04-19 07:35:26.236+00	2026-04-19 07:35:26.235+00
-12	ORD-20260421-1822	Rokibul Islam	Nirob	nirobislam36@gmail.com	01675292991	Rawerbazar 	Dhaka	Rokibul Islam Nirob	0	bkash	unpaid	pending	https://healingtechnology.com.bd/invoice/ORD-20260421-1822	\N	2026-04-21 12:32:10.24+00	2026-04-21 12:32:10.238+00
-13	ORD-20260421-6408	Rokibul Islam	Nirob	nirobislam36@gmail.com	01675292991	Polton	Dhaka	Rokibul Islam Nirob	0	bkash	unpaid	pending	https://healingtechnology.com.bd/invoice/ORD-20260421-6408	\N	2026-04-21 12:33:41.459+00	2026-04-21 12:33:41.459+00
+14	ORD-20260427-8513	Abu	Abid	nirobislam36@gmail.com	01301844100	14/2 Topkhana Road Ansari Bhaban (Ground floor),Bangladesh Medical Association Bhaban West Side ,Polton Dhaka-1000\nOpposite Side Of Press Club	Dhaka, Bangladesh	Abu Abid	0	sslcommerz	unpaid	pending	https://healingtechnology.com.bd/invoice/ORD-20260427-8513	\N	2026-04-27 10:27:09.929+00	2026-04-27 10:27:09.929+00
 \.
 
 
@@ -1616,19 +1608,7 @@ COPY public.orders (id, order_number, customer_first_name, customer_last_name, c
 --
 
 COPY public.orders_items (_order, _parent_id, id, product_id, quantity, price_at_purchase) FROM stdin;
-1	1	69df2b296e3450bd0f0bf9c6	24	1	200
-1	2	69df2bd76e3450bd0f0bf9c7	24	1	200
-1	3	69df43986e3450bd0f0bf9c8	25	1	0
-1	4	69df43d86e3450bd0f0bf9c9	25	1	0
-1	5	69df43ff6e3450bd0f0bf9ca	25	1	0
-1	6	69df44046e3450bd0f0bf9cb	25	1	0
-1	7	69df491f6e3450bd0f0bf9cd	25	1	0
-1	8	69df49956e3450bd0f0bf9ce	25	1	0
-1	9	69df4c036e3450bd0f0bf9cf	24	1	200
-1	10	69df70d36e3450bd0f0bf9d0	25	1	0
-1	11	69e485beefdc0ce4e8001c53	25	2	0
-1	12	69e76e4ad2fb692faf9669bd	31	2	0
-1	13	69e76ea5d2fb692faf9669be	22	1	0
+1	14	69ef39fdedeee059cf529854	10	1	0
 \.
 
 
@@ -1643,6 +1623,8 @@ COPY public.partner_logos (id, name, logo_id, website, sort_order, updated_at, c
 4	Nanjing Puao Medical Equipment Co.Ltd	97	\N	0	2026-04-21 05:22:52.639+00	2026-04-21 05:22:52.639+00
 5	ZERONE	98	\N	0	2026-04-21 05:24:05.543+00	2026-04-21 05:24:05.543+00
 6	TRIUP	99	\N	0	2026-04-21 05:24:44.727+00	2026-04-21 05:24:44.727+00
+7	Ucare	141	\N	0	2026-04-27 05:53:57.131+00	2026-04-27 05:53:57.13+00
+8	Ucare	141	\N	0	2026-04-27 05:53:59.347+00	2026-04-27 05:53:59.347+00
 \.
 
 
@@ -1697,15 +1679,16 @@ COPY public.payload_preferences (id, key, value, updated_at, created_at) FROM st
 22	collection-products-17	{"fields": {"specGroups": {"collapsed": ["69e609a11d522a8c2a7de9ea", "69e60a4b1d522a8c2a7de9f4"]}}}	2026-04-20 11:14:31.774+00	2026-04-20 11:14:31.776+00
 23	collection-products-16	{"fields": {"specGroups": {"collapsed": ["69e6104e1d522a8c2a7dea06"]}}}	2026-04-20 11:44:53.258+00	2026-04-20 11:44:53.259+00
 25	collection-products-14	{"fields": {"specGroups": {"collapsed": ["69e733cd3220efc4a063a40e"]}, "applications": {"collapsed": ["69e7352ea1dc14718977d686", "69e73539a1dc14718977d687", "69e73541a1dc14718977d688", "69e7354aa1dc14718977d689"]}}}	2026-04-21 08:30:31.718+00	2026-04-21 08:24:51.751+00
-12	collection-orders	{}	2026-04-14 10:18:23.415+00	2026-04-14 10:18:23.414+00
 7	collection-faqs	{"limit": 10}	2026-04-14 10:18:32.518+00	2026-04-09 04:21:07.997+00
 26	collection-client-logos	{}	2026-04-22 12:46:48.862+00	2026-04-22 12:46:48.861+00
-11	nav	{"open": true, "groups": {"Collections": {"open": true}}}	2026-04-22 12:47:36.692+00	2026-04-11 06:40:57.781+00
 13	collection-partner-logos	{}	2026-04-15 06:02:14.066+00	2026-04-15 06:02:14.066+00
 24	collection-products-15	{"fields": {"gallery": {"collapsed": []}, "specGroups": {"collapsed": ["69e72f2f3220efc4a063a405"]}, "applications": {"collapsed": ["69e72c423220efc4a063a3fc", "69e72c453220efc4a063a3fd", "69e72c4d3220efc4a063a3fe", "69e72c563220efc4a063a3ff"]}}}	2026-04-22 12:47:52.346+00	2026-04-21 08:02:18.307+00
 27	collection-products-13	{"fields": {"specGroups": {"collapsed": ["69e9f70d57a33abd2212b677"]}, "applications": {"collapsed": ["69e9f8ee57a33abd2212b67d", "69e9f8f257a33abd2212b67e", "69e9f8f957a33abd2212b67f"]}}}	2026-04-23 10:48:36.164+00	2026-04-23 10:41:38.659+00
 28	collection-products-12	{"fields": {"applications": {"collapsed": ["69e9fcf757a33abd2212b680", "69e9fcfa57a33abd2212b681", "69e9fd0057a33abd2212b682", "69e9fd0857a33abd2212b683"]}, "specGroups.0.rows": {"collapsed": ["69e9fd5457a33abd2212b686", "69e9fd6157a33abd2212b687", "69e9fd7057a33abd2212b688", "69e9fd7c57a33abd2212b689", "69e9fd8957a33abd2212b68a", "69e9fd9857a33abd2212b68b", "69e9fda357a33abd2212b68c", "69e9fdb057a33abd2212b68d", "69e9fdbb57a33abd2212b68e"]}}}	2026-04-23 11:09:17.059+00	2026-04-23 11:06:11.084+00
+11	nav	{"open": true, "groups": {"Globals": {"open": false}, "Collections": {"open": true}}}	2026-04-26 12:23:00.27+00	2026-04-11 06:40:57.781+00
 1	collection-brands	{"sort": "name", "limit": 50}	2026-04-15 07:09:00.432+00	2026-04-09 04:20:36.711+00
+29	collection-products-10	{"fields": {"specGroups": {"collapsed": ["69eef15c5ce4f93fc179fdc2"]}}}	2026-04-27 05:43:00.894+00	2026-04-27 05:19:38.509+00
+12	collection-orders	{"limit": 10}	2026-04-27 05:52:29.651+00	2026-04-14 10:18:23.414+00
 2	collection-categories	{"sort": "title", "limit": 25}	2026-04-15 10:25:58.349+00	2026-04-09 04:20:37.616+00
 4	collection-products	{"limit": 25, "editViewType": "default"}	2026-04-19 07:24:06.374+00	2026-04-09 04:20:39.04+00
 16	collection-products-31	{"fields": {"specGroups": {"collapsed": ["69e479dd34931c3b26d3a31f"]}}}	2026-04-19 08:23:04.427+00	2026-04-19 08:23:04.429+00
@@ -1732,15 +1715,16 @@ COPY public.payload_preferences_rels (id, "order", parent_id, path, users_id) FR
 86	\N	22	user	1
 87	\N	23	user	1
 94	\N	25	user	1
-33	\N	12	user	1
 34	\N	7	user	1
 97	\N	26	user	1
-99	\N	11	user	1
 39	\N	13	user	1
 101	\N	24	user	1
 105	\N	27	user	1
 107	\N	28	user	1
+108	\N	11	user	1
 49	\N	1	user	1
+111	\N	29	user	1
+112	\N	12	user	1
 58	\N	2	user	1
 59	\N	4	user	1
 60	\N	16	user	1
@@ -1761,9 +1745,9 @@ COPY public.products (id, name, slug, mark_as_new, sku, category_id, brand_id, b
 5	Suxin Hydraulic Operation Table	suxin-hydraulic-table	f	\N	1	7	\N	\N	Supply for thoracic, abdominal, and orthopaedic surgery.	\N	\N	\N	\N	\N	published	\N	\N	\N	2026-04-09 04:28:08.963+00	2026-04-09 04:28:08.963+00	\N	\N
 6	Hungustads Hydraulic Operation Table	hungustads-hydraulic-table	f	\N	1	8	\N	\N	Advanced hydraulic table with 120mm waist board lifting.	\N	\N	\N	\N	\N	published	\N	\N	\N	2026-04-09 04:28:09.012+00	2026-04-09 04:28:09.012+00	\N	\N
 7	Zerone ZEUS-400	zerone-zeus-400	f	\N	1	6	\N	\N	Stable and powerful electrosurgical unit for general and plastic surgery.	\N	\N	\N	\N	\N	published	\N	\N	\N	2026-04-09 04:28:09.04+00	2026-04-09 04:28:09.04+00	\N	\N
-8	HT-150S Anesthesia Machine (SS)	ht-150s-anesthesia-ss	f	\N	1	9	\N	\N	High-quality Stainless Steel anesthesia apparatus with Malaysian regulator.	\N	\N	\N	Bangladesh	\N	published	\N	\N	\N	2026-04-09 04:28:09.08+00	2026-04-09 04:28:09.079+00	\N	\N
 9	Jinling-820 Anesthesia Machine	jinling-820-anesthesia	f	\N	1	4	\N	\N	Pneumatically driven & electronically controlled with 5.7 inch TFT display.	\N	\N	\N	\N	\N	published	\N	\N	\N	2026-04-09 04:28:09.113+00	2026-04-09 04:28:09.113+00	\N	\N
-10	Luvar E Series Auto-CPAP (CPAP-20A Pro)	luvar-e-auto-cpap	f	\N	2	2	\N	\N	Medical-grade calibration standard with AS-Dry technology.	\N	\N	\N	\N	\N	published	\N	\N	\N	2026-04-09 04:28:09.165+00	2026-04-09 04:28:09.165+00	\N	\N
+10	Compressor Nebulizer	Compressor-Nebulizer	f	Compressor-Nebulizer	1	31	\N	Medical Compressor Nebulizer	The Ucare HY-Q01 is a high-performance medical compressor nebulizer designed for the efficient treatment of respiratory conditions such as asthma, COPD, and bronchitis. By utilizing advanced aerosol technology, it ensures that liquid medication is converted into an ultra-fine mist for direct delivery to the lungs.Top Reasons to Choose UcareOptimal Absorption: Delivers a small particle size ($1\\mu m \\sim 5\\mu m$) to ensure medication reaches deep into the respiratory tract for maximum efficacy.Built to Last: Features pure copper motor parts, ensuring high durability and a longer lifespan compared to standard models.User-Friendly Design: Simple one-button operation makes it accessible for patients of all ages, including children and the elderly.Quiet Operation: Engineered for low noise, providing a comfortable and stress-free environment during treatment sessions.Safety First: Designed as a safe and durable medical-grade device with a stable output.	The Ucare HY-Q01 is a high-performance medical compressor nebulizer designed for the efficient treatment of respiratory conditions such as asthma, COPD, and bronchitis. By utilizing advanced aerosol technology, it ensures that liquid medication is converted into an ultra-fine mist for direct delivery to the lungs.Top Reasons to Choose UcareOptimal Absorption: Delivers a small particle size ($1\\mu m \\sim 5\\mu m$) to ensure medication reaches deep into the respiratory tract for maximum efficacy.Built to Last: Features pure copper motor parts, ensuring high durability and a longer lifespan compared to standard models.User-Friendly Design: Simple one-button operation makes it accessible for patients of all ages, including children and the elderly.Quiet Operation: Engineered for low noise, providing a comfortable and stress-free environment during treatment sessions.Safety First: Designed as a safe and durable medical-grade device with a stable output.	\N	\N	China	Medical Device Registration (NMPA): The HY-Q01 is a registered medical device with the certificate number 粤械注准20222082075. This confirms the device has been evaluated for safety and performance according to national medical standards.\n\nCertificate for Exportation of Medical Products: The device is authorized for international sale under Certificate No. 粤食药监械出20241096 号. This certificate is issued by the People's Republic of China, verifying that the product is permitted to be manufactured and sold both domestically and exported globally.\n\nManufacturing License: The manufacturer holds a valid Medical Device Manufacturing License (License No. 粤食药监械生产许20193399 号).\n\nISO 13485 Compliance: As a medical device produced for the international market, the manufacturing process follows ISO 13485:2016 standards, which is the global gold standard for Medical Device Quality Management Systems (QMS).	published	Healing Technology — Compressor Nebulizer	\N	\N	2026-04-27 05:51:39.258+00	2026-04-09 04:28:09.165+00	\N	\N
+8	HT-150S Anesthesia Machine (SS)	ht-150s-anesthesia-ss	f	\N	1	9	\N	\N	High-quality Stainless Steel anesthesia apparatus with Malaysian regulator.	\N	\N	\N	Bangladesh	\N	published	\N	\N	\N	2026-04-27 10:08:10.763+00	2026-04-09 04:28:09.079+00	\N	\N
 12	Heyer BiPAP BV30ST	BiPAP-BV30ST	f	BiPAP-BV30ST	4	2	\N	Heyer BiPAP BV30ST	The Heyer BiPAP BV30ST is a high-performance, non-invasive ventilator designed for patients requiring advanced pressure support. Developed in Germany with over 24 years of expertise in ventilator algorithms, it offers hospital-grade precision for home use.\n\nAdvanced Ventilation & Control\nMultiple Therapy Modes: Includes CPAP, S (Spontaneous), T (Timed), S/T (Spontaneous/Timed), PC (Pressure Control), and VAT (Volume Assured Technology).\n\nHigh Pressure Range: Provides an IPAP Max of 30 cmH2O and EPAP of 4–25 cmH2O.\n\nVT Target: Features a target volume function ranging from 200–1500 ml to ensure consistent ventilation.\n\nPrecision Calibration: Accurate to 0.1 cmH2O, providing treatment precision comparable to hospital ventilators.\n\nCustomizable Breathing: Offers 1–6 adjustable levels for Rise Time and Trigger/Cycle to match the patient’s natural breathing pattern.\n\nSafety & Monitoring\n12-Sensor Collaborative Monitoring: An interlinked sensing system provides real-time feedback on environmental changes and tracks the patient’s respiratory cycle.\n\nSafety Alarms: Includes a Leak Alert to ensure therapy efficacy and a Backup Vent function for periods of low respiratory activity.\n\nData Management: Supports smart interconnection through WiFi, Bluetooth, and SD card, allowing users to view therapy reports and trend analysis via a cloud platform.\n\nUser Comfort & Maintenance\nDual-core Humidification: Intelligently adjusts temperature and humidity levels to maintain optimal airflow comfort.\n\nQuiet Operation: Designed for a restful environment with noise levels at ≤ 28 dB.\n\nPreheat Function: A one-click preheat option warms the system 30 minutes before sleep to avoid cold condensation.\n\nAS-Dry Hygiene: Runs a 30-minute low-speed airflow post-treatment to reduce residual moisture by 80%.\n\nDesign: Features a rounded, "homestyle" body designed to soften the clinical feel of medical devices.	The Heyer BiPAP BV30ST is a German-engineered ventilator providing advanced pressure support up to 30 cmH2O. It features hospital-grade accuracy (0.1 cmH2O) and versatile modes including S/T and VAT. Designed with a quiet, homestyle aesthetic (≤ 28 dB), it includes Smart Interconnection for app-based data tracking and AS-Dry technology to ensure system hygiene.	\N	130	German	\N	published	\N	\N	\N	2026-04-25 05:13:48.051+00	2026-04-09 04:28:09.238+00	\N	\N
 19	Aeonmed Aeon7200 Anesthesia Machine With Ventilator	Aeonmed-Aeon7200	f	Aeonmed-Aeon7200	7	3	\N	Aeonmed Aeon7200 Anesthesia Machine With Ventilator	Aeonmed Aeon7200 Anesthesia Machine With Ventilator\nThe Aeonmed Aeon7200 is an advanced, high-performance anesthesia delivery system designed to provide safe, reliable, and efficient care during surgical procedures. Engineered for both adult and pediatric patients, it combines precise gas delivery, dynamic ventilation modes, and a robust suite of real-time monitoring features.\n\nWith CE certification ensuring it meets stringent international safety standards, the Aeon7200 is an ideal solution for modern hospital operation theaters, surgical centers, and emergency units.\n\nKey Features & Innovations\nIntuitive Interface: Features an 8.4-inch color touchscreen display equipped with a navigation knob for quick, easy setup and parameter adjustments.\n\nVersatile Ventilation: Supports Volume, Pressure, and SIMV ventilation modes to accommodate a wide variety of anesthesia applications.\n\nAdvanced Moisture Control: Incorporates a built-in, maintenance-free patented sensor that prevents moisture condensation, ensuring accurate monitoring and protecting the internal circuitry.\n\nPrecision Low-Flow Delivery: Equipped with double tubes in series for each gas, making it highly responsive and easy to operate during low and mini-flow anesthesia.\n\nEnvironmental & Patient Safety: Features optional Anesthetic Gas Monitoring (AGM) to conveniently control gas concentration, and an optional Anesthetic Gas Scavenging System (AGSS) to reduce air pollution within the operating room.	The Aeonmed Aeon7200 is a highly versatile, CE-certified anesthesia delivery system featuring an integrated ventilator. Designed to seamlessly manage both adult and pediatric patients, it balances advanced technological precision with rigorous patient safety features for the modern operating room.\n\nCore Highlights:\n\nIntuitive Operation: Features an 8.4-inch color touchscreen with a navigation knob for quick, streamlined parameter adjustments.\n\nAdvanced Ventilation: Supports multiple ventilation modes (IPPV, PLV, SIMV, Spont) with a broad tidal volume range of 20 to 1500 ml.\n\nPrecision Low-Flow Delivery: Utilizes double-tube flowmeters specifically engineered for accurate, easy control during low and mini-flow anesthesia.\n\nEnhanced Safety & Reliability: Built with a patented maintenance-free moisture condensation sensor, comprehensive safety alarms, and a reliable 120-minute battery backup.	\N	82	China	The Aeonmed Aeon7200 Anesthesia Machine is manufactured to the highest global medical device standards, ensuring absolute safety, reliability, and precision in critical care environments:\n\nCE Certified: Fully compliant with European health, safety, and environmental protection directives. This certification guarantees that the machine meets stringent international clinical safety requirements for medical devices.\n\nISO 13485 Compliant: Manufactured by Aeonmed under a globally recognized Quality Management System specifically dedicated to the design and production of safe, high-quality medical equipment.\n\nBuilt-In Safety Standards: Engineered with hypoxic guard systems, automatic O2 deficiency alarms, and a patented NO WATER VAPOR COAGULATION sensor, fulfilling strict regulatory requirements for patient safety during anesthesia delivery.	published	Healing Technology — Aeonmed Aeon7200 Anesthesia Machine With Ventilator	The Aeonmed Aeon7200 is a highly versatile, CE-certified anesthesia delivery system featuring an integrated ventilator. Designed to seamlessly manage both adult and pediatric patients, it balances advanced technological precision with rigorous patient safety features for the modern operating room.\n\nCore Highlights:\n\nIntuitive Operation: Features an 8.4-inch color touchscreen with a navigation knob for quick, streamlined parameter adjustments.\n\nAdvanced Ventilation: Supports multiple ventilation modes (IPPV, PLV, SIMV, Spont) with a broad tidal volume range of 20 to 1500 ml.\n\nPrecision Low-Flow Delivery: Utilizes double-tube flowmeters specifically engineered for accurate, easy control during low and mini-flow anesthesia.\n\nEnhanced Safety & Reliability: Built with a patented maintenance-free moisture condensation sensor, comprehensive safety alarms, and a reliable 120-minute battery backup.	72	2026-04-20 10:56:27.252+00	2026-04-09 04:28:09.465+00	\N	\N
 16	SOFT TOUCH ESU 400 Electrosurgical Unit	SOFTTOUCH-ESU400	f	SOFTTOUCH-ESU400	7	30	\N	SOFT TOUCH ESU 400 Electrosurgical Unit	SOFT TOUCH Advanced Electrosurgical Unit (High-Frequency Electrotome)\nProduct Overview\nThe SOFT TOUCH Electrosurgical Unit is a high-performance, multi-function high-frequency electrotome designed to meet the rigorous demands of general departments and diverse surgical needs. Featuring dual-way power output, exceptionally stable performance, and advanced safety mechanisms, the SOFT TOUCH unit delivers the precision and reliability surgeons require. With instantaneous switching between cutting and coagulation, and seamless compatibility with laparoscopic accessories, it is an essential and versatile tool for any modern surgical suite.\n\nKey Features & Benefits\nVersatile Operating Modes: Equipped with 7 distinct working modes to handle a wide variety of surgical procedures:\nPure Cutting, Mixed Cutting 1, Mixed Cutting 2, Standard Coagulation, Spraying Coagulation, Bipolar 1, Bipolar 2\n\nBroad Power Range: Offers unipolar power from 0–400W and bipolar power from 0–100W, ensuring the precise energy delivery needed for both delicate tissues and heavy-duty surgical tasks.\n\nAdvanced Safety Systems:\n\nNeutral Plate Monitoring: Automatically measures the contact quality between the patient's skin and the neutral plate. The system instantly triggers an alarm and halts output if contact resistance drops below 140 Ω.\n\nShort Circuit Protection: Features a fully suspended CF type design. The host computer actively protects itself to maintain normal, safe output in the rare event of an overload or short circuit during unipolar or bipolar use.\n\nIntelligent Double CPU Design: Built with dual CPUs for highly reliable core storage. The robust database seamlessly manages various impedance changes during use, guaranteeing a highly stable and consistent energy output.\n\nEfficient Workflow: Allows for instantaneous switching between cutting and coagulation output during manual operation, streamlining the surgical process and reducing operative time.	The SOFT TOUCH Advanced Electrosurgical Unit is a versatile, high-frequency surgical electrotome designed for precision and safety across diverse medical departments. Featuring advanced dual-CPU technology, it offers 7 distinct working modes—delivering up to 400W of unipolar power and 100W of bipolar power—for seamless cutting and rapid coagulation. Equipped with intelligent safety systems like real-time neutral plate monitoring and short-circuit protection, this unit provides surgeons with exceptionally stable and reliable performance for everything from delicate plastic surgery to heavy-duty general and laparoscopic procedures.	\N	94	China	The SOFT TOUCH Electrosurgical Unit is manufactured to meet stringent international medical and electrical safety standards:\n\nGB 9706.1-2007 / IEC 60601-1:1988: General requirements for safety of medical electrical equipment.\n\nGB 9706.4-2009 / IEC 60601-2-2:2006: Special requirements for the safety of high-frequency surgical equipment.\n\nYY 0505-2012 / IEC 60601-1-2:2004: Electromagnetic compatibility requirements and experiments.\n\nYY1057-2016: General specification for medical foot switches.	published	Healing Technology — SOFT TOUCH ESU 400 Electrosurgical Unit	The SOFT TOUCH Advanced Electrosurgical Unit is a versatile, high-frequency surgical electrotome designed for precision and safety across diverse medical departments. Featuring advanced dual-CPU technology, it offers 7 distinct working modes—delivering up to 400W of unipolar power and 100W of bipolar power—for seamless cutting and rapid coagulation. Equipped with intelligent safety systems like real-time neutral plate monitoring and short-circuit protection, this unit provides surgeons with exceptionally stable and reliable performance for everything from delicate plastic surgery to heavy-duty general and laparoscopic procedures.	\N	2026-04-20 11:57:01.166+00	2026-04-09 04:28:09.375+00	\N	\N
@@ -1939,6 +1923,7 @@ COPY public.products_spec_groups (_order, _parent_id, id, group_title) FROM stdi
 1	21	69e4a0f49227f07265a2b780	Technical Specifications
 1	13	69e9f70d57a33abd2212b677	Technical Specifications
 1	22	69e4a1aa9227f07265a2b789	Technical Specifcations
+1	10	69eef15c5ce4f93fc179fdc2	Detailed Specifications
 1	19	69e4c0096a8ee835e89d81de	Ventilator Specifications
 2	19	69e4c19a6a8ee835e89d81e6	Pneumatic & Vaporizer Specifications
 3	19	69e4c4e06a8ee835e89d81ec	Electrical & Monitoring
@@ -2096,6 +2081,14 @@ COPY public.products_spec_groups_rows (_order, _parent_id, id, label, value) FRO
 7	69e491749227f07265a2b764	69e4933b9227f07265a2b76b	Brightness adjustment digital display	1-100%
 8	69e491749227f07265a2b764	69e4934f9227f07265a2b76c	Temperature rise of surgeon's head	1°C
 9	69e491749227f07265a2b764	69e493a79227f07265a2b76d	Led lifespan(h)	80000
+1	69eef15c5ce4f93fc179fdc2	69eef1635ce4f93fc179fdc3	Brand	Ucare
+2	69eef15c5ce4f93fc179fdc2	69eef1745ce4f93fc179fdc4	Model Number	HY-Q01
+3	69eef15c5ce4f93fc179fdc2	69eef1845ce4f93fc179fdc5	Power Supply	AC 220V, 50Hz
+4	69eef15c5ce4f93fc179fdc2	69eef1985ce4f93fc179fdc6	Power Consumption	160VA
+5	69eef15c5ce4f93fc179fdc2	69eef1a65ce4f93fc179fdc7	MMAD (Particle Size)	$1\\mu m \\sim 5\\mu m$
+6	69eef15c5ce4f93fc179fdc2	69eef1b55ce4f93fc179fdc8	Average Spray Rate	0.2ml/min
+7	69eef15c5ce4f93fc179fdc2	69eef1cd5ce4f93fc179fdc9	Noise Level	65dB
+8	69eef15c5ce4f93fc179fdc2	69eef1d95ce4f93fc179fdca	Net Weight	Approx. 1.25kg
 \.
 
 
@@ -2128,7 +2121,7 @@ COPY public.testimonials (id, client_name, designation, hospital, quote, avatar_
 --
 
 COPY public.users (id, updated_at, created_at, email, reset_password_token, reset_password_expiration, salt, hash, login_attempts, lock_until) FROM stdin;
-1	2026-04-19 12:10:05.213+00	2026-04-09 04:20:32.694+00	dibbodutta06@gmail.com	\N	\N	421dfdd008249f8a2ac9c114fae7586b57cd19e63d90df6f7a89467f97030b3e	ba33091b59304726a6d9496098f3debe002b61f5ec6d9713f7798848e373f54008053cad4f002a8781dda9818c1da53baad35bcb0b1a562decaaccab99ae6903b6861430a54dea5e3f695fd300d91dfa2f976707562f3a952204b72bb2aa2ec639abaf36788fa00405bb5e2df3fe63b05dda7bceab434ae85ba1ebaf73895071916dce2e80d0a3b9ada007754288dd9cc5cda51b982de18f7ee026d9b3fb7e2e4d1fab286b1bfdec92e7bcd9e19b879054a34eed0d5238a4d361bcc4149f4c5a14f948db1a4d9ee1e8df2c78d50c45bedc5ba2a487bf85f40b3f01c61600424d192ab56119f0b40017589ffb72e1b852467f426d0bdf20510ef90ceb0665a3eab012a65b05b6a2edfabeb42b83af412d62bb3d12a58b92762dbc2052eaf33559a62ea576a0394889ebd68873ece682b816274b2f0c4f97241f3f15d67bc70d43116af6640145de1385d24efa50e4223b338a5145cbad96d0674e18feb98a1bcab382b164cdfa3ca13a914afee0348b0c69c49ad619c760edf062ed81b5297a6d60767c410349c300c6dffc548d93d0b2485657a41193cd02ce8898f6344e022eedaf599b888caa99446886fa7d0a333907e245c9ee4f4885c217405ac69df913b66b34d262d151445491f01de3a2f5b18880c212c9597284b80555b88f5e92b6abdd7901c27cbb86cee2e8e82446e23d33e9aed387980b09a33012851d6c2e33	0	\N
+1	2026-04-26 12:37:29.927+00	2026-04-09 04:20:32.694+00	dibbodutta06@gmail.com	\N	\N	421dfdd008249f8a2ac9c114fae7586b57cd19e63d90df6f7a89467f97030b3e	ba33091b59304726a6d9496098f3debe002b61f5ec6d9713f7798848e373f54008053cad4f002a8781dda9818c1da53baad35bcb0b1a562decaaccab99ae6903b6861430a54dea5e3f695fd300d91dfa2f976707562f3a952204b72bb2aa2ec639abaf36788fa00405bb5e2df3fe63b05dda7bceab434ae85ba1ebaf73895071916dce2e80d0a3b9ada007754288dd9cc5cda51b982de18f7ee026d9b3fb7e2e4d1fab286b1bfdec92e7bcd9e19b879054a34eed0d5238a4d361bcc4149f4c5a14f948db1a4d9ee1e8df2c78d50c45bedc5ba2a487bf85f40b3f01c61600424d192ab56119f0b40017589ffb72e1b852467f426d0bdf20510ef90ceb0665a3eab012a65b05b6a2edfabeb42b83af412d62bb3d12a58b92762dbc2052eaf33559a62ea576a0394889ebd68873ece682b816274b2f0c4f97241f3f15d67bc70d43116af6640145de1385d24efa50e4223b338a5145cbad96d0674e18feb98a1bcab382b164cdfa3ca13a914afee0348b0c69c49ad619c760edf062ed81b5297a6d60767c410349c300c6dffc548d93d0b2485657a41193cd02ce8898f6344e022eedaf599b888caa99446886fa7d0a333907e245c9ee4f4885c217405ac69df913b66b34d262d151445491f01de3a2f5b18880c212c9597284b80555b88f5e92b6abdd7901c27cbb86cee2e8e82446e23d33e9aed387980b09a33012851d6c2e33	0	\N
 \.
 
 
@@ -2137,7 +2130,7 @@ COPY public.users (id, updated_at, created_at, email, reset_password_token, rese
 --
 
 COPY public.users_sessions (_order, _parent_id, id, created_at, expires_at) FROM stdin;
-1	1	89d9b2b1-1405-498c-965c-f783ff05a2c6	2026-04-26 04:34:07.371+00	2026-04-26 06:34:07.371+00
+1	1	36b17491-8b26-4091-9b90-5c872eca2a85	2026-04-27 10:06:17.827+00	2026-04-27 12:06:17.827+00
 \.
 
 
@@ -2145,14 +2138,14 @@ COPY public.users_sessions (_order, _parent_id, id, created_at, expires_at) FROM
 -- Name: brands_id_seq; Type: SEQUENCE SET; Schema: public; Owner: healingtech
 --
 
-SELECT pg_catalog.setval('public.brands_id_seq', 30, true);
+SELECT pg_catalog.setval('public.brands_id_seq', 31, true);
 
 
 --
 -- Name: categories_id_seq; Type: SEQUENCE SET; Schema: public; Owner: healingtech
 --
 
-SELECT pg_catalog.setval('public.categories_id_seq', 7, true);
+SELECT pg_catalog.setval('public.categories_id_seq', 8, true);
 
 
 --
@@ -2201,21 +2194,21 @@ SELECT pg_catalog.setval('public.legal_pages_id_seq', 1, false);
 -- Name: media_id_seq; Type: SEQUENCE SET; Schema: public; Owner: healingtech
 --
 
-SELECT pg_catalog.setval('public.media_id_seq', 132, true);
+SELECT pg_catalog.setval('public.media_id_seq', 142, true);
 
 
 --
 -- Name: orders_id_seq; Type: SEQUENCE SET; Schema: public; Owner: healingtech
 --
 
-SELECT pg_catalog.setval('public.orders_id_seq', 13, true);
+SELECT pg_catalog.setval('public.orders_id_seq', 14, true);
 
 
 --
 -- Name: partner_logos_id_seq; Type: SEQUENCE SET; Schema: public; Owner: healingtech
 --
 
-SELECT pg_catalog.setval('public.partner_logos_id_seq', 6, true);
+SELECT pg_catalog.setval('public.partner_logos_id_seq', 8, true);
 
 
 --
@@ -2229,14 +2222,14 @@ SELECT pg_catalog.setval('public.payload_kv_id_seq', 1, false);
 -- Name: payload_locked_documents_id_seq; Type: SEQUENCE SET; Schema: public; Owner: healingtech
 --
 
-SELECT pg_catalog.setval('public.payload_locked_documents_id_seq', 204, true);
+SELECT pg_catalog.setval('public.payload_locked_documents_id_seq', 230, true);
 
 
 --
 -- Name: payload_locked_documents_rels_id_seq; Type: SEQUENCE SET; Schema: public; Owner: healingtech
 --
 
-SELECT pg_catalog.setval('public.payload_locked_documents_rels_id_seq', 408, true);
+SELECT pg_catalog.setval('public.payload_locked_documents_rels_id_seq', 460, true);
 
 
 --
@@ -2250,21 +2243,21 @@ SELECT pg_catalog.setval('public.payload_migrations_id_seq', 1, true);
 -- Name: payload_preferences_id_seq; Type: SEQUENCE SET; Schema: public; Owner: healingtech
 --
 
-SELECT pg_catalog.setval('public.payload_preferences_id_seq', 28, true);
+SELECT pg_catalog.setval('public.payload_preferences_id_seq', 29, true);
 
 
 --
 -- Name: payload_preferences_rels_id_seq; Type: SEQUENCE SET; Schema: public; Owner: healingtech
 --
 
-SELECT pg_catalog.setval('public.payload_preferences_rels_id_seq', 107, true);
+SELECT pg_catalog.setval('public.payload_preferences_rels_id_seq', 112, true);
 
 
 --
 -- Name: products_id_seq; Type: SEQUENCE SET; Schema: public; Owner: healingtech
 --
 
-SELECT pg_catalog.setval('public.products_id_seq', 32, true);
+SELECT pg_catalog.setval('public.products_id_seq', 33, true);
 
 
 --
@@ -3702,5 +3695,5 @@ ALTER TABLE ONLY public.users_sessions
 -- PostgreSQL database dump complete
 --
 
-\unrestrict RQD7Z1IfAjTJhqZmowbBCWaDuYuljrVG4Xk1TtZ5BBUvtjdMOTVPdGusWn8maSu
+\unrestrict 8h7blZkNwTSYqnDBcXYdpZxFc5o9qqmmI1KvRVFqS5XaHbxdvfAnzB6T89NhY9C
 

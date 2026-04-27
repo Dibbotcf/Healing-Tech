@@ -71,10 +71,10 @@ export function HeroSlider() {
 
   const goTo = (i: number) => setCurrent(i);
 
-  // Auto-advance every 3 seconds
+  // Auto-advance every 6 seconds
   useEffect(() => {
     if (paused) return;
-    const id = setInterval(next, 3000);
+    const id = setInterval(next, 6000);
     return () => clearInterval(id);
   }, [next, paused]);
 
@@ -101,8 +101,8 @@ export function HeroSlider() {
       {/* Gradient overlay — same as before */}
       <div className="absolute inset-0 bg-gradient-to-t from-[#00355D]/95 via-[#00355D]/35 to-[#00355D]/25 pointer-events-none" />
 
-      {/* Dynamic Text Overlay */}
-      <div className="absolute inset-0 flex items-center z-10 pointer-events-none pb-12 lg:pb-0">
+      {/* Dynamic Text Overlay — bottom-left aligned */}
+      <div className="absolute inset-0 flex items-end z-10 pointer-events-none pb-24 lg:pb-20">
         <div className="container mx-auto px-6 lg:px-8 max-w-[1440px]">
           <AnimatePresence mode="wait">
             <motion.div
@@ -111,7 +111,7 @@ export function HeroSlider() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -30 }}
               transition={{ duration: 0.6 }}
-              className="max-w-4xl text-white pointer-events-auto"
+              className="max-w-3xl text-white pointer-events-auto"
             >
               <h1 className="font-['Inter'] text-3xl sm:text-4xl md:text-5xl lg:text-[4rem] font-normal leading-[1.1] tracking-tight mb-8 text-white text-balance">
                 {slides[current].headline}
@@ -159,7 +159,7 @@ export function HeroSlider() {
             key={`progress-${current}`}
             initial={{ width: "0%" }}
             animate={{ width: "100%" }}
-            transition={{ duration: 3, ease: "linear" }}
+            transition={{ duration: 6, ease: "linear" }}
             className="h-full bg-[#12B5CB]/60"
           />
         </div>

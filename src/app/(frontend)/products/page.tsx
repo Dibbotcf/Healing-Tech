@@ -20,7 +20,7 @@ export default async function ProductsPage({ searchParams }: { searchParams: Pro
     where: { status: { equals: 'published' } }
   });
 
-  const categoryDocs = await payload.find({ collection: 'categories', depth: 0, limit: 100 });
+  const categoryDocs = await payload.find({ collection: 'categories', depth: 0, limit: 100, sort: 'sortOrder' });
   const categories = categoryDocs.docs;
 
   return (

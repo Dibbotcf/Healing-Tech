@@ -88,7 +88,7 @@ export default function Home() {
             Clients who continue to trust us
           </p>
         </div>
-        <div className="flex items-center space-x-8 md:space-x-24 animate-[marquee_30s_linear_infinite] whitespace-nowrap px-2 md:px-4 py-4 md:py-6">
+        <div className="flex items-center space-x-8 md:space-x-24 animate-[marquee_15s_linear_infinite] whitespace-nowrap px-2 md:px-4 py-4 md:py-6">
           {[...clients, ...clients, ...clients, ...clients].map((client, index) => (
             <div key={index} className="inline-flex items-center mx-4 md:mx-12">
               {client.logo ? (
@@ -128,7 +128,7 @@ export default function Home() {
 
                 {/* Animated Brand Logos Marquee */}
                 <div className="relative w-full max-w-full overflow-hidden mt-8 [mask-image:linear-gradient(to_right,transparent,black_10%,black_80%,transparent)]">
-                  <div className="flex items-center space-x-12 animate-[marquee_20s_linear_infinite] whitespace-nowrap">
+                  <div className="flex items-center space-x-12 animate-[marquee_10s_linear_infinite] whitespace-nowrap">
                     {[...brands, ...brands, ...brands, ...brands].map((brand, i) => (
                       <div key={i} className="relative h-12 w-32 shrink-0 flex items-center justify-left">
                         {brand.logo ? (

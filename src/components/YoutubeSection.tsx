@@ -47,24 +47,24 @@ export function YoutubeSection() {
   const otherVideos = videos.filter((v) => v.id !== activeId);
 
   return (
-    <section className="mb-24 px-0">
+    <section className="mb-16 px-0">
       {/* ── Section Header ── */}
       <motion.div
         initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="text-center mb-12"
+        className="text-center mb-8"
       >
-        <div className="inline-flex items-center gap-3 bg-red-50 border border-red-100 px-5 py-2.5 rounded-full mb-5">
-          <svg className="w-5 h-5 text-red-600 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor">
+        <div className="inline-flex items-center gap-2 bg-red-50 border border-red-100 px-4 py-2 rounded-full mb-4">
+          <svg className="w-4 h-4 text-red-600 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor">
             <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
           </svg>
-          <span className="text-sm font-bold text-red-600 uppercase tracking-wider">YouTube</span>
+          <span className="text-xs font-bold text-red-600 uppercase tracking-wider">YouTube</span>
         </div>
-        <h2 className="font-['Inter'] text-4xl md:text-5xl font-bold text-[#00355D] mb-4 tracking-tighter">
+        <h2 className="font-['Inter'] text-2xl md:text-3xl font-bold text-[#00355D] mb-3 tracking-tighter">
           Watch Us in Action
         </h2>
-        <p className="text-lg text-[#575B5F] max-w-2xl mx-auto">
+        <p className="text-sm text-[#575B5F] max-w-xl mx-auto">
           Discover our products, clinical installations, and expert insights — straight from our channel.
         </p>
       </motion.div>
@@ -75,10 +75,10 @@ export function YoutubeSection() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ delay: 0.1 }}
-        className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start"
+        className="grid grid-cols-1 lg:grid-cols-5 gap-5 items-start max-w-4xl mx-auto"
       >
         {/* ── LEFT: Featured large player ── */}
-        <div className="lg:col-span-2 flex flex-col gap-4">
+        <div className="lg:col-span-3 flex flex-col gap-3">
           <div
             className="relative w-full rounded-2xl overflow-hidden shadow-2xl bg-black"
             style={{ paddingTop: "56.25%" /* 16:9 */ }}
@@ -108,7 +108,7 @@ export function YoutubeSection() {
         </div>
 
         {/* ── RIGHT: Playlist ── */}
-        <div className="flex flex-col gap-3 lg:max-h-[480px] lg:overflow-y-auto pr-1">
+        <div className="flex flex-col gap-2 lg:col-span-2 lg:max-h-[360px] lg:overflow-y-auto pr-1">
           <p className="text-[10px] font-black text-[#575B5F] uppercase tracking-[0.15em] mb-1 px-1">
             More Videos
           </p>
