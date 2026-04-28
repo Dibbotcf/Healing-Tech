@@ -4,6 +4,11 @@
   "description": "Leading Medical Equipment Supplier in Bangladesh",
   "icons": [
     {
+      "src": "/favicon.svg",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
       "src": "/favicon.png",
       "sizes": "192x192",
       "type": "image/png",

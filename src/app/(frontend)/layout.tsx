@@ -23,18 +23,17 @@ export const metadata: Metadata = {
   keywords: "medical equipment supplier Bangladesh, surgical lights, anesthesia machines, hospital beds, OT lights, direct medical import Dhaka, ICU equipment Bangladesh, Healing Technology, DGDA compliant medical devices, preventive maintenance medical equipment",
   robots: "index, follow",
   // ── Favicon / icons ─────────────────────────────────────────
-  // These tell Google which image to show next to your URL in search results.
+  // SVG favicon — used by Google search results, browser tabs, bookmarks.
   icons: {
     icon: [
-      { url: "/favicon.png", type: "image/png", sizes: "512x512" },
+      { url: "/favicon.svg", type: "image/svg+xml" },
       { url: "/favicon.png", type: "image/png", sizes: "192x192" },
       { url: "/favicon.png", type: "image/png", sizes: "32x32" },
-      { url: "/favicon.png", type: "image/png", sizes: "16x16" },
     ],
     apple: [
-      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+      { url: "/favicon.svg", type: "image/svg+xml" },
     ],
-    shortcut: "/favicon.png",
+    shortcut: "/favicon.svg",
   },
   // ── Open Graph (social sharing + Google Knowledge Panel) ────
   openGraph: {
