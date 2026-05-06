@@ -546,5 +546,7 @@ export default buildConfig({
     pool: {
       connectionString: process.env.DATABASE_URI || '',
     },
+    // Auto-sync schema on server start (creates new tables for new collections)
+    push: true,
   }),
 })

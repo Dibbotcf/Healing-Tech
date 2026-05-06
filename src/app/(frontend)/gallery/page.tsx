@@ -88,13 +88,13 @@ export default function GalleryPage() {
   const [activeVideo, setActiveVideo]     = useState<GalleryVideo | null>(null);
 
   useEffect(() => {
-    fetch("/api/gallery-posts")
+    fetch("/api/gallery-posts-list")
       .then((r) => r.json())
       .then((d) => setPosts(d.docs ?? []))
       .catch(() => setPosts([]))
       .finally(() => setLoadingPosts(false));
 
-    fetch("/api/gallery-videos")
+    fetch("/api/gallery-videos-list")
       .then((r) => r.json())
       .then((d) => setVideos(d.docs ?? []))
       .catch(() => setVideos([]))
@@ -177,7 +177,7 @@ export default function GalleryPage() {
               <Images className="w-8 h-8 text-[#12B5CB]" />
             </div>
             <h3 className="text-xl font-bold text-[#00355D] mb-2">No gallery images yet</h3>
-            <p className="text-[#575B5F]">Add images in the <Link href="/admin/collections/gallery-posts" className="text-[#12B5CB] underline">CMS admin panel</Link>.</p>
+            <p className="text-[#575B5F]">Add images via <Link href="/admin/collections/gallery-posts" className="text-[#12B5CB] underline">Gallery Posts in admin</Link>.</p>
           </div>
         ) : (
           <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4">
@@ -283,7 +283,7 @@ export default function GalleryPage() {
               <Play className="w-8 h-8 text-[#12B5CB]" />
             </div>
             <h3 className="text-xl font-bold text-[#00355D] mb-2">No videos yet</h3>
-            <p className="text-[#575B5F]">Add videos in the <Link href="/admin/collections/gallery-videos" className="text-[#12B5CB] underline">CMS admin panel</Link>.</p>
+            <p className="text-[#575B5F]">Add videos via <Link href="/admin/collections/gallery-videos" className="text-[#12B5CB] underline">Gallery Videos in admin</Link>.</p>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
