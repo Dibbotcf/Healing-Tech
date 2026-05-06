@@ -18,7 +18,7 @@ interface Product {
   brand?: { name: string } | string;
 }
 
-const PAGE_SIZE = 12; // 3 rows × 4 columns
+const PAGE_SIZE = 12; // 3 rows × 4 columns per page
 
 /** Single product card */
 function ProductCard({ product }: { product: Product }) {
@@ -121,33 +121,19 @@ export function ProductCarousel() {
   const [allProducts, setAllProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(0);
-  // rowOrder[0] = which data-row index sits in visual slot 0, etc.
-  const [rowOrder, setRowOrder] = useState([0, 1, 2]);
-  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const [totalDocs, setTotalDocs] = useState(0);
 
   useEffect(() => {
-    fetch("/api/products?limit=60&sort=-createdAt&depth=1")
+    // Fetch only the current page — much faster than loading 60 at once
+    fetch(`/api/products?limit=${PAGE_SIZE}&page=${page + 1}&sort=-createdAt&depth=1`)
       .then((r) => r.json())
       .then((data) => {
         setAllProducts(data.docs || []);
+        setTotalDocs(data.totalDocs || 0);
         setLoading(false);
       })
       .catch(() => setLoading(false));
-  }, []);
-
-  // Rotate row positions every 4 seconds (slow & calm)
-  useEffect(() => {
-    intervalRef.current = setInterval(() => {
-      setRowOrder((prev) => {
-        const next = [...prev];
-        next.push(next.shift()!); // [0,1,2] → [1,2,0] → [2,0,1] → [0,1,2]
-        return next;
-      });
-    }, 8000);
-    return () => {
-      if (intervalRef.current) clearInterval(intervalRef.current);
-    };
-  }, []);
+  }, [page]);
 
   if (loading) {
     return (
@@ -165,13 +151,13 @@ export function ProductCarousel() {
 
   if (!allProducts.length) return null;
 
-  const totalPages = Math.ceil(allProducts.length / PAGE_SIZE);
-  const pageProducts = allProducts.slice(page * PAGE_SIZE, (page + 1) * PAGE_SIZE);
+  const totalPages = Math.ceil(totalDocs / PAGE_SIZE);
+  const pageProducts = allProducts; // already the right page from the API
 
   const goNext = () => setPage((p) => Math.min(p + 1, totalPages - 1));
   const goPrev = () => setPage((p) => Math.max(p - 1, 0));
 
-  // Split page products into fixed rows of 4
+  // Split page products into rows of 4
   const dataRows: Product[][] = [];
   for (let r = 0; r < pageProducts.length; r += 4) {
     dataRows.push(pageProducts.slice(r, r + 4));
@@ -205,7 +191,7 @@ export function ProductCarousel() {
           </div>
         </motion.div>
 
-        {/* ── ROTATING ROWS ── */}
+        {/* ── PRODUCT ROWS ── */}
         <AnimatePresence mode="wait">
           <motion.div
             key={page}
@@ -215,35 +201,21 @@ export function ProductCarousel() {
             transition={{ duration: 0.4 }}
             className="space-y-3 md:space-y-6"
           >
-            {/*
-              rowOrder tells us which data-row to display in each visual slot.
-              layoutId ensures Framer Motion animates the row to its new physical position.
-            */}
-            {rowOrder.map((dataIdx) => {
-              const row = dataRows[dataIdx];
+            {dataRows.map((row, rowIdx) => {
               if (!row || row.length === 0) return null;
               return (
-                <motion.div
-                  key={`row-data-${dataIdx}`}
-                  layoutId={`row-data-${dataIdx}`}
-                  layout
-                  transition={{
-                    layout: {
-                      type: "spring",
-                      stiffness: 25,
-                      damping: 20,
-                      duration: 2.5,
-                    },
-                  }}
+                <div
+                  key={`row-${page}-${rowIdx}`}
                   className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6"
                 >
                   {row.map((product) => (
                     <ProductCard key={product.id} product={product} />
                   ))}
-                </motion.div>
+                </div>
               );
             })}
           </motion.div>
+
         </AnimatePresence>
 
         {/* ── PAGINATION ── */}

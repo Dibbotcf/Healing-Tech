@@ -3,24 +3,34 @@ import configPromise from "@/payload.config";
 import { NextResponse } from "next/server";
 import { getMediaUrl } from "@/lib/getMediaUrl";
 
-export const dynamic = 'force-dynamic';
+// Cache for 2 minutes — mega menu data rarely changes
+export const revalidate = 120;
 
 export async function GET() {
   try {
     const payload = await getPayload({ config: configPromise });
 
-    const categoryDocs = await payload.find({
-      collection: "categories",
-      depth: 0,
-      limit: 100,
-      sort: "sortOrder",
-    });
-
-    const productDocs = await payload.find({
-      collection: "products",
-      depth: 2,
-      limit: 1000,
-    });
+    const [categoryDocs, productDocs] = await Promise.all([
+      payload.find({
+        collection: "categories",
+        depth: 0,
+        limit: 100,
+        sort: "sortOrder",
+      }),
+      payload.find({
+        collection: "products",
+        depth: 1,
+        limit: 60, // reduced from 200 — mega menu shows ~30 at a time
+        select: {
+          name: true,
+          slug: true,
+          category: true,
+          markAsNew: true,
+          heroImage: true,
+          gallery: true,
+        } as any,
+      }),
+    ]);
 
     const categories = categoryDocs.docs.map((c) => ({
       id: String(c.id),
@@ -29,7 +39,6 @@ export async function GET() {
     }));
 
     const products = productDocs.docs.map((p) => {
-      // category can be a populated object or a string/number id
       let catId = "";
       if (p.category) {
         if (typeof p.category === "object" && "id" in p.category) {
@@ -39,7 +48,6 @@ export async function GET() {
         }
       }
 
-      // Extract hero image URL — include video files too, just track mimeType
       let imageUrl = "";
       let imageMime = "";
       const heroImg = p.heroImage;
@@ -47,7 +55,6 @@ export async function GET() {
         imageUrl = getMediaUrl((heroImg as any).url) || "";
         imageMime = (heroImg as any).mimeType || "";
       }
-      // If heroImage is completely missing, try gallery for first image
       if (!imageUrl && p.gallery && Array.isArray(p.gallery) && p.gallery.length > 0) {
         for (const g of p.gallery) {
           const gi = g.image;
@@ -70,7 +77,9 @@ export async function GET() {
       };
     });
 
-    return NextResponse.json({ categories, products });
+    const response = NextResponse.json({ categories, products });
+    response.headers.set("Cache-Control", "public, s-maxage=120, stale-while-revalidate=300");
+    return response;
   } catch (error) {
     console.error("Mega menu API Error:", error);
     return NextResponse.json({ categories: [], products: [] }, { status: 500 });

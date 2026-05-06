@@ -48,7 +48,7 @@ interface Slide {
   sub: string;
 }
 
-function SlideImage({ slide }: { slide: Slide }) {
+function SlideImage({ slide, isFirst }: { slide: Slide; isFirst: boolean }) {
   const [src, setSrc] = useState(slide.src);
   return (
     // eslint-disable-next-line @next/next/no-img-element
@@ -57,6 +57,10 @@ function SlideImage({ slide }: { slide: Slide }) {
       alt={slide.alt}
       onError={() => setSrc(FALLBACK_SRC)}
       className="w-full h-full object-cover"
+      // Only the first hero image is a priority LCP element — others lazy load
+      fetchPriority={isFirst ? "high" : "low"}
+      loading={isFirst ? "eager" : "lazy"}
+      decoding="async"
     />
   );
 }
@@ -94,7 +98,7 @@ export function HeroSlider() {
           transition={{ duration: 1.0, ease: "easeInOut" }}
           className="absolute inset-0"
         >
-          <SlideImage slide={slides[current]} />
+          <SlideImage slide={slides[current]} isFirst={current === 0} />
         </motion.div>
       </AnimatePresence>
 

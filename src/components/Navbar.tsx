@@ -43,17 +43,22 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  /* ── load menu data ── */
+  /* ── load menu data — deferred so it doesn't block initial page render ── */
   useEffect(() => {
-    fetch("/api/menus")
-      .then((r) => r.json())
-      .then(({ categories: cats, products: prods }) => {
-        setCategories(cats ?? []);
-        setProducts(prods ?? []);
-        if (cats?.length) setActiveCategory(cats[0].id);
-      })
-      .catch(console.error)
-      .finally(() => setLoading(false));
+    // 1-second delay: nav links render immediately; only the mega-menu
+    // dropdown needs this data, and users rarely click it in the first second.
+    const timer = setTimeout(() => {
+      fetch("/api/menus")
+        .then((r) => r.json())
+        .then(({ categories: cats, products: prods }) => {
+          setCategories(cats ?? []);
+          setProducts(prods ?? []);
+          if (cats?.length) setActiveCategory(cats[0].id);
+        })
+        .catch(console.error)
+        .finally(() => setLoading(false));
+    }, 1000);
+    return () => clearTimeout(timer);
   }, []);
 
   /* ── body scroll lock ── */
@@ -132,8 +137,9 @@ export default function Navbar() {
 
             {/* Static nav links */}
             {[
-              { label: "About Us", href: "/about" },
-              { label: "What We Do",  href: "/what-we-do" },
+              { label: "About Us",  href: "/about" },
+              { label: "What We Do", href: "/what-we-do" },
+              { label: "Gallery",    href: "/gallery" },
             ].map((item) => (
               <Link
                 key={item.href}
@@ -430,9 +436,10 @@ export default function Navbar() {
           <p className="text-[10px] font-black text-[#575B5F] uppercase tracking-[0.15em] mb-4 ml-1">Menu</p>
           <div className="space-y-3 mb-8">
             {[
-              { label: "Product Catalog", href: "/products", icon: Box, color: "text-[#12B5CB]" },
-              { label: "About Us", href: "/about", icon: Info, color: "text-[#00355D]" },
-              { label: "What We Do", href: "/what-we-do", icon: Activity, color: "text-[#00355D]" },
+              { label: "Product Catalog", href: "/products",  icon: Box,      color: "text-[#12B5CB]" },
+              { label: "About Us",       href: "/about",     icon: Info,     color: "text-[#00355D]" },
+              { label: "What We Do",     href: "/what-we-do",icon: Activity,  color: "text-[#00355D]" },
+              { label: "Gallery",        href: "/gallery",   icon: Sparkles, color: "text-[#7B5EA7]" },
             ].map((item, i) => {
               const Icon = item.icon;
               return (

@@ -1,17 +1,20 @@
 "use client";
 import { useState, useEffect } from "react";
+import dynamic from "next/dynamic";
 
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight, ShieldCheck, Wrench } from "lucide-react";
-import { TestimonialsSection } from "@/components/TestimonialsSection";
-import { FAQSection } from "@/components/FAQSection";
-import { ProductCarousel } from "@/components/ProductCarousel";
-import { CategoryShowcase } from "@/components/CategoryShowcase";
 import { HeroSlider } from "@/components/HeroSlider";
 import Image from "next/image";
-import { WorldMap } from "@/components/ui/map";
-import { YoutubeSection } from "@/components/YoutubeSection";
+
+// Lazy-load all heavy below-fold components so they don't block initial render
+const ProductCarousel = dynamic(() => import("@/components/ProductCarousel").then(m => ({ default: m.ProductCarousel })), { ssr: false });
+const CategoryShowcase = dynamic(() => import("@/components/CategoryShowcase").then(m => ({ default: m.CategoryShowcase })), { ssr: false });
+const WorldMap = dynamic(() => import("@/components/ui/map").then(m => ({ default: m.WorldMap })), { ssr: false, loading: () => <div className="h-[320px] bg-gray-50 rounded-xl animate-pulse" /> });
+
+const TestimonialsSection = dynamic(() => import("@/components/TestimonialsSection").then(m => ({ default: m.TestimonialsSection })), { ssr: false });
+const FAQSection = dynamic(() => import("@/components/FAQSection").then(m => ({ default: m.FAQSection })), { ssr: false });
 
 const supplyRoutes = [
   { start: { lat: 51.1657, lng: 10.4515, label: "Germany" },     end: { lat: 23.685, lng: 90.3563, label: "Dhaka" } },
@@ -56,19 +59,24 @@ export default function Home() {
   const [clients, setClients] = useState(INITIAL_CLIENT_LOGOS);
 
   useEffect(() => {
-    fetch("/api/public-partner-logos")
-      .then((res) => res.json())
-      .then((data) => {
-        if (data && data.length > 0) setBrands(data);
-      })
-      .catch((err) => console.error("Error fetching partner logos:", err));
+    // Defer non-critical logo fetches so they don't compete with LCP
+    const timer = setTimeout(() => {
+      fetch("/api/public-partner-logos")
+        .then((res) => res.json())
+        .then((data) => {
+          if (data && data.length > 0) setBrands(data);
+        })
+        .catch((err) => console.error("Error fetching partner logos:", err));
 
-    fetch("/api/public-client-logos")
-      .then((res) => res.json())
-      .then((data) => {
-        if (data && data.length > 0) setClients(data);
-      })
-      .catch((err) => console.error("Error fetching client logos:", err));
+      fetch("/api/public-client-logos")
+        .then((res) => res.json())
+        .then((data) => {
+          if (data && data.length > 0) setClients(data);
+        })
+        .catch((err) => console.error("Error fetching client logos:", err));
+    }, 2000);
+
+    return () => clearTimeout(timer);
   }, []);
 
   return (
@@ -151,8 +159,6 @@ export default function Home() {
             </div>
           </motion.div>
 
-          {/* ── YouTube Section ── */}
-          <YoutubeSection />
 
           {/* ── Why Hospitals Choose Us ── */}
           <div className="mt-32">

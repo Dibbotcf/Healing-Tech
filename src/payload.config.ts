@@ -466,7 +466,47 @@ export default buildConfig({
           }
         }
       ]
-    }
+    },
+    // Gallery Posts (Images)
+    {
+      slug: 'gallery-posts',
+      admin: {
+        useAsTitle: 'title',
+        defaultColumns: ['title', 'image', 'isFeatured', 'sortOrder'],
+        description: 'Manage gallery images shown on the Gallery page.',
+      },
+      access: { read: () => true },
+      fields: [
+        { name: 'title', type: 'text', required: true, label: 'Title' },
+        { name: 'caption', type: 'textarea', label: 'Caption / Short Description' },
+        { name: 'image', type: 'upload', relationTo: 'media', required: true, label: 'Image' },
+        { name: 'isFeatured', type: 'checkbox', defaultValue: false, label: 'Featured (shown in highlights)' },
+        { name: 'sortOrder', type: 'number', defaultValue: 0, label: 'Sort Order (lower = first)' },
+      ],
+    },
+    // Gallery Videos
+    {
+      slug: 'gallery-videos',
+      admin: {
+        useAsTitle: 'title',
+        defaultColumns: ['title', 'embedUrl', 'sortOrder'],
+        description: 'Manage video embeds shown in the Gallery page video section.',
+      },
+      access: { read: () => true },
+      fields: [
+        { name: 'title', type: 'text', required: true, label: 'Title' },
+        { name: 'description', type: 'textarea', label: 'Short Description' },
+        {
+          name: 'embedUrl',
+          type: 'text',
+          required: true,
+          label: 'YouTube / Vimeo Embed URL',
+          admin: { description: 'e.g. https://www.youtube.com/embed/VIDEO_ID' },
+        },
+        { name: 'thumbnail', type: 'upload', relationTo: 'media', label: 'Custom Thumbnail (optional)' },
+        { name: 'sortOrder', type: 'number', defaultValue: 0, label: 'Sort Order (lower = first)' },
+      ],
+    },
 
   ],
   globals: [

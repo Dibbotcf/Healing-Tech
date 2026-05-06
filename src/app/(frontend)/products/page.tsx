@@ -1,26 +1,38 @@
 import { getPayload } from 'payload'
 import configPromise from '@/payload.config'
-import Link from 'next/link'
-import { ArrowRight, Search, Filter, Sparkles, CheckCircle2 } from 'lucide-react'
 
 import ProductFilterClient from './ProductFilterClient';
 
-export const dynamic = 'force-dynamic';
+// Revalidate every 60 seconds — avoids re-fetching on every request
+export const revalidate = 60;
 
 export default async function ProductsPage({ searchParams }: { searchParams: Promise<{ category?: string }> }) {
   const params = await searchParams;
   const categorySlug = params.category || null;
   const payload = await getPayload({ config: configPromise });
 
-  // Fetch absolutely everything to allow client-side instantaneous filtering
-  const { docs: products } = await payload.find({
-    collection: 'products',
-    depth: 2,
-    limit: 1000,
-    where: { status: { equals: 'published' } }
-  });
-
-  const categoryDocs = await payload.find({ collection: 'categories', depth: 0, limit: 100, sort: 'sortOrder' });
+  // Fetch in parallel — depth:1 is enough, we only need heroImage/category/brand refs
+  const [{ docs: products }, categoryDocs] = await Promise.all([
+    payload.find({
+      collection: 'products',
+      depth: 1,
+      limit: 500,
+      where: { status: { equals: 'published' } },
+      select: {
+        name: true,
+        slug: true,
+        listingSummary: true,
+        shortSummary: true,
+        markAsNew: true,
+        price: true,
+        discountPrice: true,
+        heroImage: true,
+        category: true,
+        brand: true,
+      } as any,
+    }),
+    payload.find({ collection: 'categories', depth: 0, limit: 100, sort: 'sortOrder' }),
+  ]);
   const categories = categoryDocs.docs;
 
   return (

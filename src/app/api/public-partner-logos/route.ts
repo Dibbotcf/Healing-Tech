@@ -3,7 +3,8 @@ import configPromise from "@/payload.config";
 import { NextResponse } from "next/server";
 import { getMediaUrl } from "@/lib/getMediaUrl";
 
-export const dynamic = 'force-dynamic';
+// Cache for 5 minutes — partner logos change very rarely
+export const revalidate = 300;
 
 export async function GET() {
   try {
@@ -23,7 +24,9 @@ export async function GET() {
       website: l.website || "",
     }));
 
-    return NextResponse.json(logos);
+    const res = NextResponse.json(logos);
+    res.headers.set("Cache-Control", "public, s-maxage=300, stale-while-revalidate=600");
+    return res;
   } catch (error) {
     console.error("Partner logos API Error:", error);
     return NextResponse.json([], { status: 500 });
