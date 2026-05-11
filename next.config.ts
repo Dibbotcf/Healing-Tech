@@ -5,6 +5,7 @@ import path from 'path'
 const nextConfig: NextConfig = {
   output: "standalone",
   experimental: {
+    proxyClientMaxBodySize: '2gb',
     serverActions: {
       bodySizeLimit: '2gb',
     },
