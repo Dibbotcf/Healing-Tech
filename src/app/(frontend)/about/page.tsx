@@ -38,25 +38,50 @@ export default function About() {
           
           {/* MD Message (Left, larger) */}
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="lg:col-span-7 flex flex-col justify-center">
-            <div className="relative border-l-2 border-[#12B5CB] pl-8 md:pl-12 py-4 mb-12">
-              <p className="text-[#00355D] text-2xl lg:text-3xl font-medium leading-[1.3] tracking-tight">
-                "At Healing Technology, we believe that the right equipment in the right hands saves lives. Our journey began with a simple commitment: to bridge the gap between global medical innovation and our local healthcare providers. By importing only the most reliable OT and hospital solutions, we empower surgeons and medical staff to perform at their best. We don't just supply machines; we provide the precision and reliability that patient care demands. Thank you for trusting us as your partner in health."
-              </p>
-            </div>
             
-            <div className="flex items-center gap-6 pl-8 md:pl-12">
-              <div className="w-16 h-16 shrink-0 rounded-full overflow-hidden bg-gray-100 border border-gray-200">
-                <Image
-                  src="/md-nirob.jpg"
-                  alt="Md. Rokibul Islam Nirob"
-                  width={64}
-                  height={64}
-                  className="w-full h-full object-cover object-top grayscale hover:grayscale-0 transition-all duration-500"
-                />
-              </div>
-              <div>
-                <h2 className="text-lg font-bold text-[#00355D] tracking-tight m-0 leading-none mb-1.5">Md. Rokibul Islam Nirob</h2>
-                <p className="text-[#575B5F] text-sm uppercase tracking-wider font-medium m-0 leading-none">Managing Director</p>
+            {/* Premium MD Message Card */}
+            <div className="relative bg-[#00355D] rounded-3xl p-8 md:p-12 overflow-hidden shadow-2xl">
+              {/* Decorative background rings */}
+              <div className="absolute -top-16 -right-16 w-64 h-64 rounded-full border border-white/5" />
+              <div className="absolute -top-8 -right-8 w-48 h-48 rounded-full border border-white/5" />
+              <div className="absolute -bottom-20 -left-20 w-72 h-72 rounded-full bg-[#12B5CB]/5" />
+
+              {/* Top label */}
+              <p className="text-[#12B5CB] text-[10px] font-bold uppercase tracking-[0.2em] mb-6">Message from the Managing Director</p>
+
+              {/* Giant decorative quote mark */}
+              <div className="text-[#12B5CB]/20 text-[120px] leading-none font-serif absolute top-6 left-8 select-none pointer-events-none">&ldquo;</div>
+
+              {/* Quote text */}
+              <blockquote className="relative z-10 text-white/90 text-lg md:text-xl leading-[1.7] font-light tracking-normal mt-6">
+                At Healing Technology, we believe that the right equipment in the right hands saves lives. Our journey began with a simple commitment: to bridge the gap between global medical innovation and our local healthcare providers. By importing only the most reliable OT and hospital solutions, we empower surgeons and medical staff to perform at their best.
+                <br /><br />
+                We don&apos;t just supply machines — we provide the precision and reliability that patient care demands. Thank you for trusting us as your partner in health.
+              </blockquote>
+
+              {/* Divider */}
+              <div className="w-16 h-px bg-[#12B5CB]/40 my-8" />
+
+              {/* Signature area */}
+              <div className="flex items-center gap-5">
+                <div className="relative shrink-0">
+                  {/* Teal accent ring */}
+                  <div className="absolute inset-0 rounded-full ring-2 ring-[#12B5CB] ring-offset-2 ring-offset-[#00355D]" />
+                  <div className="w-16 h-16 rounded-full overflow-hidden bg-white/10">
+                    <Image
+                      src="/md-nirob.jpg"
+                      alt="Md. Rokibul Islam Nirob"
+                      width={64}
+                      height={64}
+                      className="w-full h-full object-cover object-top"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <h2 className="text-white text-lg font-bold tracking-tight leading-tight mb-1">Md. Rokibul Islam Nirob</h2>
+                  <p className="text-[#12B5CB] text-xs font-bold uppercase tracking-[0.15em]">Managing Director</p>
+                  <p className="text-white/40 text-xs mt-0.5">Healing Technology</p>
+                </div>
               </div>
             </div>
           </motion.div>

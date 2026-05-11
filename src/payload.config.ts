@@ -36,6 +36,9 @@ export default buildConfig({
       admin: {
         useAsTitle: 'name',
         defaultColumns: ['name', 'logo', 'sortOrder'],
+        components: {
+          edit: { SaveButton: '@/components/SaveWithCancel#SaveWithCancel' },
+        },
       },
       access: { read: () => true },
       fields: [
@@ -51,6 +54,9 @@ export default buildConfig({
       admin: {
         useAsTitle: 'name',
         defaultColumns: ['name', 'logo'],
+        components: {
+          edit: { SaveButton: '@/components/SaveWithCancel#SaveWithCancel' },
+        },
       },
       access: { read: () => true },
       fields: [
@@ -66,6 +72,9 @@ export default buildConfig({
       admin: {
         useAsTitle: 'name',
         defaultColumns: ['name', 'countryOfOrigin', 'isFeatured'],
+        components: {
+          edit: { SaveButton: '@/components/SaveWithCancel#SaveWithCancel' },
+        },
       },
       access: { read: () => true },
       fields: [
@@ -85,6 +94,9 @@ export default buildConfig({
       admin: {
         useAsTitle: 'title',
         defaultColumns: ['title', 'slug', 'parent'],
+        components: {
+          edit: { SaveButton: '@/components/SaveWithCancel#SaveWithCancel' },
+        },
       },
       access: { read: () => true },
       fields: [
@@ -105,6 +117,9 @@ export default buildConfig({
       admin: {
         useAsTitle: 'title',
         defaultColumns: ['title', 'issuerOrStandardBody'],
+        components: {
+          edit: { SaveButton: '@/components/SaveWithCancel#SaveWithCancel' },
+        },
       },
       access: { read: () => true },
       fields: [
@@ -122,6 +137,9 @@ export default buildConfig({
       admin: {
         useAsTitle: 'name',
         defaultColumns: ['name', 'brand', 'category', 'status'],
+        components: {
+          edit: { SaveButton: '@/components/SaveWithCancel#SaveWithCancel' },
+        },
       },
       access: { read: () => true },
       fields: [
@@ -229,6 +247,9 @@ export default buildConfig({
       admin: {
         useAsTitle: 'title',
         defaultColumns: ['title', 'pageType', 'slug'],
+        components: {
+          edit: { SaveButton: '@/components/SaveWithCancel#SaveWithCancel' },
+        },
       },
       access: { read: () => true },
       fields: [
@@ -254,6 +275,9 @@ export default buildConfig({
       admin: {
         useAsTitle: 'clientName',
         defaultColumns: ['clientName', 'designation', 'hospital', 'isActive'],
+        components: {
+          edit: { SaveButton: '@/components/SaveWithCancel#SaveWithCancel' },
+        },
       },
       access: { read: () => true },
       fields: [
@@ -273,6 +297,9 @@ export default buildConfig({
       admin: {
         useAsTitle: 'question',
         defaultColumns: ['question', 'category', 'sortOrder', 'isActive'],
+        components: {
+          edit: { SaveButton: '@/components/SaveWithCancel#SaveWithCancel' },
+        },
       },
       access: { read: () => true },
       fields: [
@@ -295,6 +322,9 @@ export default buildConfig({
       admin: {
         useAsTitle: 'fullName',
         defaultColumns: ['fullName', 'email', 'hospital', 'createdAt', 'status'],
+        components: {
+          edit: { SaveButton: '@/components/SaveWithCancel#SaveWithCancel' },
+        },
       },
       access: { 
         read: ({ req: { user } }) => Boolean(user), // only admin can read
@@ -325,6 +355,9 @@ export default buildConfig({
       admin: {
         useAsTitle: 'orderNumber',
         defaultColumns: ['orderNumber', 'customerName', 'totalAmount', 'paymentStatus', 'status', 'invoiceLink'],
+        components: {
+          edit: { SaveButton: '@/components/SaveWithCancel#SaveWithCancel' },
+        },
       },
       access: { 
         read: ({ req: { user } }) => Boolean(user),
@@ -474,6 +507,9 @@ export default buildConfig({
         useAsTitle: 'title',
         defaultColumns: ['title', 'image', 'isFeatured', 'sortOrder'],
         description: 'Manage gallery images shown on the Gallery page.',
+        components: {
+          edit: { SaveButton: '@/components/SaveWithCancel#SaveWithCancel' },
+        },
       },
       access: { read: () => true },
       fields: [
@@ -491,19 +527,57 @@ export default buildConfig({
         useAsTitle: 'title',
         defaultColumns: ['title', 'embedUrl', 'sortOrder'],
         description: 'Manage video embeds shown in the Gallery page video section.',
+        components: {
+          edit: { SaveButton: '@/components/SaveWithCancel#SaveWithCancel' },
+        },
       },
       access: { read: () => true },
+      hooks: {
+        beforeChange: [
+          ({ data }: { data: Record<string, unknown> }) => {
+            // Auto-convert common YouTube share/watch URLs to embed format
+            if (data.embedUrl && typeof data.embedUrl === 'string') {
+              let url = (data.embedUrl as string).trim()
+              // https://www.youtube.com/watch?v=VIDEO_ID
+              url = url.replace(
+                /(?:https?:\/\/)?(?:www\.)?youtube\.com\/watch\?(?:[^&]*&)*v=([a-zA-Z0-9_-]+)/,
+                'https://www.youtube-nocookie.com/embed/$1'
+              )
+              // https://youtu.be/VIDEO_ID
+              url = url.replace(
+                /(?:https?:\/\/)?youtu\.be\/([a-zA-Z0-9_-]+)/,
+                'https://www.youtube-nocookie.com/embed/$1'
+              )
+              // Already an embed URL — normalise to youtube-nocookie domain
+              url = url.replace(
+                /(?:https?:\/\/)?(?:www\.)?youtube\.com\/embed\/([a-zA-Z0-9_-]+)/,
+                'https://www.youtube-nocookie.com/embed/$1'
+              )
+              data.embedUrl = url
+            }
+            return data
+          },
+        ],
+      },
       fields: [
         { name: 'title', type: 'text', required: true, label: 'Title' },
         { name: 'description', type: 'textarea', label: 'Short Description' },
         {
           name: 'embedUrl',
           type: 'text',
-          required: true,
+          required: false,
           label: 'YouTube / Vimeo Embed URL',
-          admin: { description: 'e.g. https://www.youtube.com/embed/VIDEO_ID' },
+          admin: { description: 'Paste any YouTube URL (watch or share link) — it will be converted automatically. Leave empty if uploading a video file below.' },
         },
-        { name: 'thumbnail', type: 'upload', relationTo: 'media', label: 'Custom Thumbnail (optional)' },
+        {
+          name: 'videoFile',
+          type: 'upload',
+          relationTo: 'media',
+          label: 'Upload Video File (optional)',
+          admin: { description: 'Upload an MP4/WebM video directly. Used instead of the embed URL when present.' },
+        },
+        // Keep legacy thumbnail field hidden so the DB column (thumbnail_id) is preserved
+        { name: 'thumbnail', type: 'upload', relationTo: 'media', label: 'Thumbnail (legacy)', admin: { hidden: true } },
         { name: 'sortOrder', type: 'number', defaultValue: 0, label: 'Sort Order (lower = first)' },
       ],
     },

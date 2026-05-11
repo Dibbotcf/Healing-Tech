@@ -20,9 +20,10 @@ interface GalleryVideo {
   id: string;
   title: string;
   description?: string;
-  embedUrl: string;
+  embedUrl?: string;
   sortOrder?: number;
   thumbnail?: { url?: string; alt?: string };
+  videoFile?: { url?: string; filename?: string; mimeType?: string };
 }
 
 /* ─── Skeleton ──────────────────────────────────────────────────── */
@@ -37,6 +38,14 @@ function VideoModal({ video, onClose }: { video: GalleryVideo; onClose: () => vo
     window.addEventListener("keydown", h);
     return () => window.removeEventListener("keydown", h);
   }, [onClose]);
+
+  // Determine what to render: prefer uploaded video file over embed URL
+  const videoFileUrl = video.videoFile?.url ? getMediaUrl(video.videoFile.url) : null;
+  const embedSrc = video.embedUrl
+    ? (video.embedUrl.includes('youtube-nocookie.com') || video.embedUrl.includes('youtube.com/embed') || video.embedUrl.includes('vimeo.com')
+        ? video.embedUrl + (video.embedUrl.includes('?') ? '&autoplay=1' : '?autoplay=1')
+        : video.embedUrl + (video.embedUrl.includes('?') ? '&autoplay=1' : '?autoplay=1'))
+    : null;
 
   return (
     <motion.div
@@ -54,14 +63,31 @@ function VideoModal({ video, onClose }: { video: GalleryVideo; onClose: () => vo
         className="relative w-full max-w-4xl bg-black rounded-2xl overflow-hidden shadow-2xl"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="aspect-video">
-          <iframe
-            src={video.embedUrl + "?autoplay=1"}
-            title={video.title}
-            allow="autoplay; fullscreen; picture-in-picture"
-            className="w-full h-full"
-            allowFullScreen
-          />
+        <div className="aspect-video bg-black">
+          {videoFileUrl ? (
+            // Uploaded video — use native HTML5 player
+            <video
+              src={videoFileUrl}
+              autoPlay
+              controls
+              playsInline
+              className="w-full h-full object-contain"
+            />
+          ) : embedSrc ? (
+            // Embed URL — use YouTube Privacy-Enhanced iframe
+            <iframe
+              src={embedSrc}
+              title={video.title}
+              allow="autoplay; fullscreen; picture-in-picture"
+              allowFullScreen
+              className="w-full h-full"
+              sandbox="allow-scripts allow-same-origin allow-presentation"
+            />
+          ) : (
+            <div className="w-full h-full flex items-center justify-center text-white/40 text-sm">
+              No video source configured.
+            </div>
+          )}
         </div>
         <div className="p-5 bg-[#001729]">
           <h3 className="text-white font-bold text-lg">{video.title}</h3>
@@ -177,7 +203,7 @@ export default function GalleryPage() {
               <Images className="w-8 h-8 text-[#12B5CB]" />
             </div>
             <h3 className="text-xl font-bold text-[#00355D] mb-2">No gallery images yet</h3>
-            <p className="text-[#575B5F]">Add images via <Link href="/admin/collections/gallery-posts" className="text-[#12B5CB] underline">Gallery Posts in admin</Link>.</p>
+            <p className="text-[#575B5F]">Gallery images will appear here once added.</p>
           </div>
         ) : (
           <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4">
@@ -283,12 +309,13 @@ export default function GalleryPage() {
               <Play className="w-8 h-8 text-[#12B5CB]" />
             </div>
             <h3 className="text-xl font-bold text-[#00355D] mb-2">No videos yet</h3>
-            <p className="text-[#575B5F]">Add videos via <Link href="/admin/collections/gallery-videos" className="text-[#12B5CB] underline">Gallery Videos in admin</Link>.</p>
+            <p className="text-[#575B5F]">Videos will appear here once added.</p>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
             {videos.map((video, i) => {
               const thumbSrc = getMediaUrl(video.thumbnail?.url);
+              const videoFileSrc = video.videoFile?.url ? getMediaUrl(video.videoFile.url) : null;
               return (
                 <motion.div
                   key={video.id}
@@ -300,7 +327,16 @@ export default function GalleryPage() {
                   style={{ height: 260 }}
                   onClick={() => setActiveVideo(video)}
                 >
-                  {thumbSrc ? (
+                  {/* Thumbnail: prefer uploaded video poster > custom thumbnail > gradient */}
+                  {videoFileSrc ? (
+                    <video
+                      src={videoFileSrc}
+                      className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-40 transition-opacity duration-300"
+                      muted
+                      playsInline
+                      preload="metadata"
+                    />
+                  ) : thumbSrc ? (
                     <Image src={thumbSrc} alt={video.thumbnail?.alt || video.title} fill className="object-cover opacity-60 group-hover:opacity-40 transition-opacity duration-300" loading="lazy" />
                   ) : (
                     <div className="absolute inset-0 bg-gradient-to-br from-[#001729] to-[#00355D]" />

@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight, Sparkles, ChevronLeft, ChevronRight } from "lucide-react";
@@ -20,7 +20,7 @@ interface Product {
 
 const PAGE_SIZE = 12; // 3 rows × 4 columns per page
 
-/** Single product card */
+/** Single product card — matches the products page card style */
 function ProductCard({ product }: { product: Product }) {
   const catTitle =
     product.category && typeof product.category !== "string"
@@ -32,88 +32,153 @@ function ProductCard({ product }: { product: Product }) {
       : "";
   const heroUrl = getMediaUrl(product.heroImage?.url);
 
+  const addToCart = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    import("@/lib/cartStore").then(({ useCartStore }) => {
+      useCartStore.getState().addItem(
+        {
+          id: product.id,
+          name: product.name,
+          price: product.price,
+          discountPrice: product.discountPrice,
+          heroImage: product.heroImage
+            ? { ...product.heroImage, url: getMediaUrl(product.heroImage.url) }
+            : undefined,
+          slug: product.slug,
+        },
+        1
+      );
+    });
+  };
+
+  const handleOrder = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    import("@/lib/cartStore").then(({ useCartStore }) => {
+      useCartStore.getState().addItem(
+        {
+          id: product.id,
+          name: product.name,
+          price: product.price,
+          discountPrice: product.discountPrice,
+          heroImage: product.heroImage
+            ? { ...product.heroImage, url: getMediaUrl(product.heroImage.url) }
+            : undefined,
+          slug: product.slug,
+        },
+        1
+      );
+      window.location.href = "/checkout";
+    });
+  };
+
   return (
-    <Link href={`/products/${product.slug}`} className="block h-full group">
-      <div className="bg-white rounded-xl border border-gray-100 hover:border-[#12B5CB]/30 hover:shadow-xl transition-all duration-300 overflow-hidden h-full flex flex-col">
-        {/* Image */}
-        <div className="relative overflow-hidden pointer-events-none h-[140px] md:h-[200px] bg-[#F8F9FA]">
-          {heroUrl ? (
-            product.heroImage?.mimeType?.startsWith("video/") ? (
-              <video
-                src={heroUrl}
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
-              />
-            ) : (
-              <img
-                src={heroUrl}
-                alt={product.name}
-                className="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-500"
-              />
-            )
+    <div className="bg-white rounded-2xl overflow-hidden hover:shadow-lg transition-all duration-300 border border-gray-100 flex flex-col relative group">
+      {product.markAsNew && (
+        <div className="absolute top-4 right-4 z-10 bg-[#12B5CB] text-white text-[10px] font-bold px-3 py-1 rounded-full flex items-center gap-1.5 uppercase tracking-widest shadow-sm">
+          <Sparkles className="w-3 h-3" /> NEW
+        </div>
+      )}
+
+      {/* Image */}
+      <Link
+        href={`/products/${product.slug}`}
+        className="block relative h-36 md:h-48 bg-[#F8F9FA] overflow-hidden group-hover:bg-[#EEF4FB] transition-colors cursor-pointer"
+      >
+        {heroUrl ? (
+          product.heroImage?.mimeType?.startsWith("video/") ? (
+            <video
+              src={heroUrl}
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-500"
+            />
           ) : (
-            <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-[#00355D]/5 to-[#12B5CB]/10">
-              <span className="text-[#00355D]/20 text-6xl font-bold">
-                {product.name.charAt(0)}
-              </span>
-            </div>
-          )}
-          {product.markAsNew && (
-            <div className="absolute top-3 left-3 bg-[#12B5CB] text-white text-[10px] font-bold px-2.5 py-1 rounded-xl flex items-center gap-1 uppercase tracking-wider shadow-sm">
-              <Sparkles className="w-3 h-3" /> New
-            </div>
-          )}
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={heroUrl}
+              alt={product.name}
+              className="w-full h-full object-contain p-6 group-hover:scale-105 transition-transform duration-500"
+            />
+          )
+        ) : (
+          <div className="w-full h-full flex items-center justify-center">
+            <span className="font-bold text-gray-200 text-7xl select-none">
+              {product.name.substring(0, 2)}
+            </span>
+          </div>
+        )}
+      </Link>
+
+      {/* Info */}
+      <div className="p-3 md:p-5 flex-1 flex flex-col cursor-default">
+        {/* Category • Brand */}
+        <div className="text-[10px] font-bold text-[#12B5CB] mb-2 uppercase tracking-widest">
+          {catTitle || "Product"}
+          {brandName && <span className="text-[#575B5F] px-1.5">•</span>}
+          {brandName && <span className="text-[#575B5F]">{brandName}</span>}
         </div>
 
-        {/* Info */}
-        <div className="p-3 md:p-6 flex flex-col flex-1 pointer-events-none">
-          {catTitle && (
-            <p className="text-[10px] font-bold text-[#12B5CB] uppercase tracking-[0.1em] mb-2">
-              {catTitle}
-            </p>
-          )}
-          <h3 className="font-bold text-[#00355D] text-base md:text-xl tracking-tight mb-2 md:mb-3 group-hover:text-[#12B5CB] transition-colors leading-snug">
+        <Link href={`/products/${product.slug}`} className="cursor-pointer">
+          <h3 className="font-['Inter'] text-sm md:text-lg font-bold text-[#111111] mb-1 md:mb-2 leading-tight tracking-[-0.03em] hover:text-[#12B5CB] transition-colors line-clamp-2">
             {product.name}
           </h3>
-          <p className="text-sm text-[#575B5F] leading-relaxed line-clamp-2 mb-4 flex-1">
-            {product.listingSummary}
-          </p>
-          <div className="mt-auto flex flex-col gap-3">
-            {(product.price != null || product.discountPrice != null) && (
-              <div className="flex items-center gap-2">
-                {product.discountPrice != null ? (
-                  <>
-                    <span className="text-lg font-extrabold text-[#12B5CB]">
-                      ৳{product.discountPrice.toLocaleString()}
-                    </span>
-                    <span className="text-sm text-gray-400 line-through">
-                      ৳{product.price?.toLocaleString()}
-                    </span>
-                  </>
-                ) : (
-                  <span className="text-lg font-extrabold text-[#12B5CB]">
+        </Link>
+
+        <p className="text-[#575B5F] text-xs md:text-sm mb-3 md:mb-4 font-light line-clamp-3 leading-relaxed flex-1">
+          {product.listingSummary ||
+            "Premium medical equipment by Healing Technology."}
+        </p>
+
+        <div className="pt-2 md:pt-3 border-t border-gray-100 flex flex-col gap-1.5 md:gap-2">
+          {/* Price */}
+          {(product.price != null || product.discountPrice != null) && (
+            <div className="flex items-end gap-2 mb-0.5">
+              {product.discountPrice != null ? (
+                <>
+                  <span className="text-base md:text-xl font-extrabold text-[#12B5CB] tracking-tight leading-none">
+                    ৳{product.discountPrice.toLocaleString()}
+                  </span>
+                  <span className="text-xs text-[#575B5F]/50 line-through pb-0.5">
                     ৳{product.price?.toLocaleString()}
                   </span>
-                )}
-              </div>
-            )}
-            <div className="flex items-center justify-between pt-4 border-t border-gray-50">
-              {brandName && (
-                <span className="text-xs text-[#575B5F] font-bold uppercase tracking-wider">
-                  {brandName}
+                </>
+              ) : (
+                <span className="text-base md:text-xl font-extrabold text-[#12B5CB] tracking-tight leading-none">
+                  ৳{product.price?.toLocaleString()}
                 </span>
               )}
-              <span className="text-[#12B5CB] text-sm font-bold inline-flex items-center gap-1 group-hover:gap-2 transition-all">
-                View Details <ArrowRight className="w-3.5 h-3.5" />
-              </span>
             </div>
+          )}
+
+          {/* Cart + Order buttons */}
+          <div className="flex flex-col sm:flex-row items-center gap-1.5 md:gap-2 mt-0.5">
+            <button
+              onClick={addToCart}
+              className="w-full bg-[#12B5CB]/10 hover:bg-[#12B5CB]/20 text-[#12B5CB] text-center py-2 rounded-xl text-xs font-bold transition-colors shadow-sm flex justify-center items-center gap-1 cursor-pointer"
+            >
+              🛒 Cart
+            </button>
+            <button
+              onClick={handleOrder}
+              className="w-full bg-[#00355D] hover:bg-[#002543] text-white text-center py-2 rounded-xl text-xs font-bold transition-colors shadow-sm cursor-pointer flex justify-center items-center gap-1"
+            >
+              ⚡ Order Now
+            </button>
           </div>
+
+          <Link
+            href={`/products/${product.slug}`}
+            className="hidden sm:block w-full text-center py-2 text-xs font-bold text-[#575B5F] hover:text-[#12B5CB] transition-colors cursor-pointer mt-1"
+          >
+            View Full Details
+          </Link>
         </div>
       </div>
-    </Link>
+    </div>
   );
 }
 
