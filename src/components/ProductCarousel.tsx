@@ -40,8 +40,8 @@ function ProductCard({ product }: { product: Product }) {
         {
           id: product.id,
           name: product.name,
-          price: product.price,
-          discountPrice: product.discountPrice,
+          price: product.price ?? null,
+          discountPrice: product.discountPrice ?? null,
           heroImage: product.heroImage
             ? { ...product.heroImage, url: getMediaUrl(product.heroImage.url) }
             : undefined,
@@ -60,8 +60,8 @@ function ProductCard({ product }: { product: Product }) {
         {
           id: product.id,
           name: product.name,
-          price: product.price,
-          discountPrice: product.discountPrice,
+          price: product.price ?? null,
+          discountPrice: product.discountPrice ?? null,
           heroImage: product.heroImage
             ? { ...product.heroImage, url: getMediaUrl(product.heroImage.url) }
             : undefined,
