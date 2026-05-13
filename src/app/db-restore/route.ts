@@ -4,8 +4,8 @@ import path from 'path';
 
 export const dynamic = 'force-dynamic'; // Prevent caching
 
-export async function GET() {
-  return new Promise((resolve) => {
+export async function GET(): Promise<NextResponse> {
+  return new Promise<NextResponse>((resolve) => {
     console.log("Starting DB restore process...");
     
     // First, verify psql exists

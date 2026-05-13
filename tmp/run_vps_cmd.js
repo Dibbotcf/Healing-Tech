@@ -10,8 +10,8 @@ async function run() {
 
     await ssh.connect({
       host: '97.74.90.189',
-      username: 'healingtechnology',
-      password: 'S_hJ4NZ*rxr4i1zsw'
+      username: 'deploy',
+      password: '59_Jd3gp0'
     });
 
     if (mode === 'upload') {
