@@ -13,7 +13,7 @@
     "@heroui/react": "^3.0.2",
     "@heroui/theme": "^2.4.26",
     "@payloadcms/db-postgres": "^3.83.0",
-    "@payloadcms/live-preview-react": "^3.81.0",
+    "@payloadcms/live-preview-react": "^3.83.0",
     "@payloadcms/next": "^3.83.0",
     "@payloadcms/plugin-seo": "^3.83.0",
     "@payloadcms/richtext-lexical": "^3.83.0",
