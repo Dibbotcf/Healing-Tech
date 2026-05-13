@@ -50,9 +50,9 @@ postgres://postgres:Q16OxSTs9OfRNPJTU8FdcqCv7nsYPSIFhIpcOWQKF4VjRukvgD8pkqbWlXlg
 | Host       | `91.98.166.101`                                                     |
 | Port       | `54320`                                                             |
 | User       | `postgres`                                                          |
-| Password   | `Q16OxSTs9OfRNPJTU8FdcqCv7nsYPSIFhlpcOWQKF4VjRukvgD8pkqbWIlXlgVPxA` |
+| Password   | `Q16OxSTs9OfRNPJTU8FdcqCv7nsYPSIFhIpcOWQKF4VjRukvgD8pkqbWlXlgVPxA` |
 | Database   | `postgres`                                                          |
-> Note: External access requires "Is Public" to be checked in the Coolify Database Configuration tab.
+> Note: External access requires "Is Public" to be checked in the Coolify Database Configuration tab. If external access fails, use the **"Commands"** tab in the Coolify dashboard for direct SQL.
 
 ### Plesk VPS — SSH Access (separate production server, NOT Coolify)
 | Field    | Value              |
@@ -287,6 +287,12 @@ To fix the badge: Configuration → Healthcheck → Path: `/` / Port: `3000` / I
 
 ---
 
+### Problem: 500 Error after Login (Schema Mismatch)
+**Cause:** New collections were added to the code but the database schema didn't update automatically (often happens with the internal `payload_locked_documents_rels` table).  
+**Fix:** Use the Coolify **Commands** tab on the database resource to manually create missing tables/columns. See `force_db_sync.ts` logic for required SQL.
+
+---
+
 ## How Auto-Deploy Works
 
 ```
@@ -320,6 +326,7 @@ Live at: https://yamrsn0ry3ni6t5bozx4prvj.91.98.166.101.sslip.io
 | 2026-05-13 | `9bdb841` | Created nixpacks.toml, fixed PORT, fixed image remote pattern port |
 | 2026-05-13 | `7122e7d` | Added HOSTNAME=0.0.0.0 to fix 502 Bad Gateway (Traefik routing) |
 | 2026-05-13 | `6872692` | Added cp commands to fix missing CSS/static assets |
+| 2026-05-13 | `ff7789c` | Pinned Payload CMS to 3.83.0 and manually synced DB schema on Plesk/Coolify |
 
 ---
 
