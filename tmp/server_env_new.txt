@@ -1,8 +1,0 @@
-# NEXT JS ENVS
-NEXT_PUBLIC_SITE_URL=https://healingtechnology.com.bd
-
-# PAYLOAD CMS
-PAYLOAD_SECRET=d82494f0614eb589ba5b3e21b7abceb1
-
-# DATABASE (PostgreSQL)
-DATABASE_URI=postgresql://healingtech:HealTech2026!@localhost:5432/healingtechnology

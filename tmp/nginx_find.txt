@@ -1,5 +1,0 @@
-/etc/nginx/plesk.conf.d/vhosts/healingtechnology.com.bd.conf
-/etc/nginx/plesk.conf.d/webmails/healingtechnology.com.bd_webmail.conf.bak
-/etc/nginx/plesk.conf.d/webmails/healingtechnology.com.bd_webmail.conf
----
-find: ΓÇÿ/var/www/vhosts/system/healingtechnology.com.bdΓÇÖ: Permission denied

@@ -1,3 +1,0 @@
-Unknown command: --sync-domain
-
-exit status 1

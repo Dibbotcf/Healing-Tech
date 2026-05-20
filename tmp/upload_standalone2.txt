@@ -1,1 +1,0 @@
-unable to create directory ~/httpdocs/.next/: no such file or directory

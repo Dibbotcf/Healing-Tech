@@ -1,5 +1,0 @@
-root      300206  0.8  0.6 22649208 109244 ?     Ssl  06:28   8:05 node dist/server/server.js
-root      300378  0.0  1.1 1765816 186016 ?      Ssl  06:28   0:29 node dist/start/server.js
-root      300425  0.0  0.4 11198560 74696 ?      Ssl  06:28   0:05 node index.js
-root      300428  0.1  1.3 11931292 219684 ?     Ssl  06:28   1:41 next-server (v16.1.6)
-healing+ 2211189  0.0  1.6 24470228 263388 ?     Sl   17:17   0:04 next-server (v16.2.2)

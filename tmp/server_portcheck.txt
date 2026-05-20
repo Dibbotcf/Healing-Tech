@@ -1,5 +1,0 @@
-LISTEN 2      511                                              *:12000            *:*    users:(("next-server (v1",pid=2211189,fd=24))
----
-root      300428  0.1  1.3 11931292 214216 ?     Ssl  06:28   1:48 next-server (v16.1.6)
-healing+ 2211189 27.0  9.1 36783876 1500536 ?    Sl   17:17  96:13 next-server (v16.2.2)
-healing+ 3034543  0.0  0.7 2867276 128780 ?      Sl   22:03   0:02 node /var/www/vhosts/healingtechnology.com.bd/httpdocs/.next/dev/build/postcss.js 45079

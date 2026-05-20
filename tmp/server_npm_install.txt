@@ -1,2 +1,0 @@
-bash: line 1: npm: command not found
-NPM_INSTALL_DONE

@@ -1,4 +1,0 @@
-/var/www/vhosts/healingtechnology.com.bd/httpdocs/.next/standalone/server.js
-/var/www/vhosts/healingtechnology.com.bd/httpdocs/.next/standalone/node_modules/next/dist/server/typescript/rules/server.js
-/var/www/vhosts/healingtechnology.com.bd/httpdocs/.next/standalone/node_modules/next/dist/experimental/testmode/server.js
----

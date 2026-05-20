@@ -1,2 +1,0 @@
-bash: line 1: kill: users:(("next-server: arguments must be process or job IDs
-RESTARTED
