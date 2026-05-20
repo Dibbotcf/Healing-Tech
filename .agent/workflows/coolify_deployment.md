@@ -17,7 +17,7 @@ description: Deploy or push updates to the Healing Technology app on Coolify. Re
 |----------|----------------------------------------|
 | URL      | https://deploy.oryzen.app              |
 | Email    | quaziehsanh@gmail.com                  |
-| Password | *(stored in browser — check manually)* |
+| Password | ehsl~!u7<uWu'17NQGYZgX                 |
 | Server   | The Empire (localhost)                 |
 
 ### Live App URL (Coolify)
