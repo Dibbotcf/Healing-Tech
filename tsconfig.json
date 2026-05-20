@@ -31,5 +31,5 @@
     ".next/dev/types/**/*.ts",
     "**/*.mts"
   ],
-  "exclude": ["node_modules", "Figma Design Site", "seed-*.ts", "create-db.mjs"]
+  "exclude": ["tmp", "node_modules", "Figma Design Site", "seed-*.ts", "create-db.mjs"]
 }
