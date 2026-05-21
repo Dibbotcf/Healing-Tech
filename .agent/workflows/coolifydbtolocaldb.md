@@ -34,9 +34,9 @@ docker start healing-technology-postgres; if ($LASTEXITCODE -ne 0) { docker run 
 > The Coolify PostgreSQL external credentials are used here. The DB name on Coolify is `postgres`.
 
 ### Step 1 — Dump Coolify DB into `coolify_dump.sql` using Docker
-This uses Docker to run `pg_dump` remotely — no local PostgreSQL install needed.
+This uses Docker to run `pg_dump` remotely. *We use `cmd.exe` to prevent PowerShell encoding corruption.*
 ```powershell
-docker run --rm -e PGPASSWORD="Q16OxSTs9OfRNPJTU8FdcqCv7nsYPSIFhIpcOWQKF4VjRukvgD8pkqbWlXlgVPxA" postgres:15 pg_dump -h 91.98.166.101 -p 54320 -U postgres postgres --clean --if-exists > coolify_dump.sql
+cmd.exe /c "docker run --rm -e PGPASSWORD=""Q16OxSTs9OfRNPJTU8FdcqCv7nsYPSIFhIpcOWQKF4VjRukvgD8pkqbWlXlgVPxA"" postgres:15 pg_dump -h 91.98.166.101 -p 54320 -U postgres postgres --clean --if-exists > coolify_dump.sql"
 ```
 
 > ⚠️ **If this fails with a connection error**, the Coolify PostgreSQL "Is Public" setting may be disabled.
@@ -81,8 +81,9 @@ Remove-Item coolify_dump.sql -Force
 After syncing Coolify data to local, update `backup.sql` to reflect the current state so it's ready for the next `deploy2` workflow.
 
 ### Step 6 — Regenerate `backup.sql` from the now-synced local DB
+*We use `cmd.exe` here as well to ensure perfect UTF-8 formatting.*
 ```powershell
-docker exec healing-technology-postgres pg_dump -U postgres -d healing-technology --clean --if-exists > backup.sql
+cmd.exe /c "docker exec healing-technology-postgres pg_dump -U postgres -d healing-technology --clean --if-exists > backup.sql"
 ```
 
 ---
