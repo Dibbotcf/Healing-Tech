@@ -15,7 +15,7 @@ Start-Process "C:\Program Files\Docker\Docker\Docker Desktop.exe"; Start-Sleep -
 
 ## Step 2 — Start the PostgreSQL Docker container on port 12001
 ```powershell
-docker stop healing-technology-postgres 2>$null; docker rm healing-technology-postgres 2>$null; docker start healing-technology-postgres; if ($LASTEXITCODE -ne 0) { docker run -d --name healing-technology-postgres -p 12001:5432 -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=healing-technology postgres }
+docker start healing-technology-postgres; if ($LASTEXITCODE -ne 0) { docker run -d --name healing-technology-postgres -p 12001:5432 -v healing-technology-pgdata:/var/lib/postgresql -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=healing-technology postgres }
 ```
 
 ## Step 3 — Sync production database + media from VPS to local
