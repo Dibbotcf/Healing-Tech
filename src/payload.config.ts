@@ -12,8 +12,12 @@ const dirname = path.dirname(filename)
 export default buildConfig({
   sharp,
   serverURL: process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:12000',
-  cors: process.env.NEXT_PUBLIC_SITE_URL ? [process.env.NEXT_PUBLIC_SITE_URL] : undefined,
-  csrf: process.env.NEXT_PUBLIC_SITE_URL ? [process.env.NEXT_PUBLIC_SITE_URL] : undefined,
+  cors: process.env.NEXT_PUBLIC_SITE_URL 
+    ? [process.env.NEXT_PUBLIC_SITE_URL, 'https://healingtechnology.com.bd', 'https://www.healingtechnology.com.bd'] 
+    : undefined,
+  csrf: process.env.NEXT_PUBLIC_SITE_URL 
+    ? [process.env.NEXT_PUBLIC_SITE_URL, 'https://healingtechnology.com.bd', 'https://www.healingtechnology.com.bd'] 
+    : undefined,
   admin: {
     user: 'users',
     theme: 'dark',
