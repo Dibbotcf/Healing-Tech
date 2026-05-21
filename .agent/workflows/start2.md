@@ -3,8 +3,11 @@ description: Fast daily startup — launches Docker, starts the local PostgreSQL
 ---
 # /start2 Command Workflow
 
-This workflow performs a fast daily startup for Healing Technology local development, preserving your local database edits.
-It will: launch Docker, start the existing database, and start the dev server. It DOES NOT sync from the VPS, so your local data stays intact.
+This workflow performs a fast daily startup for Healing Technology local development.
+It will: launch Docker, start the existing database, and start the dev server. 
+
+> [!WARNING]
+> This command **DOES NOT** sync data from the live VPS. It boots up your local database exactly as you left it. If your local database is empty or missing data, you should run the `/coolifydbtolocaldb` workflow to pull the live production data down to your local machine!
 
 // turbo-all
 
@@ -19,9 +22,10 @@ This uses the persistent volume so your local database changes are kept intact.
 docker start healing-technology-postgres; if ($LASTEXITCODE -ne 0) { docker run -d --name healing-technology-postgres -p 12001:5432 -v healing-technology-pgdata:/var/lib/postgresql -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=healing-technology postgres }
 ```
 
-## Step 3 — Start the Next.js + Payload CMS dev server
+## Step 3 — Clear the Turbopack cache and start the dev server
+We clear `.next` first to prevent corrupted cache hydration errors (Next.js 16.x Turbopack bug).
 ```powershell
-npm run dev
+Remove-Item -Path .next -Recurse -Force -ErrorAction SilentlyContinue; npm run dev
 ```
 
 The system will now be running locally with your preserved database at:
@@ -33,6 +37,8 @@ The system will now be running locally with your preserved database at:
 ## Known Warnings & Behaviors (Do NOT act on these)
 
 > **`⚠ Slow filesystem detected`** on server start — Expected. The `.next/dev` Turbopack cache lives on the F: drive which is slower than the system drive. This warning is cosmetic; the server still works correctly. Do NOT attempt to move the project.
+
+> **Red Hydration Error Popup (`<style>` mismatch)** in dev mode — Expected / Harmless Next.js Turbopack bug. Turbopack occasionally injects CSS `<style>` chunks in a different order on the client vs server during HMR, causing a React hydration mismatch error. **Just click the "X" to close the red popup and continue working.** It does not affect the actual UI and does not happen in production.
 
 > **`⨯ turbopackServerFastRefresh`** experiment warning — Harmless. This is a known Turbopack dev-mode flag; it does not break anything.
 

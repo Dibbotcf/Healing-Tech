@@ -30,6 +30,7 @@ import { PreviewComponent as PreviewComponent_a8a977ebc872c5d5ea7ee689724c0860 }
 import { InvoiceLinkCell as InvoiceLinkCell_43ba82418e759463dedb81b31d0a9fad } from '@/components/InvoiceLinkCell'
 import { MediaPreview as MediaPreview_e48c723f95a8a1e72f8cc86bb6a5fe7f } from '@/components/MediaPreview'
 import { UploadBanner as UploadBanner_373332e63866338ecfa1afbe9375d4f6 } from '@/components/UploadBanner'
+import { LogoutRedirect as LogoutRedirect_0598f4729fbf92ca91dd494e62d111da } from '@/components/LogoutRedirect'
 import { CollectionCards as CollectionCards_f9c02e79a4aed9a3924487c0cd4cafb1 } from '@payloadcms/next/rsc'
 
 /** @type import('payload').ImportMap */
@@ -66,5 +67,6 @@ export const importMap = {
   "@/components/InvoiceLinkCell#InvoiceLinkCell": InvoiceLinkCell_43ba82418e759463dedb81b31d0a9fad,
   "@/components/MediaPreview#MediaPreview": MediaPreview_e48c723f95a8a1e72f8cc86bb6a5fe7f,
   "@/components/UploadBanner#UploadBanner": UploadBanner_373332e63866338ecfa1afbe9375d4f6,
+  "@/components/LogoutRedirect#LogoutRedirect": LogoutRedirect_0598f4729fbf92ca91dd494e62d111da,
   "@payloadcms/next/rsc#CollectionCards": CollectionCards_f9c02e79a4aed9a3924487c0cd4cafb1
 }
