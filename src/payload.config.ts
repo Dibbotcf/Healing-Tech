@@ -9,21 +9,21 @@ import sharp from 'sharp'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
+const isProd = process.env.NODE_ENV === 'production'
+const liveUrl = 'https://healingtechnology.com.bd'
+const siteUrl = isProd ? liveUrl : 'http://localhost:12000'
+
 export default buildConfig({
   sharp,
-  serverURL: process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:12000',
-  cors: process.env.NEXT_PUBLIC_SITE_URL 
-    ? [process.env.NEXT_PUBLIC_SITE_URL, 'https://healingtechnology.com.bd', 'https://www.healingtechnology.com.bd'] 
-    : undefined,
-  csrf: process.env.NEXT_PUBLIC_SITE_URL 
-    ? [process.env.NEXT_PUBLIC_SITE_URL, 'https://healingtechnology.com.bd', 'https://www.healingtechnology.com.bd'] 
-    : undefined,
+  serverURL: siteUrl,
+  cors: [siteUrl, 'https://www.healingtechnology.com.bd', process.env.NEXT_PUBLIC_SITE_URL].filter(Boolean) as string[],
+  csrf: [siteUrl, 'https://www.healingtechnology.com.bd', process.env.NEXT_PUBLIC_SITE_URL].filter(Boolean) as string[],
   admin: {
     user: 'users',
     theme: 'dark',
     suppressHydrationWarning: true,
     livePreview: {
-      url: process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:12000',
+      url: siteUrl,
       collections: ['products', 'legalPages'],
     },
   },
