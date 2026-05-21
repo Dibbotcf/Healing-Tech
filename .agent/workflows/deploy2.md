@@ -13,14 +13,10 @@ Run this after finishing any local work session where you've added/changed data 
 
 ## Phase 1 — Export Latest Local PostgreSQL Data
 
-### Step 1 — Export local DB to `backup.sql`
+### Step 1 — Export local DB directly to `public/`
+*Using `cmd.exe` instead of native PowerShell prevents UTF-16LE encoding corruption during the dump and avoids the need for a secondary conversion step.*
 ```powershell
-docker exec healing-technology-postgres pg_dump -U postgres -d healing-technology --clean --if-exists > backup.sql
-```
-
-### Step 2 — Copy to `public/` so Coolify can serve it
-```powershell
-Get-Content backup.sql | Set-Content public/latest_plesk_dump.sql -Encoding utf8
+cmd.exe /c "docker exec healing-technology-postgres pg_dump -U postgres -d healing-technology --clean --if-exists > public\latest_plesk_dump.sql"
 ```
 
 ---
