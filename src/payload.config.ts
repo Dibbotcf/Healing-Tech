@@ -22,6 +22,9 @@ export default buildConfig({
     user: 'users',
     theme: 'dark',
     suppressHydrationWarning: true,
+    components: {
+      afterNavLinks: ['@/components/LogoutRedirect#LogoutRedirect'],
+    },
     livePreview: {
       url: siteUrl,
       collections: ['products', 'legalPages'],
