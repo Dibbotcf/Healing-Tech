@@ -222,10 +222,17 @@ export function ProductCarousel() {
   const goNext = () => setPage((p) => Math.min(p + 1, totalPages - 1));
   const goPrev = () => setPage((p) => Math.max(p - 1, 0));
 
-  // Split page products into rows of 4
-  const dataRows: Product[][] = [];
-  for (let r = 0; r < pageProducts.length; r += 4) {
-    dataRows.push(pageProducts.slice(r, r + 4));
+  // Pad products with null placeholders to always fill PAGE_SIZE (3 rows × 4 cols)
+  const ghostCount = PAGE_SIZE - pageProducts.length;
+  const paddedProducts: (Product | null)[] = [
+    ...pageProducts,
+    ...Array.from({ length: Math.max(0, ghostCount) }, () => null),
+  ];
+
+  // Split into rows of 4
+  const dataRows: (Product | null)[][] = [];
+  for (let r = 0; r < paddedProducts.length; r += 4) {
+    dataRows.push(paddedProducts.slice(r, r + 4));
   }
 
   return (
@@ -273,9 +280,17 @@ export function ProductCarousel() {
                   key={`row-${page}-${rowIdx}`}
                   className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6"
                 >
-                  {row.map((product) => (
-                    <ProductCard key={product.id} product={product} />
-                  ))}
+                  {row.map((product, colIdx) =>
+                    product ? (
+                      <ProductCard key={product.id} product={product} />
+                    ) : (
+                      <div
+                        key={`ghost-${rowIdx}-${colIdx}`}
+                        aria-hidden="true"
+                        className="bg-white rounded-2xl border-2 border-dashed border-gray-100 h-full min-h-[340px] md:min-h-[380px]"
+                      />
+                    )
+                  )}
                 </div>
               );
             })}

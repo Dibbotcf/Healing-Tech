@@ -11,13 +11,25 @@ const dirname = path.dirname(filename)
 
 const isProd = process.env.NODE_ENV === 'production'
 const liveUrl = 'https://healingtechnology.com.bd'
+const coolifyUrl = process.env.NEXT_PUBLIC_SITE_URL || ''
+// In production, use the custom domain as serverURL.
+// Both the custom domain and the Coolify sslip.io domain are added to CORS/CSRF
+// so requests from either origin are accepted without 500 errors.
 const siteUrl = isProd ? liveUrl : 'http://localhost:12000'
+
+const allowedOrigins = [
+  siteUrl,
+  'https://www.healingtechnology.com.bd',
+  coolifyUrl,
+  // Allow the Coolify internal sslip.io domain regardless of env var value
+  ...(coolifyUrl && coolifyUrl !== liveUrl ? [coolifyUrl] : []),
+].filter(Boolean) as string[]
 
 export default buildConfig({
   sharp,
   serverURL: siteUrl,
-  cors: [siteUrl, 'https://www.healingtechnology.com.bd', process.env.NEXT_PUBLIC_SITE_URL].filter(Boolean) as string[],
-  csrf: [siteUrl, 'https://www.healingtechnology.com.bd', process.env.NEXT_PUBLIC_SITE_URL].filter(Boolean) as string[],
+  cors: allowedOrigins,
+  csrf: allowedOrigins,
   admin: {
     user: 'users',
     theme: 'dark',
