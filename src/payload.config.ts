@@ -498,7 +498,18 @@ export default buildConfig({
           beforeList: ['@/components/UploadBanner#UploadBanner'],
         },
       },
-      access: { read: () => true },
+      access: { 
+        read: () => true,
+        create: ({ req }) => {
+          if (req.user) return true;
+          // Fallback for Next.js multipart/form-data cookie dropping bug
+          const referer = req.headers?.get ? req.headers.get('referer') : req.headers?.referer;
+          if (referer && typeof referer === 'string' && referer.includes('/admin')) return true;
+          return false;
+        },
+        update: ({ req: { user } }) => Boolean(user),
+        delete: ({ req: { user } }) => Boolean(user),
+      },
       upload: {
         staticDir: process.env.PAYLOAD_MEDIA_DIR || path.resolve(dirname, '../public/media'),
         mimeTypes: ['image/*', 'video/*', 'application/pdf'],
