@@ -2,11 +2,11 @@
 
 import { usePathname, useSearchParams } from 'next/navigation';
 import Script from 'next/script';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 
 const FB_PIXEL_ID = process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID;
 
-export const FacebookPixel = () => {
+const PixelEvents = () => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const [loaded, setLoaded] = useState(false);
@@ -44,5 +44,13 @@ export const FacebookPixel = () => {
       }}
       onLoad={() => setLoaded(true)}
     />
+  );
+};
+
+export const FacebookPixel = () => {
+  return (
+    <Suspense fallback={null}>
+      <PixelEvents />
+    </Suspense>
   );
 };
