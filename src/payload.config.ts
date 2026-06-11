@@ -503,7 +503,7 @@ export default buildConfig({
         create: ({ req }) => {
           if (req.user) return true;
           // Fallback for Next.js multipart/form-data cookie dropping bug
-          const referer = req.headers?.get ? req.headers.get('referer') : req.headers?.referer;
+          const referer = req.headers?.get ? req.headers.get('referer') : (req.headers as any)?.referer;
           if (referer && typeof referer === 'string' && referer.includes('/admin')) return true;
           return false;
         },
