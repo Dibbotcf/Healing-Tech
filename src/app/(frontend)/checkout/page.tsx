@@ -7,6 +7,7 @@ import Link from "next/link";
 import { ArrowRight, CheckCircle2, ChevronLeft, CreditCard, ShieldCheck } from "lucide-react";
 
 import { useRouter } from "next/navigation";
+import { PixelInitiateCheckout } from "@/components/PixelEvents";
 
 export default function CheckoutPage() {
   const { items, getTotalPrice, clearCart, updateQuantity } = useCartStore();
@@ -135,6 +136,14 @@ export default function CheckoutPage() {
 
   return (
     <div className="min-h-screen bg-[#F8F9FA] pt-[88px] lg:pt-[96px] pb-24 font-['Inter']">
+      <PixelInitiateCheckout
+        items={items.map(i => ({
+          id: i.product.id,
+          quantity: i.quantity,
+          price: i.product.discountPrice ?? i.product.price ?? 0,
+        }))}
+        total={getTotalPrice()}
+      />
       <div className="container mx-auto px-4 lg:px-8 max-w-[1200px] mt-8">
         
         {/* Top Logo */}

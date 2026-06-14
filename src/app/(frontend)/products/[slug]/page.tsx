@@ -10,6 +10,7 @@ import { ProductClientActions } from '@/components/ProductClientActions'
 import { ProductDetailTabs } from '@/components/ProductDetailTabs'
 import { RelatedProducts } from '@/components/RelatedProducts'
 import { SmartDescription } from '@/components/SmartDescription'
+import { PixelViewContent } from '@/components/PixelEvents'
 import { getMediaUrl } from '@/lib/getMediaUrl'
 
 // ── Helpers ──────────────────────────────────────────────────
@@ -99,6 +100,13 @@ export default async function ProductDetailPage({
 
   return (
     <div className="min-h-screen bg-white font-['Inter']">
+      <PixelViewContent
+        id={String(product.id)}
+        name={product.name}
+        price={product.price ?? null}
+        discountPrice={product.discountPrice ?? null}
+        category={category?.title}
+      />
 
       {/* ═══════════════════════════════════════
           HERO SECTION
