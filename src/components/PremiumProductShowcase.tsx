@@ -25,7 +25,7 @@ export function PremiumProductShowcase() {
 
   useEffect(() => {
     // Fetch top products (depth=1 is CRITICAL so the image URL populates instead of just returning an ID)
-    fetch("/api/products?limit=20&sort=-createdAt&depth=1")
+    fetch("/api/public-products?limit=20&sort=-createdAt&depth=1")
       .then((r) => r.json())
       .then((data) => {
         setProducts(data.docs || []);

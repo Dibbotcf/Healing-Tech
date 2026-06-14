@@ -514,6 +514,21 @@ export default buildConfig({
         staticDir: process.env.PAYLOAD_MEDIA_DIR || path.resolve(dirname, '../public/media'),
         mimeTypes: ['image/*', 'video/*', 'application/pdf'],
       },
+      hooks: {
+        beforeOperation: [
+          ({ args, operation }) => {
+            if (operation === 'create' && args.req?.file) {
+              // Sanitize filename to prevent 500 errors on Next.js file serving
+              const safeName = args.req.file.name
+                .replace(/\s+/g, '-')
+                .replace(/[^a-zA-Z0-9.\-_]/g, '')
+                .toLowerCase();
+              args.req.file.name = safeName;
+            }
+            return args;
+          }
+        ]
+      },
       fields: [
         { name: 'alt', type: 'text', required: false },
         {
