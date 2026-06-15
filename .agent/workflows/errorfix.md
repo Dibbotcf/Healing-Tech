@@ -161,4 +161,99 @@ Use this order of investigation — from fastest to slowest:
 
 ---
 
+---
+
+## Bug #4 — Build Failed: "Both middleware file and proxy file are detected" (Next.js 16 Convention)
+
+**Date Fixed:** 2026-06-15
+**Symptom:** Coolify deployment failed during `npm run build` with:
+```
+ERROR: failed to build: failed to solve: process "/bin/bash -ol pipefail -c npm run build" did not complete successfully: exit code 1
+Both middleware file "./src/middleware.ts" and proxy file "./src/proxy.ts" are detected. Please use "./src/proxy.ts" only.
+```
+
+### Root Cause
+
+**Next.js 16 renamed `middleware.ts` to `proxy.ts`.** The file `src/proxy.ts` IS the middleware in this project. A `src/middleware.ts` file was mistakenly created because the old convention (`middleware.ts`) was used without checking the Next.js 16 docs. Having both files is a hard build error.
+
+The `src/proxy.ts` file was NOT dead code — it was always running as the proxy/middleware. It exports:
+- A `proxy(request)` function (the new required name, not `middleware`)
+- A `config` object with a `matcher` (same as before)
+
+**Fix:** Delete `src/middleware.ts`. Keep `src/proxy.ts` only.
+
+**Future prevention:**
+> ⚠️ **NEVER create a `middleware.ts` file in this project.** `src/proxy.ts` is the Next.js 16 middleware equivalent. All middleware logic (CSP headers, subdomain routing) goes there. The export function must be named `proxy`, not `middleware`.
+>
+> Before adding any new Next.js file conventions (middleware, layout, route handlers etc.), check `node_modules/next/dist/docs/` — Next.js 16 has breaking changes from earlier versions.
+
+---
+
+## Bug #5 — Admin Product Create Shows Loading Forever (500 on Server Action)
+
+**Date:** 2026-06-15
+**Symptom:** Clicking "Create New" on the hero image field in the Payload admin product create form (`/admin/collections/products/create`) causes an infinite loading spinner. Browser console shows:
+1. `POST /api/users/logout 400`
+2. `POST /admin/collections/products/create 500`
+
+### Root Cause
+
+Race condition between auth token expiry and a Server Action call:
+
+1. The user's session token expires while the product form is open
+2. Payload's admin detects expiry → calls `POST /api/users/logout` (returns 400 because the session is already gone server-side)
+3. The user clicks "Create New" on the hero image field — this fires a Next.js Server Action (handleServerFunctions) with the now-expired token
+4. The server rejects the expired token → Server Action throws → Next.js returns 500
+5. The loading spinner never resolves
+
+This is a timing issue — it only happens on the **first** attempt after a session expires (usually after leaving the admin idle for a while). Refreshing and logging back in always resolves it.
+
+**Fix applied:**
+- `src/components/LogoutRedirect.tsx`: Added a 2-second debounce on the forced redirect so the admin redirects to login quickly after token expiry, reducing the window where a user can click while their session is already dead.
+
+**Workaround for users:**
+If you see the loading spinner stuck on product create:
+1. Refresh the page
+2. Log in again if prompted
+3. Try creating the product again — it will work
+
+**Permanent fix note:** This is a Payload CMS + Next.js 16 Server Action limitation. `handleServerFunctions` throws a 500 (not a 401) on auth failure. Cannot be fixed from application code without patching Payload internals.
+
+---
+
+## Bug #6 — "Pay Later" Orders Failing Validation
+
+**Date Fixed:** 2026-06-15
+**Symptom:** Orders placed with "Pay Later" option fail silently — Payload rejects the order with a validation error because `pay-later` was not a valid option in the `paymentMethod` select field.
+
+### Root Cause
+
+The checkout page (`src/app/(frontend)/checkout/page.tsx`) was updated to send `paymentMethod: 'pay-later'` to the orders API, but the Payload CMS orders collection only accepted `bkash`, `sslcommerz`, and `cod` as valid values.
+
+**Fix:** Added `{ label: 'Pay Later', value: 'pay-later' }` to the `paymentMethod` select field options in `src/payload.config.ts`.
+
+**Future prevention:** When adding a new payment method option to the checkout UI, always also add the corresponding value to the `orders.paymentMethod` select field in `payload.config.ts`. They must stay in sync.
+
+---
+
+## Bug #7 — CSP Blocking Cloudflare Analytics Beacon
+
+**Date Fixed:** 2026-06-15
+**Symptom:** Browser console shows CSP violation:
+```
+Refused to load the script 'https://static.cloudflareinsights.com/beacon.min.js' because it violates the Content Security Policy directive: "script-src 'self' ..."
+```
+
+### Root Cause
+
+Cloudflare automatically injects a beacon script (`beacon.min.js`) from `https://static.cloudflareinsights.com` on all pages when the domain is proxied through Cloudflare. This domain was not in the `script-src` CSP directive. The beacon also sends data to `https://cloudflareinsights.com`, which was missing from `connect-src`.
+
+**Fix:** Added both domains to `src/proxy.ts`:
+- `script-src`: added `https://static.cloudflareinsights.com`
+- `connect-src`: added `https://cloudflareinsights.com`
+
+**Future prevention:** Any time a third-party script is added (analytics, chat widgets, payment SDKs), update `src/proxy.ts` CSP to allow its domain in the appropriate directive (`script-src`, `connect-src`, `img-src` etc.).
+
+---
+
 *Maintained by Antigravity. Add new bugs and fixes here as they are discovered.*
