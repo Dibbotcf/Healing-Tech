@@ -28,7 +28,7 @@ export default function AfterSalesSupportPage() {
             { icon: Phone, title: "Dedicated Account Manager", desc: "Every hospital gets a dedicated account manager who understands your equipment portfolio.", color: "bg-rose-50 text-rose-600" },
           ].map((item, i) => (
             <motion.div key={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="bg-white rounded-xl  border border-gray-100 p-8 hover: transition-all group"
+              className="bg-white rounded-xl border border-gray-100 p-8 hover:shadow-md transition-all group"
             >
               <div className={`w-14 h-14 rounded-xl ${item.color} flex items-center justify-center mb-5 group-hover:scale-110 transition-transform`}>
                 <item.icon className="w-7 h-7" />

@@ -428,9 +428,10 @@ export default buildConfig({
           options: [
             { label: 'bKash', value: 'bkash' },
             { label: 'SSLCommerz', value: 'sslcommerz' },
-            { label: 'Cash on Delivery', value: 'cod' }
-          ], 
-          required: true 
+            { label: 'Cash on Delivery', value: 'cod' },
+            { label: 'Pay Later', value: 'pay-later' },
+          ],
+          required: true
         },
         { 
           name: 'paymentStatus', 
@@ -657,7 +658,11 @@ export default buildConfig({
       generateDescription: ({ doc }: any) => doc?.shortSummary || doc?.listingSummary || '',
     })
   ],
-  secret: process.env.PAYLOAD_SECRET || 'fallback-secret',
+  secret: (() => {
+    const s = process.env.PAYLOAD_SECRET
+    if (!s) throw new Error('PAYLOAD_SECRET environment variable is required but not set')
+    return s
+  })(),
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },

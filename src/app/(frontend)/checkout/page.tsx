@@ -1,7 +1,7 @@
 "use client";
 
 import { useCartStore } from "@/lib/cartStore";
-import { useState, useEffect, FormEvent } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { getMediaUrl } from "@/lib/getMediaUrl";
@@ -38,14 +38,15 @@ export default function CheckoutPage() {
     setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = async (e: FormEvent) => {
+  const handleSubmit = async (e: React.SyntheticEvent, overridePaymentMethod?: string) => {
     e.preventDefault();
     setLoading(true);
+    const activePaymentMethod = overridePaymentMethod ?? paymentMethod;
 
     try {
       const payload = {
         customer: formData,
-        paymentMethod,
+        paymentMethod: activePaymentMethod,
         items: items.map(i => ({
           product: i.product.id,
           quantity: i.quantity,
@@ -68,9 +69,9 @@ export default function CheckoutPage() {
         setPurchaseTotal(getTotalPrice());
         clearCart();
         setOrderComplete(true);
-        if (paymentMethod === 'sslcommerz') {
+        if (activePaymentMethod === 'sslcommerz') {
           window.open("https://invoice.sslcommerz.com/invoice-form?refer=677CB95ED7FCA", "_blank");
-        } else if (paymentMethod === 'bkash') {
+        } else if (activePaymentMethod === 'bkash') {
           window.open(`/payment/bkash?orderId=${data.order.orderNumber}`, "_blank");
         }
 
@@ -286,8 +287,8 @@ export default function CheckoutPage() {
                 
                 {paymentMethod !== 'cod' && (
                   <button 
-                    type="button" 
-                    onClick={(e) => { setPaymentMethod('pay-later'); handleSubmit(e); }}
+                    type="button"
+                    onClick={(e) => handleSubmit(e, 'pay-later')}
                     disabled={loading}
                     className="w-full bg-white border-2 border-gray-100 hover:border-[#12B5CB] text-[#575B5F] hover:text-[#12B5CB] font-bold py-3.5 rounded-xl transition-all disabled:opacity-70 disabled:cursor-not-allowed"
                   >

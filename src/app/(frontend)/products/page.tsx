@@ -54,4 +54,3 @@ export default async function ProductsPage({ searchParams }: { searchParams: Pro
     </div>
   );
 }
-// Note: Handled CheckCircle2 import via next task replacement.

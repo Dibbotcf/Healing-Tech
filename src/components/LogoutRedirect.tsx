@@ -16,10 +16,14 @@ export function LogoutRedirect() {
   useEffect(() => {
     if (user) {
       wasLoggedIn.current = true
-    } else if (wasLoggedIn.current && !user) {
-      // User WAS logged in and is now null — logout just happened
-      window.location.replace('/admin/login')
+      return
     }
+    if (!wasLoggedIn.current) return
+    // Debounce: give in-flight Server Action requests ~2s to settle before navigating away
+    const timer = setTimeout(() => {
+      window.location.replace('/admin/login')
+    }, 2000)
+    return () => clearTimeout(timer)
   }, [user])
 
   return null

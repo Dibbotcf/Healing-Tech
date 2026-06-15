@@ -27,7 +27,7 @@ export default function ClinicalTrainingPage() {
             { icon: Video, title: "Video Training Library", desc: "Access to our growing library of video tutorials covering operation, maintenance tips, and safety checks for all our equipment categories.", highlight: true },
           ].map((item, i) => (
             <motion.div key={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} transition={{ duration: 0.5, delay: i * 0.1 }}
-              className={`rounded-xl  border border-gray-100 p-8 hover: transition-all ${item.highlight ? "bg-[#00355D] text-white" : "bg-white"}`}
+              className={`rounded-xl border border-gray-100 p-8 hover:shadow-md transition-all ${item.highlight ? "bg-[#00355D] text-white" : "bg-white"}`}
             >
               <item.icon className={`w-10 h-10 ${item.highlight ? "text-[#12B5CB]" : "text-[#12B5CB]"} mb-5`} />
               <h3 className={`text-xl font-bold tracking-tight mb-3 ${item.highlight ? "text-white" : "text-[#00355D]"}`}>{item.title}</h3>
@@ -38,7 +38,7 @@ export default function ClinicalTrainingPage() {
 
         {/* Certification Section */}
         <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} transition={{ duration: 0.6 }}
-          className="bg-white rounded-xl  border border-gray-100 p-8 lg:p-12"
+          className="bg-white rounded-xl border border-gray-100 p-8 lg:p-12"
         >
           <div className="flex items-center gap-3 mb-6">
             <Award className="w-7 h-7 text-[#12B5CB]" />
