@@ -47,3 +47,26 @@ export function PixelInitiateCheckout({ items, total }: InitiateCheckoutProps) {
 
   return null;
 }
+
+interface PurchaseProps {
+  items: { id: string; quantity: number; price: number }[];
+  total: number;
+  orderId?: string;
+}
+
+export function PixelPurchase({ items, total, orderId }: PurchaseProps) {
+  useEffect(() => {
+    if (typeof window !== 'undefined' && (window as any).fbq && items.length > 0) {
+      (window as any).fbq('track', 'Purchase', {
+        content_ids: items.map(i => i.id),
+        contents: items.map(i => ({ id: i.id, quantity: i.quantity })),
+        num_items: items.length,
+        value: total,
+        currency: 'BDT',
+        order_id: orderId,
+      });
+    }
+  }, []);
+
+  return null;
+}

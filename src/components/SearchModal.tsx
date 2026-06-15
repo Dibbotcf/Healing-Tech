@@ -43,6 +43,17 @@ export function SearchModal({ isOpen, onClose, products }: SearchModalProps) {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [isOpen, onClose]);
 
+  // Fire FB Search event after user pauses typing (≥2 chars)
+  useEffect(() => {
+    if (query.length < 2) return;
+    const timer = setTimeout(() => {
+      if (typeof window !== 'undefined' && (window as any).fbq) {
+        (window as any).fbq('track', 'Search', { search_string: query });
+      }
+    }, 600);
+    return () => clearTimeout(timer);
+  }, [query]);
+
   const handleNavigate = (url: string) => {
     onClose();
     router.push(url);

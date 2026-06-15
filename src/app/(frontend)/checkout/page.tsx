@@ -7,7 +7,7 @@ import Link from "next/link";
 import { ArrowRight, CheckCircle2, ChevronLeft, CreditCard, ShieldCheck } from "lucide-react";
 
 import { useRouter } from "next/navigation";
-import { PixelInitiateCheckout } from "@/components/PixelEvents";
+import { PixelInitiateCheckout, PixelPurchase } from "@/components/PixelEvents";
 
 export default function CheckoutPage() {
   const { items, getTotalPrice, clearCart, updateQuantity } = useCartStore();
@@ -26,6 +26,8 @@ export default function CheckoutPage() {
   const [loading, setLoading] = useState(false);
   const [orderComplete, setOrderComplete] = useState(false);
   const [orderResult, setOrderResult] = useState<any>(null);
+  const [purchasedItems, setPurchasedItems] = useState<{ id: string; quantity: number; price: number }[]>([]);
+  const [purchaseTotal, setPurchaseTotal] = useState(0);
 
   useEffect(() => {
     setMounted(true);
@@ -61,6 +63,8 @@ export default function CheckoutPage() {
       
       if (res.ok) {
         setOrderResult(data);
+        setPurchasedItems(items.map(i => ({ id: i.product.id, quantity: i.quantity, price: i.product.discountPrice ?? i.product.price ?? 0 })));
+        setPurchaseTotal(getTotalPrice());
         clearCart();
         setOrderComplete(true);
         if (paymentMethod === 'sslcommerz') {
@@ -85,6 +89,7 @@ export default function CheckoutPage() {
   if (orderComplete) {
     return (
       <div className="min-h-screen bg-[#F8F9FA] pt-32 pb-24 flex items-center justify-center font-['Inter']">
+        <PixelPurchase items={purchasedItems} total={purchaseTotal} orderId={orderResult?.order?.orderNumber} />
         <div className="bg-white p-10 rounded-2xl shadow-sm text-center max-w-lg w-full border border-gray-100">
           <CheckCircle2 className="w-16 h-16 text-[#12B5CB] mx-auto mb-6" />
           <h1 className="text-3xl font-bold text-[#00355D] mb-4">Order Received!</h1>
