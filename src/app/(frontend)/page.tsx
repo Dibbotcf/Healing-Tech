@@ -1,30 +1,11 @@
-import dynamic from "next/dynamic";
 import Link from "next/link";
 import { ArrowRight, ShieldCheck, Wrench } from "lucide-react";
 import { HeroSlider } from "@/components/HeroSlider";
 import { FadeIn } from "@/components/FadeIn";
 import { ClientLogosMarquee, BrandLogosMarquee } from "@/components/HomeClientMarquees";
-
-const ProductCarousel = dynamic(
-  () => import("@/components/ProductCarousel").then((m) => ({ default: m.ProductCarousel })),
-  { ssr: false },
-);
-const CategoryShowcase = dynamic(
-  () => import("@/components/CategoryShowcase").then((m) => ({ default: m.CategoryShowcase })),
-  { ssr: false },
-);
-const WorldMap = dynamic(
-  () => import("@/components/ui/map").then((m) => ({ default: m.WorldMap })),
-  { ssr: false, loading: () => <div className="h-[320px] bg-gray-50 rounded-xl animate-pulse" /> },
-);
-const TestimonialsSection = dynamic(
-  () => import("@/components/TestimonialsSection").then((m) => ({ default: m.TestimonialsSection })),
-  { ssr: false },
-);
-const FAQSection = dynamic(
-  () => import("@/components/FAQSection").then((m) => ({ default: m.FAQSection })),
-  { ssr: false },
-);
+import { WorldMap } from "@/components/ui/map";
+import { HomeCarousels } from "@/components/HomeCarousels";
+import { HomeClosing } from "@/components/HomeClosing";
 
 const supplyRoutes = [
   { start: { lat: 51.1657, lng: 10.4515, label: "Germany" },     end: { lat: 23.685, lng: 90.3563, label: "Dhaka" } },
@@ -72,11 +53,8 @@ export default function Home() {
       {/* ═══ CLIENT LOGOS MARQUEE ═══ */}
       <ClientLogosMarquee initialClients={INITIAL_CLIENT_LOGOS} />
 
-      {/* ═══ PRODUCT CAROUSEL ═══ */}
-      <ProductCarousel />
-
-      {/* ═══ CATEGORY SHOWCASE ═══ */}
-      <CategoryShowcase />
+      {/* ═══ PRODUCT CAROUSEL + CATEGORY SHOWCASE ═══ */}
+      <HomeCarousels />
 
       {/* ═══ VALUE PROPOSITION ═══ */}
       <section className="py-24 bg-white overflow-visible">
@@ -180,11 +158,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══ TESTIMONIALS ═══ */}
-      <TestimonialsSection />
-
-      {/* ═══ FAQ ═══ */}
-      <FAQSection />
+      {/* ═══ TESTIMONIALS + FAQ ═══ */}
+      <HomeClosing />
 
     </div>
   );
