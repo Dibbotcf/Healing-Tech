@@ -4,6 +4,7 @@ import { useCartStore } from "@/lib/cartStore";
 import { useState, useEffect, FormEvent } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { getMediaUrl } from "@/lib/getMediaUrl";
 import { ArrowRight, CheckCircle2, ChevronLeft, CreditCard, ShieldCheck } from "lucide-react";
 
 import { useRouter } from "next/navigation";
@@ -228,12 +229,13 @@ export default function CheckoutPage() {
               
               <div className="space-y-4 mb-6 max-h-[300px] overflow-y-auto pr-2">
                 {items.map(item => {
-                   const img = item.product.heroImage?.url || '/logo-dark.svg';
+                   const img = getMediaUrl(item.product.heroImage?.url) || '/logo-dark.svg';
                    const currentPrice = item.product.discountPrice ?? item.product.price ?? 0;
                    return (
                     <div key={item.product.id} className="flex gap-4">
-                      <div className="w-16 h-16 bg-gray-50 rounded-lg flex items-center justify-center p-1.5 flex-shrink-0 relative overflow-hidden">
-                        <Image src={img} alt={item.product.name} fill className="object-contain p-1" />
+                      <div className="w-16 h-16 bg-gray-50 rounded-lg flex items-center justify-center p-1.5 flex-shrink-0 overflow-hidden">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img src={img} alt={item.product.name} className="w-full h-full object-contain p-1" />
                       </div>
                       <div className="flex-1 min-w-0 flex flex-col justify-between">
                         <h4 className="text-sm font-bold text-[#00355D] truncate">{item.product.name}</h4>
