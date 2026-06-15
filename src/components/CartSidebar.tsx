@@ -75,8 +75,9 @@ export function CartSidebar({ isOpen, setIsOpen }: CartSidebarProps) {
                 
                 return (
                   <div key={item.product.id} className="flex gap-4 border-b border-gray-100 pb-6 last:border-0 last:pb-0">
-                    <div className="w-20 h-20 bg-gray-50 rounded-xl flex items-center justify-center p-2 relative flex-shrink-0">
-                      <Image src={img} alt={item.product.name} fill className="object-contain p-1" />
+                    <div className="w-20 h-20 bg-gray-50 rounded-xl flex items-center justify-center p-2 flex-shrink-0">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src={img} alt={item.product.name} className="w-full h-full object-contain p-1" />
                     </div>
                     <div className="flex-1 flex flex-col">
                       <div className="flex justify-between items-start gap-2 mb-1">

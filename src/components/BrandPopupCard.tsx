@@ -40,8 +40,9 @@ export function BrandPopupCard({ brand, brandLogoUrl }: BrandCardProps) {
         className="flex items-center gap-3 bg-white pl-4 pr-5 py-2.5 rounded-full border border-[#00355D]/8 shadow-sm hover:shadow-md transition-all group cursor-pointer"
       >
         {brandLogoUrl ? (
-          <div className="relative h-7 w-20 flex-shrink-0">
-            <Image src={brandLogoUrl} alt={brand.name} fill className="object-contain" />
+          <div className="h-7 w-20 flex-shrink-0">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={brandLogoUrl} alt={brand.name} className="w-full h-full object-contain" />
           </div>
         ) : null}
         <div className="flex flex-col items-start gap-0.5 border-l border-gray-100 pl-3">
@@ -75,8 +76,9 @@ export function BrandPopupCard({ brand, brandLogoUrl }: BrandCardProps) {
             
             <div className="flex items-center gap-6 mb-8 mt-2">
               {brandLogoUrl ? (
-                <div className="relative h-16 w-32 flex-shrink-0 bg-gray-50 rounded-xl p-3 border border-gray-100">
-                  <Image src={brandLogoUrl} alt={brand.name} fill className="object-contain p-2" />
+                <div className="h-16 w-32 flex-shrink-0 bg-gray-50 rounded-xl p-3 border border-gray-100">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={brandLogoUrl} alt={brand.name} className="w-full h-full object-contain p-2" />
                 </div>
               ) : null}
               <div>

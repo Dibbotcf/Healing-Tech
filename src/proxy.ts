@@ -1,6 +1,18 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
+const CSP = [
+  "default-src 'self'",
+  "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://connect.facebook.net https://www.googletagmanager.com https://www.google-analytics.com",
+  "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+  "font-src 'self' https://fonts.gstatic.com data:",
+  "img-src 'self' data: blob: https:",
+  "media-src 'self' blob: https:",
+  "frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com",
+  "connect-src 'self' https://www.facebook.com https://www.google-analytics.com https://analytics.google.com https://stats.g.doubleclick.net",
+  "worker-src 'self' blob:",
+].join('; ')
+
 export function proxy(request: NextRequest) {
   const url = request.nextUrl
   const hostname = request.headers.get('host') || ''
@@ -9,11 +21,15 @@ export function proxy(request: NextRequest) {
   if (hostname.startsWith('cms.')) {
     if (!url.pathname.startsWith('/admin') && !url.pathname.startsWith('/api')) {
       url.pathname = `/admin${url.pathname === '/' ? '' : url.pathname}`
-      return NextResponse.rewrite(url)
+      const res = NextResponse.rewrite(url)
+      res.headers.set('Content-Security-Policy', CSP)
+      return res
     }
   }
 
-  return NextResponse.next()
+  const res = NextResponse.next()
+  res.headers.set('Content-Security-Policy', CSP)
+  return res
 }
 
 export const config = {

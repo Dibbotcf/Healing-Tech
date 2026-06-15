@@ -222,11 +222,11 @@ export default function GalleryPage() {
                   onClick={() => openLightbox(i)}
                 >
                   {src ? (
-                    <Image
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
                       src={src}
                       alt={post.image?.alt || post.title}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                       loading="lazy"
                     />
                   ) : (
@@ -274,7 +274,8 @@ export default function GalleryPage() {
                   >
                     <div className="relative h-48 bg-[#EEF2F7] overflow-hidden">
                       {src ? (
-                        <Image src={src} alt={post.image?.alt || post.title} fill className="object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img src={src} alt={post.image?.alt || post.title} className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
                       ) : (
                         <div className="absolute inset-0 flex items-center justify-center"><Images className="w-8 h-8 text-[#12B5CB]/40" /></div>
                       )}
@@ -337,7 +338,8 @@ export default function GalleryPage() {
                       preload="metadata"
                     />
                   ) : thumbSrc ? (
-                    <Image src={thumbSrc} alt={video.thumbnail?.alt || video.title} fill className="object-cover opacity-60 group-hover:opacity-40 transition-opacity duration-300" loading="lazy" />
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img src={thumbSrc} alt={video.thumbnail?.alt || video.title} className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-40 transition-opacity duration-300" loading="lazy" />
                   ) : (
                     <div className="absolute inset-0 bg-gradient-to-br from-[#001729] to-[#00355D]" />
                   )}
@@ -411,11 +413,11 @@ export default function GalleryPage() {
               {/* Image */}
               <div className="w-full h-72 md:h-[420px] relative bg-[#EEF2F7]">
                 {getMediaUrl(lightboxPost.image?.url) ? (
-                  <Image
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
                     src={getMediaUrl(lightboxPost.image?.url)!}
                     alt={lightboxPost.image?.alt || lightboxPost.title}
-                    fill
-                    className="object-contain"
+                    className="absolute inset-0 w-full h-full object-contain"
                   />
                 ) : (
                   <div className="absolute inset-0 flex items-center justify-center"><Images className="w-12 h-12 text-[#12B5CB]/30" /></div>

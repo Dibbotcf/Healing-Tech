@@ -393,7 +393,8 @@ export default function Navbar() {
                                   onLoadedMetadata={(e) => { e.currentTarget.currentTime = 1; }}
                                 />
                               ) : (
-                                <Image src={prod.image} alt={prod.name} fill className="object-contain p-2" />
+                                // eslint-disable-next-line @next/next/no-img-element
+                                <img src={prod.image} alt={prod.name} className="absolute inset-0 w-full h-full object-contain p-2" />
                               )}
                             </div>
                           ) : (

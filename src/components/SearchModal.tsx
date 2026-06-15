@@ -164,8 +164,9 @@ export function SearchModal({ isOpen, onClose, products }: SearchModalProps) {
                            className="w-full flex items-center gap-4 p-3 rounded-2xl hover:bg-white hover:shadow-sm border border-transparent hover:border-gray-100 transition-all text-left group bg-white/50"
                          >
                            {prod.image ? (
-                             <div className="w-12 h-12 bg-white rounded-xl overflow-hidden shrink-0 border border-gray-100 p-1 relative">
-                               <Image src={prod.image} alt={prod.name} fill className="object-contain" />
+                             <div className="w-12 h-12 bg-white rounded-xl overflow-hidden shrink-0 border border-gray-100 p-1">
+                               {/* eslint-disable-next-line @next/next/no-img-element */}
+                               <img src={prod.image} alt={prod.name} className="w-full h-full object-contain" />
                              </div>
                            ) : (
                              <div className="w-12 h-12 rounded-xl bg-gray-100 flex items-center justify-center shrink-0 border border-gray-200">
