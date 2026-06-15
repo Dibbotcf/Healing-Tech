@@ -511,7 +511,7 @@ export default buildConfig({
         delete: ({ req: { user } }) => Boolean(user),
       },
       upload: {
-        staticDir: process.env.PAYLOAD_MEDIA_DIR || path.resolve(dirname, '../public/media'),
+        staticDir: isProd ? '/app/public/media' : path.resolve(dirname, '../public/media'),
         mimeTypes: ['image/*', 'video/*', 'application/pdf'],
       },
       hooks: {
