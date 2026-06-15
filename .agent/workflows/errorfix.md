@@ -91,6 +91,31 @@ The ghost cards use:
 
 ---
 
+## Bug #3 — Next.js Build Fails with "Property 'referer' does not exist on type 'Headers'"
+
+**Date Fixed:** 2026-06-11
+**Symptom:** Coolify deployment failed during the build phase (`npm run build`). The live site remained on the old version.
+**Error seen in Coolify build logs:**
+`Type error: Property 'referer' does not exist on type 'Headers'` in `payload.config.ts` (around lines 504-507).
+
+### Root Cause
+In Next.js / standard Web Fetch API, the `Headers` object does not expose header names as direct properties (e.g., `req.headers.referer` is invalid). Instead, headers must be accessed using the `.get()` method. Attempting to access it as a property causes a TypeScript error that completely fails the Next.js standalone build.
+
+**Fix:**
+Change the code from accessing the property directly to using the `.get()` method:
+```ts
+// Wrong
+const referer = req.headers.referer;
+
+// Correct
+const referer = req.headers.get('referer');
+```
+*Note: This was fixed in commit `a1a2bc1` ("fix: resolve typescript error in payload.config.ts causing build failure").*
+
+**Future prevention:** Always use the standard `Headers.get('header-name')` method when reading request headers in Next.js App Router, middleware, or Payload CMS configuration.
+
+---
+
 ## Debugging Checklist for Future 500 Errors
 
 Use this order of investigation — from fastest to slowest:

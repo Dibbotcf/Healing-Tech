@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
@@ -49,18 +50,18 @@ interface Slide {
 }
 
 function SlideImage({ slide, isFirst }: { slide: Slide; isFirst: boolean }) {
-  const [src, setSrc] = useState(slide.src);
+  const [errored, setErrored] = useState(false);
+  const src = errored ? FALLBACK_SRC : slide.src;
   return (
-    // eslint-disable-next-line @next/next/no-img-element
-    <img
+    <Image
       src={src}
       alt={slide.alt}
-      onError={() => setSrc(FALLBACK_SRC)}
-      className="w-full h-full object-cover"
-      // Only the first hero image is a priority LCP element — others lazy load
-      fetchPriority={isFirst ? "high" : "low"}
-      loading={isFirst ? "eager" : "lazy"}
-      decoding="async"
+      fill
+      sizes="100vw"
+      quality={85}
+      priority={isFirst}
+      className="object-cover"
+      onError={() => setErrored(true)}
     />
   );
 }

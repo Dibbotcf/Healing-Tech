@@ -1,20 +1,30 @@
-"use client";
-import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
-
-import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight, ShieldCheck, Wrench } from "lucide-react";
 import { HeroSlider } from "@/components/HeroSlider";
-import Image from "next/image";
+import { FadeIn } from "@/components/FadeIn";
+import { ClientLogosMarquee, BrandLogosMarquee } from "@/components/HomeClientMarquees";
 
-// Lazy-load all heavy below-fold components so they don't block initial render
-const ProductCarousel = dynamic(() => import("@/components/ProductCarousel").then(m => ({ default: m.ProductCarousel })), { ssr: false });
-const CategoryShowcase = dynamic(() => import("@/components/CategoryShowcase").then(m => ({ default: m.CategoryShowcase })), { ssr: false });
-const WorldMap = dynamic(() => import("@/components/ui/map").then(m => ({ default: m.WorldMap })), { ssr: false, loading: () => <div className="h-[320px] bg-gray-50 rounded-xl animate-pulse" /> });
-
-const TestimonialsSection = dynamic(() => import("@/components/TestimonialsSection").then(m => ({ default: m.TestimonialsSection })), { ssr: false });
-const FAQSection = dynamic(() => import("@/components/FAQSection").then(m => ({ default: m.FAQSection })), { ssr: false });
+const ProductCarousel = dynamic(
+  () => import("@/components/ProductCarousel").then((m) => ({ default: m.ProductCarousel })),
+  { ssr: false },
+);
+const CategoryShowcase = dynamic(
+  () => import("@/components/CategoryShowcase").then((m) => ({ default: m.CategoryShowcase })),
+  { ssr: false },
+);
+const WorldMap = dynamic(
+  () => import("@/components/ui/map").then((m) => ({ default: m.WorldMap })),
+  { ssr: false, loading: () => <div className="h-[320px] bg-gray-50 rounded-xl animate-pulse" /> },
+);
+const TestimonialsSection = dynamic(
+  () => import("@/components/TestimonialsSection").then((m) => ({ default: m.TestimonialsSection })),
+  { ssr: false },
+);
+const FAQSection = dynamic(
+  () => import("@/components/FAQSection").then((m) => ({ default: m.FAQSection })),
+  { ssr: false },
+);
 
 const supplyRoutes = [
   { start: { lat: 51.1657, lng: 10.4515, label: "Germany" },     end: { lat: 23.685, lng: 90.3563, label: "Dhaka" } },
@@ -27,11 +37,11 @@ const supplyRoutes = [
   { start: { lat: 20.5937, lng: 78.9629, label: "India" },       end: { lat: 23.685, lng: 90.3563, label: "Dhaka" } },
   { start: { lat: 41.8719, lng: 12.5674, label: "Italy" },       end: { lat: 23.685, lng: 90.3563, label: "Dhaka" } },
   { start: { lat: -25.2744, lng: 133.7751, label: "Australia" }, end: { lat: 23.685, lng: 90.3563, label: "Dhaka" } },
-  { start: { lat: 46.8182, lng: 8.2275, label: "Switzerland" }, end: { lat: 23.685, lng: 90.3563, label: "Dhaka" } },
-  { start: { lat: 52.1326, lng: 5.2913, label: "Netherlands" }, end: { lat: 23.685, lng: 90.3563, label: "Dhaka" } },
-  { start: { lat: 46.2276, lng: 2.2137, label: "France" },      end: { lat: 23.685, lng: 90.3563, label: "Dhaka" } },
-  { start: { lat: 1.3521, lng: 103.8198, label: "Singapore" },  end: { lat: 23.685, lng: 90.3563, label: "Dhaka" } },
-  { start: { lat: 60.1282, lng: 18.6435, label: "Sweden" },     end: { lat: 23.685, lng: 90.3563, label: "Dhaka" } },
+  { start: { lat: 46.8182, lng: 8.2275, label: "Switzerland" },  end: { lat: 23.685, lng: 90.3563, label: "Dhaka" } },
+  { start: { lat: 52.1326, lng: 5.2913, label: "Netherlands" },  end: { lat: 23.685, lng: 90.3563, label: "Dhaka" } },
+  { start: { lat: 46.2276, lng: 2.2137, label: "France" },       end: { lat: 23.685, lng: 90.3563, label: "Dhaka" } },
+  { start: { lat: 1.3521, lng: 103.8198, label: "Singapore" },   end: { lat: 23.685, lng: 90.3563, label: "Dhaka" } },
+  { start: { lat: 60.1282, lng: 18.6435, label: "Sweden" },      end: { lat: 23.685, lng: 90.3563, label: "Dhaka" } },
 ];
 
 const INITIAL_BRAND_LOGOS = [
@@ -40,7 +50,6 @@ const INITIAL_BRAND_LOGOS = [
   { name: "Perlong Medical", logo: "/brands/perlong.svg", country: "China" },
   { name: "Zerone", logo: "/brands/zerone.svg", country: "South Korea" },
 ];
-
 
 const INITIAL_CLIENT_LOGOS = [
   { name: "Care Specialized Hospital", logo: "/clients/Care Specialized Hospital.svg" },
@@ -51,79 +60,30 @@ const INITIAL_CLIENT_LOGOS = [
   { name: "United Hospital", logo: "/clients/United Hospital.svg" },
 ];
 
-
-
-
 export default function Home() {
-  const [brands, setBrands] = useState(INITIAL_BRAND_LOGOS);
-  const [clients, setClients] = useState(INITIAL_CLIENT_LOGOS);
-
-  useEffect(() => {
-    // Defer non-critical logo fetches so they don't compete with LCP
-    const timer = setTimeout(() => {
-      fetch("/api/public-partner-logos")
-        .then((res) => res.json())
-        .then((data) => {
-          if (data && data.length > 0) setBrands(data);
-        })
-        .catch((err) => console.error("Error fetching partner logos:", err));
-
-      fetch("/api/public-client-logos")
-        .then((res) => res.json())
-        .then((data) => {
-          if (data && data.length > 0) setClients(data);
-        })
-        .catch((err) => console.error("Error fetching client logos:", err));
-    }, 2000);
-
-    return () => clearTimeout(timer);
-  }, []);
-
   return (
     <div className="w-full font-['Inter'] tracking-tight">
-      {/* ═══════════════════════════════════════
-          HERO SECTION — Auto-sliding carousel
-      ═══════════════════════════════════════ */}
+
+      {/* ═══ HERO ═══ */}
       <section className="relative min-h-[100dvh] lg:h-screen lg:min-h-[700px] flex items-start pt-48 md:pt-56 lg:pt-64 pb-24 lg:pb-0 overflow-hidden">
-        {/* Background & Text slider */}
         <HeroSlider />
       </section>
 
-      {/* Brand Partners Marquee */}
-      <section className="bg-white py-12 border-b border-gray-100 overflow-hidden">
-        <div className="container mx-auto px-4 mb-6 text-center">
-          <p className="text-sm font-bold text-[#575B5F] uppercase tracking-wide">
-            Clients who continue to trust us
-          </p>
-        </div>
-        <div className="flex items-center space-x-8 md:space-x-24 animate-[marquee_15s_linear_infinite] whitespace-nowrap px-2 md:px-4 py-4 md:py-6">
-          {[...clients, ...clients, ...clients, ...clients].map((client, index) => (
-            <div key={index} className="inline-flex items-center mx-4 md:mx-12">
-              {client.logo ? (
-                <img 
-                  src={client.logo} 
-                  alt={client.name} 
-                  className="h-8 md:h-16 w-auto max-w-none object-contain brightness-0 opacity-60 hover:opacity-100 transition-all duration-300" 
-                />
-              ) : null}
-            </div>
-          ))}
-        </div>
-      </section>
+      {/* ═══ CLIENT LOGOS MARQUEE ═══ */}
+      <ClientLogosMarquee initialClients={INITIAL_CLIENT_LOGOS} />
 
-
-      {/* Featured Equipment Carousel (CMS-driven) */}
+      {/* ═══ PRODUCT CAROUSEL ═══ */}
       <ProductCarousel />
 
-      {/* Cinematic Expanding Category Showcase */}
+      {/* ═══ CATEGORY SHOWCASE ═══ */}
       <CategoryShowcase />
 
-      {/* Value Proposition */}
+      {/* ═══ VALUE PROPOSITION ═══ */}
       <section className="py-24 bg-white overflow-visible">
         <div className="container mx-auto px-4 lg:px-8 max-w-[1440px]">
 
           {/* Globe + Brands Split */}
-          <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.8 }}>
+          <FadeIn>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 items-center bg-white">
               {/* Left — Text + Brand Logos */}
               <div className="px-2 lg:pr-16 py-8 lg:py-16">
@@ -133,101 +93,86 @@ export default function Home() {
                 <p className="text-lg text-[#575B5F] leading-relaxed mb-12 max-w-lg font-normal">
                   No middlemen. No grey markets. We source, import, and deliver internationally certified medical devices from the brands that hospitals worldwide rely on — straight to your facility.
                 </p>
-
-                {/* Animated Brand Logos Marquee */}
-                <div className="relative w-full max-w-full overflow-hidden mt-8 [mask-image:linear-gradient(to_right,transparent,black_10%,black_80%,transparent)]">
-                  <div className="flex items-center space-x-12 animate-[marquee_10s_linear_infinite] whitespace-nowrap">
-                    {[...brands, ...brands, ...brands, ...brands].map((brand, i) => (
-                      <div key={i} className="relative h-12 w-32 shrink-0 flex items-center justify-left">
-                        {brand.logo ? (
-                          <img
-                            src={brand.logo}
-                            alt={brand.name}
-                            className="h-full w-full object-contain object-left transition-transform duration-300 hover:scale-105"
-                          />
-                        ) : null}
-                      </div>
-                    ))}
-                  </div>
-                </div>
+                <BrandLogosMarquee initialBrands={INITIAL_BRAND_LOGOS} />
               </div>
 
-              {/* Right — 3D Globe (glow overflows) */}
+              {/* Right — SVG Supply-Route Map */}
               <div className="relative lg:-mr-8 overflow-hidden lg:overflow-visible max-h-[320px] lg:max-h-none">
                 <WorldMap dots={supplyRoutes} lineColor="#12B5CB" />
               </div>
             </div>
-          </motion.div>
+          </FadeIn>
 
-
-          {/* ── Why Hospitals Choose Us ── */}
+          {/* Why Hospitals Choose Us */}
           <div className="mt-32">
-            <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-20">
-              <h2 className="font-['Inter'] text-[2.5rem] font-bold text-[#00355D] mb-4 tracking-tighter">Why Hospitals Choose Us</h2>
-              <p className="text-lg text-[#575B5F] max-w-xl mx-auto font-normal">Beyond selling equipment — we invest in your operations, your team, and your patients.</p>
-            </motion.div>
+            <FadeIn>
+              <div className="text-center mb-20">
+                <h2 className="font-['Inter'] text-[2.5rem] font-bold text-[#00355D] mb-4 tracking-tighter">Why Hospitals Choose Us</h2>
+                <p className="text-lg text-[#575B5F] max-w-xl mx-auto font-normal">Beyond selling equipment — we invest in your operations, your team, and your patients.</p>
+              </div>
+            </FadeIn>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
 
               {/* Quality Card */}
-              <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}
-                className="bg-[#F8F9FA] rounded-2xl p-10 lg:p-12 border border-gray-100 hover:border-[#12B5CB]/20 transition-colors"
-              >
-                <div className="w-12 h-12 bg-[#00AB4E]/10 rounded-xl flex items-center justify-center mb-6">
-                  <ShieldCheck className="w-6 h-6 text-[#00AB4E]" />
+              <FadeIn>
+                <div className="bg-[#F8F9FA] rounded-2xl p-10 lg:p-12 border border-gray-100 hover:border-[#12B5CB]/20 transition-colors">
+                  <div className="w-12 h-12 bg-[#00AB4E]/10 rounded-xl flex items-center justify-center mb-6">
+                    <ShieldCheck className="w-6 h-6 text-[#00AB4E]" />
+                  </div>
+                  <h3 className="font-['Inter'] text-2xl font-bold text-[#00355D] mb-4 tracking-[-0.02em]">Zero-Compromise Quality</h3>
+                  <p className="text-[#575B5F] text-base leading-relaxed mb-8 font-normal">
+                    We don&apos;t cut corners. Every device we deliver has passed factory inspections, carries CE/ISO certification, and meets DGDA regulatory standards — because patient safety isn&apos;t negotiable.
+                  </p>
+                  <div className="flex flex-col gap-3">
+                    <div className="flex items-center gap-3">
+                      <div className="w-2 h-2 rounded-full bg-[#00AB4E]" />
+                      <span className="text-sm font-semibold text-[#00355D]">ISO 9001 · CE · FDA compliant processes</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <div className="w-2 h-2 rounded-full bg-[#00AB4E]" />
+                      <span className="text-sm font-semibold text-[#00355D]">Full DGDA documentation on every shipment</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <div className="w-2 h-2 rounded-full bg-[#00AB4E]" />
+                      <span className="text-sm font-semibold text-[#00355D]">Factory-sealed, never refurbished</span>
+                    </div>
+                  </div>
                 </div>
-                <h3 className="font-['Inter'] text-2xl font-bold text-[#00355D] mb-4 tracking-[-0.02em]">Zero-Compromise Quality</h3>
-                <p className="text-[#575B5F] text-base leading-relaxed mb-8 font-normal">
-                  We don&apos;t cut corners. Every device we deliver has passed factory inspections, carries CE/ISO certification, and meets DGDA regulatory standards — because patient safety isn&apos;t negotiable.
-                </p>
-                <div className="flex flex-col gap-3">
-                  <div className="flex items-center gap-3">
-                    <div className="w-2 h-2 rounded-full bg-[#00AB4E]" />
-                    <span className="text-sm font-semibold text-[#00355D]">ISO 9001 · CE · FDA compliant processes</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-2 h-2 rounded-full bg-[#00AB4E]" />
-                    <span className="text-sm font-semibold text-[#00355D]">Full DGDA documentation on every shipment</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-2 h-2 rounded-full bg-[#00AB4E]" />
-                    <span className="text-sm font-semibold text-[#00355D]">Factory-sealed, never refurbished</span>
-                  </div>
-                </div>
-              </motion.div>
+              </FadeIn>
 
               {/* Support Card */}
-              <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.15 }}
-                className="bg-[#00355D] rounded-2xl p-10 lg:p-12 text-white"
-              >
-                <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mb-6">
-                  <Wrench className="w-6 h-6 text-[#12B5CB]" />
-                </div>
-                <h3 className="font-['Inter'] text-2xl font-bold mb-4 tracking-[-0.02em]">24/7 Engineering On Call</h3>
-                <p className="text-white/70 text-base leading-relaxed mb-8 font-normal">
-                  When a ventilator goes down at 3 AM, our manufacturer-trained biomedical engineers are already on the way. We keep hospitals running — around the clock, every single day.
-                </p>
-                <div className="flex flex-col gap-3 mb-10">
-                  <div className="flex items-center gap-3">
-                    <div className="w-2 h-2 rounded-full bg-[#12B5CB]" />
-                    <span className="text-sm font-semibold text-white/90">Rapid-response on-site repair teams</span>
+              <FadeIn delay={150}>
+                <div className="bg-[#00355D] rounded-2xl p-10 lg:p-12 text-white">
+                  <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mb-6">
+                    <Wrench className="w-6 h-6 text-[#12B5CB]" />
                   </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-2 h-2 rounded-full bg-[#12B5CB]" />
-                    <span className="text-sm font-semibold text-white/90">Genuine OEM spare parts — always in stock</span>
+                  <h3 className="font-['Inter'] text-2xl font-bold mb-4 tracking-[-0.02em]">24/7 Engineering On Call</h3>
+                  <p className="text-white/70 text-base leading-relaxed mb-8 font-normal">
+                    When a ventilator goes down at 3 AM, our manufacturer-trained biomedical engineers are already on the way. We keep hospitals running — around the clock, every single day.
+                  </p>
+                  <div className="flex flex-col gap-3 mb-10">
+                    <div className="flex items-center gap-3">
+                      <div className="w-2 h-2 rounded-full bg-[#12B5CB]" />
+                      <span className="text-sm font-semibold text-white/90">Rapid-response on-site repair teams</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <div className="w-2 h-2 rounded-full bg-[#12B5CB]" />
+                      <span className="text-sm font-semibold text-white/90">Genuine OEM spare parts — always in stock</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <div className="w-2 h-2 rounded-full bg-[#12B5CB]" />
+                      <span className="text-sm font-semibold text-white/90">Preventive maintenance contracts</span>
+                    </div>
                   </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-2 h-2 rounded-full bg-[#12B5CB]" />
-                    <span className="text-sm font-semibold text-white/90">Preventive maintenance contracts</span>
+                  <div className="border-t border-white/10 pt-6">
+                    <p className="text-xs text-white/40 uppercase tracking-wider mb-2">Direct Service Hotline</p>
+                    <a href="tel:+8801898876703" className="text-2xl font-bold text-white hover:text-[#12B5CB] transition-colors tracking-tight">
+                      +88 01898 876703
+                    </a>
                   </div>
                 </div>
-                <div className="border-t border-white/10 pt-6">
-                  <p className="text-xs text-white/40 uppercase tracking-wider mb-2">Direct Service Hotline</p>
-                  <a href="tel:+8801898876703" className="text-2xl font-bold text-white hover:text-[#12B5CB] transition-colors tracking-tight">
-                    +88 01898 876703
-                  </a>
-                </div>
-              </motion.div>
+              </FadeIn>
 
             </div>
           </div>
@@ -235,11 +180,12 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Testimonials */}
+      {/* ═══ TESTIMONIALS ═══ */}
       <TestimonialsSection />
 
-      {/* FAQ Section */}
+      {/* ═══ FAQ ═══ */}
       <FAQSection />
+
     </div>
   );
 }
