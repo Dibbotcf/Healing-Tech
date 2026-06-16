@@ -93,7 +93,10 @@ PAYLOAD_SECRET=d82494f0614eb589ba5b3e21b7abceb1
 NEXT_PUBLIC_SITE_URL=https://yamrsn0ry3ni6t5bozx4prvj.91.98.166.101.sslip.io
 NEXT_PRIVATE_LOCAL_DB=true
 DATABASE_URI=postgres://postgres:Q16OxSTs9OfRNPJTU8FdcqCv7nsYPSIFhIpcOWQKF4VjRukvgD8pkqbWlXlgVPxA@qzk1bz2azjqbv1kbznvux5p8:5432/postgres
+NEXT_PUBLIC_FACEBOOK_PIXEL_ID=1630649381331754
+NEXT_SERVER_ACTIONS_ENCRYPTION_KEY=6O76vF8GPJIJfMKPIgPy7nBJ7yysXBc0BZ0+fcdudcw=
 ```
+> ⚠️ `NEXT_SERVER_ACTIONS_ENCRYPTION_KEY` is CRITICAL — without it, every new build generates a random key and server action IDs change, causing `UnrecognizedActionError` in the admin panel after each deploy. This key must NEVER change or all active sessions will break.
 
 ---
 

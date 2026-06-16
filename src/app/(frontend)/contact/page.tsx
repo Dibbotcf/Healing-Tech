@@ -1,10 +1,12 @@
 "use client";
 import { useState } from "react";
+import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import { MapPin, Phone, Mail, MessageSquare, HeadphonesIcon, BookOpen, Building2, ChevronDown } from "lucide-react";
 import Image from "next/image";
-import { Map, Marker } from "pigeon-maps";
 import { Button } from "@/components/ui/button";
+
+const ContactMap = dynamic(() => import("@/components/ContactMap"), { ssr: false });
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
@@ -154,22 +156,7 @@ export default function Contact() {
             {/* Map */}
             <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="relative">
               <div className="w-full h-[400px] rounded-[32px] overflow-hidden border border-gray-200 relative bg-[#f8f9fa]">
-                <Map 
-                  height={400} 
-                  defaultCenter={[23.7276, 90.4080]} 
-                  defaultZoom={14} 
-                  attributionPrefix={false}
-                  attribution={false}
-                  mouseEvents={false}
-                  touchEvents={false}
-                  metaWheelZoom={false}
-                  provider={(x, y, z) => `https://cartodb-basemaps-a.global.ssl.fastly.net/light_all/${z}/${x}/${y}@2x.png`}
-                >
-                   {/* Custom styled marker */}
-                   <Marker anchor={[23.7276, 90.4080]}>
-                     <div className="w-4 h-4 bg-[#12B5CB] rounded-full ring-4 ring-white shadow-xl" />
-                   </Marker>
-                </Map>
+                <ContactMap />
                 
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -mt-16 z-10 bg-white p-5 rounded-2xl shadow-xl w-[260px] pointer-events-auto">
                     <div className="flex items-center gap-3 mb-3">
