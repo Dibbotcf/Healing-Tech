@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { MapPin, Phone, Mail, MessageSquare, ChevronDown } from "lucide-react";
 import Image from "next/image";
@@ -18,9 +18,6 @@ export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
   const [openFaq, setOpenFaq] = useState<number | null>(null);
-  const [mapMounted, setMapMounted] = useState(false);
-  useEffect(() => { setMapMounted(true) }, []);
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -152,7 +149,7 @@ export default function Contact() {
             {/* Map */}
             <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="relative">
               <div className="w-full h-[400px] rounded-[32px] overflow-hidden border border-gray-200 relative bg-[#f8f9fa]">
-                {mapMounted && <ContactMap />}
+                <ContactMap />
                 
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -mt-16 z-10 bg-white p-5 rounded-2xl shadow-xl w-[260px] pointer-events-auto">
                     <div className="flex items-center gap-3 mb-3">
