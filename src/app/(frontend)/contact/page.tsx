@@ -129,9 +129,9 @@ export default function Contact() {
                   )}
 
                   <p className="text-[11px] text-[#575B5F] text-center leading-relaxed font-normal">
-                    By contacting us, you agree to our{" "}
-                    <Link href="/terms" className="font-bold text-[#00355D] hover:underline">Terms of Service</Link>{" "}
-                    and{" "}
+                    {"By contacting us, you agree to our "}
+                    <Link href="/terms" className="font-bold text-[#00355D] hover:underline">Terms of Service</Link>
+                    {" and "}
                     <Link href="/privacy" className="font-bold text-[#00355D] hover:underline">Privacy Policy</Link>
                   </p>
                 </form>
