@@ -1,12 +1,8 @@
 "use client";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { MapPin, Phone, Mail, MessageSquare, HeadphonesIcon, BookOpen, Building2, ChevronDown } from "lucide-react";
+import { MapPin, Phone, Mail, MessageSquare, ChevronDown } from "lucide-react";
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
 import Link from "next/link";
 import ContactMap from "@/components/ContactMap";
 
@@ -90,43 +86,43 @@ export default function Contact() {
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div className="grid grid-cols-2 gap-3">
                     <div className="space-y-1">
-                      <Label className="text-xs font-semibold text-[#575B5F]">Full Name *</Label>
-                      <Input placeholder="Dr. Tariqur Rahman" required value={formData.fullName}
-                        onChange={(e) => setFormData({ ...formData, fullName: e.target.value })} className="text-sm rounded-xl" />
+                      <label className="text-xs font-semibold text-[#575B5F]">Full Name *</label>
+                      <input placeholder="Dr. Tariqur Rahman" required value={formData.fullName}
+                        onChange={(e) => setFormData({ ...formData, fullName: e.target.value })} className="text-sm rounded-xl w-full border border-gray-300 bg-white px-3 py-2 outline-none focus:ring-2 focus:ring-[#00355D]" />
                     </div>
                     <div className="space-y-1">
-                      <Label className="text-xs font-semibold text-[#575B5F]">Clinical Role *</Label>
-                      <Input placeholder="Director / Head of Department" required value={formData.role}
-                        onChange={(e) => setFormData({ ...formData, role: e.target.value })} className="text-sm rounded-xl" />
+                      <label className="text-xs font-semibold text-[#575B5F]">Clinical Role *</label>
+                      <input placeholder="Director / Head of Department" required value={formData.role}
+                        onChange={(e) => setFormData({ ...formData, role: e.target.value })} className="text-sm rounded-xl w-full border border-gray-300 bg-white px-3 py-2 outline-none focus:ring-2 focus:ring-[#00355D]" />
                     </div>
                   </div>
                   <div className="space-y-1">
-                    <Label className="text-xs font-semibold text-[#575B5F]">Hospital / Facility *</Label>
-                    <Input placeholder="Square Hospitals Ltd." required value={formData.hospital}
-                      onChange={(e) => setFormData({ ...formData, hospital: e.target.value })} className="text-sm rounded-xl" />
+                    <label className="text-xs font-semibold text-[#575B5F]">Hospital / Facility *</label>
+                    <input placeholder="Square Hospitals Ltd." required value={formData.hospital}
+                      onChange={(e) => setFormData({ ...formData, hospital: e.target.value })} className="text-sm rounded-xl w-full border border-gray-300 bg-white px-3 py-2 outline-none focus:ring-2 focus:ring-[#00355D]" />
                   </div>
                   <div className="space-y-1">
-                    <Label className="text-xs font-semibold text-[#575B5F]">Email *</Label>
-                    <Input type="email" placeholder="tariqur@squarehospital.com" required value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })} className="text-sm rounded-xl" />
+                    <label className="text-xs font-semibold text-[#575B5F]">Email *</label>
+                    <input type="email" placeholder="tariqur@squarehospital.com" required value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })} className="text-sm rounded-xl w-full border border-gray-300 bg-white px-3 py-2 outline-none focus:ring-2 focus:ring-[#00355D]" />
                   </div>
                   <div className="space-y-1">
-                    <Label className="text-xs font-semibold text-[#575B5F]">Phone *</Label>
-                    <Input type="tel" placeholder="+880 1711 ..." required value={formData.phone}
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })} className="text-sm rounded-xl" />
+                    <label className="text-xs font-semibold text-[#575B5F]">Phone *</label>
+                    <input type="tel" placeholder="+880 1711 ..." required value={formData.phone}
+                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })} className="text-sm rounded-xl w-full border border-gray-300 bg-white px-3 py-2 outline-none focus:ring-2 focus:ring-[#00355D]" />
                   </div>
                   <div className="space-y-1">
-                    <Label className="text-xs font-semibold text-[#575B5F]">How can we help? <span className="text-gray-400 font-normal">(optional)</span></Label>
-                    <Textarea placeholder="Please specify the machines, quantities, and your facility type..." rows={4}
-                      className="resize-none text-sm rounded-xl" value={formData.requirements}
+                    <label className="text-xs font-semibold text-[#575B5F]">How can we help? <span className="text-gray-400 font-normal">(optional)</span></label>
+                    <textarea placeholder="Please specify the machines, quantities, and your facility type..." rows={4}
+                      className="resize-none text-sm rounded-xl w-full border border-gray-300 bg-white px-3 py-2 outline-none focus:ring-2 focus:ring-[#00355D]" value={formData.requirements}
                       onChange={(e) => setFormData({ ...formData, requirements: e.target.value })} />
                   </div>
 
-                  <Button type="submit" disabled={isSubmitting}
-                    className="w-full bg-[#00355D] hover:bg-[#12B5CB] text-white font-bold py-3 h-auto rounded-full text-sm transition-all duration-300">
+                  <button type="submit" disabled={isSubmitting}
+                    className="w-full bg-[#00355D] hover:bg-[#12B5CB] text-white font-bold py-3 rounded-full text-sm transition-all duration-300 flex items-center justify-center disabled:opacity-60">
                     <MessageSquare className="w-4 h-4 mr-2" />
                     {isSubmitting ? "Submitting..." : "Submit"}
-                  </Button>
+                  </button>
 
                   {submitStatus === "success" && (
                     <p className="text-green-600 font-medium text-center text-sm">✓ Inquiry submitted! We'll respond within 24 hours.</p>
