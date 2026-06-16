@@ -47,6 +47,12 @@ export default buildConfig({
       slug: 'users',
       auth: true,
       admin: { useAsTitle: 'email' },
+      access: {
+        read: ({ req: { user } }) => Boolean(user),
+        create: ({ req: { user } }) => Boolean(user),
+        update: ({ req: { user } }) => Boolean(user),
+        delete: ({ req: { user } }) => Boolean(user),
+      },
       fields: [],
     },
     // Client Logos
@@ -470,8 +476,7 @@ export default buildConfig({
             beforeChange: [
               ({ siblingData }) => {
                 if (siblingData?.orderNumber) {
-                  const base = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:12000';
-                  return `${base}/invoice/${siblingData.orderNumber}`;
+                  return `${siteUrl}/invoice/${siblingData.orderNumber}`;
                 }
                 return '';
               }

@@ -1,6 +1,5 @@
 "use client";
-import { useState } from "react";
-import dynamic from "next/dynamic";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { MapPin, Phone, Mail, MessageSquare, HeadphonesIcon, BookOpen, Building2, ChevronDown } from "lucide-react";
 import Image from "next/image";
@@ -9,8 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
-
-const ContactMap = dynamic(() => import("@/components/ContactMap"), { ssr: false });
+import ContactMap from "@/components/ContactMap";
 
 const faqs = [
   { q: "How do I request a quotation for medical equipment?", a: "You can fill in the inquiry form above, call us directly at +88 01675 292991, or email info@healingtech.com.bd. Our sales engineering team will respond within 24 hours." },
@@ -24,6 +22,8 @@ export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [mapMounted, setMapMounted] = useState(false);
+  useEffect(() => { setMapMounted(true) }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -156,7 +156,7 @@ export default function Contact() {
             {/* Map */}
             <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="relative">
               <div className="w-full h-[400px] rounded-[32px] overflow-hidden border border-gray-200 relative bg-[#f8f9fa]">
-                <ContactMap />
+                {mapMounted && <ContactMap />}
                 
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -mt-16 z-10 bg-white p-5 rounded-2xl shadow-xl w-[260px] pointer-events-auto">
                     <div className="flex items-center gap-3 mb-3">
