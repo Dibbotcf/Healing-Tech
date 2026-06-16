@@ -17,7 +17,7 @@ export function Footer() {
       .catch((err) => console.error("Error fetching categories:", err));
   }, []);
   return (
-    <footer className="bg-[#001729] text-white pt-24 pb-0 font-['Inter'] relative overflow-hidden">
+    <footer className="bg-[#001729] text-white pt-24 pb-0 font-['Inter'] relative overflow-hidden print:hidden">
       <div className="container mx-auto px-4 lg:px-8 max-w-[1440px] relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 mb-20">
           <div className="lg:col-span-4">

@@ -49,7 +49,7 @@ export default async function InvoicePage({ params }: { params: Promise<{ orderN
   const order = docs[0] as any
 
   return (
-    <div className="min-h-screen bg-[#F8F9FA] pt-24 pb-24 font-['Inter'] selection:bg-[#12B5CB] selection:text-white">
+    <div className="min-h-screen bg-[#F8F9FA] pt-24 pb-24 font-['Inter'] selection:bg-[#12B5CB] selection:text-white print:min-h-0 print:pt-0 print:pb-0 print:bg-white">
       <div className="container mx-auto px-4 max-w-[800px]">
         {/* Actions Row */}
         <div className="flex items-center justify-between mb-8 print:hidden">
@@ -135,7 +135,7 @@ export default async function InvoicePage({ params }: { params: Promise<{ orderN
           </div>
 
           {/* Totals */}
-          <div className="flex justify-end pt-4 mb-16">
+          <div className="flex justify-end pt-4 mb-16 print:mb-4">
              <div className="w-full md:w-1/2 lg:w-1/3">
                 <div className="flex justify-between items-center mb-3">
                   <span className="text-gray-500 font-medium text-sm">Subtotal</span>

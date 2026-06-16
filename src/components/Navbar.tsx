@@ -81,7 +81,7 @@ export default function Navbar() {
   const activeCat   = categories.find((c) => c.id === activeCategory);
 
   return (
-    <div>
+    <div className="print:hidden">
       {/* ═══════════════════════════════════════
           FLOATING PILL HEADER
       ═══════════════════════════════════════ */}
