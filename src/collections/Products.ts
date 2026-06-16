@@ -5,9 +5,13 @@ export const Products: CollectionConfig = {
   admin: {
     useAsTitle: 'name',
     defaultColumns: ['name', 'brand', 'category', 'status'],
+    preview: (doc) => `https://healingtechnology.com.bd/products/${doc.slug}`,
   },
   access: {
     read: () => true,
+    create: ({ req: { user } }) => Boolean(user),
+    update: ({ req: { user } }) => Boolean(user),
+    delete: ({ req: { user } }) => Boolean(user),
   },
   fields: [
     { name: 'name', type: 'text', required: true },
