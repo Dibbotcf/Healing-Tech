@@ -62,9 +62,9 @@ export default async function InvoicePage({ params }: { params: Promise<{ orderN
         </div>
 
         {/* Invoice Paper */}
-        <div className="bg-white p-10 md:p-14 rounded-2xl shadow-md border border-gray-100 relative overflow-hidden print:shadow-none print:border-none print:p-0">
+        <div className="bg-white p-10 md:p-14 rounded-2xl shadow-md border border-gray-100 relative overflow-hidden print:shadow-none print:border-none print:p-0 print:rounded-none print:overflow-visible">
           {/* Header */}
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-gray-100 pb-8 mb-8">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-gray-100 pb-8 mb-8 print:pb-4 print:mb-4">
             <div className="mb-6 md:mb-0">
               <Image src="/logo-dark.svg" alt="Healing Technology" width={220} height={48} className="object-contain" />
               <p className="text-xs text-gray-500 mt-2 tracking-widest uppercase font-bold">Official Commercial Invoice</p>
@@ -88,7 +88,7 @@ export default async function InvoicePage({ params }: { params: Promise<{ orderN
           </div>
 
           {/* Customer & Company Details */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10 print:mb-4">
              <div>
                <h3 className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-3">Billed To</h3>
                <p className="font-bold text-[#111111] text-lg">{order.customer.firstName} {order.customer.lastName}</p>
@@ -107,7 +107,7 @@ export default async function InvoicePage({ params }: { params: Promise<{ orderN
           </div>
 
           {/* Table */}
-          <div className="w-full mb-8">
+          <div className="w-full mb-8 print:mb-3">
             <div className="flex text-xs font-bold uppercase tracking-widest text-gray-400 border-b-2 border-gray-100 pb-3 mb-4">
               <div className="flex-1">Description</div>
               <div className="w-24 text-center">Qty</div>
@@ -135,7 +135,7 @@ export default async function InvoicePage({ params }: { params: Promise<{ orderN
           </div>
 
           {/* Totals */}
-          <div className="flex justify-end pt-4 mb-16 print:mb-4">
+          <div className="flex justify-end pt-4 mb-16 print:mb-2">
              <div className="w-full md:w-1/2 lg:w-1/3">
                 <div className="flex justify-between items-center mb-3">
                   <span className="text-gray-500 font-medium text-sm">Subtotal</span>
@@ -152,7 +152,7 @@ export default async function InvoicePage({ params }: { params: Promise<{ orderN
              </div>
           </div>
 
-          <div className="text-center pt-8 border-t border-gray-100 text-xs text-gray-400 font-medium">
+          <div className="text-center pt-8 border-t border-gray-100 text-xs text-gray-400 font-medium print:pt-3">
              Thanks for choosing Healing Technology. All products come with official warranties as stated in the documentation.
           </div>
         </div>
