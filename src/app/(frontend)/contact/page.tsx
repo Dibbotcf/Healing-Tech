@@ -5,12 +5,12 @@ import { motion } from "framer-motion";
 import { MapPin, Phone, Mail, MessageSquare, HeadphonesIcon, BookOpen, Building2, ChevronDown } from "lucide-react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-
-const ContactMap = dynamic(() => import("@/components/ContactMap"), { ssr: false });
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
+
+const ContactMap = dynamic(() => import("@/components/ContactMap"), { ssr: false });
 
 const faqs = [
   { q: "How do I request a quotation for medical equipment?", a: "You can fill in the inquiry form above, call us directly at +88 01675 292991, or email info@healingtech.com.bd. Our sales engineering team will respond within 24 hours." },

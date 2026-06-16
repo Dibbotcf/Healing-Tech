@@ -36,4 +36,7 @@ const nextConfig: NextConfig = {
   },
 }
 
-export default withPayload(nextConfig)
+const withPayloadConfig = withPayload(nextConfig) as NextConfig & { experimental?: Record<string, unknown> }
+// withPayload injects turbopackServerFastRefresh which is invalid in Next.js 16.2.2
+delete withPayloadConfig.experimental?.turbopackServerFastRefresh
+export default withPayloadConfig
