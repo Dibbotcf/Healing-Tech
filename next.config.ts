@@ -7,15 +7,17 @@ const nextConfig: NextConfig = {
   output: "standalone",
   compress: true,
   generateBuildId: async () => {
-    // Use current git SHA so action IDs (and chunk filenames) change with every commit.
-    // git is in nixpacks nixPkgs and .git is present in the Coolify build context.
-    // Falls back to NEXT_BUILD_ID env var (set in Coolify to ${SOURCE_COMMIT}),
-    // then to a fixed string — never random, random breaks server action IDs.
+    // CRITICAL: NEXT_BUILD_ID must be a STABLE value that never changes between deploys.
+    // Action IDs are derived from BUILD_ID + file path, but chunk filenames are NOT
+    // re-hashed when action IDs change. So if BUILD_ID changes, server has new action IDs
+    // but browsers serve immutable-cached chunks with old IDs → UnrecognizedActionError.
+    // Keep NEXT_BUILD_ID in Coolify as a fixed SHA — never change it.
+    if (process.env.NEXT_BUILD_ID) return process.env.NEXT_BUILD_ID
     try {
-      const sha = execSync('git rev-parse HEAD').toString().trim()
-      if (sha) return sha
-    } catch {}
-    return process.env.NEXT_BUILD_ID ?? 'stable-build'
+      return execSync('git rev-parse HEAD').toString().trim()
+    } catch {
+      return 'stable-build'
+    }
   },
   experimental: {
     proxyClientMaxBodySize: '2gb',
