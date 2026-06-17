@@ -40,7 +40,25 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# tmp utility folder — ignore node_modules and debug output files
-tmp/node_modules/
-tmp/*.txt
-tmp/*.html
+# tmp utility folder — all local-only, never commit
+tmp/
+
+# Claude Code session data
+.claude/
+
+# Playwright MCP browser state
+.playwright-mcp/
+
+# Agent workflow data (contains plaintext credentials)
+.agent/
+
+# Database backups (sensitive — never commit)
+DB Backups/
+
+# Screenshot / deployment artifact PNGs in project root
+coolify-*.png
+create-page.png
+media-*.png
+media-picker*.png
+product-*.png
+terminal-test.png
