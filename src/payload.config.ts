@@ -2,23 +2,12 @@ import { buildConfig } from 'payload'
 import { postgresAdapter } from '@payloadcms/db-postgres'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import path from 'path'
-import fs from 'fs'
 import { fileURLToPath } from 'url'
 import { seoPlugin } from '@payloadcms/plugin-seo'
 import sharp from 'sharp'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
-
-// Each Next.js build generates a unique BUILD_ID. Appending it to the
-// JWT secret forces all existing tokens to be invalid after each deploy,
-// which logs every user out automatically on the next request.
-let buildId = ''
-try {
-  buildId = fs.readFileSync(path.join(dirname, '..', '.next', 'BUILD_ID'), 'utf8').trim()
-} catch {
-  // dev mode: no BUILD_ID file yet, secret stays as-is
-}
 
 const isProd = process.env.NODE_ENV === 'production'
 const liveUrl = 'https://healingtechnology.com.bd'
@@ -677,7 +666,7 @@ export default buildConfig({
   secret: (() => {
     const s = process.env.PAYLOAD_SECRET
     if (!s) throw new Error('PAYLOAD_SECRET environment variable is required but not set')
-    return `${s}${buildId}`
+    return s
   })(),
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
