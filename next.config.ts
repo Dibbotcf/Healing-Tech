@@ -7,15 +7,15 @@ const nextConfig: NextConfig = {
   output: "standalone",
   compress: true,
   generateBuildId: async () => {
-    // NEXT_BUILD_ID is set in Coolify env vars as a stable commit hash.
-    // Falls back to git hash (works if .git dir is present in build env),
-    // then to a fixed string (never random — random breaks server action IDs).
-    if (process.env.NEXT_BUILD_ID) return process.env.NEXT_BUILD_ID
+    // Use current git SHA so action IDs (and chunk filenames) change with every commit.
+    // git is in nixpacks nixPkgs and .git is present in the Coolify build context.
+    // Falls back to NEXT_BUILD_ID env var (set in Coolify to ${SOURCE_COMMIT}),
+    // then to a fixed string — never random, random breaks server action IDs.
     try {
-      return execSync('git rev-parse HEAD').toString().trim()
-    } catch {
-      return 'stable-build'
-    }
+      const sha = execSync('git rev-parse HEAD').toString().trim()
+      if (sha) return sha
+    } catch {}
+    return process.env.NEXT_BUILD_ID ?? 'stable-build'
   },
   experimental: {
     proxyClientMaxBodySize: '2gb',
