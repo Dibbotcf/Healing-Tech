@@ -1,6 +1,7 @@
 
 import configPromise from '@/payload.config'
 import '@payloadcms/next/css'
+import './admin-overrides.css'
 import { RootLayout } from '@payloadcms/next/layouts'
 import React from 'react'
 import { importMap } from './admin/importMap.js'
