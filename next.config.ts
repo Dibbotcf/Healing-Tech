@@ -1,10 +1,18 @@
 import { withPayload } from '@payloadcms/next/withPayload'
 import type { NextConfig } from 'next'
 import path from 'path'
+import { execSync } from 'child_process'
 
 const nextConfig: NextConfig = {
   output: "standalone",
   compress: true,
+  generateBuildId: async () => {
+    try {
+      return execSync('git rev-parse HEAD').toString().trim()
+    } catch {
+      return `build-${Date.now()}`
+    }
+  },
   experimental: {
     proxyClientMaxBodySize: '2gb',
     serverActions: {
