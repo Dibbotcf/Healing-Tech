@@ -7,10 +7,14 @@ const nextConfig: NextConfig = {
   output: "standalone",
   compress: true,
   generateBuildId: async () => {
+    // NEXT_BUILD_ID is set in Coolify env vars as a stable commit hash.
+    // Falls back to git hash (works if .git dir is present in build env),
+    // then to a fixed string (never random — random breaks server action IDs).
+    if (process.env.NEXT_BUILD_ID) return process.env.NEXT_BUILD_ID
     try {
       return execSync('git rev-parse HEAD').toString().trim()
     } catch {
-      return `build-${Date.now()}`
+      return 'stable-build'
     }
   },
   experimental: {
