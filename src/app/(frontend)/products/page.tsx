@@ -1,39 +1,42 @@
-import { getPayload } from 'payload'
-import configPromise from '@/payload.config'
-
+import { directusGet, directusAssetUrl } from '@/lib/directus';
 import ProductFilterClient from './ProductFilterClient';
 
-// Revalidate every 60 seconds — avoids re-fetching on every request
 export const revalidate = 60;
 
 export default async function ProductsPage({ searchParams }: { searchParams: Promise<{ category?: string }> }) {
   const params = await searchParams;
   const categorySlug = params.category || null;
-  const payload = await getPayload({ config: configPromise });
 
-  // Fetch in parallel — depth:1 is enough, we only need heroImage/category/brand refs
-  const [{ docs: products }, categoryDocs] = await Promise.all([
-    payload.find({
-      collection: 'products',
-      depth: 1,
-      limit: 500,
-      where: { status: { equals: 'published' } },
-      select: {
-        name: true,
-        slug: true,
-        listingSummary: true,
-        shortSummary: true,
-        markAsNew: true,
-        price: true,
-        discountPrice: true,
-        heroImage: true,
-        category: true,
-        brand: true,
-      } as any,
-    }),
-    payload.find({ collection: 'categories', depth: 0, limit: 100, sort: 'sortOrder' }),
+  const [productsRes, categoriesRes] = await Promise.all([
+    directusGet<{ data: any[] }>(
+      "/items/products?fields=id,name,slug,listing_summary,short_summary,mark_as_new,price,discount_price,hero_image,category.id,category.name,category.slug,brand.id,brand.name&filter[status][_eq]=published&limit=500",
+      60
+    ),
+    directusGet<{ data: any[] }>(
+      "/items/categories?fields=id,name,slug&sort=sort_order&limit=100",
+      60
+    ),
   ]);
-  const categories = categoryDocs.docs;
+
+  const products = (productsRes.data ?? []).map((p: any) => ({
+    id: p.id,
+    name: p.name,
+    slug: p.slug,
+    listingSummary: p.listing_summary ?? '',
+    shortSummary: p.short_summary ?? '',
+    markAsNew: !!p.mark_as_new,
+    price: p.price ?? null,
+    discountPrice: p.discount_price ?? null,
+    heroImage: p.hero_image ? { url: directusAssetUrl(p.hero_image), mimeType: '' } : null,
+    category: p.category ? { id: String(p.category.id), title: p.category.name, slug: p.category.slug } : null,
+    brand: p.brand ? { id: String(p.brand.id), name: p.brand.name } : null,
+  }));
+
+  const categories = (categoriesRes.data ?? []).map((c: any) => ({
+    id: String(c.id),
+    title: c.name,
+    slug: c.slug,
+  }));
 
   return (
     <div className="min-h-screen bg-[#F8F9FA] pb-24 font-['Inter'] tracking-tight">
@@ -45,9 +48,9 @@ export default async function ProductsPage({ searchParams }: { searchParams: Pro
       </div>
 
       <div className="container mx-auto px-4 lg:px-8 max-w-[1440px] mt-12">
-        <ProductFilterClient 
-          initialProducts={products} 
-          categories={categories} 
+        <ProductFilterClient
+          initialProducts={products}
+          categories={categories}
           initialCategorySlug={categorySlug}
         />
       </div>

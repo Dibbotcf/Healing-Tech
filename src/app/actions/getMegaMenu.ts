@@ -1,40 +1,27 @@
 "use server";
 
-import { getPayload } from "payload";
-import configPromise from "@/payload.config";
+import { directusGet } from "@/lib/directus";
 
 export async function getMegaMenuData() {
   try {
-    const payload = await getPayload({ config: configPromise });
+    const [catRes, prodRes] = await Promise.all([
+      directusGet<{ data: any[] }>("/items/categories?fields=id,name,slug&sort=sort_order&limit=100"),
+      directusGet<{ data: any[] }>(
+        "/items/products?fields=id,name,slug,category.id&limit=1000&filter[status][_eq]=published"
+      ),
+    ]);
 
-    const categoryDocs = await payload.find({
-      collection: "categories",
-      depth: 0,
-      limit: 100,
-    });
-
-    const productDocs = await payload.find({
-      collection: "products",
-      depth: 0,
-      limit: 1000,
-      where: {
-        status: { equals: "published" },
-      },
-    });
-
-    const categories = categoryDocs.docs.map((c) => ({
+    const categories = (catRes.data ?? []).map((c: any) => ({
       id: String(c.id),
-      title: c.title as string,
+      title: c.name as string,
       slug: c.slug as string,
     }));
 
-    const products = productDocs.docs.map((p) => ({
+    const products = (prodRes.data ?? []).map((p: any) => ({
       id: String(p.id),
       name: p.name as string,
       slug: p.slug as string,
-      category: String(
-        typeof p.category === "string" ? p.category : p.category?.id
-      ),
+      category: p.category ? String(p.category.id ?? p.category) : "",
     }));
 
     return { categories, products };

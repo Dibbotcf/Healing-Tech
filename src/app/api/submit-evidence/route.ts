@@ -1,6 +1,15 @@
-import { getPayload } from "payload";
-import configPromise from "@/payload.config";
 import { NextResponse } from "next/server";
+
+const DIRECTUS_URL = process.env.DIRECTUS_URL ?? 'https://cms.healingtechnology.com.bd';
+const DIRECTUS_TOKEN = process.env.DIRECTUS_TOKEN ?? '';
+
+async function dFetch(path: string, opts: RequestInit = {}) {
+  const res = await fetch(`${DIRECTUS_URL}${path}`, {
+    ...opts,
+    headers: { Authorization: `Bearer ${DIRECTUS_TOKEN}`, ...opts.headers },
+  });
+  return res.json();
+}
 
 export async function POST(req: Request) {
   try {
@@ -9,62 +18,43 @@ export async function POST(req: Request) {
     const file = formData.get("file") as File;
 
     if (!orderNumber || !file) {
-      return NextResponse.json(
-        { error: "Order number and file are required" },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: "Order number and file are required" }, { status: 400 });
     }
 
-    const payload = await getPayload({ config: configPromise });
-
-    // Ensure order exists
-    const orderCheck = await payload.find({
-      collection: "orders",
-      where: {
-        orderNumber: { equals: orderNumber },
-      },
-      limit: 1,
-    });
-
-    if (orderCheck.docs.length === 0) {
+    // Find the order
+    const orderRes = await dFetch(
+      `/items/orders?filter[order_number][_eq]=${encodeURIComponent(orderNumber)}&fields=id&limit=1`
+    );
+    if (!orderRes.data?.length) {
       return NextResponse.json({ error: "Order not found" }, { status: 404 });
     }
+    const orderId = orderRes.data[0].id;
 
-    const orderId = orderCheck.docs[0].id;
+    // Upload file to Directus
+    const uploadForm = new FormData();
+    uploadForm.append("file", file, file.name);
+    uploadForm.append("title", `Payment Evidence for ${orderNumber}`);
 
-    // Convert fetch File into NodeJS Buffer for Payload API
-    const arrayBuffer = await file.arrayBuffer();
-    const buffer = Buffer.from(arrayBuffer);
+    const fileRes = await fetch(`${DIRECTUS_URL}/files`, {
+      method: "POST",
+      headers: { Authorization: `Bearer ${DIRECTUS_TOKEN}` },
+      body: uploadForm,
+    });
+    const fileData = await fileRes.json();
+    if (!fileData.data?.id) {
+      throw new Error("File upload failed: " + JSON.stringify(fileData.errors?.[0]?.message));
+    }
 
-    // Upload to Media Collection
-    const mediaObj = await payload.create({
-      collection: "media",
-      data: {
-        alt: `Payment Evidence for ${orderNumber}`,
-      },
-      file: {
-        data: buffer,
-        name: file.name,
-        mimetype: file.type,
-        size: file.size,
-      },
+    // Update order with payment evidence
+    const updated = await dFetch(`/items/orders/${orderId}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ payment_evidence: fileData.data.id }),
     });
 
-    // Update the Order with the new Media Relation
-    const updatedOrder = await payload.update({
-      collection: "orders",
-      id: orderId,
-      data: {
-        paymentEvidence: mediaObj.id,
-      },
-    });
-
-    return NextResponse.json({ success: true, updatedOrder });
+    return NextResponse.json({ success: true, updatedOrder: updated.data });
   } catch (error: any) {
     console.error("Submit Evidence API Error:", error);
-    return NextResponse.json(
-      { error: error.message || "Internal Server Error" },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: error.message || "Internal Server Error" }, { status: 500 });
   }
 }

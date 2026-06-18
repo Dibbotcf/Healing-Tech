@@ -1,5 +1,4 @@
-import { getPayload } from "payload"
-import configPromise from "@/payload.config"
+import { directusGet } from "@/lib/directus"
 export const dynamic = 'force-dynamic';
 import Image from "next/image"
 import Link from "next/link"
@@ -8,21 +7,12 @@ import PrintButton from "@/components/PrintButton"
 
 export default async function InvoicePage({ params }: { params: Promise<{ orderNumber: string }> }) {
   const { orderNumber } = await params
-  const payload = await getPayload({ config: configPromise })
-  
-  const { docs } = await payload.find({
-    collection: "orders",
-    where: {
-      orderNumber: {
-        equals: orderNumber
-      }
-    },
-    overrideAccess: true,
-    depth: 2,
-    limit: 1
-  })
-  
-  if (docs.length === 0) {
+
+  const res = await directusGet<{ data: any[] }>(
+    `/items/orders?filter[order_number][_eq]=${encodeURIComponent(orderNumber)}&fields=*&limit=1`
+  )
+
+  if (!res.data?.length) {
     return (
       <div className="min-h-screen bg-[#F8F9FA] flex flex-col items-center justify-center font-['Inter'] px-4">
         <div className="bg-white p-10 rounded-3xl shadow-sm border border-red-100 max-w-lg w-full text-center relative overflow-hidden">
@@ -31,7 +21,7 @@ export default async function InvoicePage({ params }: { params: Promise<{ orderN
           </div>
           <h1 className="text-2xl font-bold text-[#111111] mb-2 tracking-tight">Invoice Not Found</h1>
           <p className="text-[#575B5F] mb-8 text-sm">
-            We couldn't find an invoice for the Order Number: <strong className="text-[#00355D]">{orderNumber}</strong>. Please check the spelling and try again.
+            We couldn&apos;t find an invoice for the Order Number: <strong className="text-[#00355D]">{orderNumber}</strong>. Please check the spelling and try again.
           </p>
           <div className="flex flex-col sm:flex-row gap-3">
             <Link href="/track-order" className="flex-1 bg-white border-2 border-gray-200 text-gray-600 hover:border-[#12B5CB] hover:text-[#12B5CB] font-bold py-3.5 rounded-xl transition-all flex items-center justify-center">
@@ -46,7 +36,30 @@ export default async function InvoicePage({ params }: { params: Promise<{ orderN
     );
   }
 
-  const order = docs[0] as any
+  const raw = res.data[0] as any
+
+  // Normalise Directus snake_case fields to what the template expects
+  const order = {
+    orderNumber: raw.order_number,
+    createdAt: raw.date_created,
+    paymentStatus: raw.payment_status,
+    totalAmount: raw.total_amount,
+    customer: {
+      firstName: raw.customer_first_name ?? '',
+      lastName: raw.customer_last_name ?? '',
+      address: raw.customer_address ?? '',
+      city: raw.customer_city ?? '',
+      email: raw.customer_email ?? '',
+      phone: raw.customer_phone ?? '',
+    },
+    // items is stored as JSON array: [{product_id, quantity, price_at_purchase}]
+    items: (raw.items ?? []).map((item: any) => ({
+      id: item.product_id ?? Math.random(),
+      product: item.product_name ?? String(item.product_id ?? 'Product'),
+      quantity: item.quantity,
+      priceAtPurchase: item.price_at_purchase,
+    })),
+  }
 
   return (
     <div className="min-h-screen bg-[#F8F9FA] pt-24 pb-24 font-['Inter'] selection:bg-[#12B5CB] selection:text-white print:min-h-0 print:pt-0 print:pb-0 print:bg-white">
@@ -73,9 +86,9 @@ export default async function InvoicePage({ params }: { params: Promise<{ orderN
               <h2 className="text-3xl font-bold text-[#00355D] mb-1">INVOICE</h2>
               <p className="text-sm font-bold text-[#12B5CB]">{order.orderNumber}</p>
               <div className="mt-4 flex flex-col md:items-end gap-1 text-sm text-gray-500">
-                <p><span className="font-semibold text-gray-700">Date:</span> {new Date(order.createdAt).toLocaleDateString()}</p>
+                <p><span className="font-semibold text-gray-700">Date:</span> {order.createdAt ? new Date(order.createdAt).toLocaleDateString() : ''}</p>
                 <p>
-                  <span className="font-semibold text-gray-700">Payment:</span> 
+                  <span className="font-semibold text-gray-700">Payment:</span>
                   <span className={`ml-2 px-2 py-0.5 rounded text-xs font-bold uppercase tracking-wider ${
                     order.paymentStatus === 'paid' ? 'bg-green-100 text-green-700' :
                     order.paymentStatus === 'unpaid' ? 'bg-amber-100 text-amber-700' : 'bg-gray-100 text-gray-700'
@@ -114,23 +127,18 @@ export default async function InvoicePage({ params }: { params: Promise<{ orderN
               <div className="w-32 text-right">Unit Price</div>
               <div className="w-32 text-right">Amount</div>
             </div>
-            
+
             <div className="space-y-4">
-              {order.items.map((item: any) => {
-                const isProductString = typeof item.product === 'string';
-                const productName = isProductString ? item.product : item.product?.name || "Unknown Product";
-                
-                return (
-                  <div key={item.id} className="flex text-sm text-[#111111] font-medium items-center pb-4 border-b border-gray-50">
-                    <div className="flex-1">
-                      <p className="font-bold text-[#00355D]">{productName}</p>
-                    </div>
-                    <div className="w-24 text-center">{item.quantity}</div>
-                    <div className="w-32 text-right">৳{item.priceAtPurchase?.toLocaleString()}</div>
-                    <div className="w-32 text-right font-bold text-[#111111]">৳{(item.priceAtPurchase * item.quantity).toLocaleString()}</div>
+              {order.items.map((item: any) => (
+                <div key={item.id} className="flex text-sm text-[#111111] font-medium items-center pb-4 border-b border-gray-50">
+                  <div className="flex-1">
+                    <p className="font-bold text-[#00355D]">{item.product}</p>
                   </div>
-                );
-              })}
+                  <div className="w-24 text-center">{item.quantity}</div>
+                  <div className="w-32 text-right">৳{item.priceAtPurchase?.toLocaleString()}</div>
+                  <div className="w-32 text-right font-bold text-[#111111]">৳{(item.priceAtPurchase * item.quantity).toLocaleString()}</div>
+                </div>
+              ))}
             </div>
           </div>
 

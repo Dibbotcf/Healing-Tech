@@ -1,87 +1,48 @@
-import { getPayload } from "payload";
-import configPromise from "@/payload.config";
 import { NextResponse } from "next/server";
-import { getMediaUrl } from "@/lib/getMediaUrl";
+import { directusGet, directusAssetUrl } from "@/lib/directus";
 
-// Cache for 2 minutes — mega menu data rarely changes
 export const revalidate = 120;
 
 export async function GET() {
   try {
-    const payload = await getPayload({ config: configPromise });
-
-    const [categoryDocs, productDocs] = await Promise.all([
-      payload.find({
-        collection: "categories",
-        depth: 0,
-        limit: 100,
-        sort: "sortOrder",
-      }),
-      payload.find({
-        collection: "products",
-        depth: 1,
-        limit: 60, // reduced from 200 — mega menu shows ~30 at a time
-        select: {
-          name: true,
-          slug: true,
-          category: true,
-          markAsNew: true,
-          heroImage: true,
-          gallery: true,
-        } as any,
-      }),
+    const [catRes, prodRes] = await Promise.all([
+      directusGet<{ data: any[] }>("/items/categories?fields=id,name,slug&sort=sort_order&limit=100", 120),
+      directusGet<{ data: any[] }>(
+        "/items/products?fields=id,name,slug,category.id,mark_as_new,hero_image,gallery&limit=60&filter[status][_eq]=published",
+        120
+      ),
     ]);
 
-    const categories = categoryDocs.docs.map((c) => ({
+    const categories = (catRes.data ?? []).map((c: any) => ({
       id: String(c.id),
-      title: c.title as string,
+      title: c.name as string,
       slug: c.slug as string,
     }));
 
-    const products = productDocs.docs.map((p) => {
-      let catId = "";
-      if (p.category) {
-        if (typeof p.category === "object" && "id" in p.category) {
-          catId = String((p.category as any).id);
-        } else {
-          catId = String(p.category);
-        }
-      }
-
+    const products = (prodRes.data ?? []).map((p: any) => {
+      const catId = p.category ? String(p.category.id ?? p.category) : "";
       let imageUrl = "";
-      let imageMime = "";
-      const heroImg = p.heroImage;
-      if (heroImg && typeof heroImg === "object" && "url" in heroImg) {
-        imageUrl = getMediaUrl((heroImg as any).url) || "";
-        imageMime = (heroImg as any).mimeType || "";
+      if (p.hero_image) imageUrl = directusAssetUrl(p.hero_image) ?? "";
+      if (!imageUrl && Array.isArray(p.gallery) && p.gallery.length > 0) {
+        const firstImg = p.gallery[0]?.image;
+        if (firstImg) imageUrl = directusAssetUrl(firstImg) ?? "";
       }
-      if (!imageUrl && p.gallery && Array.isArray(p.gallery) && p.gallery.length > 0) {
-        for (const g of p.gallery) {
-          const gi = g.image;
-          if (gi && typeof gi === "object" && "url" in gi) {
-            imageUrl = getMediaUrl((gi as any).url) || "";
-            imageMime = (gi as any).mimeType || "";
-            break;
-          }
-        }
-      }
-
       return {
         id: String(p.id),
         name: p.name as string,
         slug: p.slug as string,
         category: catId,
-        markAsNew: !!p.markAsNew,
+        markAsNew: !!p.mark_as_new,
         image: imageUrl,
-        imageMime,
+        imageMime: "",
       };
     });
 
     const response = NextResponse.json({ categories, products });
     response.headers.set("Cache-Control", "public, s-maxage=120, stale-while-revalidate=300");
     return response;
-  } catch (error) {
-    console.error("Mega menu API Error:", error);
+  } catch (err) {
+    console.error("Menus API error:", err);
     return NextResponse.json({ categories: [], products: [] }, { status: 500 });
   }
 }

@@ -1,76 +1,46 @@
-import { getPayload } from "payload";
-import configPromise from "@/payload.config";
 import { NextResponse } from "next/server";
-import { getMediaUrl } from "@/lib/getMediaUrl";
+import { directusGet, directusAssetUrl } from "@/lib/directus";
 
-// Cache for 5 minutes — category showcase rarely changes
 export const revalidate = 300;
 
 export async function GET() {
   try {
-    const payload = await getPayload({ config: configPromise });
-
-    // Fetch categories + a single batch of products in parallel
-    const [categoryDocs, productDocs] = await Promise.all([
-      payload.find({
-        collection: "categories",
-        where: { isActive: { equals: true } },
-        depth: 1, // depth:1 is enough — we only need heroImage.url
-        sort: "sortOrder",
-        limit: 20,
-      }),
-      payload.find({
-        collection: "products",
-        depth: 1,
-        limit: 100, // one batch covers all categories
-        select: {
-          heroImage: true,
-          category: true,
-        } as any,
-      }),
+    const [catRes, prodRes] = await Promise.all([
+      directusGet<{ data: any[] }>(
+        "/items/categories?fields=id,name,slug,short_description,hero_image&filter[is_active][_eq]=true&sort=sort_order&limit=20",
+        300
+      ),
+      directusGet<{ data: any[] }>(
+        "/items/products?fields=id,hero_image,category.id&limit=100&filter[status][_eq]=published",
+        300
+      ),
     ]);
 
-    // Build a map: categoryId → product images
     const productImagesByCategory: Record<string, string[]> = {};
     const productCountByCategory: Record<string, number> = {};
 
-    for (const p of productDocs.docs as any[]) {
-      const catId =
-        p.category && typeof p.category === "object"
-          ? String(p.category.id)
-          : String(p.category ?? "");
+    for (const p of prodRes.data ?? []) {
+      const catId = p.category ? String(p.category.id ?? p.category) : "";
       if (!catId) continue;
-
       if (!productImagesByCategory[catId]) {
         productImagesByCategory[catId] = [];
         productCountByCategory[catId] = 0;
       }
       productCountByCategory[catId]++;
-
-      if (
-        productImagesByCategory[catId].length < 10 &&
-        p.heroImage &&
-        typeof p.heroImage === "object" &&
-        p.heroImage.url
-      ) {
-        const u = getMediaUrl(p.heroImage.url);
+      if (productImagesByCategory[catId].length < 10 && p.hero_image) {
+        const u = directusAssetUrl(p.hero_image);
         if (u) productImagesByCategory[catId].push(u);
       }
     }
 
-    const categories = categoryDocs.docs.map((c: any) => {
-      let imageUrl: string | null = null;
-      if (c.heroImage && typeof c.heroImage === "object" && c.heroImage.url) {
-        imageUrl = getMediaUrl(String(c.heroImage.url));
-      }
-
+    const categories = (catRes.data ?? []).map((c: any) => {
       const catId = String(c.id);
       return {
         id: catId,
-        title: c.title,
+        title: c.name,
         slug: c.slug,
-        shortDescription: c.shortDescription || "",
-        image: imageUrl,
+        shortDescription: c.short_description ?? "",
+        image: c.hero_image ? directusAssetUrl(c.hero_image) : null,
         productImages: productImagesByCategory[catId] ?? [],
         productCount: productCountByCategory[catId] ?? 0,
       };

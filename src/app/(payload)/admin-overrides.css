@@ -1,4 +1,0 @@
-/* Hide Payload loading overlay — it gets stuck when server actions fail */
-.loading-overlay {
-  display: none !important;
-}

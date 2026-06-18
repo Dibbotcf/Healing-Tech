@@ -1,5 +1,3 @@
-import { getPayload } from 'payload'
-import configPromise from '@/payload.config'
 import Link from 'next/link'
 import { ArrowLeft, CheckCircle2 } from 'lucide-react'
 import { notFound } from 'next/navigation'
@@ -11,7 +9,7 @@ import { ProductDetailTabs } from '@/components/ProductDetailTabs'
 import { RelatedProducts } from '@/components/RelatedProducts'
 import { SmartDescription } from '@/components/SmartDescription'
 import { PixelViewContent } from '@/components/PixelEvents'
-import { getMediaUrl } from '@/lib/getMediaUrl'
+import { directusGet, directusAssetUrl } from '@/lib/directus'
 
 // ── Helpers ──────────────────────────────────────────────────
 const extractCountry = (raw: string): string =>
@@ -46,39 +44,72 @@ export default async function ProductDetailPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const payload = await getPayload({ config: configPromise });
 
-  const { docs } = await payload.find({
-    collection: 'products',
-    where: { slug: { equals: slug } },
-    depth: 3,
-  });
+  const fields = [
+    "id,name,slug,sku,mark_as_new,listing_summary,short_summary",
+    "price,discount_price,overview,hero_image",
+    "origin_country,certification_summary,brochure_page_ref,status",
+    "key_highlights,applications,spec_groups,download_items,support_blocks,faq_items,gallery",
+    "brand.id,brand.name,brand.slug,brand.logo,brand.certifications_text",
+    "category.id,category.name,category.slug",
+    "images.directus_files_id",
+  ].join(",");
 
-  if (docs.length === 0) return notFound();
+  const res = await directusGet<{ data: any[] }>(
+    `/items/products?filter[slug][_eq]=${encodeURIComponent(slug)}&fields=${fields}&limit=1`
+  );
 
-  const product   = docs[0];
-  const brand     = product.brand    && typeof product.brand    !== 'string' ? product.brand    : null;
-  const category  = product.category && typeof product.category !== 'string' ? product.category : null;
+  if (!res.data?.length) return notFound();
+
+  const p = res.data[0];
+
+  // Normalise to a shape the existing JSX expects
+  const product = {
+    id: p.id,
+    name: p.name,
+    slug: p.slug,
+    sku: p.sku,
+    markAsNew: !!p.mark_as_new,
+    listingSummary: p.listing_summary ?? '',
+    shortSummary: p.short_summary ?? '',
+    price: p.price ?? null,
+    discountPrice: p.discount_price ?? null,
+    overview: p.overview ?? null,
+    originCountry: p.origin_country ?? '',
+    certificationSummary: p.certification_summary ?? '',
+    brochurePageRef: p.brochure_page_ref ?? '',
+    keyHighlights: Array.isArray(p.key_highlights) ? p.key_highlights : [],
+    applications: Array.isArray(p.applications) ? p.applications : [],
+    specGroups: Array.isArray(p.spec_groups) ? p.spec_groups : [],
+    downloadItems: Array.isArray(p.download_items) ? p.download_items : [],
+    supportBlocks: Array.isArray(p.support_blocks) ? p.support_blocks : [],
+    faqItems: Array.isArray(p.faq_items) ? p.faq_items : [],
+    gallery: Array.isArray(p.gallery) ? p.gallery : [],
+  };
+
+  const brand = p.brand ?? null;
+  const category = p.category ?? null;
 
   // ── Gallery images ────────────────────────────────────────
   const images: { url: string; alt?: string; mimeType?: string }[] = [];
-  if (product.heroImage && typeof product.heroImage !== 'string' && product.heroImage.url) {
-    const url = getMediaUrl(product.heroImage.url);
-    if (url) images.push({ url, alt: (product.heroImage as any).alt || product.name, mimeType: (product.heroImage as any).mimeType });
+  if (p.hero_image) {
+    const url = directusAssetUrl(p.hero_image);
+    if (url) images.push({ url, alt: product.name });
   }
-  if (product.gallery && product.gallery.length > 0) {
-    product.gallery.forEach((g: any) => {
-      if (g.image && typeof g.image !== 'string' && g.image.url) {
-        const url = getMediaUrl(g.image.url);
-        if (url) images.push({ url, alt: g.alt || g.image.alt || product.name, mimeType: (g.image as any).mimeType });
-      }
-    });
+  // M2M images from products_files junction
+  if (Array.isArray(p.images)) {
+    for (const rel of p.images) {
+      const fileId = typeof rel === 'object' ? (rel.directus_files_id ?? null) : rel;
+      const url = directusAssetUrl(typeof fileId === 'object' ? fileId?.id : fileId);
+      if (url) images.push({ url, alt: product.name });
+    }
   }
-  
-  // Ultimate fallback to SEO meta image if still empty
-  if (images.length === 0 && product.meta?.image && typeof product.meta.image !== 'string' && product.meta.image.url) {
-    const backupUrl = getMediaUrl(product.meta.image.url);
-    if (backupUrl) images.push({ url: backupUrl, alt: product.name, mimeType: (product.meta.image as any).mimeType });
+  // Gallery JSON field (stores {image: uuid, alt: string})
+  if (images.length === 0 && product.gallery.length > 0) {
+    for (const g of product.gallery) {
+      const url = directusAssetUrl(g.image);
+      if (url) images.push({ url, alt: g.alt || product.name });
+    }
   }
 
   // ── Country ───────────────────────────────────────────────
@@ -87,16 +118,9 @@ export default async function ProductDetailPage({
   const countryCode  = countryClean ? getCountryCode(countryClean) : null;
 
   // ── Brand logo ────────────────────────────────────────────
-  const brandLogoUrl = brand?.logo && typeof brand.logo !== 'string'
-    ? getMediaUrl((brand.logo as any).url)
-    : null;
+  const brandLogoUrl = brand?.logo ? directusAssetUrl(brand.logo) : null;
 
-  // ── Related products ──────────────────────────────────────
-  const relatedRaw: any[] = product.relatedProducts
-    ? (product.relatedProducts as any[]).filter(
-        (r: any) => r && typeof r === 'object' && r.slug
-      )
-    : [];
+  const relatedRaw: any[] = [];
 
   return (
     <div className="min-h-screen bg-white font-['Inter']">
@@ -105,7 +129,7 @@ export default async function ProductDetailPage({
         name={product.name}
         price={product.price ?? null}
         discountPrice={product.discountPrice ?? null}
-        category={category?.title}
+        category={category?.name}
       />
 
       {/* ═══════════════════════════════════════
@@ -133,7 +157,7 @@ export default async function ProductDetailPage({
                     href={`/products?category=${category.slug}`}
                     className="hover:text-[#12B5CB] transition-colors"
                   >
-                    {category.title}
+                    {category.name}
                   </Link>
                 </>
               )}
@@ -155,9 +179,9 @@ export default async function ProductDetailPage({
 
               {/* Tag chips */}
               <div className="flex flex-wrap items-center gap-2 mb-5">
-                {category?.title && (
+                {category?.name && (
                   <span className="inline-flex items-center px-3.5 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-[0.08em] bg-[#12B5CB]/10 text-[#12B5CB] border border-[#12B5CB]/20">
-                    {category.title}
+                    {category.name}
                   </span>
                 )}
                 {countryClean && (
@@ -211,9 +235,6 @@ export default async function ProductDetailPage({
                 </div>
               )}
 
-              {/* Product Description — listingSummary first, shortSummary fallback.
-                  SmartDescription auto-formats any "Feature: Detail." text pattern
-                  into icon cards. Works for ALL products automatically. */}
               {(product.listingSummary || product.shortSummary) && (
                 <SmartDescription text={(product.listingSummary || product.shortSummary) as string} />
               )}
@@ -237,7 +258,7 @@ export default async function ProductDetailPage({
               <div className="flex flex-wrap items-center gap-4 pt-6 border-t border-[#00355D]/8">
                 <ProductClientActions product={product} />
                 {brand && (
-                  <BrandPopupCard brand={brand} brandLogoUrl={brandLogoUrl} />
+                  <BrandPopupCard brand={{ ...brand, name: brand.name, slug: brand.slug, certificationsText: brand.certifications_text }} brandLogoUrl={brandLogoUrl} />
                 )}
               </div>
 
