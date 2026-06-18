@@ -35,7 +35,10 @@ export default buildConfig({
     theme: 'dark',
     suppressHydrationWarning: true,
     components: {
-      afterNavLinks: ['@/components/LogoutRedirect#LogoutRedirect'],
+      afterNavLinks: [
+        '@/components/LogoutRedirect#LogoutRedirect',
+        '@/components/AdminFileInputFix#AdminFileInputFix',
+      ],
     },
     livePreview: {
       url: siteUrl,
