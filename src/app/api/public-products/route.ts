@@ -2,14 +2,14 @@ import { NextResponse } from "next/server";
 import { NextRequest } from "next/server";
 import { directusGet, directusAssetUrl } from "@/lib/directus";
 
-export const revalidate = 60;
+export const revalidate = 0;
 
 export async function GET(req: NextRequest) {
   try {
     const { searchParams } = new URL(req.url);
     const limit    = Math.min(Number(searchParams.get("limit") ?? 12), 48);
     const page     = Math.max(Number(searchParams.get("page")  ?? 1), 1);
-    const sort     = searchParams.get("sort") ?? "-date_created";
+    const sort     = searchParams.get("sort") ?? "-id";
     const category = searchParams.get("category") ?? "";
 
     const offset = (page - 1) * limit;
@@ -21,11 +21,11 @@ export async function GET(req: NextRequest) {
     const [itemsRes, countRes] = await Promise.all([
       directusGet<{ data: any[] }>(
         `/items/products?fields=${fields}&limit=${limit}&offset=${offset}&sort=${sort}${filterStr}`,
-        60
+        0
       ),
       directusGet<{ data: any[] }>(
         `/items/products?fields=id&limit=-1${filterStr}`,
-        60
+        0
       ),
     ]);
 
@@ -46,7 +46,7 @@ export async function GET(req: NextRequest) {
     }));
 
     const response = NextResponse.json({ docs, totalDocs, totalPages, page });
-    response.headers.set("Cache-Control", "public, s-maxage=60, stale-while-revalidate=120");
+    response.headers.set("Cache-Control", "no-store");
     return response;
   } catch (err) {
     console.error("Products API error:", err);

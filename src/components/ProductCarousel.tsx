@@ -190,7 +190,7 @@ export function ProductCarousel() {
 
   useEffect(() => {
     // Fetch only the current page — much faster than loading 60 at once
-    fetch(`/api/public-products?limit=${PAGE_SIZE}&page=${page + 1}&sort=-date_created`)
+    fetch(`/api/public-products?limit=${PAGE_SIZE}&page=${page + 1}&sort=-id`)
       .then((r) => r.json())
       .then((data) => {
         setAllProducts(data.docs || []);
