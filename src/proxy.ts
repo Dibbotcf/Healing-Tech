@@ -17,6 +17,12 @@ export function proxy(request: NextRequest) {
   const url = request.nextUrl
   const hostname = request.headers.get('host') || ''
 
+  // Fix Webpack/Next.js Path Configuration Bug where chunks are requested with /_next//_next/
+  if (url.pathname.startsWith('/_next/_next/')) {
+    url.pathname = url.pathname.replace('/_next/_next/', '/_next/')
+    return NextResponse.rewrite(url)
+  }
+
   // Subdomain routing: cms.healingtechnology.com.bd → /admin
   if (hostname.startsWith('cms.')) {
     if (!url.pathname.startsWith('/admin') && !url.pathname.startsWith('/api')) {
