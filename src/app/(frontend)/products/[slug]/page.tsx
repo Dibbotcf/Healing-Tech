@@ -105,8 +105,10 @@ export default async function ProductDetailPage({
     }
   }
   // Gallery JSON field (stores {image: uuid, alt: string})
+  // Guard: skip entries where image is a legacy Payload integer ID (not a Directus UUID string)
   if (images.length === 0 && product.gallery.length > 0) {
     for (const g of product.gallery) {
+      if (!g.image || typeof g.image !== 'string') continue;
       const url = directusAssetUrl(g.image);
       if (url) images.push({ url, alt: g.alt || product.name });
     }
