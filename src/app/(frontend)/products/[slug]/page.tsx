@@ -53,6 +53,10 @@ export default async function ProductDetailPage({
     "brand.id,brand.name,brand.slug,brand.logo,brand.certifications_text",
     "category.id,category.name,category.slug",
     "images.directus_files_id",
+    "related_products.related_products_id.id,related_products.related_products_id.name,related_products.related_products_id.slug",
+    "related_products.related_products_id.listing_summary,related_products.related_products_id.short_summary",
+    "related_products.related_products_id.mark_as_new,related_products.related_products_id.price,related_products.related_products_id.discount_price",
+    "related_products.related_products_id.hero_image,related_products.related_products_id.category.name,related_products.related_products_id.brand.name",
   ].join(",");
 
   const res = await directusGet<{ data: any[] }>(
@@ -122,7 +126,27 @@ export default async function ProductDetailPage({
   // ── Brand logo ────────────────────────────────────────────
   const brandLogoUrl = brand?.logo ? directusAssetUrl(brand.logo) : null;
 
-  const relatedRaw: any[] = [];
+  const relatedRaw = Array.isArray(p.related_products)
+    ? p.related_products
+        .map((r: any) => {
+          const rel = r?.related_products_id;
+          if (!rel) return null;
+          return {
+            id: String(rel.id),
+            name: rel.name,
+            slug: rel.slug,
+            listingSummary: rel.listing_summary ?? '',
+            shortSummary: rel.short_summary ?? '',
+            markAsNew: !!rel.mark_as_new,
+            price: rel.price ?? null,
+            discountPrice: rel.discount_price ?? null,
+            heroImage: rel.hero_image ? { url: directusAssetUrl(rel.hero_image)! } : null,
+            category: rel.category?.name ? { title: rel.category.name } : undefined,
+            brand: rel.brand?.name ? { name: rel.brand.name } : undefined,
+          };
+        })
+        .filter(Boolean)
+    : [];
 
   return (
     <div className="min-h-screen bg-white font-['Inter']">
