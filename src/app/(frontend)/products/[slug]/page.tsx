@@ -9,7 +9,7 @@ import { ProductDetailTabs } from '@/components/ProductDetailTabs'
 import { RelatedProducts } from '@/components/RelatedProducts'
 import { SmartDescription } from '@/components/SmartDescription'
 import { PixelViewContent } from '@/components/PixelEvents'
-import { directusGet, directusAssetUrl } from '@/lib/directus'
+import { directusGet, directusAssetUrl, directusAssetThumb } from '@/lib/directus'
 
 // ── Helpers ──────────────────────────────────────────────────
 const extractCountry = (raw: string): string =>
@@ -140,7 +140,7 @@ export default async function ProductDetailPage({
             markAsNew: !!rel.mark_as_new,
             price: rel.price ?? null,
             discountPrice: rel.discount_price ?? null,
-            heroImage: rel.hero_image ? { url: directusAssetUrl(rel.hero_image)! } : null,
+            heroImage: rel.hero_image ? { url: directusAssetThumb(rel.hero_image)! } : null,
             category: rel.category?.name ? { title: rel.category.name } : undefined,
             brand: rel.brand?.name ? { name: rel.brand.name } : undefined,
           };

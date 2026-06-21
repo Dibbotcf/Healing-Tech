@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { NextRequest } from "next/server";
-import { directusGet, directusAssetUrl } from "@/lib/directus";
+import { directusGet, directusAssetThumb } from "@/lib/directus";
 
 export const revalidate = 0;
 
@@ -40,7 +40,7 @@ export async function GET(req: NextRequest) {
       markAsNew: !!p.mark_as_new,
       price: p.price ?? null,
       discountPrice: p.discount_price ?? null,
-      heroImage: p.hero_image ? { url: directusAssetUrl(p.hero_image), mimeType: "" } : null,
+      heroImage: p.hero_image ? { url: directusAssetThumb(p.hero_image), mimeType: "" } : null,
       category: p.category ? { title: p.category.name, slug: p.category.slug } : null,
       brand: p.brand ? { name: p.brand.name } : null,
     }));

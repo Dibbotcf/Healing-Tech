@@ -7,6 +7,19 @@ export function directusAssetUrl(uuid: string | null | undefined): string | null
   return `${DIRECTUS_URL}/assets/${uuid}`;
 }
 
+/**
+ * Directus asset URL with resize + WebP conversion for product card thumbnails.
+ * Serves ~30-60 KB instead of the original 1-2 MB, dramatically reducing load time.
+ */
+export function directusAssetThumb(
+  uuid: string | null | undefined,
+  width = 500,
+  quality = 82
+): string | null {
+  if (!uuid) return null;
+  return `${DIRECTUS_URL}/assets/${uuid}?width=${width}&quality=${quality}&format=webp`;
+}
+
 /** Fetch Directus items with admin token */
 export async function directusFetch<T = any>(
   endpoint: string,
