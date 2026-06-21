@@ -194,7 +194,7 @@ export function ProductCarousel() {
   useEffect(() => {
     let cancelled = false;
     const load = () => {
-      fetch(`/api/public-products?limit=${PAGE_SIZE}&page=${page + 1}&sort=-id`)
+      fetch(`/api/public-products?limit=${PAGE_SIZE}&page=${page + 1}&sort=-id&featured=true`)
         .then((r) => r.json())
         .then((data) => {
           if (cancelled) return;

@@ -11,12 +11,14 @@ export async function GET(req: NextRequest) {
     const page     = Math.max(Number(searchParams.get("page")  ?? 1), 1);
     const sort     = searchParams.get("sort") ?? "-id";
     const category = searchParams.get("category") ?? "";
+    const featured = searchParams.get("featured") === "true";
 
     const offset = (page - 1) * limit;
     const fields = "id,name,slug,listing_summary,mark_as_new,price,discount_price,hero_image,category.id,category.name,category.slug,brand.id,brand.name";
 
     let filterStr = "&filter[status][_eq]=published";
     if (category) filterStr += `&filter[category][slug][_eq]=${encodeURIComponent(category)}`;
+    if (featured) filterStr += `&filter[featured][_eq]=true`;
 
     const [itemsRes, countRes] = await Promise.all([
       directusGet<{ data: any[] }>(
