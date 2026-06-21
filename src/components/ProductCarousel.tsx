@@ -31,6 +31,7 @@ function ProductCard({ product }: { product: Product }) {
       ? product.brand.name
       : "";
   const heroUrl = getMediaUrl(product.heroImage?.url);
+  const [imgFailed, setImgFailed] = React.useState(false);
 
   const addToCart = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -86,7 +87,7 @@ function ProductCard({ product }: { product: Product }) {
         href={`/products/${product.slug}`}
         className="block relative h-36 md:h-48 bg-[#F8F9FA] overflow-hidden group-hover:bg-[#EEF4FB] transition-colors cursor-pointer"
       >
-        {heroUrl ? (
+        {heroUrl && !imgFailed ? (
           product.heroImage?.mimeType?.startsWith("video/") ? (
             <video
               src={heroUrl}
@@ -101,6 +102,8 @@ function ProductCard({ product }: { product: Product }) {
             <img
               src={heroUrl}
               alt={product.name}
+              loading="lazy"
+              onError={() => setImgFailed(true)}
               className="w-full h-full object-contain p-6 group-hover:scale-105 transition-transform duration-500"
             />
           )

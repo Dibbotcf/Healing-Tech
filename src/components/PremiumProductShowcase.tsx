@@ -5,6 +5,13 @@ import Link from "next/link";
 import { getMediaUrl } from "@/lib/getMediaUrl";
 import { ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
 
+function ShowcaseImage({ src, alt, className }: { src: string; alt: string; className: string }) {
+  const [failed, setFailed] = useState(false);
+  if (failed) return null;
+  // eslint-disable-next-line @next/next/no-img-element
+  return <img src={src} alt={alt} loading="lazy" onError={() => setFailed(true)} className={className} />;
+}
+
 interface Product {
   id: string;
   name: string;
@@ -156,7 +163,7 @@ export function PremiumProductShowcase() {
                         isVideo ? (
                           <video src={heroUrl} autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
                         ) : (
-                          <img src={heroUrl} alt={product.name} className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
+                          <ShowcaseImage src={heroUrl} alt={product.name} className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
                         )
                       ) : (
                         <div className="absolute inset-0 w-full h-full flex items-center justify-center bg-gradient-to-br from-[#00355D]/5 to-[#12B5CB]/10" />
