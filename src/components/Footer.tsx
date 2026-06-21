@@ -9,10 +9,10 @@ export function Footer() {
   const [categories, setCategories] = useState<{ id: string; title: string; slug: string }[]>([]);
 
   useEffect(() => {
-    fetch("/api/categories?limit=6&depth=0")
+    fetch("/api/public-categories")
       .then((res) => res.json())
       .then((data) => {
-        if (data.docs) setCategories(data.docs);
+        if (Array.isArray(data)) setCategories(data.slice(0, 6));
       })
       .catch((err) => console.error("Error fetching categories:", err));
   }, []);
