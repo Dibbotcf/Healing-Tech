@@ -192,15 +192,21 @@ export function ProductCarousel() {
   const [totalDocs, setTotalDocs] = useState(0);
 
   useEffect(() => {
-    // Fetch only the current page — much faster than loading 60 at once
-    fetch(`/api/public-products?limit=${PAGE_SIZE}&page=${page + 1}&sort=-id`)
-      .then((r) => r.json())
-      .then((data) => {
-        setAllProducts(data.docs || []);
-        setTotalDocs(data.totalDocs || 0);
-        setLoading(false);
-      })
-      .catch(() => setLoading(false));
+    let cancelled = false;
+    const load = () => {
+      fetch(`/api/public-products?limit=${PAGE_SIZE}&page=${page + 1}&sort=-id`)
+        .then((r) => r.json())
+        .then((data) => {
+          if (cancelled) return;
+          setAllProducts(data.docs || []);
+          setTotalDocs(data.totalDocs || 0);
+          setLoading(false);
+        })
+        .catch(() => { if (!cancelled) setLoading(false); });
+    };
+    load();
+    const interval = setInterval(load, 30_000);
+    return () => { cancelled = true; clearInterval(interval); };
   }, [page]);
 
   if (loading) {

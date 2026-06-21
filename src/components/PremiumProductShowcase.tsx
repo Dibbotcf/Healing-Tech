@@ -31,14 +31,20 @@ export function PremiumProductShowcase() {
   const visibleCount = 5;
 
   useEffect(() => {
-    // Fetch top products (depth=1 is CRITICAL so the image URL populates instead of just returning an ID)
-    fetch("/api/public-products?limit=20&sort=-createdAt&depth=1")
-      .then((r) => r.json())
-      .then((data) => {
-        setProducts(data.docs || []);
-        setLoading(false);
-      })
-      .catch(() => setLoading(false));
+    let cancelled = false;
+    const load = () => {
+      fetch("/api/public-products?limit=20&sort=-id")
+        .then((r) => r.json())
+        .then((data) => {
+          if (cancelled) return;
+          setProducts(data.docs || []);
+          setLoading(false);
+        })
+        .catch(() => { if (!cancelled) setLoading(false); });
+    };
+    load();
+    const interval = setInterval(load, 30_000);
+    return () => { cancelled = true; clearInterval(interval); };
   }, []);
 
   if (loading) {
