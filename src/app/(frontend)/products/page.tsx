@@ -9,12 +9,12 @@ export default async function ProductsPage({ searchParams }: { searchParams: Pro
 
   const [productsRes, categoriesRes] = await Promise.all([
     directusGet<{ data: any[] }>(
-      "/items/products?fields=id,name,slug,listing_summary,short_summary,mark_as_new,price,discount_price,hero_image,category.id,category.name,category.slug,brand.id,brand.name&filter[status][_eq]=published&limit=500",
-      60
+      "/items/products?fields=id,name,slug,listing_summary,short_summary,mark_as_new,price,discount_price,hero_image,category.id,category.name,category.slug,brand.id,brand.name&filter[status][_eq]=published&sort=name&limit=500",
+      0
     ),
     directusGet<{ data: any[] }>(
       "/items/categories?fields=id,name,slug&sort=sort_order&limit=100",
-      60
+      0
     ),
   ]);
 
