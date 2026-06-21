@@ -109,10 +109,11 @@ export default async function ProductDetailPage({
     }
   }
   // Gallery JSON field (stores {image: uuid, alt: string})
-  // Guard: skip entries where image is a legacy Payload integer ID (not a Directus UUID string)
+  // Skip non-UUID values — legacy Payload entries store integer IDs (as numbers or numeric strings)
+  const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
   if (images.length === 0 && product.gallery.length > 0) {
     for (const g of product.gallery) {
-      if (!g.image || typeof g.image !== 'string') continue;
+      if (!g.image || typeof g.image !== 'string' || !UUID_RE.test(g.image)) continue;
       const url = directusAssetUrl(g.image);
       if (url) images.push({ url, alt: g.alt || product.name });
     }
