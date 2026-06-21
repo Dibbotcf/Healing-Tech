@@ -21,6 +21,7 @@ interface RelatedProduct {
 
 function RelatedProductCard({ product }: { product: RelatedProduct }) {
   const [imgFailed, setImgFailed] = useState(false);
+  const [imgLoaded, setImgLoaded] = useState(false);
 
   const heroUrl = getMediaUrl(
     typeof product.heroImage !== "string" ? product.heroImage?.url : undefined
@@ -47,21 +48,22 @@ function RelatedProductCard({ product }: { product: RelatedProduct }) {
       )}
 
       <div className="relative h-44 bg-[#F8F9FA] overflow-hidden">
-        {heroUrl && !imgFailed ? (
+        <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-[#00355D]/5 to-[#12B5CB]/10">
+          <span className="text-[#00355D]/20 text-5xl font-bold">
+            {product.name.charAt(0)}
+          </span>
+        </div>
+        {heroUrl && !imgFailed && (
           // eslint-disable-next-line @next/next/no-img-element
           <img
             src={heroUrl}
             alt={product.name}
             loading="lazy"
+            onLoad={() => setImgLoaded(true)}
             onError={() => setImgFailed(true)}
-            className="w-full h-full object-contain p-6 group-hover:scale-105 transition-transform duration-500"
+            style={{ opacity: imgLoaded ? 1 : 0, transition: "opacity 0.3s" }}
+            className="absolute inset-0 w-full h-full object-contain p-6 group-hover:scale-105 transition-transform duration-500"
           />
-        ) : (
-          <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-[#00355D]/5 to-[#12B5CB]/10">
-            <span className="text-[#00355D]/20 text-5xl font-bold">
-              {product.name.charAt(0)}
-            </span>
-          </div>
         )}
       </div>
 

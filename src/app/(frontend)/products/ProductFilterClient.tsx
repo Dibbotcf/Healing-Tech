@@ -9,6 +9,30 @@ import { useCartStore } from '@/lib/cartStore';
 import { useRouter } from 'next/navigation';
 import { getMediaUrl } from '@/lib/getMediaUrl';
 
+function ProductImage({ url, name }: { url: string; name: string }) {
+  const [failed, setFailed] = useState(false);
+  const [loaded, setLoaded] = useState(false);
+  return (
+    <>
+      <div className="absolute inset-0 flex items-center justify-center">
+        <span className="font-bold text-gray-200 text-7xl select-none">{name.substring(0, 2)}</span>
+      </div>
+      {!failed && (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={url}
+          alt={name}
+          loading="lazy"
+          onLoad={() => setLoaded(true)}
+          onError={() => setFailed(true)}
+          style={{ opacity: loaded ? 1 : 0, transition: "opacity 0.3s" }}
+          className="absolute inset-0 w-full h-full object-contain p-6 group-hover:scale-105 transition-transform duration-500"
+        />
+      )}
+    </>
+  );
+}
+
 export default function ProductClientWrapper({ 
   initialProducts, 
   categories,
@@ -136,10 +160,8 @@ export default function ProductClientWrapper({
                     </div>
                   )}
                   <Link href={`/products/${product.slug}`} className="block relative h-36 md:h-48 bg-[#F8F9FA] overflow-hidden group-hover:bg-[#EEF4FB] transition-colors cursor-pointer">
-                    {/* Hero image / video / placeholder */}
                     {product.heroImage && typeof product.heroImage !== 'string' && product.heroImage.url ? (
                       product.heroImage.mimeType?.startsWith('video/') ? (
-                        // Video file — render a muted preview player
                         <video
                           src={getMediaUrl(product.heroImage.url) || ''}
                           className="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-500"
@@ -149,13 +171,7 @@ export default function ProductClientWrapper({
                           autoPlay
                         />
                       ) : (
-                        // Regular image
-                        // eslint-disable-next-line @next/next/no-img-element
-                        <img
-                          src={getMediaUrl(product.heroImage.url) || ''}
-                          alt={product.name}
-                          className="w-full h-full object-contain p-6 group-hover:scale-105 transition-transform duration-500"
-                        />
+                        <ProductImage url={getMediaUrl(product.heroImage.url) || ''} name={product.name} />
                       )
                     ) : (
                       <div className="w-full h-full flex items-center justify-center">

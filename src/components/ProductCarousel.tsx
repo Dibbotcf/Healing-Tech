@@ -32,6 +32,7 @@ function ProductCard({ product }: { product: Product }) {
       : "";
   const heroUrl = getMediaUrl(product.heroImage?.url);
   const [imgFailed, setImgFailed] = React.useState(false);
+  const [imgLoaded, setImgLoaded] = React.useState(false);
 
   const addToCart = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -87,7 +88,14 @@ function ProductCard({ product }: { product: Product }) {
         href={`/products/${product.slug}`}
         className="block relative h-36 md:h-48 bg-[#F8F9FA] overflow-hidden group-hover:bg-[#EEF4FB] transition-colors cursor-pointer"
       >
-        {heroUrl && !imgFailed ? (
+        {/* Fallback always mounted behind the image */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          <span className="font-bold text-gray-200 text-7xl select-none">
+            {product.name.substring(0, 2)}
+          </span>
+        </div>
+
+        {heroUrl && !imgFailed && (
           product.heroImage?.mimeType?.startsWith("video/") ? (
             <video
               src={heroUrl}
@@ -95,7 +103,7 @@ function ProductCard({ product }: { product: Product }) {
               loop
               muted
               playsInline
-              className="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-500"
+              className="absolute inset-0 w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-500"
             />
           ) : (
             // eslint-disable-next-line @next/next/no-img-element
@@ -103,16 +111,12 @@ function ProductCard({ product }: { product: Product }) {
               src={heroUrl}
               alt={product.name}
               loading="lazy"
+              onLoad={() => setImgLoaded(true)}
               onError={() => setImgFailed(true)}
-              className="w-full h-full object-contain p-6 group-hover:scale-105 transition-transform duration-500"
+              style={{ opacity: imgLoaded ? 1 : 0, transition: "opacity 0.3s" }}
+              className="absolute inset-0 w-full h-full object-contain p-6 group-hover:scale-105 transition-transform duration-500"
             />
           )
-        ) : (
-          <div className="w-full h-full flex items-center justify-center">
-            <span className="font-bold text-gray-200 text-7xl select-none">
-              {product.name.substring(0, 2)}
-            </span>
-          </div>
         )}
       </Link>
 
