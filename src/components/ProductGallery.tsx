@@ -33,11 +33,32 @@ function useSwipe(onSwipeLeft: () => void, onSwipeRight: () => void, threshold =
   return { onTouchStart, onTouchEnd };
 }
 
+const PLACEHOLDER = (
+  <div className="w-full aspect-square bg-white rounded-3xl flex flex-col items-center justify-center gap-4 shadow-xl shadow-[#00355D]/5 border border-[#00355D]/5">
+    <div className="flex items-center justify-center gap-3 opacity-20">
+      <div className="w-8 h-8 rounded-full bg-[#12B5CB]" />
+      <div className="w-16 h-2 rounded-full bg-[#00355D]" />
+      <div className="w-5 h-5 rounded bg-[#12B5CB]/60" />
+    </div>
+    <span className="text-xs text-[#00355D]/30 uppercase tracking-[0.15em] font-bold">Image Coming Soon</span>
+  </div>
+);
+
 // ── Main Component ────────────────────────────────────────────────────────────
-export function ProductGallery({ images }: { images: MediaItem[] }) {
+export function ProductGallery({ images: rawImages }: { images: MediaItem[] }) {
+  const [failedUrls, setFailedUrls] = useState<Set<string>>(new Set());
+  const images = (rawImages ?? []).filter((img) => !failedUrls.has(img.url));
+
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [mounted, setMounted] = useState(false);
+
+  // Keep currentIndex in bounds when images shrink (failed loads)
+  useEffect(() => {
+    if (currentIndex >= images.length && images.length > 0) {
+      setCurrentIndex(images.length - 1);
+    }
+  }, [images.length, currentIndex]);
 
   useEffect(() => { setMounted(true); }, []);
 
@@ -60,18 +81,9 @@ export function ProductGallery({ images }: { images: MediaItem[] }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isFullscreen]);
 
-  if (!images || images.length === 0) {
-    return (
-      <div className="w-full aspect-square bg-white rounded-3xl flex flex-col items-center justify-center gap-4 shadow-xl shadow-[#00355D]/5 border border-[#00355D]/5">
-        <div className="flex items-center justify-center gap-3 opacity-20">
-          <div className="w-8 h-8 rounded-full bg-[#12B5CB]" />
-          <div className="w-16 h-2 rounded-full bg-[#00355D]" />
-          <div className="w-5 h-5 rounded bg-[#12B5CB]/60" />
-        </div>
-        <span className="text-xs text-[#00355D]/30 uppercase tracking-[0.15em] font-bold">Image Coming Soon</span>
-      </div>
-    );
-  }
+  const onImgError = (url: string) => setFailedUrls((prev) => new Set(prev).add(url));
+
+  if (!images.length) return PLACEHOLDER;
 
   const next = () => setCurrentIndex((i) => (i + 1) % images.length);
   const prev = () => setCurrentIndex((i) => (i - 1 + images.length) % images.length);
@@ -91,6 +103,7 @@ export function ProductGallery({ images }: { images: MediaItem[] }) {
       mounted={mounted}
       next={next}
       prev={prev}
+      onImgError={onImgError}
       setCurrentIndex={setCurrentIndex}
       setIsFullscreen={setIsFullscreen}
     />
@@ -100,7 +113,7 @@ export function ProductGallery({ images }: { images: MediaItem[] }) {
 // ── Inner render (separated to cleanly use hook) ──────────────────────────────
 function GalleryInner({
   images, current, currentIndex, isVideo, hasMultiple,
-  isFullscreen, mounted, next, prev, setCurrentIndex, setIsFullscreen,
+  isFullscreen, mounted, next, prev, onImgError, setCurrentIndex, setIsFullscreen,
 }: {
   images: MediaItem[];
   current: MediaItem;
@@ -111,6 +124,7 @@ function GalleryInner({
   mounted: boolean;
   next: () => void;
   prev: () => void;
+  onImgError: (url: string) => void;
   setCurrentIndex: (i: number) => void;
   setIsFullscreen: (v: boolean) => void;
 }) {
@@ -145,6 +159,7 @@ function GalleryInner({
                   alt={current.alt || `Product Image ${currentIndex + 1}`}
                   draggable={false}
                   onClick={() => setIsFullscreen(true)}
+                  onError={() => onImgError(current.url)}
                   initial={{ opacity: 0, x: 30 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -30 }}
@@ -233,7 +248,7 @@ function GalleryInner({
                     </div>
                   ) : (
                     // eslint-disable-next-line @next/next/no-img-element
-                    <img src={item.url} alt={item.alt || `Thumb ${i + 1}`} className="w-full h-full object-contain p-1" draggable={false} />
+                    <img src={item.url} alt={item.alt || `Thumb ${i + 1}`} onError={() => onImgError(item.url)} className="w-full h-full object-contain p-1" draggable={false} />
                   )}
                 </button>
               );
@@ -323,6 +338,7 @@ function GalleryInner({
                       src={current.url}
                       alt={current.alt || "Fullscreen Image"}
                       draggable={false}
+                      onError={() => onImgError(current.url)}
                       initial={{ opacity: 0, x: 40 }}
                       animate={{ opacity: 1, x: 0 }}
                       exit={{ opacity: 0, x: -40 }}
