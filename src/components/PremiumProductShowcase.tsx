@@ -37,7 +37,9 @@ export function PremiumProductShowcase() {
         .then((r) => r.json())
         .then((data) => {
           if (cancelled) return;
-          setProducts(data.docs || []);
+          if (Array.isArray(data.docs) && data.docs.length > 0) {
+            setProducts(data.docs);
+          }
           setLoading(false);
         })
         .catch(() => { if (!cancelled) setLoading(false); });

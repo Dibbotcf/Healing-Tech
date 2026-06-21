@@ -198,8 +198,10 @@ export function ProductCarousel() {
         .then((r) => r.json())
         .then((data) => {
           if (cancelled) return;
-          setAllProducts(data.docs || []);
-          setTotalDocs(data.totalDocs || 0);
+          if (Array.isArray(data.docs) && data.docs.length > 0) {
+            setAllProducts(data.docs);
+            setTotalDocs(data.totalDocs || 0);
+          }
           setLoading(false);
         })
         .catch(() => { if (!cancelled) setLoading(false); });

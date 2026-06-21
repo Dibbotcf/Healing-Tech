@@ -1,7 +1,7 @@
 import { directusGet, directusAssetUrl } from '@/lib/directus';
 import ProductFilterClient from './ProductFilterClient';
 
-export const revalidate = 60;
+export const dynamic = 'force-dynamic';
 
 export default async function ProductsPage({ searchParams }: { searchParams: Promise<{ category?: string }> }) {
   const params = await searchParams;
