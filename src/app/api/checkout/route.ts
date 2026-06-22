@@ -15,6 +15,7 @@ export async function POST(req: Request) {
     const orderNumber = `ORD-${dateStr}-${randomStr}`;
     const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://healingtechnology.com.bd';
     const invoiceUrl = `${siteUrl}/invoice/${orderNumber}`;
+    const estimatedDelivery = deliveryType === 'outside_dhaka' ? '2–5 business days' : '1–2 business days';
 
     const basePayload = {
       order_number: orderNumber,
@@ -39,6 +40,7 @@ export async function POST(req: Request) {
         delivery_type: deliveryType ?? 'inside_dhaka',
         delivery_charge: deliveryCharge ?? 80,
         invoice_url: invoiceUrl,
+        estimated_delivery: estimatedDelivery,
       });
     } catch (firstErr: any) {
       // If Directus rejected unknown fields, retry with base payload only

@@ -47,7 +47,7 @@ export default async function ProductDetailPage({
 
   const fields = [
     "id,name,slug,sku,mark_as_new,listing_summary,short_summary",
-    "price,discount_price,overview,hero_image",
+    "price,discount_price,overview,hero_image,sizes",
     "origin_country,certification_summary,brochure_page_ref,status",
     "key_highlights,applications,spec_groups,download_items,support_blocks,faq_items,gallery",
     "brand.id,brand.name,brand.slug,brand.logo,brand.certifications_text",
@@ -78,6 +78,7 @@ export default async function ProductDetailPage({
     shortSummary: p.short_summary ?? '',
     price: p.price ?? null,
     discountPrice: p.discount_price ?? null,
+    sizes: Array.isArray(p.sizes) && p.sizes.length > 0 ? p.sizes : null,
     overview: p.overview ?? null,
     originCountry: p.origin_country ?? '',
     certificationSummary: p.certification_summary ?? '',

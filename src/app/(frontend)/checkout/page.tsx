@@ -71,8 +71,9 @@ export default function CheckoutPage() {
         items: items.map(i => ({
           product: i.product.id,
           productName: i.product.name,
+          size: i.selectedSize ?? null,
           quantity: i.quantity,
-          priceAtPurchase: i.product.discountPrice ?? i.product.price ?? 0
+          priceAtPurchase: i.selectedSizePrice ?? i.product.discountPrice ?? i.product.price ?? 0
         })),
         totalAmount: grandTotal,
         deliveryType,
@@ -89,7 +90,7 @@ export default function CheckoutPage() {
 
       if (res.ok) {
         setOrderResult(data);
-        setPurchasedItems(items.map(i => ({ id: i.product.id, quantity: i.quantity, price: i.product.discountPrice ?? i.product.price ?? 0 })));
+        setPurchasedItems(items.map(i => ({ id: i.product.id, quantity: i.quantity, price: i.selectedSizePrice ?? i.product.discountPrice ?? i.product.price ?? 0 })));
         setPurchaseTotal(grandTotal);
         clearCart();
         setOrderComplete(true);
@@ -315,7 +316,7 @@ export default function CheckoutPage() {
               <div className="space-y-4 mb-6 max-h-[300px] overflow-y-auto pr-2">
                 {items.map(item => {
                    const img = getMediaUrl(item.product.heroImage?.url) || '/logo-dark.svg';
-                   const currentPrice = item.product.discountPrice ?? item.product.price ?? 0;
+                   const currentPrice = item.selectedSizePrice ?? item.product.discountPrice ?? item.product.price ?? 0;
                    return (
                     <div key={item.product.id} className="flex gap-4">
                       <div className="w-16 h-16 bg-gray-50 rounded-lg flex items-center justify-center p-1.5 flex-shrink-0 overflow-hidden">
@@ -324,6 +325,9 @@ export default function CheckoutPage() {
                       </div>
                       <div className="flex-1 min-w-0 flex flex-col justify-between">
                         <h4 className="text-sm font-bold text-[#00355D] truncate">{item.product.name}</h4>
+                        {item.selectedSize && (
+                          <p className="text-[11px] text-[#12B5CB] font-semibold">{item.selectedSize}</p>
+                        )}
 
                         {/* Quantity Adjusters */}
                         <div className="flex items-center gap-2 mt-1">

@@ -40,6 +40,7 @@ export default async function InvoicePage({ params }: { params: Promise<{ orderN
   const orderItems = rawItems.map((item: any, idx: number) => ({
     id: item.product ?? item.product_id ?? idx,
     product: item.productName ?? item.product_name ?? String(item.product ?? item.product_id ?? 'Product'),
+    size: item.size ?? null,
     quantity: item.quantity ?? 1,
     priceAtPurchase: item.priceAtPurchase ?? item.price_at_purchase ?? 0,
   }))
@@ -158,6 +159,9 @@ export default async function InvoicePage({ params }: { params: Promise<{ orderN
                 <div key={item.id} className="flex text-sm text-[#111111] font-medium items-center pb-4 border-b border-gray-50">
                   <div className="flex-1">
                     <p className="font-bold text-[#00355D]">{item.product}</p>
+                    {item.size && (
+                      <p className="text-xs text-gray-400 mt-0.5">{item.size}</p>
+                    )}
                   </div>
                   <div className="w-20 text-center">{item.quantity}</div>
                   <div className="w-28 text-right">৳{(item.priceAtPurchase ?? 0).toLocaleString()}</div>

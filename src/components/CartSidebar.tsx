@@ -71,8 +71,8 @@ export function CartSidebar({ isOpen, setIsOpen }: CartSidebarProps) {
             <div className="space-y-6">
               {items.map((item) => {
                 const img = getMediaUrl(item.product.heroImage?.url) || '/logo-dark.svg';
-                const currentPrice = item.product.discountPrice ?? item.product.price ?? 0;
-                
+                const currentPrice = item.selectedSizePrice ?? item.product.discountPrice ?? item.product.price ?? 0;
+
                 return (
                   <div key={item.product.id} className="flex gap-4 border-b border-gray-100 pb-6 last:border-0 last:pb-0">
                     <div className="w-20 h-20 bg-gray-50 rounded-xl flex items-center justify-center p-2 flex-shrink-0">
@@ -81,15 +81,22 @@ export function CartSidebar({ isOpen, setIsOpen }: CartSidebarProps) {
                     </div>
                     <div className="flex-1 flex flex-col">
                       <div className="flex justify-between items-start gap-2 mb-1">
-                        <h3 className="text-sm font-bold text-[#00355D] leading-tight line-clamp-2">{item.product.name}</h3>
-                        <button 
+                        <div>
+                          <h3 className="text-sm font-bold text-[#00355D] leading-tight line-clamp-2">{item.product.name}</h3>
+                          {item.selectedSize && (
+                            <span className="text-[11px] font-semibold text-[#12B5CB] mt-0.5 inline-block">
+                              {item.selectedSize}
+                            </span>
+                          )}
+                        </div>
+                        <button
                           onClick={() => removeItem(item.product.id)}
                           className="text-gray-400 hover:text-red-500 transition-colors mt-0.5"
                         >
                           <Trash2 className="w-4 h-4" />
                         </button>
                       </div>
-                      
+
                       <div className="text-sm font-bold text-[#12B5CB] mb-2 mt-auto text-lg">
                         ৳{currentPrice.toLocaleString()}
                       </div>
