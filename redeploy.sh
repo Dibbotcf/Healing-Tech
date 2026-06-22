@@ -19,19 +19,15 @@ echo "=============================" | tee -a "$LOG"
 cd "$APP_DIR" || { echo "ERROR: Cannot cd to $APP_DIR" | tee -a "$LOG"; exit 1; }
 
 # ── 1. Pull latest code ──────────────────────────────────────
-echo "[1/7] Pulling latest code from GitHub..." | tee -a "$LOG"
+echo "[1/6] Pulling latest code from GitHub..." | tee -a "$LOG"
 git pull origin master 2>&1 | tee -a "$LOG"
 
 # ── 2. Install dependencies ──────────────────────────────────
-echo "[2/7] Installing dependencies..." | tee -a "$LOG"
+echo "[2/6] Installing dependencies..." | tee -a "$LOG"
 npm install --legacy-peer-deps 2>&1 | tee -a "$LOG"
 
-# ── 3. Run Payload migrations (skip errors — ESM compat issue) ─
-echo "[3/7] Running Payload CMS migrations (best-effort)..." | tee -a "$LOG"
-npx payload migrate 2>&1 | tee -a "$LOG" || true
-
-# ── 4. Build the app ─────────────────────────────────────────
-echo "[4/7] Building Next.js app..." | tee -a "$LOG"
+# ── 3. Build the app ─────────────────────────────────────────
+echo "[3/6] Building Next.js app..." | tee -a "$LOG"
 npm run build 2>&1 | tee -a "$LOG"
 
 # Check build actually succeeded
@@ -40,31 +36,21 @@ if [ ! -f "$STANDALONE_DIR/server.js" ]; then
   exit 1
 fi
 
-# ── 5. Copy .env + public + static assets to standalone ───────
-echo "[5/7] Copying assets + .env to standalone..." | tee -a "$LOG"
+# ── 4. Copy .env + public + static assets to standalone ───────
+echo "[4/6] Copying assets + .env to standalone..." | tee -a "$LOG"
 cp "$APP_DIR/.env" "$STANDALONE_DIR/.env" 2>&1 | tee -a "$LOG"
 
-# Use rsync to MERGE public folder — preserves CMS-uploaded media files
-# that were uploaded via Payload admin panel and are NOT tracked in git
-mkdir -p "$STANDALONE_DIR/public/media"
 rsync -a --update "$APP_DIR/public/" "$STANDALONE_DIR/public/" 2>&1 | tee -a "$LOG"
-
-# Sync from persistent media storage (CMS uploads survive redeploys here)
-PERSISTENT_MEDIA="/var/www/vhosts/healingtechnology.com.bd/persistent/media"
-if [ -d "$PERSISTENT_MEDIA" ]; then
-  rsync -a --update "$PERSISTENT_MEDIA/" "$STANDALONE_DIR/public/media/" 2>&1 | tee -a "$LOG"
-  echo "   ✓ Synced persistent media to standalone" | tee -a "$LOG"
-fi
 
 cp -r "$APP_DIR/.next/static" "$STANDALONE_DIR/.next/" 2>&1 | tee -a "$LOG"
 
-# ── 6. Kill existing Node process on the port ────────────────
-echo "[6/7] Stopping existing server on port $PORT..." | tee -a "$LOG"
+# ── 5. Kill existing Node process on the port ────────────────
+echo "[5/6] Stopping existing server on port $PORT..." | tee -a "$LOG"
 fuser -k ${PORT}/tcp 2>/dev/null || true
 sleep 2
 
-# ── 7. Start new server with explicit PORT ───────────────────
-echo "[7/7] Starting server on port $PORT..." | tee -a "$LOG"
+# ── 6. Start new server with explicit PORT ───────────────────
+echo "[6/6] Starting server on port $PORT..." | tee -a "$LOG"
 cd "$STANDALONE_DIR"
 export PORT=$PORT
 export NODE_ENV=production
