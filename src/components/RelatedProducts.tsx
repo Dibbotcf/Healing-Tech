@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { getMediaUrl } from "@/lib/getMediaUrl";
@@ -26,6 +26,12 @@ function RelatedProductCard({ product }: { product: RelatedProduct }) {
   const heroUrl = getMediaUrl(
     typeof product.heroImage !== "string" ? product.heroImage?.url : undefined
   );
+
+  useEffect(() => {
+    setImgFailed(false);
+    setImgLoaded(false);
+  }, [heroUrl]);
+
   const catTitle =
     product.category && typeof product.category !== "string"
       ? product.category.title

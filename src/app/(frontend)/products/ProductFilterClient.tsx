@@ -12,6 +12,12 @@ import { getMediaUrl } from '@/lib/getMediaUrl';
 function ProductImage({ url, name }: { url: string; name: string }) {
   const [failed, setFailed] = useState(false);
   const [loaded, setLoaded] = useState(false);
+
+  React.useEffect(() => {
+    setFailed(false);
+    setLoaded(false);
+  }, [url]);
+
   return (
     <>
       <div className="absolute inset-0 flex items-center justify-center">

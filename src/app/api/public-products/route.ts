@@ -14,7 +14,7 @@ export async function GET(req: NextRequest) {
     const featured = searchParams.get("featured") === "true";
 
     const offset = (page - 1) * limit;
-    const fields = "id,name,slug,listing_summary,mark_as_new,price,discount_price,hero_image,category.id,category.name,category.slug,brand.id,brand.name";
+    const fields = "id,name,slug,listing_summary,mark_as_new,price,discount_price,hero_image,date_updated,category.id,category.name,category.slug,brand.id,brand.name";
 
     let filterStr = "&filter[status][_eq]=published";
     if (category) filterStr += `&filter[category][slug][_eq]=${encodeURIComponent(category)}`;
@@ -42,7 +42,7 @@ export async function GET(req: NextRequest) {
       markAsNew: !!p.mark_as_new,
       price: p.price ?? null,
       discountPrice: p.discount_price ?? null,
-      heroImage: p.hero_image ? { url: directusAssetThumb(p.hero_image), mimeType: "" } : null,
+      heroImage: p.hero_image ? { url: directusAssetThumb(p.hero_image, 500, 82, p.date_updated)!, mimeType: "" } : null,
       category: p.category ? { title: p.category.name, slug: p.category.slug } : null,
       brand: p.brand ? { name: p.brand.name } : null,
     }));

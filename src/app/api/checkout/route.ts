@@ -4,7 +4,7 @@ import { directusPost } from '@/lib/directus';
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const { customer, items, totalAmount, paymentMethod } = body;
+    const { customer, items, totalAmount, paymentMethod, deliveryType, deliveryCharge } = body;
 
     if (!customer || !items || !items.length) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
@@ -13,8 +13,10 @@ export async function POST(req: Request) {
     const dateStr = new Date().toISOString().slice(0, 10).replace(/-/g, '');
     const randomStr = Math.floor(1000 + Math.random() * 9000);
     const orderNumber = `ORD-${dateStr}-${randomStr}`;
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://healingtechnology.com.bd';
+    const invoiceUrl = `${siteUrl}/invoice/${orderNumber}`;
 
-    const res = await directusPost<{ data: any }>('/items/orders', {
+    const basePayload = {
       order_number: orderNumber,
       customer_name: customer.name ?? `${customer.firstName ?? ''} ${customer.lastName ?? ''}`.trim(),
       customer_first_name: customer.firstName ?? '',
@@ -28,10 +30,27 @@ export async function POST(req: Request) {
       payment_method: paymentMethod,
       payment_status: 'unpaid',
       status: 'pending',
-    });
+    };
 
-    const order = res.data;
-    return NextResponse.json({ success: true, order, paymentMethod });
+    let res: any;
+    try {
+      res = await directusPost<{ data: any }>('/items/orders', {
+        ...basePayload,
+        delivery_type: deliveryType ?? 'inside_dhaka',
+        delivery_charge: deliveryCharge ?? 80,
+        invoice_url: invoiceUrl,
+      });
+    } catch (firstErr: any) {
+      // If Directus rejected unknown fields, retry with base payload only
+      if (firstErr.message?.includes('400')) {
+        res = await directusPost<{ data: any }>('/items/orders', basePayload);
+      } else {
+        throw firstErr;
+      }
+    }
+
+    const order = { ...res.data, orderNumber };
+    return NextResponse.json({ success: true, order, paymentMethod, invoiceUrl });
   } catch (error: any) {
     console.error('Checkout API Error:', error);
     return NextResponse.json({ error: error.message || 'Internal Server Error' }, { status: 500 });

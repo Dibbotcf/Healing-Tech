@@ -34,6 +34,11 @@ function ProductCard({ product }: { product: Product }) {
   const [imgFailed, setImgFailed] = React.useState(false);
   const [imgLoaded, setImgLoaded] = React.useState(false);
 
+  React.useEffect(() => {
+    setImgFailed(false);
+    setImgLoaded(false);
+  }, [heroUrl]);
+
   const addToCart = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
@@ -205,6 +210,9 @@ export function ProductCarousel() {
           if (Array.isArray(data.docs) && data.docs.length > 0) {
             setAllProducts(data.docs);
             setTotalDocs(data.totalDocs || 0);
+          } else if (Array.isArray(data.docs) && data.docs.length === 0 && (data.totalDocs ?? 0) > 0 && page > 0) {
+            // current page is out of bounds after a deletion — go back to page 0
+            setPage(0);
           }
           setLoading(false);
         })

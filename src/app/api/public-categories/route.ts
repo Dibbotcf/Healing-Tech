@@ -1,18 +1,18 @@
 import { NextResponse } from "next/server";
 import { directusGet, directusAssetUrl } from "@/lib/directus";
 
-export const revalidate = 300;
+export const revalidate = 0;
 
 export async function GET() {
   try {
     const [catRes, prodRes] = await Promise.all([
       directusGet<{ data: any[] }>(
         "/items/categories?fields=id,name,slug,short_description,hero_image&filter[is_active][_eq]=true&sort=sort_order&limit=20",
-        300
+        0
       ),
       directusGet<{ data: any[] }>(
-        "/items/products?fields=id,hero_image,category.id&limit=100&filter[status][_eq]=published",
-        300
+        "/items/products?fields=id,hero_image,date_updated,category.id&limit=100&filter[status][_eq]=published",
+        0
       ),
     ]);
 
@@ -28,8 +28,13 @@ export async function GET() {
       }
       productCountByCategory[catId]++;
       if (productImagesByCategory[catId].length < 10 && p.hero_image) {
-        const u = directusAssetUrl(p.hero_image);
-        if (u) productImagesByCategory[catId].push(u);
+        const baseUrl = directusAssetUrl(p.hero_image);
+        if (baseUrl) {
+          const u = p.date_updated
+            ? `${baseUrl}?v=${new Date(p.date_updated).getTime()}`
+            : baseUrl;
+          productImagesByCategory[catId].push(u);
+        }
       }
     }
 
@@ -47,7 +52,7 @@ export async function GET() {
     });
 
     const res = NextResponse.json(categories);
-    res.headers.set("Cache-Control", "public, s-maxage=300, stale-while-revalidate=600");
+    res.headers.set("Cache-Control", "no-store");
     return res;
   } catch (error) {
     console.error("Categories API Error:", error);

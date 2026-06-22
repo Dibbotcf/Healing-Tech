@@ -14,10 +14,12 @@ export function directusAssetUrl(uuid: string | null | undefined): string | null
 export function directusAssetThumb(
   uuid: string | null | undefined,
   width = 500,
-  quality = 82
+  quality = 82,
+  modified?: string | null
 ): string | null {
   if (!uuid) return null;
-  return `${DIRECTUS_URL}/assets/${uuid}?width=${width}&quality=${quality}&format=webp`;
+  const base = `${DIRECTUS_URL}/assets/${uuid}?width=${width}&quality=${quality}&format=webp`;
+  return modified ? `${base}&v=${new Date(modified).getTime()}` : base;
 }
 
 /** Fetch Directus items with admin token */

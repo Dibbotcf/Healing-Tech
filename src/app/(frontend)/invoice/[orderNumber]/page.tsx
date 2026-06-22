@@ -2,7 +2,7 @@ import { directusGet } from "@/lib/directus"
 export const dynamic = 'force-dynamic';
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowLeft, SearchX, Download } from "lucide-react"
+import { ArrowLeft, SearchX } from "lucide-react"
 import PrintButton from "@/components/PrintButton"
 
 export default async function InvoicePage({ params }: { params: Promise<{ orderNumber: string }> }) {
@@ -21,12 +21,9 @@ export default async function InvoicePage({ params }: { params: Promise<{ orderN
           </div>
           <h1 className="text-2xl font-bold text-[#111111] mb-2 tracking-tight">Invoice Not Found</h1>
           <p className="text-[#575B5F] mb-8 text-sm">
-            We couldn&apos;t find an invoice for the Order Number: <strong className="text-[#00355D]">{orderNumber}</strong>. Please check the spelling and try again.
+            We couldn&apos;t find an invoice for Order Number: <strong className="text-[#00355D]">{orderNumber}</strong>.
           </p>
           <div className="flex flex-col sm:flex-row gap-3">
-            <Link href="/track-order" className="flex-1 bg-white border-2 border-gray-200 text-gray-600 hover:border-[#12B5CB] hover:text-[#12B5CB] font-bold py-3.5 rounded-xl transition-all flex items-center justify-center">
-               Try Again
-            </Link>
             <Link href="/products" className="flex-1 bg-[#12B5CB] hover:bg-[#009EE2] text-white font-bold py-3.5 rounded-xl shadow-sm transition-all flex items-center justify-center gap-2">
                Back to Products
             </Link>
@@ -38,12 +35,33 @@ export default async function InvoicePage({ params }: { params: Promise<{ orderN
 
   const raw = res.data[0] as any
 
-  // Normalise Directus snake_case fields to what the template expects
+  // items stored as JSON array; support both old and new key formats
+  const rawItems: any[] = Array.isArray(raw.items) ? raw.items : []
+  const orderItems = rawItems.map((item: any, idx: number) => ({
+    id: item.product ?? item.product_id ?? idx,
+    product: item.productName ?? item.product_name ?? String(item.product ?? item.product_id ?? 'Product'),
+    quantity: item.quantity ?? 1,
+    priceAtPurchase: item.priceAtPurchase ?? item.price_at_purchase ?? 0,
+  }))
+
+  const deliveryCharge: number = raw.delivery_charge ?? 0
+  const deliveryType: string = raw.delivery_type ?? ''
+  const deliveryLabel =
+    deliveryType === 'outside_dhaka' ? 'Outside Dhaka' :
+    deliveryType === 'inside_dhaka'  ? 'Inside Dhaka'  : ''
+
+  const itemsSubtotal = orderItems.reduce((sum: number, i: any) => sum + i.priceAtPurchase * i.quantity, 0)
+  const grandTotal: number = raw.total_amount ?? itemsSubtotal + deliveryCharge
+
   const order = {
     orderNumber: raw.order_number,
     createdAt: raw.date_created,
     paymentStatus: raw.payment_status,
-    totalAmount: raw.total_amount,
+    paymentMethod: raw.payment_method,
+    status: raw.status,
+    grandTotal,
+    deliveryCharge,
+    deliveryLabel,
     customer: {
       firstName: raw.customer_first_name ?? '',
       lastName: raw.customer_last_name ?? '',
@@ -52,13 +70,17 @@ export default async function InvoicePage({ params }: { params: Promise<{ orderN
       email: raw.customer_email ?? '',
       phone: raw.customer_phone ?? '',
     },
-    // items is stored as JSON array: [{product_id, quantity, price_at_purchase}]
-    items: (raw.items ?? []).map((item: any) => ({
-      id: item.product_id ?? Math.random(),
-      product: item.product_name ?? String(item.product_id ?? 'Product'),
-      quantity: item.quantity,
-      priceAtPurchase: item.price_at_purchase,
-    })),
+    items: orderItems,
+  }
+
+  const STATUS_COLORS: Record<string, string> = {
+    paid: 'bg-green-100 text-green-700',
+    unpaid: 'bg-amber-100 text-amber-700',
+    pending: 'bg-blue-100 text-blue-700',
+    processing: 'bg-purple-100 text-purple-700',
+    shipped: 'bg-indigo-100 text-indigo-700',
+    delivered: 'bg-green-100 text-green-700',
+    cancelled: 'bg-red-100 text-red-700',
   }
 
   return (
@@ -85,17 +107,20 @@ export default async function InvoicePage({ params }: { params: Promise<{ orderN
             <div className="text-left md:text-right">
               <h2 className="text-3xl font-bold text-[#00355D] mb-1">INVOICE</h2>
               <p className="text-sm font-bold text-[#12B5CB]">{order.orderNumber}</p>
-              <div className="mt-4 flex flex-col md:items-end gap-1 text-sm text-gray-500">
-                <p><span className="font-semibold text-gray-700">Date:</span> {order.createdAt ? new Date(order.createdAt).toLocaleDateString() : ''}</p>
-                <p>
+              <div className="mt-4 flex flex-col md:items-end gap-1.5 text-sm text-gray-500">
+                <p><span className="font-semibold text-gray-700">Date:</span> {order.createdAt ? new Date(order.createdAt).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }) : '—'}</p>
+                <div className="flex md:justify-end items-center gap-2 flex-wrap">
                   <span className="font-semibold text-gray-700">Payment:</span>
-                  <span className={`ml-2 px-2 py-0.5 rounded text-xs font-bold uppercase tracking-wider ${
-                    order.paymentStatus === 'paid' ? 'bg-green-100 text-green-700' :
-                    order.paymentStatus === 'unpaid' ? 'bg-amber-100 text-amber-700' : 'bg-gray-100 text-gray-700'
-                  }`}>
+                  <span className={`px-2 py-0.5 rounded text-xs font-bold uppercase tracking-wider ${STATUS_COLORS[order.paymentStatus] ?? 'bg-gray-100 text-gray-700'}`}>
                     {order.paymentStatus}
                   </span>
-                </p>
+                </div>
+                <div className="flex md:justify-end items-center gap-2 flex-wrap">
+                  <span className="font-semibold text-gray-700">Status:</span>
+                  <span className={`px-2 py-0.5 rounded text-xs font-bold uppercase tracking-wider ${STATUS_COLORS[order.status] ?? 'bg-gray-100 text-gray-700'}`}>
+                    {order.status}
+                  </span>
+                </div>
               </div>
             </div>
           </div>
@@ -119,13 +144,13 @@ export default async function InvoicePage({ params }: { params: Promise<{ orderN
              </div>
           </div>
 
-          {/* Table */}
+          {/* Items Table */}
           <div className="w-full mb-8 print:mb-3">
             <div className="flex text-xs font-bold uppercase tracking-widest text-gray-400 border-b-2 border-gray-100 pb-3 mb-4">
               <div className="flex-1">Description</div>
-              <div className="w-24 text-center">Qty</div>
-              <div className="w-32 text-right">Unit Price</div>
-              <div className="w-32 text-right">Amount</div>
+              <div className="w-20 text-center">Qty</div>
+              <div className="w-28 text-right">Unit Price</div>
+              <div className="w-28 text-right">Amount</div>
             </div>
 
             <div className="space-y-4">
@@ -134,9 +159,9 @@ export default async function InvoicePage({ params }: { params: Promise<{ orderN
                   <div className="flex-1">
                     <p className="font-bold text-[#00355D]">{item.product}</p>
                   </div>
-                  <div className="w-24 text-center">{item.quantity}</div>
-                  <div className="w-32 text-right">৳{item.priceAtPurchase?.toLocaleString()}</div>
-                  <div className="w-32 text-right font-bold text-[#111111]">৳{(item.priceAtPurchase * item.quantity).toLocaleString()}</div>
+                  <div className="w-20 text-center">{item.quantity}</div>
+                  <div className="w-28 text-right">৳{(item.priceAtPurchase ?? 0).toLocaleString()}</div>
+                  <div className="w-28 text-right font-bold text-[#111111]">৳{((item.priceAtPurchase ?? 0) * item.quantity).toLocaleString()}</div>
                 </div>
               ))}
             </div>
@@ -144,18 +169,26 @@ export default async function InvoicePage({ params }: { params: Promise<{ orderN
 
           {/* Totals */}
           <div className="flex justify-end pt-4 mb-16 print:mb-2">
-             <div className="w-full md:w-1/2 lg:w-1/3">
+             <div className="w-full md:w-1/2 lg:w-2/5">
                 <div className="flex justify-between items-center mb-3">
                   <span className="text-gray-500 font-medium text-sm">Subtotal</span>
-                  <span className="font-bold text-[#111111]">৳{order.totalAmount?.toLocaleString()}</span>
+                  <span className="font-bold text-[#111111]">৳{itemsSubtotal.toLocaleString()}</span>
                 </div>
+                {deliveryCharge > 0 && (
+                  <div className="flex justify-between items-center mb-3">
+                    <span className="text-gray-500 font-medium text-sm">
+                      Delivery{deliveryLabel ? ` (${deliveryLabel})` : ''}
+                    </span>
+                    <span className="font-bold text-[#111111]">৳{deliveryCharge.toLocaleString()}</span>
+                  </div>
+                )}
                 <div className="flex justify-between items-center mb-3 border-b border-gray-100 pb-3">
                   <span className="text-gray-500 font-medium text-sm">Tax</span>
                   <span className="font-bold text-[#111111]">৳0</span>
                 </div>
                 <div className="flex justify-between items-center mt-2 bg-[#F8F9FA] p-4 rounded-xl border border-gray-100">
                   <span className="text-lg font-bold text-[#111111]">Total</span>
-                  <span className="text-2xl font-extrabold text-[#12B5CB]">৳{order.totalAmount?.toLocaleString()}</span>
+                  <span className="text-2xl font-extrabold text-[#12B5CB]">৳{order.grandTotal.toLocaleString()}</span>
                 </div>
              </div>
           </div>

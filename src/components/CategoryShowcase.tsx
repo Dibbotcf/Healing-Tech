@@ -23,13 +23,18 @@ export function CategoryShowcase() {
   const visibleCount = 8;
 
   useEffect(() => {
-    fetch("/api/public-categories")
-      .then((r) => r.json())
-      .then((data) => {
-        setCategories(data || []);
-        setLoading(false);
-      })
-      .catch(() => setLoading(false));
+    const load = () => {
+      fetch("/api/public-categories")
+        .then((r) => r.json())
+        .then((data) => {
+          if (Array.isArray(data) && data.length > 0) setCategories(data);
+          setLoading(false);
+        })
+        .catch(() => setLoading(false));
+    };
+    load();
+    const interval = setInterval(load, 60_000);
+    return () => clearInterval(interval);
   }, []);
 
   if (loading) {
