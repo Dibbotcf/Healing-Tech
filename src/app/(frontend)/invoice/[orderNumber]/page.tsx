@@ -9,7 +9,7 @@ export default async function InvoicePage({ params }: { params: Promise<{ orderN
   const { orderNumber } = await params
 
   const res = await directusGet<{ data: any[] }>(
-    `/items/orders?filter[order_number][_eq]=${encodeURIComponent(orderNumber)}&fields=*&limit=1`
+    `/items/orders?filter[order_number][_eq]=${encodeURIComponent(orderNumber)}&fields=*,order_items.id,order_items.product_name,order_items.quantity,order_items.price_at_purchase,order_items.size&limit=1`
   )
 
   if (!res.data?.length) {
@@ -35,14 +35,17 @@ export default async function InvoicePage({ params }: { params: Promise<{ orderN
 
   const raw = res.data[0] as any
 
-  // items stored as JSON array; support both old and new key formats
-  const rawItems: any[] = Array.isArray(raw.items) ? raw.items : []
-  const orderItems = rawItems.map((item: any, idx: number) => ({
-    id: item.product ?? item.product_id ?? idx,
-    product: item.productName ?? item.product_name ?? String(item.product ?? item.product_id ?? 'Product'),
+  // Prefer order_items (relational) over legacy JSON items field
+  const relationalItems: any[] = Array.isArray(raw.order_items) && raw.order_items.length > 0 ? raw.order_items : []
+  const legacyItems: any[] = Array.isArray(raw.items) ? raw.items : []
+  const sourceItems = relationalItems.length > 0 ? relationalItems : legacyItems
+
+  const orderItems = sourceItems.map((item: any, idx: number) => ({
+    id: item.id ?? item.product ?? item.product_id ?? idx,
+    product: item.product_name ?? item.productName ?? String(item.product ?? item.product_id ?? 'Product'),
     size: item.size ?? null,
     quantity: item.quantity ?? 1,
-    priceAtPurchase: item.priceAtPurchase ?? item.price_at_purchase ?? 0,
+    priceAtPurchase: item.price_at_purchase ?? item.priceAtPurchase ?? 0,
   }))
 
   const deliveryCharge: number = raw.delivery_charge ?? 0

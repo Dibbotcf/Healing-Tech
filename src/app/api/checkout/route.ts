@@ -17,7 +17,8 @@ export async function POST(req: Request) {
     const invoiceUrl = `${siteUrl}/invoice/${orderNumber}`;
     const estimatedDelivery = deliveryType === 'outside_dhaka' ? '2–5 business days' : '1–2 business days';
 
-    const basePayload = {
+    // Save order record
+    const order = await directusPost<{ data: any }>('/items/orders', {
       order_number: orderNumber,
       customer_name: customer.name ?? `${customer.firstName ?? ''} ${customer.lastName ?? ''}`.trim(),
       customer_first_name: customer.firstName ?? '',
@@ -31,28 +32,35 @@ export async function POST(req: Request) {
       payment_method: paymentMethod,
       payment_status: 'unpaid',
       status: 'pending',
-    };
+      delivery_type: deliveryType ?? 'inside_dhaka',
+      delivery_charge: deliveryCharge ?? 80,
+      invoice_url: invoiceUrl,
+      estimated_delivery: estimatedDelivery,
+    });
 
-    let res: any;
-    try {
-      res = await directusPost<{ data: any }>('/items/orders', {
-        ...basePayload,
-        delivery_type: deliveryType ?? 'inside_dhaka',
-        delivery_charge: deliveryCharge ?? 80,
-        invoice_url: invoiceUrl,
-        estimated_delivery: estimatedDelivery,
-      });
-    } catch (firstErr: any) {
-      // If Directus rejected unknown fields, retry with base payload only
-      if (firstErr.message?.includes('400')) {
-        res = await directusPost<{ data: any }>('/items/orders', basePayload);
-      } else {
-        throw firstErr;
+    const orderId = order.data?.id;
+
+    // Save line items to order_items collection (best-effort — don't fail the order if this errors)
+    if (orderId && Array.isArray(items) && items.length > 0) {
+      try {
+        await Promise.all(
+          items.map((item: any) =>
+            directusPost('/items/order_items', {
+              order_id: orderId,
+              product_id: item.product ? Number(item.product) : null,
+              product_name: item.productName ?? item.name ?? null,
+              quantity: item.quantity ?? 1,
+              price_at_purchase: item.priceAtPurchase ?? item.price ?? null,
+              size: item.size ?? null,
+            })
+          )
+        );
+      } catch (itemErr) {
+        console.error('order_items save error (non-fatal):', itemErr);
       }
     }
 
-    const order = { ...res.data, orderNumber };
-    return NextResponse.json({ success: true, order, paymentMethod, invoiceUrl });
+    return NextResponse.json({ success: true, order: { ...order.data, orderNumber }, paymentMethod, invoiceUrl });
   } catch (error: any) {
     console.error('Checkout API Error:', error);
     return NextResponse.json({ error: error.message || 'Internal Server Error' }, { status: 500 });
