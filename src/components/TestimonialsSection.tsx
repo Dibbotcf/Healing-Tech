@@ -92,7 +92,7 @@ export const TestimonialsSection = () => {
   const [loading, setLoading] = React.useState(true);
 
   React.useEffect(() => {
-    fetch("/api/testimonials?where[isActive][equals]=true&limit=100")
+    fetch("/api/testimonials")
       .then((r) => r.json())
       .then((data) => {
         let docs = data.docs || [];

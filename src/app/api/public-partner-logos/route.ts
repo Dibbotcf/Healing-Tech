@@ -6,7 +6,7 @@ export const revalidate = 300;
 export async function GET() {
   try {
     const res = await directusGet<{ data: any[] }>(
-      "/items/partner_logos?fields=id,name,image,website&sort=sort_order&limit=100",
+      "/items/partner_logos?fields=id,name,image,website&sort=name&limit=100",
       300
     );
 
@@ -22,6 +22,6 @@ export async function GET() {
     return r;
   } catch (error) {
     console.error("Partner logos API Error:", error);
-    return NextResponse.json([], { status: 500 });
+    return NextResponse.json([]);
   }
 }

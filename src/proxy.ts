@@ -9,7 +9,7 @@ const CSP = [
   "img-src 'self' data: blob: https:",
   "media-src 'self' blob: https:",
   "frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com https://www.openstreetmap.org",
-  "connect-src 'self' https://www.facebook.com https://www.google-analytics.com https://analytics.google.com https://stats.g.doubleclick.net https://cloudflareinsights.com",
+  "connect-src 'self' https://*.facebook.com https://www.google-analytics.com https://analytics.google.com https://stats.g.doubleclick.net https://cloudflareinsights.com https://*.on.aws https://*.run.app",
   "worker-src 'self' blob:",
 ].join('; ')
 
