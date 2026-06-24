@@ -192,11 +192,17 @@ function ProductCard({ product }: { product: Product }) {
   );
 }
 
-export function ProductCarousel() {
-  const [allProducts, setAllProducts] = useState<Product[]>([]);
-  const [loading, setLoading] = useState(true);
+export function ProductCarousel({
+  initialProducts = [],
+  initialTotalDocs = 0,
+}: {
+  initialProducts?: Product[];
+  initialTotalDocs?: number;
+}) {
+  const [allProducts, setAllProducts] = useState<Product[]>(initialProducts);
+  const [loading, setLoading] = useState(initialProducts.length === 0);
   const [page, setPage] = useState(0);
-  const [totalDocs, setTotalDocs] = useState(0);
+  const [totalDocs, setTotalDocs] = useState(initialTotalDocs || initialProducts.length);
 
   useEffect(() => {
     let cancelled = false;
