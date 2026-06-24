@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import Image from "next/image";
@@ -9,7 +9,7 @@ export function Footer() {
   const [categories, setCategories] = useState<{ id: string; title: string; slug: string }[]>([]);
 
   useEffect(() => {
-    fetch("/api/public-categories")
+    fetch("/x-api/public-categories")
       .then((res) => res.json())
       .then((data) => {
         if (Array.isArray(data)) setCategories(data.slice(0, 6));

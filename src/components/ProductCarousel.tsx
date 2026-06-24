@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
@@ -207,7 +207,7 @@ export function ProductCarousel({
   useEffect(() => {
     let cancelled = false;
     const load = () => {
-      fetch(`/api/public-products?limit=${PAGE_SIZE}&page=${page + 1}&sort=-mark_as_new,-date_created`, { cache: 'no-store' })
+      fetch(`/x-api/public-products?limit=${PAGE_SIZE}&page=${page + 1}&sort=-mark_as_new,-date_created`, { cache: 'no-store' })
         .then((r) => r.json())
         .then((data) => {
           if (cancelled) return;

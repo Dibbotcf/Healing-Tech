@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useCartStore } from "@/lib/cartStore";
 import { useState, useEffect } from "react";
@@ -80,7 +80,7 @@ export default function CheckoutPage() {
         deliveryCharge,
       };
 
-      const res = await fetch("/api/checkout", {
+      const res = await fetch("/x-api/checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload)

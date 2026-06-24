@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React from 'react';
 import { motion } from "framer-motion";
@@ -92,7 +92,7 @@ export const TestimonialsSection = () => {
   const [loading, setLoading] = React.useState(true);
 
   React.useEffect(() => {
-    fetch("/api/testimonials")
+    fetch("/x-api/testimonials")
       .then((r) => r.json())
       .then((data) => {
         let docs = data.docs || [];

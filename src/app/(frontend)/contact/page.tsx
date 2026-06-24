@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { MapPin, Phone, Mail, MessageSquare, ChevronDown } from "lucide-react";
@@ -23,7 +23,7 @@ export default function Contact() {
     setIsSubmitting(true);
     setSubmitStatus("idle");
     try {
-      const res = await fetch("/api/inquiries", {
+      const res = await fetch("/x-api/inquiries", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
@@ -114,13 +114,13 @@ export default function GalleryPage() {
   const [activeVideo, setActiveVideo]     = useState<GalleryVideo | null>(null);
 
   useEffect(() => {
-    fetch("/api/gallery-posts-list")
+    fetch("/x-api/gallery-posts-list")
       .then((r) => r.json())
       .then((d) => setPosts(d.docs ?? []))
       .catch(() => setPosts([]))
       .finally(() => setLoadingPosts(false));
 
-    fetch("/api/gallery-videos-list")
+    fetch("/x-api/gallery-videos-list")
       .then((r) => r.json())
       .then((d) => setVideos(d.docs ?? []))
       .catch(() => setVideos([]))

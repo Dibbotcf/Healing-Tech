@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -48,7 +48,7 @@ export default function Navbar() {
     // 1-second delay: nav links render immediately; only the mega-menu
     // dropdown needs this data, and users rarely click it in the first second.
     const timer = setTimeout(() => {
-      fetch("/api/menus")
+      fetch("/x-api/menus")
         .then((r) => r.json())
         .then(({ categories: cats, products: prods }) => {
           setCategories(cats ?? []);

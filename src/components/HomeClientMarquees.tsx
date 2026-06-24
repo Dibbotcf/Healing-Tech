@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState, useEffect } from "react";
 
@@ -14,7 +14,7 @@ export function ClientLogosMarquee({ initialClients }: { initialClients: Logo[] 
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      fetch("/api/public-client-logos")
+      fetch("/x-api/public-client-logos")
         .then((r) => r.json())
         .then((data) => { if (data?.length > 0) setClients(data); })
         .catch(() => {});
@@ -52,7 +52,7 @@ export function BrandLogosMarquee({ initialBrands }: { initialBrands: Logo[] }) 
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      fetch("/api/public-partner-logos")
+      fetch("/x-api/public-partner-logos")
         .then((r) => r.json())
         .then((data) => { if (data?.length > 0) setBrands(data); })
         .catch(() => {});

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
@@ -53,7 +53,7 @@ function SubmitEvidenceContent() {
       formData.append("orderNumber", orderNumber);
       formData.append("file", file);
 
-      const res = await fetch("/api/submit-evidence", {
+      const res = await fetch("/x-api/submit-evidence", {
         method: "POST",
         body: formData,
       });

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
@@ -36,7 +36,7 @@ export default function WhatWeDoPage() {
   const [brands, setBrands] = useState(INITIAL_BRAND_LOGOS);
 
   useEffect(() => {
-    fetch("/api/public-partner-logos")
+    fetch("/x-api/public-partner-logos")
       .then((res) => res.json())
       .then((data) => {
         if (data && data.length > 0) setBrands(data);

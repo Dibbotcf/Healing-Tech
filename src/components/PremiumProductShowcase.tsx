@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
@@ -33,7 +33,7 @@ export function PremiumProductShowcase() {
   useEffect(() => {
     let cancelled = false;
     const load = () => {
-      fetch("/api/public-products?limit=20&sort=-id&featured=true")
+      fetch("/x-api/public-products?limit=20&sort=-id&featured=true")
         .then((r) => r.json())
         .then((data) => {
           if (cancelled) return;

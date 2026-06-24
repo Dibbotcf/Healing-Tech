@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
@@ -24,7 +24,7 @@ export function CategoryShowcase() {
 
   useEffect(() => {
     const load = () => {
-      fetch("/api/public-categories")
+      fetch("/x-api/public-categories")
         .then((r) => r.json())
         .then((data) => {
           if (Array.isArray(data) && data.length > 0) setCategories(data);
