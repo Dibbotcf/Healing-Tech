@@ -37,29 +37,33 @@ export async function POST(req: Request) {
       estimated_delivery: estimatedDelivery,
     });
 
-    const orderId = order.data?.id;
+    const orderId = order?.data?.id;
+    if (!orderId) {
+      throw new Error('Order creation failed: no ID returned from Directus');
+    }
 
     // Save line items to order_items collection (best-effort — don't fail the order if this errors)
-    if (orderId && Array.isArray(items) && items.length > 0) {
+    for (const item of items) {
       try {
-        await Promise.all(
-          items.map((item: any) =>
-            directusPost('/items/order_items', {
-              order_id: orderId,
-              product_id: item.product ? Number(item.product) : null,
-              product_name: item.productName ?? item.name ?? null,
-              quantity: item.quantity ?? 1,
-              price_at_purchase: item.priceAtPurchase ?? item.price ?? null,
-              size: item.size ?? null,
-            })
-          )
-        );
+        await directusPost('/items/order_items', {
+          order_id: orderId,
+          product_id: item.product ? Number(item.product) : null,
+          product_name: item.productName ?? item.name ?? null,
+          quantity: item.quantity ?? 1,
+          price_at_purchase: item.priceAtPurchase ?? item.price ?? null,
+          size: item.size ?? null,
+        });
       } catch (itemErr) {
         console.error('order_items save error (non-fatal):', itemErr);
       }
     }
 
-    return NextResponse.json({ success: true, order: { ...order.data, orderNumber }, paymentMethod, invoiceUrl });
+    return NextResponse.json({
+      success: true,
+      order: { id: orderId, orderNumber },
+      paymentMethod,
+      invoiceUrl,
+    });
   } catch (error: any) {
     console.error('Checkout API Error:', error);
     return NextResponse.json({ error: error.message || 'Internal Server Error' }, { status: 500 });
