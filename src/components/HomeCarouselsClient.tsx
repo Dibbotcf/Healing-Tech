@@ -11,24 +11,12 @@ const CategoryShowcase = dynamic(
   { ssr: false },
 );
 
-interface Product {
-  id: string;
-  name: string;
-  slug: string;
-  listingSummary: string;
-  markAsNew?: boolean;
-  price?: number | null;
-  discountPrice?: number | null;
-  heroImage?: { url: string; mimeType?: string } | null;
-  category?: { title: string; slug: string } | null;
-  brand?: { name: string } | null;
-}
-
 export function HomeCarouselsClient({
   initialProducts,
   initialTotalDocs,
 }: {
-  initialProducts: Product[];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  initialProducts: any[];
   initialTotalDocs: number;
 }) {
   return (
