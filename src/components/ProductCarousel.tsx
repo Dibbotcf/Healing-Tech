@@ -84,12 +84,14 @@ function ProductCard({ product }: { product: Product }) {
         href={`/products/${product.slug}`}
         className="block relative h-36 md:h-48 bg-[#F8F9FA] overflow-hidden group-hover:bg-[#EEF4FB] transition-colors cursor-pointer"
       >
-        {/* Fallback always mounted behind the image */}
-        <div className="absolute inset-0 flex items-center justify-center">
-          <span className="font-bold text-gray-200 text-7xl select-none">
-            {product.name.substring(0, 2)}
-          </span>
-        </div>
+        {/* Fallback — only show when image is absent or failed */}
+        {(!heroUrl || imgFailed) && (
+          <div className="absolute inset-0 flex items-center justify-center">
+            <span className="font-bold text-gray-200 text-7xl select-none">
+              {product.name.substring(0, 2)}
+            </span>
+          </div>
+        )}
 
         {heroUrl && !imgFailed && (
           product.heroImage?.mimeType?.startsWith("video/") ? (
