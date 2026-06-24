@@ -1,15 +1,6 @@
-import dynamic from "next/dynamic";
 import { directusGet, directusAssetThumb } from "@/lib/directus";
-
-const ProductCarousel = dynamic(
-  () => import("@/components/ProductCarousel").then((m) => ({ default: m.ProductCarousel })),
-  { ssr: false },
-);
-
-const CategoryShowcase = dynamic(
-  () => import("@/components/CategoryShowcase").then((m) => ({ default: m.CategoryShowcase })),
-  { ssr: false },
-);
+import { ProductCarousel } from "@/components/ProductCarousel";
+import { CategoryShowcase } from "@/components/CategoryShowcase";
 
 export async function HomeCarousels() {
   let initialProducts: any[] = [];
