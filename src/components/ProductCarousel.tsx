@@ -201,7 +201,7 @@ export function ProductCarousel() {
   useEffect(() => {
     let cancelled = false;
     const load = () => {
-      fetch(`/api/public-products?limit=${PAGE_SIZE}&page=${page + 1}&sort=-mark_as_new,-date_created`)
+      fetch(`/api/public-products?limit=${PAGE_SIZE}&page=${page + 1}&sort=-mark_as_new,-date_created`, { cache: 'no-store' })
         .then((r) => r.json())
         .then((data) => {
           if (cancelled) return;
@@ -209,7 +209,6 @@ export function ProductCarousel() {
             setAllProducts(data.docs);
             setTotalDocs(data.totalDocs || 0);
           } else if (Array.isArray(data.docs) && data.docs.length === 0 && (data.totalDocs ?? 0) > 0 && page > 0) {
-            // current page is out of bounds after a deletion — go back to page 0
             setPage(0);
           }
           setLoading(false);
@@ -218,7 +217,18 @@ export function ProductCarousel() {
     };
     load();
     const interval = setInterval(load, 30_000);
-    return () => { cancelled = true; clearInterval(interval); };
+    // Refetch when tab becomes visible again (covers BFCache restore + CMS tab switching)
+    const onVisible = () => { if (document.visibilityState === 'visible' && !cancelled) load(); };
+    document.addEventListener('visibilitychange', onVisible);
+    // Refetch on browser back/forward BFCache restore
+    const onPageShow = (e: PageTransitionEvent) => { if (e.persisted && !cancelled) load(); };
+    window.addEventListener('pageshow', onPageShow);
+    return () => {
+      cancelled = true;
+      clearInterval(interval);
+      document.removeEventListener('visibilitychange', onVisible);
+      window.removeEventListener('pageshow', onPageShow);
+    };
   }, [page]);
 
   if (loading) {
