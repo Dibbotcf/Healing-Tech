@@ -1,6 +1,5 @@
 import { directusGet, directusAssetThumb } from "@/lib/directus";
-import { ProductCarousel } from "@/components/ProductCarousel";
-import { CategoryShowcase } from "@/components/CategoryShowcase";
+import { HomeCarouselsClient } from "@/components/HomeCarouselsClient";
 
 export async function HomeCarousels() {
   let initialProducts: any[] = [];
@@ -38,9 +37,6 @@ export async function HomeCarousels() {
   }
 
   return (
-    <>
-      <ProductCarousel initialProducts={initialProducts} initialTotalDocs={initialTotalDocs} />
-      <CategoryShowcase />
-    </>
+    <HomeCarouselsClient initialProducts={initialProducts} initialTotalDocs={initialTotalDocs} />
   );
 }
