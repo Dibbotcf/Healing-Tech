@@ -212,7 +212,8 @@
 
 /* ===== PRINT ===== */
 @media print {
-  @page { margin: 10mm; }
+  @page { margin: 0; }
+  body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 }
 
 /* ===== GLOBAL SCROLLBAR ===== */

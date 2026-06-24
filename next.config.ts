@@ -25,11 +25,18 @@ const nextConfig: NextConfig = {
   },
   images: {
     formats: ['image/avif', 'image/webp'],
+    qualities: [70, 75, 80, 82, 85, 90],
     remotePatterns: [
       {
         protocol: 'http',
         hostname: 'localhost',
-        port: '',
+        port: '8055',
+        pathname: '/**',
+      },
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+        port: '12000',
         pathname: '/**',
       },
       {

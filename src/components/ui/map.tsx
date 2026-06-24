@@ -163,7 +163,7 @@ export function WorldMap({
         width={dimensions.width}
         height={dimensions.height}
         backgroundColor="rgba(0,0,0,0)"
-        globeImageUrl="//unpkg.com/three-globe/example/img/earth-blue-marble.jpg"
+        globeImageUrl="https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg"
         atmosphereColor="#87CEEB"
         atmosphereAltitude={0.18}
 

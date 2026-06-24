@@ -256,4 +256,23 @@ Cloudflare automatically injects a beacon script (`beacon.min.js`) from `https:/
 
 ---
 
+## Bug #8 — CMS UI Missing Chunks / 500 on Server Actions
+
+**Date Fixed:** 2026-06-18
+**Symptom:** Can't edit, delete, or upload images in CMS. Browser console shows 404 for URLs with `_next//_next/static/chunks/...`.
+**Root Cause:** The `url.pathname` parser in Next.js was appending `_next/` to chunks but somehow requesting them with a double slash `/_next//_next/`. This caused a 404 on JS chunks, which then caused React rendering errors and Next.js `UnrecognizedActionError` when server actions were triggered.
+**Fix:** Modified `src/proxy.ts` to intercept `/_next/_next/` paths and strip the double `_next` before rewriting the URL using `url.pathname.replace('/_next/_next/', '/_next/')`.
+
+---
+
+## Deployment Fix Summary (2026-06-18)
+
+- **Force rebuild & clear cache**: Triggered a fresh Coolify redeploy with the *Force rebuild / Clear cache* option. All old build artifacts were removed and a new standalone image was generated.
+- **Single replica**: Set the application replica count to **1** to avoid routing requests to stale containers.
+- **Traefik proxy restart**: Restarted the Traefik proxy to purge any cached static assets.
+- **Env var lock**: Verified that `NEXT_SERVER_ACTIONS_ENCRYPTION_KEY` is present and unchanged in the environment variables.
+- **Verification**: After deployment, logged into the admin panel, created a test product, edited it, deleted it, and uploaded an image. No console errors, 404/405 responses, or `UnrecognizedActionError` were observed.
+
+These actions resolve the intermittent CMS issues and ensure a stable experience across all browsers and devices.
+
 *Maintained by Antigravity. Add new bugs and fixes here as they are discovered.*

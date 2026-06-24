@@ -1,0 +1,26 @@
+services:
+  directus:
+    image: directus/directus:11.17.4
+    ports:
+      - "8055:8055"
+    volumes:
+      - ./directus-uploads:/directus/uploads
+    environment:
+      SECRET: "local-dev-secret-healing-tech"
+
+      # Connect to the existing local Postgres container via host
+      DB_CLIENT: "pg"
+      DB_HOST: "host.docker.internal"
+      DB_PORT: "12001"
+      DB_DATABASE: "directus"
+      DB_USER: "postgres"
+      DB_PASSWORD: "postgres"
+
+      # Admin account (same as production for convenience)
+      ADMIN_EMAIL: "quaziehsanh@gmail.com"
+      ADMIN_PASSWORD: "k1E6bH8n8CtIo3LwNsOnddXvSxu1ZAcu"
+
+      PUBLIC_URL: "http://localhost:8055"
+      CORS_ENABLED: "true"
+      CORS_ORIGIN: "http://localhost:12000"
+      NEXT_PUBLIC_SITE_URL: "http://localhost:12000"

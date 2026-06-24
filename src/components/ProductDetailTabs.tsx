@@ -122,7 +122,8 @@ export function ProductDetailTabs({
   supportBlocks = [],
   faqItems = [],
 }: Props) {
-  const overviewHtml = lexicalToHtml(overview);
+  // Directus stores plain HTML strings; Payload stored Lexical JSON objects
+  const overviewHtml = typeof overview === 'string' ? overview : lexicalToHtml(overview);
 
   // Build tabs array dynamically — only include tabs with content
   const allTabs: (Tab & { hasContent: boolean })[] = [
@@ -241,42 +242,48 @@ export function ProductDetailTabs({
               <div className="space-y-8">
                 {specGroups.map((group: any, i: number) => (
                   <div key={i}>
-                    {group.groupTitle && (
+                    {(group.group_title || group.groupTitle) && (
                       <p className="text-[11px] font-bold uppercase tracking-[0.1em] text-[#575B5F] mb-3">
-                        {group.groupTitle}
+                        {group.group_title || group.groupTitle}
                       </p>
                     )}
-                    <div className="rounded-2xl overflow-hidden border border-gray-200 bg-white">
-                      <table className="w-full text-left">
-                        <thead>
-                          <tr className="border-b border-gray-200 bg-[#F8F9FA]">
-                            <th className="px-6 py-4 text-xs font-semibold uppercase tracking-[0.08em] text-[#575B5F] w-2/5">
-                              Feature
-                            </th>
-                            <th className="px-6 py-4 text-xs font-semibold uppercase tracking-[0.08em] text-[#575B5F]">
-                              Specification
-                            </th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {group.rows?.map((row: any, j: number) => (
-                            <tr
-                              key={j}
-                              className={`border-b border-gray-100 last:border-0 hover:bg-[#F8F9FA] transition-colors ${
-                                j % 2 === 0 ? "bg-white" : "bg-gray-50/50"
-                              }`}
-                            >
-                              <td className="px-6 py-4 text-sm text-[#575B5F] font-medium">
-                                {row.label}
-                              </td>
-                              <td className="px-6 py-4 text-sm text-[#111111] font-semibold">
-                                {row.value}
-                              </td>
-                            </tr>
-                          ))}
-                        </tbody>
-                      </table>
-                    </div>
+                    {(() => {
+                      const rows = group.rows || group.specs || group.items || [];
+                      if (!rows.length) return null;
+                      return (
+                        <div className="rounded-2xl overflow-hidden border border-gray-200 bg-white">
+                          <table className="w-full text-left">
+                            <thead>
+                              <tr className="border-b border-gray-200 bg-[#F8F9FA]">
+                                <th className="px-6 py-4 text-xs font-semibold uppercase tracking-[0.08em] text-[#575B5F] w-2/5">
+                                  Feature
+                                </th>
+                                <th className="px-6 py-4 text-xs font-semibold uppercase tracking-[0.08em] text-[#575B5F]">
+                                  Specification
+                                </th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {rows.map((row: any, j: number) => (
+                                <tr
+                                  key={j}
+                                  className={`border-b border-gray-100 last:border-0 hover:bg-[#F8F9FA] transition-colors ${
+                                    j % 2 === 0 ? "bg-white" : "bg-gray-50/50"
+                                  }`}
+                                >
+                                  <td className="px-6 py-4 text-sm text-[#575B5F] font-medium">
+                                    {row.label || row.feature || row.name}
+                                  </td>
+                                  <td className="px-6 py-4 text-sm text-[#111111] font-semibold">
+                                    {row.value || row.spec || row.specification}
+                                  </td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        </div>
+                      );
+                    })()}
                   </div>
                 ))}
               </div>

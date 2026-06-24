@@ -12,10 +12,15 @@ import { getMediaUrl } from '@/lib/getMediaUrl';
 function ProductImage({ url, name }: { url: string; name: string }) {
   const [failed, setFailed] = useState(false);
   const [loaded, setLoaded] = useState(false);
+  const imgRef = React.useRef<HTMLImageElement>(null);
 
   React.useEffect(() => {
     setFailed(false);
     setLoaded(false);
+    // Cached images fire onLoad before React attaches the handler — check manually
+    if (imgRef.current?.complete && imgRef.current?.naturalWidth > 0) {
+      setLoaded(true);
+    }
   }, [url]);
 
   return (
@@ -26,6 +31,7 @@ function ProductImage({ url, name }: { url: string; name: string }) {
       {!failed && (
         // eslint-disable-next-line @next/next/no-img-element
         <img
+          ref={imgRef}
           src={url}
           alt={name}
           loading="lazy"
@@ -52,8 +58,9 @@ export default function ProductClientWrapper({
     initialCategorySlug ? [initialCategorySlug] : []
   );
   const [searchTerm, setSearchTerm] = useState("");
-  const { addItem, items } = useCartStore();
+  const { addItem, removeItem, items } = useCartStore();
   const router = useRouter();
+
 
   const toggleCategory = (slug: string) => {
     setSelectedCategories(prev => 
@@ -214,29 +221,31 @@ export default function ProductClientWrapper({
                         </div>
                       )}
 
-                      <div className="flex flex-col sm:flex-row items-center gap-1.5 md:gap-2 mt-0.5">
-                        <button 
-                          onClick={(e) => { 
-                            e.preventDefault(); 
-                            e.stopPropagation(); 
-                            addItem({ id: product.id, name: product.name, price: product.price, discountPrice: product.discountPrice, heroImage: product.heroImage ? { ...product.heroImage, url: getMediaUrl(product.heroImage?.url) } : undefined, slug: product.slug }, 1); 
-                          }} 
-                          className="w-full bg-[#12B5CB]/10 hover:bg-[#12B5CB]/20 text-[#12B5CB] text-center py-2 rounded-xl text-xs font-bold transition-colors shadow-sm flex justify-center items-center gap-1 cursor-pointer"
-                        >
-                          <ShoppingCart className="w-3 h-3" /> Cart
-                        </button>
-                        <button 
-                          onClick={(e) => { 
-                            e.preventDefault(); 
-                            e.stopPropagation(); 
-                            addItem({ id: product.id, name: product.name, price: product.price, discountPrice: product.discountPrice, heroImage: product.heroImage ? { ...product.heroImage, url: getMediaUrl(product.heroImage?.url) } : undefined, slug: product.slug }, 1); 
-                            router.push('/checkout');
-                          }} 
-                          className="w-full bg-[#00355D] hover:bg-[#002543] text-white text-center py-2 rounded-xl text-xs font-bold transition-colors shadow-sm cursor-pointer flex justify-center items-center gap-1"
-                        >
-                          <Zap className="w-3 h-3" fill="currentColor" /> Order
-                        </button>
-                      </div>
+                      {(() => {
+                        const isInCart = items.some(item => String(item.product.id) === String(product.id));
+                        const cartProduct = { id: product.id, name: product.name, price: product.price, discountPrice: product.discountPrice, heroImage: product.heroImage ? { ...product.heroImage, url: getMediaUrl(product.heroImage?.url) } : undefined, slug: product.slug };
+                        return (
+                          <div className="flex flex-col sm:flex-row items-center gap-1.5 md:gap-2 mt-0.5">
+                            <button
+                              onClick={(e) => { e.preventDefault(); e.stopPropagation(); isInCart ? removeItem(String(product.id)) : addItem(cartProduct, 1); }}
+                              className={`w-full text-center py-2 rounded-xl text-xs font-bold transition-colors shadow-sm flex justify-center items-center gap-1 cursor-pointer ${
+                                isInCart
+                                  ? "bg-green-500/10 hover:bg-red-50 text-green-600 hover:text-red-500"
+                                  : "bg-[#12B5CB]/10 hover:bg-[#12B5CB]/20 text-[#12B5CB]"
+                              }`}
+                            >
+                              <ShoppingCart className="w-3 h-3" />
+                              {isInCart ? "In Cart" : "Cart"}
+                            </button>
+                            <button
+                              onClick={(e) => { e.preventDefault(); e.stopPropagation(); addItem(cartProduct, 1); router.push('/checkout'); }}
+                              className="w-full bg-[#00355D] hover:bg-[#002543] text-white text-center py-2 rounded-xl text-xs font-bold transition-colors shadow-sm cursor-pointer flex justify-center items-center gap-1"
+                            >
+                              <Zap className="w-3 h-3" fill="currentColor" /> Order
+                            </button>
+                          </div>
+                        );
+                      })()}
                       <Link href={`/products/${product.slug}`} className="hidden sm:block w-full text-center py-2 text-xs font-bold text-[#575B5F] hover:text-[#12B5CB] transition-colors cursor-pointer mt-1">
                         View Full Details
                       </Link>

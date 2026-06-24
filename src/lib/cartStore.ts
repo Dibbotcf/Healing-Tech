@@ -26,26 +26,42 @@ interface CartState {
   getTotalPrice: () => number;
 }
 
+function deduplicateItems(items: CartItem[]): CartItem[] {
+  const seen = new Map<string, CartItem>();
+  for (const item of items) {
+    const key = item.product.id;
+    if (!seen.has(key)) seen.set(key, item);
+    else {
+      // Keep the one with higher quantity
+      const existing = seen.get(key)!;
+      seen.set(key, { ...existing, quantity: existing.quantity + item.quantity });
+    }
+  }
+  return Array.from(seen.values());
+}
+
 export const useCartStore = create<CartState>()(
   persist(
     (set, get) => ({
       items: [],
 
       addItem: (product, quantity = 1, selectedSize = null, selectedSizePrice = null) => {
+        const normalizedProduct = { ...product, id: String(product.id) };
         set((state) => {
-          const existingItem = state.items.find(item => item.product.id === product.id);
+          const deduped = deduplicateItems(state.items);
+          const existingItem = deduped.find(item => String(item.product.id) === normalizedProduct.id);
 
           if (existingItem) {
             return {
-              items: state.items.map(item =>
-                item.product.id === product.id
+              items: deduped.map(item =>
+                String(item.product.id) === normalizedProduct.id
                   ? { ...item, quantity: item.quantity + quantity, selectedSize, selectedSizePrice }
                   : item
               )
             };
           }
 
-          return { items: [...state.items, { product, quantity, selectedSize, selectedSizePrice }] };
+          return { items: [...deduped, { product: normalizedProduct, quantity, selectedSize, selectedSizePrice }] };
         });
       },
 
@@ -85,6 +101,11 @@ export const useCartStore = create<CartState>()(
     }),
     {
       name: 'healing-tech-cart',
+      onRehydrateStorage: () => (state) => {
+        if (state && Array.isArray(state.items)) {
+          state.items = deduplicateItems(state.items);
+        }
+      },
     }
   )
 );

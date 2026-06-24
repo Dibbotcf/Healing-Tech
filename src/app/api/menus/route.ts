@@ -1,15 +1,15 @@
 import { NextResponse } from "next/server";
 import { directusGet, directusAssetUrl } from "@/lib/directus";
 
-export const revalidate = 120;
+export const dynamic = 'force-dynamic';
 
 export async function GET() {
   try {
     const [catRes, prodRes] = await Promise.all([
-      directusGet<{ data: any[] }>("/items/categories?fields=id,name,slug&sort=sort_order&limit=100", 120),
+      directusGet<{ data: any[] }>("/items/categories?fields=id,name,slug&sort=sort_order&limit=100", 0),
       directusGet<{ data: any[] }>(
         "/items/products?fields=id,name,slug,category.id,mark_as_new,hero_image,gallery&limit=60&filter[status][_eq]=published",
-        120
+        0
       ),
     ]);
 
@@ -39,7 +39,7 @@ export async function GET() {
     });
 
     const response = NextResponse.json({ categories, products });
-    response.headers.set("Cache-Control", "public, s-maxage=120, stale-while-revalidate=300");
+    response.headers.set("Cache-Control", "no-store");
     return response;
   } catch (err) {
     console.error("Menus API error:", err);

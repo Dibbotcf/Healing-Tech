@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight, Sparkles, ChevronLeft, ChevronRight } from "lucide-react";
 import { getMediaUrl } from "@/lib/getMediaUrl";
+import { useCartStore } from "@/lib/cartStore";
 
 interface Product {
   id: string;
@@ -33,51 +34,41 @@ function ProductCard({ product }: { product: Product }) {
   const heroUrl = getMediaUrl(product.heroImage?.url);
   const [imgFailed, setImgFailed] = React.useState(false);
   const [imgLoaded, setImgLoaded] = React.useState(false);
+  const imgRef = React.useRef<HTMLImageElement>(null);
+  const { addItem, removeItem, items } = useCartStore();
+  const isAlreadyInCart = items.some((item) => String(item.product.id) === String(product.id));
 
   React.useEffect(() => {
     setImgFailed(false);
     setImgLoaded(false);
+    // Cached images won't re-fire onLoad — check manually
+    if (imgRef.current?.complete && imgRef.current?.naturalWidth > 0) {
+      setImgLoaded(true);
+    }
   }, [heroUrl]);
+
+  const cartProduct = {
+    id: product.id,
+    name: product.name,
+    price: product.price ?? null,
+    discountPrice: product.discountPrice ?? null,
+    heroImage: product.heroImage
+      ? { ...product.heroImage, url: getMediaUrl(product.heroImage.url) }
+      : undefined,
+    slug: product.slug,
+  };
 
   const addToCart = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    import("@/lib/cartStore").then(({ useCartStore }) => {
-      useCartStore.getState().addItem(
-        {
-          id: product.id,
-          name: product.name,
-          price: product.price ?? null,
-          discountPrice: product.discountPrice ?? null,
-          heroImage: product.heroImage
-            ? { ...product.heroImage, url: getMediaUrl(product.heroImage.url) }
-            : undefined,
-          slug: product.slug,
-        },
-        1
-      );
-    });
+    addItem(cartProduct, 1);
   };
 
   const handleOrder = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    import("@/lib/cartStore").then(({ useCartStore }) => {
-      useCartStore.getState().addItem(
-        {
-          id: product.id,
-          name: product.name,
-          price: product.price ?? null,
-          discountPrice: product.discountPrice ?? null,
-          heroImage: product.heroImage
-            ? { ...product.heroImage, url: getMediaUrl(product.heroImage.url) }
-            : undefined,
-          slug: product.slug,
-        },
-        1
-      );
-      window.location.href = "/checkout";
-    });
+    addItem(cartProduct, 1);
+    window.location.href = "/checkout";
   };
 
   return (
@@ -113,6 +104,7 @@ function ProductCard({ product }: { product: Product }) {
           ) : (
             // eslint-disable-next-line @next/next/no-img-element
             <img
+              ref={imgRef}
               src={heroUrl}
               alt={product.name}
               loading="lazy"
@@ -169,10 +161,14 @@ function ProductCard({ product }: { product: Product }) {
           {/* Cart + Order buttons */}
           <div className="flex flex-col sm:flex-row items-center gap-1.5 md:gap-2 mt-0.5">
             <button
-              onClick={addToCart}
-              className="w-full bg-[#12B5CB]/10 hover:bg-[#12B5CB]/20 text-[#12B5CB] text-center py-2 rounded-xl text-xs font-bold transition-colors shadow-sm flex justify-center items-center gap-1 cursor-pointer"
+              onClick={(e) => { e.preventDefault(); e.stopPropagation(); isAlreadyInCart ? removeItem(String(product.id)) : addToCart(e); }}
+              className={`w-full text-center py-2 rounded-xl text-xs font-bold transition-colors shadow-sm flex justify-center items-center gap-1 cursor-pointer ${
+                isAlreadyInCart
+                  ? "bg-green-500/10 hover:bg-red-50 text-green-600 hover:text-red-500"
+                  : "bg-[#12B5CB]/10 hover:bg-[#12B5CB]/20 text-[#12B5CB]"
+              }`}
             >
-              🛒 Cart
+              {isAlreadyInCart ? "✓ In Cart" : "🛒 Cart"}
             </button>
             <button
               onClick={handleOrder}
@@ -203,7 +199,7 @@ export function ProductCarousel() {
   useEffect(() => {
     let cancelled = false;
     const load = () => {
-      fetch(`/api/public-products?limit=${PAGE_SIZE}&page=${page + 1}&sort=-id`)
+      fetch(`/api/public-products?limit=${PAGE_SIZE}&page=${page + 1}&sort=-mark_as_new,-date_created`)
         .then((r) => r.json())
         .then((data) => {
           if (cancelled) return;

@@ -34,7 +34,7 @@ export async function POST(req: Request) {
       status: 'pending',
       delivery_type: deliveryType ?? 'inside_dhaka',
       delivery_charge: deliveryCharge ?? 80,
-      invoice_url: invoiceUrl,
+      invoice_link: invoiceUrl,
       estimated_delivery: estimatedDelivery,
     });
 

@@ -62,3 +62,10 @@ media-*.png
 media-picker*.png
 product-*.png
 terminal-test.png
+
+# Local Directus uploaded files (production media synced locally — not for git)
+directus-uploads/
+
+# Local-only temp and settings files
+.temp/
+localsettings.md

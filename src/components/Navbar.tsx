@@ -24,7 +24,7 @@ export default function Navbar() {
   const [searchOpen, setSearchOpen]         = useState(false);
   const [mounted, setMounted]               = useState(false);
   
-  const getTotalItems = useCartStore((state) => state.getTotalItems);
+  const totalItems = useCartStore((state) => state.items.reduce((t, i) => t + i.quantity, 0));
 
   const pathname = usePathname();
   const router   = useRouter();
@@ -144,6 +144,7 @@ export default function Navbar() {
               <Link
                 key={item.href}
                 href={item.href}
+                onClick={() => { setMegaOpen(false); setMobileOpen(false); }}
                 className="flex items-center px-2 text-sm font-semibold tracking-tight text-[#111] h-full"
               >
                 <span className="px-3 py-1.5 rounded-full hover:bg-gray-100 transition-all duration-200">
@@ -190,9 +191,9 @@ export default function Navbar() {
             >
                <div className="relative">
                  <ShoppingBag className="w-5 h-5 text-[#00355D] group-hover:text-[#12B5CB] transition-colors" />
-                 {mounted && getTotalItems() > 0 && (
+                 {mounted && totalItems > 0 && (
                    <span className="absolute -top-1.5 -right-2 bg-[#12B5CB] text-white text-[9px] font-bold w-4 h-4 flex items-center justify-center rounded-full border-2 border-white">
-                     {getTotalItems()}
+                     {totalItems}
                    </span>
                  )}
                </div>
@@ -232,9 +233,9 @@ export default function Navbar() {
                aria-label="View cart"
             >
                <ShoppingBag className="w-5 h-5 md:w-5 md:h-5" />
-               {mounted && getTotalItems() > 0 && (
+               {mounted && totalItems > 0 && (
                  <span className="absolute top-1.5 right-1.5 md:top-2 md:right-2 bg-[#12B5CB] text-white text-[9px] font-bold w-4 h-4 flex items-center justify-center rounded-full border-2 border-white">
-                   {getTotalItems()}
+                   {totalItems}
                  </span>
                )}
             </button>
@@ -257,11 +258,12 @@ export default function Navbar() {
         }`}
         style={{ paddingTop: "80px" }}
       >
-        {/* Backdrop — click to close */}
+        {/* Backdrop — click to close (starts below navbar so header stays clickable) */}
         <div
-          className={`absolute inset-0 bg-black/30 backdrop-blur-md transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-            megaOpen ? "opacity-100" : "opacity-0"
+          className={`fixed inset-x-0 bottom-0 bg-black/30 backdrop-blur-md transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+            megaOpen ? "opacity-100" : "opacity-0 pointer-events-none"
           }`}
+          style={{ top: "80px" }}
           onClick={() => setMegaOpen(false)}
         />
 

@@ -36,7 +36,7 @@ docker start healing-technology-postgres; if ($LASTEXITCODE -ne 0) { docker run 
 ### Step 1 — Dump Coolify DB into `coolify_dump.sql` using Docker
 This uses Docker to run `pg_dump` remotely. *We use `cmd.exe` to prevent PowerShell encoding corruption.*
 ```powershell
-cmd.exe /c "docker run --rm -e PGPASSWORD=""Q16OxSTs9OfRNPJTU8FdcqCv7nsYPSIFhIpcOWQKF4VjRukvgD8pkqbWlXlgVPxA"" postgres:15 pg_dump -h 91.98.166.101 -p 54320 -U postgres postgres --clean --if-exists > coolify_dump.sql"
+cmd.exe /c "docker run --rm -e PGPASSWORD=""Q16OxSTs9OfRNPJTU8FdcqCv7nsYPSIFhlpcOWQKF4VjRukvgD8pkqbWIXlgVPxA"" postgres:15 pg_dump -h 91.98.166.101 -p 54320 -U postgres postgres --clean --if-exists > coolify_dump.sql"
 ```
 
 > ⚠️ **If this fails with a connection error**, the Coolify PostgreSQL "Is Public" setting may be disabled.
@@ -109,7 +109,7 @@ cmd.exe /c "docker exec healing-technology-postgres pg_dump -U postgres -d heali
 | Host | `91.98.166.101` |
 | Port | `54320` |
 | User | `postgres` |
-| Password | `Q16OxSTs9OfRNPJTU8FdcqCv7nsYPSIFhIpcOWQKF4VjRukvgD8pkqbWlXlgVPxA` |
+| Password | `Q16OxSTs9OfRNPJTU8FdcqCv7nsYPSIFhlpcOWQKF4VjRukvgD8pkqbWIXlgVPxA` |
 | Database | `postgres` |
 
 > ⚠️ External access requires **"Is Public"** to be enabled in the Coolify database configuration.

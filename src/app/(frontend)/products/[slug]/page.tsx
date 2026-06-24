@@ -1,13 +1,11 @@
 import Link from 'next/link'
-import { ArrowLeft, CheckCircle2 } from 'lucide-react'
+import { ArrowLeft } from 'lucide-react'
 import { notFound } from 'next/navigation'
 import ReactCountryFlag from "react-country-flag"
 import { ProductGallery } from '@/components/ProductGallery'
-import { BrandPopupCard } from '@/components/BrandPopupCard'
 import { ProductClientActions } from '@/components/ProductClientActions'
 import { ProductDetailTabs } from '@/components/ProductDetailTabs'
 import { RelatedProducts } from '@/components/RelatedProducts'
-import { SmartDescription } from '@/components/SmartDescription'
 import { PixelViewContent } from '@/components/PixelEvents'
 import { directusGet, directusAssetUrl, directusAssetThumb } from '@/lib/directus'
 
@@ -69,7 +67,7 @@ export default async function ProductDetailPage({
 
   // Normalise to a shape the existing JSX expects
   const product = {
-    id: p.id,
+    id: String(p.id),
     name: p.name,
     slug: p.slug,
     sku: p.sku,
@@ -236,59 +234,8 @@ export default async function ProductDetailPage({
                 {product.name}
               </h1>
 
-              {/* SKU */}
-              {product.sku && (
-                <p className="text-xs font-semibold text-[#575B5F] uppercase tracking-[0.1em] mb-5">
-                  SKU: <span className="text-[#00355D]">{product.sku}</span>
-                </p>
-              )}
-
-              {/* Pricing */}
-              {(product.price != null || product.discountPrice != null) && (
-                <div className="flex items-end gap-3 mb-7">
-                  {product.discountPrice != null ? (
-                    <>
-                      <span className="text-4xl md:text-5xl font-extrabold text-[#12B5CB] tracking-tight">
-                        ৳{product.discountPrice.toLocaleString()}
-                      </span>
-                      <span className="text-xl md:text-2xl text-[#575B5F]/50 line-through pb-1">
-                        ৳{product.price?.toLocaleString()}
-                      </span>
-                    </>
-                  ) : (
-                    <span className="text-4xl md:text-5xl font-extrabold text-[#12B5CB] tracking-tight">
-                      ৳{product.price?.toLocaleString()}
-                    </span>
-                  )}
-                </div>
-              )}
-
-              {(product.listingSummary || product.shortSummary) && (
-                <SmartDescription text={(product.listingSummary || product.shortSummary) as string} />
-              )}
-
-              {/* Key Highlights */}
-              {product.keyHighlights && product.keyHighlights.length > 0 && (
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mb-8 p-5 bg-white/60 rounded-2xl border border-[#00355D]/6">
-                  <p className="col-span-full text-[10px] font-black text-[#575B5F] uppercase tracking-[0.12em] mb-1">
-                    Key Highlights
-                  </p>
-                  {product.keyHighlights.map((hl: any, i: number) => (
-                    <div key={i} className="flex items-start gap-2.5 text-[#00355D]/80">
-                      <CheckCircle2 className="w-4 h-4 text-[#12B5CB] flex-shrink-0 mt-0.5" />
-                      <span className="text-sm font-medium leading-snug">{hl.item}</span>
-                    </div>
-                  ))}
-                </div>
-              )}
-
-              {/* CTA Row */}
-              <div className="flex flex-wrap items-center gap-4 pt-6 border-t border-[#00355D]/8">
-                <ProductClientActions product={product} />
-                {brand && (
-                  <BrandPopupCard brand={{ ...brand, name: brand.name, slug: brand.slug, certificationsText: brand.certifications_text }} brandLogoUrl={brandLogoUrl} />
-                )}
-              </div>
+              {/* ProductClientActions owns: price → SKU → description → highlights → sizes → buttons + manufacturer */}
+              <ProductClientActions product={product} brand={brand} brandLogoUrl={brandLogoUrl} />
 
             </div>
           </div>

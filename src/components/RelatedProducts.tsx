@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { getMediaUrl } from "@/lib/getMediaUrl";
@@ -22,6 +22,7 @@ interface RelatedProduct {
 function RelatedProductCard({ product }: { product: RelatedProduct }) {
   const [imgFailed, setImgFailed] = useState(false);
   const [imgLoaded, setImgLoaded] = useState(false);
+  const imgRef = useRef<HTMLImageElement>(null);
 
   const heroUrl = getMediaUrl(
     typeof product.heroImage !== "string" ? product.heroImage?.url : undefined
@@ -30,6 +31,10 @@ function RelatedProductCard({ product }: { product: RelatedProduct }) {
   useEffect(() => {
     setImgFailed(false);
     setImgLoaded(false);
+    // Cached images won't re-fire onLoad — check manually
+    if (imgRef.current?.complete && imgRef.current?.naturalWidth > 0) {
+      setImgLoaded(true);
+    }
   }, [heroUrl]);
 
   const catTitle =
@@ -62,6 +67,7 @@ function RelatedProductCard({ product }: { product: RelatedProduct }) {
         {heroUrl && !imgFailed && (
           // eslint-disable-next-line @next/next/no-img-element
           <img
+            ref={imgRef}
             src={heroUrl}
             alt={product.name}
             loading="lazy"
