@@ -27,7 +27,6 @@ export async function POST(req: Request) {
       customer_phone: customer.phone ?? '',
       customer_address: customer.address ?? '',
       customer_city: customer.city ?? '',
-      items,
       total_amount: totalAmount,
       payment_method: paymentMethod,
       payment_status: 'unpaid',
