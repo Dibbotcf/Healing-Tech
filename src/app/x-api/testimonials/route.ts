@@ -6,15 +6,15 @@ export const revalidate = 0;
 export async function GET() {
   try {
     const res = await directusGet<{ data: any[] }>(
-      "/items/testimonials?fields=id,quote,client_name,designation,hospital,avatar,is_active&filter[is_active][_eq]=true&limit=100",
+      "/items/testimonials?fields=id,name,role,text,hospital,avatar,is_active&filter[is_active][_eq]=true&limit=100",
       300
     );
 
     const docs = (res.data ?? []).map((t: any) => ({
       id: String(t.id),
-      quote: t.quote ?? "",
-      clientName: t.client_name ?? t.clientName ?? "",
-      designation: t.designation ?? "",
+      quote: t.text ?? "",
+      clientName: t.name ?? "",
+      designation: t.role ?? "",
       hospital: t.hospital ?? "",
       avatar: t.avatar ? { url: directusAssetUrl(t.avatar) ?? "" } : null,
     }));

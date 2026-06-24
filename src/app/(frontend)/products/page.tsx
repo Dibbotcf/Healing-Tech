@@ -7,16 +7,22 @@ export default async function ProductsPage({ searchParams }: { searchParams: Pro
   const params = await searchParams;
   const categorySlug = params.category || null;
 
-  const [productsRes, categoriesRes] = await Promise.all([
-    directusGet<{ data: any[] }>(
-      "/items/products?fields=id,name,slug,listing_summary,short_summary,mark_as_new,price,discount_price,hero_image,category.id,category.name,category.slug,brand.id,brand.name&filter[status][_eq]=published&sort=-mark_as_new,-date_created&limit=500",
-      0
-    ),
-    directusGet<{ data: any[] }>(
-      "/items/categories?fields=id,name,slug&sort=sort_order&limit=100",
-      0
-    ),
-  ]);
+  let productsRes: { data: any[] } = { data: [] };
+  let categoriesRes: { data: any[] } = { data: [] };
+  try {
+    [productsRes, categoriesRes] = await Promise.all([
+      directusGet<{ data: any[] }>(
+        "/items/products?fields=id,name,slug,listing_summary,short_summary,mark_as_new,price,discount_price,hero_image,category.id,category.name,category.slug,brand.id,brand.name&filter[status][_eq]=published&sort=-mark_as_new,-date_created&limit=500",
+        0
+      ),
+      directusGet<{ data: any[] }>(
+        "/items/categories?fields=id,name,slug&sort=sort_order&limit=100",
+        0
+      ),
+    ]);
+  } catch {
+    // Directus unavailable — render empty state rather than throwing 500
+  }
 
   const products = (productsRes.data ?? []).map((p: any) => ({
     id: String(p.id),
