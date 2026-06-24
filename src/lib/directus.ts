@@ -28,6 +28,7 @@ export async function directusFetch<T = any>(
   options: RequestInit = {}
 ): Promise<T> {
   const url = endpoint.startsWith('http') ? endpoint : `${DIRECTUS_URL}${endpoint}`;
+  const hasRevalidate = options.next && typeof (options.next as any).revalidate === 'number' && (options.next as any).revalidate > 0;
   const res = await fetch(url, {
     ...options,
     headers: {
@@ -35,7 +36,7 @@ export async function directusFetch<T = any>(
       'Content-Type': 'application/json',
       ...options.headers,
     },
-    next: options.next,
+    ...(hasRevalidate ? { next: options.next } : { cache: 'no-store' }),
   });
   if (!res.ok) {
     const text = await res.text();
