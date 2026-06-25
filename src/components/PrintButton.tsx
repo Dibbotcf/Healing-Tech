@@ -16,6 +16,12 @@ export default function PrintButton({ orderNumber }: { orderNumber?: string }) {
       // Support both named and default export across versions
       const jsPDF = (jsPDFModule as any).jsPDF ?? (jsPDFModule as any).default;
 
+      // Temporarily pin element width so md: Tailwind classes activate at desktop size
+      const prevWidth = element.style.width;
+      const prevMinWidth = element.style.minWidth;
+      element.style.width = "740px";
+      element.style.minWidth = "740px";
+
       const canvas = await html2canvas(element, {
         scale: 2,
         useCORS: true,
@@ -23,13 +29,26 @@ export default function PrintButton({ orderNumber }: { orderNumber?: string }) {
         backgroundColor: "#ffffff",
         logging: false,
         imageTimeout: 15000,
+        // Evaluate Tailwind responsive classes as if viewport = 1200px
+        windowWidth: 1200,
+        windowHeight: 900,
         onclone: (doc: Document) => {
-          // Force all images to have crossOrigin attribute in the clone
           doc.querySelectorAll("img").forEach((img: HTMLImageElement) => {
             img.crossOrigin = "anonymous";
           });
+          const cloned = doc.getElementById("invoice-content");
+          if (cloned) {
+            (cloned as HTMLElement).style.width = "740px";
+            (cloned as HTMLElement).style.minWidth = "740px";
+            (cloned as HTMLElement).style.borderRadius = "0";
+            (cloned as HTMLElement).style.boxShadow = "none";
+          }
         },
       });
+
+      // Restore
+      element.style.width = prevWidth;
+      element.style.minWidth = prevMinWidth;
 
       const imgData = canvas.toDataURL("image/png");
       const pdf = new jsPDF({ orientation: "portrait", unit: "mm", format: "a4" });

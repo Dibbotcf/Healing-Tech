@@ -103,24 +103,24 @@ export default async function InvoicePage({ params }: { params: Promise<{ orderN
         {/* Invoice Paper */}
         <div id="invoice-content" className="bg-white p-10 md:p-14 rounded-2xl shadow-md border border-gray-100 relative overflow-hidden print:shadow-none print:border-none print:p-0 print:rounded-none print:overflow-visible">
           {/* Header */}
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-gray-100 pb-8 mb-8 print:pb-4 print:mb-4">
-            <div className="mb-6 md:mb-0">
+          <div className="flex flex-col md:flex-row print:flex-row justify-between items-start md:items-center print:items-center border-b border-gray-100 pb-8 mb-8 print:pb-4 print:mb-4">
+            <div className="mb-6 md:mb-0 print:mb-0">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/logo-dark.svg" alt="Healing Technology" width={220} height={48} className="object-contain" crossOrigin="anonymous" />
               <p className="text-xs text-gray-500 mt-2 tracking-widest uppercase font-bold">Official Commercial Invoice</p>
             </div>
-            <div className="text-left md:text-right">
+            <div className="text-left md:text-right print:text-right">
               <h2 className="text-3xl font-bold text-[#00355D] mb-1">INVOICE</h2>
               <p className="text-sm font-bold text-[#12B5CB]">{order.orderNumber}</p>
-              <div className="mt-4 flex flex-col md:items-end gap-1.5 text-sm text-gray-500">
+              <div className="mt-4 flex flex-col md:items-end print:items-end gap-1.5 text-sm text-gray-500">
                 <p><span className="font-semibold text-gray-700">Date:</span> {order.createdAt ? new Date(order.createdAt).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }) : '—'}</p>
-                <div className="flex md:justify-end items-center gap-2 flex-wrap">
+                <div className="flex md:justify-end print:justify-end items-center gap-2 flex-wrap">
                   <span className="font-semibold text-gray-700">Payment:</span>
                   <span className={`px-2 py-0.5 rounded text-xs font-bold uppercase tracking-wider ${STATUS_COLORS[order.paymentStatus] ?? 'bg-gray-100 text-gray-700'}`}>
                     {order.paymentStatus}
                   </span>
                 </div>
-                <div className="flex md:justify-end items-center gap-2 flex-wrap">
+                <div className="flex md:justify-end print:justify-end items-center gap-2 flex-wrap">
                   <span className="font-semibold text-gray-700">Status:</span>
                   <span className={`px-2 py-0.5 rounded text-xs font-bold uppercase tracking-wider ${STATUS_COLORS[order.status] ?? 'bg-gray-100 text-gray-700'}`}>
                     {order.status}
@@ -131,7 +131,7 @@ export default async function InvoicePage({ params }: { params: Promise<{ orderN
           </div>
 
           {/* Customer & Company Details */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10 print:mb-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 print:grid-cols-2 gap-8 mb-10 print:mb-4">
              <div>
                <h3 className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-3">Billed To</h3>
                <p className="font-bold text-[#111111] text-lg">{order.customer.firstName} {order.customer.lastName}</p>
@@ -140,7 +140,7 @@ export default async function InvoicePage({ params }: { params: Promise<{ orderN
                <p className="text-sm text-gray-500 mt-3">{order.customer.email}</p>
                <p className="text-sm text-[#00355D] font-medium">{order.customer.phone}</p>
              </div>
-             <div className="md:text-right">
+             <div className="md:text-right print:text-right">
                <h3 className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-3">From</h3>
                <p className="font-bold text-[#111111] text-lg">Healing Technology Ltd.</p>
                <p className="text-sm text-gray-500 mt-1">Ansari Bhaban (Ground Floor), 14/2</p>
