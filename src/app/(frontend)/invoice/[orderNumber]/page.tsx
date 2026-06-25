@@ -96,12 +96,12 @@ export default async function InvoicePage({ params }: { params: Promise<{ orderN
             <ArrowLeft className="w-4 h-4" /> Back to Products
           </Link>
           <div className="flex gap-3">
-             <PrintButton />
+             <PrintButton orderNumber={order.orderNumber} />
           </div>
         </div>
 
         {/* Invoice Paper */}
-        <div className="bg-white p-10 md:p-14 rounded-2xl shadow-md border border-gray-100 relative overflow-hidden print:shadow-none print:border-none print:p-0 print:rounded-none print:overflow-visible">
+        <div id="invoice-content" className="bg-white p-10 md:p-14 rounded-2xl shadow-md border border-gray-100 relative overflow-hidden print:shadow-none print:border-none print:p-0 print:rounded-none print:overflow-visible">
           {/* Header */}
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-gray-100 pb-8 mb-8 print:pb-4 print:mb-4">
             <div className="mb-6 md:mb-0">
