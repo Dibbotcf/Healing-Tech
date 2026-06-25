@@ -86,31 +86,31 @@ export function ProductClientActions({ product, brand, brandLogoUrl }: Props) {
   return (
     <>
     {/* ── Mobile floating CTA bar (hidden on md+) ── */}
-    <div className="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-white/95 backdrop-blur-md border-t border-gray-100 shadow-2xl px-4 py-3 flex gap-2.5">
+    <div className="fixed bottom-0 left-0 right-0 z-[60] md:hidden bg-white border-t border-gray-200 shadow-2xl px-3 py-2.5 flex gap-2">
       <button
         onClick={handleAddToCart}
         disabled={added}
-        className={`flex-1 inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-sm font-bold transition-all ${
+        className={`flex-1 inline-flex items-center justify-center gap-1.5 py-3 rounded-xl text-sm font-bold transition-all ${
           added
             ? "bg-green-500 text-white"
             : isAlreadyInCart
-            ? "bg-green-500/10 text-green-600"
-            : "bg-[#12B5CB]/10 text-[#12B5CB] border border-[#12B5CB]/30"
+            ? "bg-green-100 text-green-600 border border-green-200"
+            : "bg-[#EEF4FB] text-[#12B5CB] border border-[#12B5CB]/20"
         }`}
       >
-        <ShoppingCart className="w-4 h-4" />
-        {added ? "Added!" : isAlreadyInCart ? "In Cart" : "Add to Cart"}
+        <ShoppingCart className="w-4 h-4 flex-shrink-0" />
+        <span className="truncate">{added ? "Added!" : isAlreadyInCart ? "In Cart" : "Add to Cart"}</span>
       </button>
       <button
         onClick={handleOrderNow}
-        className="flex-1 inline-flex items-center justify-center gap-2 bg-[#00355D] hover:bg-[#002543] active:bg-[#00172e] text-white px-4 py-3 rounded-xl text-sm font-bold shadow-md transition-colors"
+        className="flex-1 inline-flex items-center justify-center gap-1.5 bg-[#00355D] hover:bg-[#002543] active:bg-[#00172e] text-white py-3 rounded-xl text-sm font-bold shadow-md transition-colors"
       >
-        <Zap className="w-4 h-4" fill="currentColor" />
-        Order Now
+        <Zap className="w-4 h-4 flex-shrink-0" fill="currentColor" />
+        <span>Order Now</span>
       </button>
     </div>
     {/* Spacer so the page content isn't hidden behind the floating bar */}
-    <div className="md:hidden h-20" />
+    <div className="md:hidden h-[68px]" />
 
     <div className="space-y-5 w-full">
 

@@ -10,7 +10,7 @@ const WhatsAppIcon = () => (
 
 export function WhatsAppFAB() {
   return (
-    <div className="fixed bottom-6 right-4 md:bottom-8 md:right-8 flex flex-col items-end gap-3 z-50 group print:hidden">
+    <div className="fixed bottom-[88px] right-4 md:bottom-8 md:right-8 flex flex-col items-end gap-3 z-50 group print:hidden">
       
       {/* Secondary Social Links Stack */}
       <div className="flex flex-col items-center gap-3 mr-1 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-300 translate-y-4 group-hover:translate-y-0 origin-bottom">
