@@ -240,7 +240,7 @@ export default function ProductClientWrapper({
                               {isInCart ? "In Cart" : "Cart"}
                             </button>
                             <button
-                              onClick={(e) => { e.preventDefault(); e.stopPropagation(); addItem(cartProduct, 1); router.push('/checkout'); }}
+                              onClick={(e) => { e.preventDefault(); e.stopPropagation(); addItem(cartProduct, 1); router.push('/checkout'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
                               className="w-full bg-[#00355D] hover:bg-[#002543] text-white text-center py-2 rounded-xl text-xs font-bold transition-colors shadow-sm cursor-pointer flex justify-center items-center gap-1"
                             >
                               <Zap className="w-3 h-3" fill="currentColor" /> Order

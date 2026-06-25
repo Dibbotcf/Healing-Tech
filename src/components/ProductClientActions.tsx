@@ -75,6 +75,7 @@ export function ProductClientActions({ product, brand, brandLogoUrl }: Props) {
       addItem(cartProduct, 1, selectedSizeName, selectedSizePrice);
     }
     router.push("/checkout");
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const toggleSize = (idx: number) => {
