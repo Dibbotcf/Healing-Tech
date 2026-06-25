@@ -22,7 +22,7 @@ export default function CartToast() {
     setExiting(false);
     setVisible(true);
 
-    timerRef.current = setTimeout(() => dismiss(), 5000);
+    timerRef.current = setTimeout(() => dismiss(), 10000);
     return () => { if (timerRef.current) clearTimeout(timerRef.current); };
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lastAdded]);
@@ -49,7 +49,7 @@ export default function CartToast() {
       <div className="h-1 bg-[#12B5CB]/20 rounded-t-2xl overflow-hidden">
         <div
           className="h-full bg-[#12B5CB] rounded-t-2xl"
-          style={{ animation: "cartToastProgress 5s linear forwards" }}
+          style={{ animation: "cartToastProgress 10s linear forwards" }}
         />
       </div>
 
@@ -96,7 +96,7 @@ export default function CartToast() {
             Continue Shopping
           </button>
           <button
-            onClick={() => { dismiss(); router.push("/checkout"); }}
+            onClick={() => { dismiss(); router.push("/checkout"); window.scrollTo({ top: 0, behavior: "smooth" }); }}
             className="flex-1 py-2 rounded-xl text-xs font-bold bg-[#00355D] hover:bg-[#12B5CB] text-white transition-colors flex items-center justify-center gap-1 shadow-sm"
           >
             <Zap className="w-3 h-3" fill="currentColor" /> Checkout

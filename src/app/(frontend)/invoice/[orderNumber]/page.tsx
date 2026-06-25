@@ -105,7 +105,8 @@ export default async function InvoicePage({ params }: { params: Promise<{ orderN
           {/* Header */}
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-gray-100 pb-8 mb-8 print:pb-4 print:mb-4">
             <div className="mb-6 md:mb-0">
-              <Image src="/logo-dark.svg" alt="Healing Technology" width={220} height={48} className="object-contain" />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/logo-dark.svg" alt="Healing Technology" width={220} height={48} className="object-contain" crossOrigin="anonymous" />
               <p className="text-xs text-gray-500 mt-2 tracking-widest uppercase font-bold">Official Commercial Invoice</p>
             </div>
             <div className="text-left md:text-right">
