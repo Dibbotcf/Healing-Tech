@@ -25,9 +25,11 @@ function ProductImage({ url, name }: { url: string; name: string }) {
 
   return (
     <>
-      <div className="absolute inset-0 flex items-center justify-center">
-        <span className="font-bold text-gray-200 text-7xl select-none">{name.substring(0, 2)}</span>
-      </div>
+      {!loaded && (
+        <div className="absolute inset-0 flex items-center justify-center">
+          <span className="font-bold text-gray-200 text-7xl select-none">{name.substring(0, 2)}</span>
+        </div>
+      )}
       {!failed && (
         // eslint-disable-next-line @next/next/no-img-element
         <img
