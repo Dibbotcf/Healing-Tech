@@ -176,7 +176,7 @@ export default async function InvoicePage({ params }: { params: Promise<{ orderN
           </div>
 
           {/* Totals */}
-          <div className="flex justify-end pt-4 mb-16 print:mb-2">
+          <div className="flex justify-end pt-4 mb-6">
              <div className="w-full md:w-1/2 lg:w-2/5">
                 <div className="flex justify-between items-center mb-3">
                   <span className="text-gray-500 font-medium text-sm">Subtotal</span>

@@ -16,39 +16,48 @@ export default function PrintButton({ orderNumber }: { orderNumber?: string }) {
       // Support both named and default export across versions
       const jsPDF = (jsPDFModule as any).jsPDF ?? (jsPDFModule as any).default;
 
-      // Temporarily pin element width so md: Tailwind classes activate at desktop size
-      const prevWidth = element.style.width;
-      const prevMinWidth = element.style.minWidth;
-      element.style.width = "740px";
-      element.style.minWidth = "740px";
+      // Build an isolated off-screen container so html2canvas captures only
+      // the white invoice card with no surrounding page background bleeding in.
+      const wrapper = document.createElement("div");
+      wrapper.style.cssText = [
+        "position:fixed",
+        "top:-99999px",
+        "left:-99999px",
+        "width:794px",
+        "background:#ffffff",
+        "padding:40px",
+        "box-sizing:border-box",
+      ].join(";");
+      document.body.appendChild(wrapper);
 
-      const canvas = await html2canvas(element, {
+      const clone = element.cloneNode(true) as HTMLElement;
+      clone.style.cssText += [
+        "width:714px",
+        "min-width:714px",
+        "border-radius:0",
+        "box-shadow:none",
+        "overflow:visible",
+      ].join(";");
+      wrapper.appendChild(clone);
+
+      const canvas = await html2canvas(wrapper, {
         scale: 2,
         useCORS: true,
         allowTaint: true,
         backgroundColor: "#ffffff",
         logging: false,
         imageTimeout: 15000,
-        // Evaluate Tailwind responsive classes as if viewport = 1200px
         windowWidth: 1200,
         windowHeight: 900,
         onclone: (doc: Document) => {
+          doc.body.style.backgroundColor = "#ffffff";
           doc.querySelectorAll("img").forEach((img: HTMLImageElement) => {
             img.crossOrigin = "anonymous";
           });
-          const cloned = doc.getElementById("invoice-content");
-          if (cloned) {
-            (cloned as HTMLElement).style.width = "740px";
-            (cloned as HTMLElement).style.minWidth = "740px";
-            (cloned as HTMLElement).style.borderRadius = "0";
-            (cloned as HTMLElement).style.boxShadow = "none";
-          }
         },
       });
 
-      // Restore
-      element.style.width = prevWidth;
-      element.style.minWidth = prevMinWidth;
+      document.body.removeChild(wrapper);
 
       const imgData = canvas.toDataURL("image/png");
       const pdf = new jsPDF({ orientation: "portrait", unit: "mm", format: "a4" });
