@@ -18,10 +18,12 @@ export interface CartItem {
 
 interface CartState {
   items: CartItem[];
+  lastAdded: CartItem | null;
   addItem: (product: CartItem['product'], quantity?: number, selectedSize?: string | null, selectedSizePrice?: number | null) => void;
   removeItem: (productId: string) => void;
   updateQuantity: (productId: string, quantity: number) => void;
   clearCart: () => void;
+  clearLastAdded: () => void;
   getTotalItems: () => number;
   getTotalPrice: () => number;
 }
@@ -44,15 +46,18 @@ export const useCartStore = create<CartState>()(
   persist(
     (set, get) => ({
       items: [],
+      lastAdded: null,
 
       addItem: (product, quantity = 1, selectedSize = null, selectedSizePrice = null) => {
         const normalizedProduct = { ...product, id: String(product.id) };
         set((state) => {
           const deduped = deduplicateItems(state.items);
           const existingItem = deduped.find(item => String(item.product.id) === normalizedProduct.id);
+          const newItem: CartItem = { product: normalizedProduct, quantity, selectedSize, selectedSizePrice };
 
           if (existingItem) {
             return {
+              lastAdded: newItem,
               items: deduped.map(item =>
                 String(item.product.id) === normalizedProduct.id
                   ? { ...item, quantity: item.quantity + quantity, selectedSize, selectedSizePrice }
@@ -61,7 +66,7 @@ export const useCartStore = create<CartState>()(
             };
           }
 
-          return { items: [...deduped, { product: normalizedProduct, quantity, selectedSize, selectedSizePrice }] };
+          return { lastAdded: newItem, items: [...deduped, newItem] };
         });
       },
 
@@ -87,6 +92,7 @@ export const useCartStore = create<CartState>()(
       },
 
       clearCart: () => set({ items: [] }),
+      clearLastAdded: () => set({ lastAdded: null }),
 
       getTotalItems: () => {
         return get().items.reduce((total, item) => total + item.quantity, 0);

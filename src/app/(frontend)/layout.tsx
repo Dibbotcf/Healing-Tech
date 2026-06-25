@@ -11,6 +11,7 @@ import Navbar from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { WhatsAppFAB } from "@/components/WhatsAppFAB";
 import { FacebookPixel } from "@/components/FacebookPixel";
+import CartToast from "@/components/CartToast";
 
 const inter = {
   variable: "font-inter",
@@ -74,6 +75,7 @@ export default function RootLayout({
           <main className="flex-grow">{children}</main>
           <Footer />
           <WhatsAppFAB />
+          <CartToast />
           <FacebookPixel />
         </div>
       </body>
